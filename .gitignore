@@ -10,8 +10,8 @@
 programs/*/Debug/*.tlog
 programs/*/Release/*.tlog
 
-programs/*/bin/debug/*.exe
-programs/*/bin/release/*.exe
+programs/*/bin/debug/demo_hello.exe
+programs/*/bin/release/demo_hello.exe
 
 programs/*/Release/*.lastbuildstate
 programs/*/Debug/*.lastbuildstate
