@@ -20,6 +20,11 @@ programs/*/Debug/*.lastbuildstate
 programs/*/Debug/*.unsuccessfulbuild
 programs/*/Release/*.unsuccessfulbuild
 
+*.tlog
+*.unsuccessfulbuild
+*.lastbuildstate
+
+OgreBulletDynamicsDemo.exe
 
 
 # User-specific files
