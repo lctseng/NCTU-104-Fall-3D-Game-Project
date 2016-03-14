@@ -25,7 +25,11 @@ programs/*/Release/*.unsuccessfulbuild
 *.lastbuildstate
 
 demo_hello.exe
+demo_hello.exp
+demo_hello.lib
 OgreBulletDynamicsDemo.exe
+OgreBulletDynamicsDemo.exp
+OgreBulletDynamicsDemo.lib
 
 
 # User-specific files
