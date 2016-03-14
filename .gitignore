@@ -24,6 +24,7 @@ programs/*/Release/*.unsuccessfulbuild
 *.unsuccessfulbuild
 *.lastbuildstate
 
+demo_hello.exe
 OgreBulletDynamicsDemo.exe
 
 
