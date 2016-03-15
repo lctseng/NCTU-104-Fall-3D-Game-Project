@@ -46,6 +46,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>bin\Release</OutDir>
     <IntDir>Release</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -73,7 +74,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\include;..\..\ogrebullet\Dynamics\include;..\..\ogrebullet\Collisions\include;..\..\bullet3-2.83.7\src;..\..\include\OGRE;..\..\include\OIS;..\..\boost_1_42;..\..\ogrebullet\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\include;..\..\ogrebullet\Dynamics\include;..\..\ogrebullet\Collisions\include;..\..\bullet3-2.83.7\src;..\..\include\OGRE;..\..\include\OIS;..\..\boost_1_42;..\..\ogrebullet\include;..\..\NCTUObstacle\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -81,9 +82,17 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)/demo_hello.exe</OutputFile>
-      <AdditionalLibraryDirectories>..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\BaseApplication.cpp" />
@@ -114,6 +123,12 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\devel\bullet3-2.83.7\bullet3-2.83.7\build3\vs2010\LinearMath.vcxproj">
       <Project>{463f48dc-6d82-4a4d-9ea7-b39fef8034b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ogrebullet\Collisions\scripts\VC8\OgreBulletCollisions_VC8.vcxproj">
+      <Project>{791f594f-ff44-49d1-a882-ff4db0dcd92a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ogrebullet\Dynamics\scripts\VC8\OgreBulletDynamics_VC8.vcxproj">
+      <Project>{022634ce-f06a-4f71-aa07-3ce7bb1841ae}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

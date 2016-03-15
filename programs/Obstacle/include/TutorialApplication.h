@@ -7,31 +7,33 @@
 #define __BasicTutorial_00_h_
  
 #include "BaseApplication.h"
-#include "OgreBulletDynamicsRigidBody.h"
-#include "Shapes/OgreBulletCollisionsStaticPlaneShape.h" // for static planes
-#include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
+#include "NCTUObstacleCommon.h"
+
+
 
 
 using namespace Ogre;
 class BasicTutorial_00 : public BaseApplication
 {
 private:
-	Entity *mEntity;
-	AnimationState *mAnimationState;
 protected:
 	virtual bool frameStarted(const FrameEvent& evt);
-	virtual bool frameEnded(const FrameEvent& evt);
+	// [NEW]
 	virtual bool processUnbufferedKeyInput(const FrameEvent& evt);
-	virtual void setupOgreBullet();
+	
+	// [NEW]
+	virtual Real speedAdjustment(const Vector3& old,const Vector3& go);
+	// [NEW]
+	virtual void checkCollision(const FrameEvent& evt);
 
-	// For Bullet
-	AxisAlignedBox  mBulletBox;
-	Vector3 mGravityVector;
-	OgreBulletDynamics::DynamicsWorld *mWorld;   // OgreBullet World
-	OgreBulletCollisions::DebugDrawer *mDebugDrawer;
-	int mNumEntitiesInstanced;
-	std::deque<OgreBulletDynamics::RigidBody *>         mBodies;
-	std::deque<OgreBulletCollisions::CollisionShape *>  mShapes;
+	// [NEW]
+	NCTU::ObstacleManager* mObstacleMgr;
+
+	// [NEW]
+	// Games
+	Vector3 mInitVelocity;
+	Vector3 mInitPosition;
+	NCTU::PlayerObstacle* mPlayerObstacle;
 
 
 public:
