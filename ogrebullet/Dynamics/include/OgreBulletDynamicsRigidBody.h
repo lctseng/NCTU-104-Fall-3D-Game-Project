@@ -92,6 +92,14 @@ namespace OgreBulletDynamics
         void applyImpulse(const Ogre::Vector3 &impulse, const Ogre::Vector3 &position);
         void applyForce(const Ogre::Vector3 &impulse, const Ogre::Vector3 &position);
 
+		virtual void setPosition(const Ogre::Vector3& p);
+		virtual void setOrientation(const Ogre::Quaternion &q);
+
+        inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) { setPosition(Ogre::Vector3(x,y,z));};
+        inline void setOrientation(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real w) { setOrientation(Ogre::Quaternion(x,y,z,w));};
+
+
+
 
         inline btRigidBody*         getBulletRigidBody() const;
         inline btDynamicsWorld*     getBulletDynamicsWorld() const;

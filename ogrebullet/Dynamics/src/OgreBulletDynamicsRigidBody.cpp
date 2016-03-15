@@ -215,7 +215,24 @@ namespace OgreBulletDynamics
     {
         getBulletRigidBody()->setDamping( linearDamping,  angularDamping);
     }
-    // -------------------------------------------------------------------------
+    
+	// -----------------------
+    void RigidBody::setPosition(const Ogre::Vector3& p)
+    {
+		btTransform transform; //Declaration of the btTransform
+		transform.setIdentity(); //This function put the variable of the object to default. The ctor of btTransform doesnt do it.
+		transform.setOrigin(OgreBulletCollisions::OgreBtConverter::to(p)); //Set the new position/origin
+		getBulletRigidBody()->setWorldTransform(transform);
+    }
+	// -----------------------
+    void RigidBody::setOrientation(const Ogre::Quaternion& q)
+    {
+		btTransform transform; //Declaration of the btTransform
+		transform.setIdentity(); //This function put the variable of the object to default. The ctor of btTransform doesnt do it.
+		transform.setRotation(OgreBulletCollisions::OgreBtConverter::to(q));
+		getBulletRigidBody()->setWorldTransform(transform);
+    }
+	// -------------------------------------------------------------------------
     // -------------------------------------------------------------------------
     // -------------------------------------------------------------------------
     void WheeledRigidBody::setPosition(const btVector3 &pos)
