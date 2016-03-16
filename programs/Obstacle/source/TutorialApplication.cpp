@@ -4,9 +4,31 @@
 // Instructor: SAI-KEUNG WONG
 //
 #include "TutorialApplication.h"
-
+#include <iostream>
 
 using namespace Ogre;
+using namespace std;
+
+
+// [NEW]
+// collision callbacks
+struct FloorContactResultCallback : public btCollisionWorld::ContactResultCallback
+{
+    btScalar addSingleResult(btManifoldPoint& cp,
+        const btCollisionObjectWrapper* colObj0Wrap,
+        int partId0,
+        int index0,
+        const btCollisionObjectWrapper* colObj1Wrap,
+        int partId1,
+        int index1)
+    {
+        cout << "collide with floor" << endl;
+		return 0;
+    }
+};
+
+
+
 BasicTutorial_00::BasicTutorial_00(void) {
 	// [NEW]
 	mObstacleMgr = new NCTU::ObstacleManager();
@@ -60,6 +82,9 @@ void BasicTutorial_00::createScene(void)
 	mPlayerObstacle->setVelocity(mInitVelocity);
 	// -----------
 
+	// [NEW]
+	//mObstacleMgr->setFloorCallback(new FloorContactResultCallback);
+	
 	
 	// [NEW]
 	NCTU::CubeObstacle* obstacle = mObstacleMgr->createCube(
@@ -81,25 +106,13 @@ void BasicTutorial_00::createScene(void)
 }
 bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 {
-	// [NEW]
-	// Process keys, go into functions
-	processUnbufferedKeyInput(evt);
-
-
 	bool ret = BaseApplication::frameStarted(evt);
-
 	// [NEW]
-    mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
-	// -----------
-	/*
-	static Real timeCheck = 0.0;
-	timeCheck += evt.timeSinceLastFrame;
-	if(timeCheck > 0.1f){
-		timeCheck = 0.0f;
-		checkCollision(evt);	
-	}
-	*/
-
+	processUnbufferedKeyInput(evt); // Process keys, go into functions
+	// [NEW]
+	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
+	// [NEW]
+	checkCollision(evt);	
 	
 
 
@@ -108,6 +121,10 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 
 // [NEW]
 void BasicTutorial_00::checkCollision(const FrameEvent& evt){
+	// floor callback
+	FloorContactResultCallback callback;
+	mObstacleMgr->setFloorCallback(callback);
+
 	/*
 	auto* world = mWorld->getBulletCollisionWorld();
     int numManifolds = world->getDispatcher()->getNumManifolds();
