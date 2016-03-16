@@ -22,11 +22,34 @@ struct FloorContactResultCallback : public btCollisionWorld::ContactResultCallba
         int partId1,
         int index1)
     {
-        cout << "collide with floor" << endl;
+		if(cp.getDistance() < 0.0f){
+			cout << "collide with floor" << endl;
+		}
 		return 0;
     }
 };
-
+struct ObstacleContactResultCallback : public btCollisionWorld::ContactResultCallback
+{
+    btScalar addSingleResult(btManifoldPoint& cp,
+        const btCollisionObjectWrapper* colObj0Wrap,
+        int partId0,
+        int index0,
+        const btCollisionObjectWrapper* colObj1Wrap,
+        int partId1,
+        int index1)
+    {
+		if(cp.getDistance() < 0.0f){
+			btVector3 pa = cp.getPositionWorldOnA();
+			btVector3 pb = cp.getPositionWorldOnB();
+			btVector3 n = cp.m_normalWorldOnB;
+			cout << "[collide with obstacle]" << endl 
+				<< "ptA:" << StringConverter::toString(Vector3(pa[0],pa[1],pa[2])) << endl
+				<< "ptB:" << StringConverter::toString(Vector3(pb[0],pb[1],pb[2])) << endl
+				<< "normal:" << StringConverter::toString(Vector3(n[0],n[1],n[2])) << endl;
+		}
+		return 0;
+    }
+};
 
 
 BasicTutorial_00::BasicTutorial_00(void) {
@@ -34,6 +57,7 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mObstacleMgr = new NCTU::ObstacleManager();
 	mInitVelocity = Vector3(300,0,0);
 	mInitPosition = Vector3( -1000, 50, 30 );
+	mEnableCollision = false;
 	// ------
 }
 
@@ -112,7 +136,9 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 	// [NEW]
 	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
 	// [NEW]
-	checkCollision(evt);	
+	if(mEnableCollision){
+		checkCollision(evt);
+	}
 	
 
 
@@ -122,8 +148,12 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 // [NEW]
 void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 	// floor callback
-	FloorContactResultCallback callback;
-	mObstacleMgr->setFloorCallback(callback);
+	FloorContactResultCallback f_callback;
+	mObstacleMgr->setPlayerFloorCallback(f_callback);
+	// obstacle callback
+	ObstacleContactResultCallback o_callback;
+	mObstacleMgr->setPlayerAllObstacleCallback(o_callback);
+
 
 	/*
 	auto* world = mWorld->getBulletCollisionWorld();
@@ -165,9 +195,11 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	frontDir.normalise();
 	static Vector3 upVector = Vector3::UNIT_Y;
 
-
-
-	if(mKeyboard->isKeyDown(OIS::KC_F8) && timeUntilNextToggle > 1.0f){
+	if(mKeyboard->isKeyDown(OIS::KC_F7) && timeUntilNextToggle > 0.2f){
+		timeUntilNextToggle = 0.0f;
+		mEnableCollision = !mEnableCollision;
+	}
+	if(mKeyboard->isKeyDown(OIS::KC_F8) && timeUntilNextToggle > 0.5f){
 		timeUntilNextToggle = 0.0f;
 		mPlayerObstacle->setVelocity(mInitVelocity);
 		mPlayerObstacle->setPosition(mInitPosition);

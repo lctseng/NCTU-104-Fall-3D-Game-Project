@@ -34,6 +34,7 @@ protected:
 	Vector3 mInitVelocity;
 	Vector3 mInitPosition;
 	NCTU::PlayerObstacle* mPlayerObstacle;
+	bool mEnableCollision;
 
 
 public:
