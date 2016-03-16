@@ -3,6 +3,7 @@
 
 using namespace NCTU;
 using namespace Ogre;
+using namespace OgreBulletCollisions;
 
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass)
 	:Obstacle(mgmt,restitution,friction,mass)
@@ -37,4 +38,11 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 					position,      // starting position of the box
 					orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
+}
+
+void PlayerObstacle::setScale(const Ogre::Vector3& v){
+	// some default settings
+	Real radius = 50.0f;
+	mNode->setScale(v * radius);
+	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
 }

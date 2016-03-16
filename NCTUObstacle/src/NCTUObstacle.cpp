@@ -3,6 +3,7 @@
 
 using namespace NCTU;
 using namespace Ogre;
+using namespace OgreBulletCollisions;
 
 Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mass)
 :mManager(mgmt),
@@ -18,3 +19,7 @@ Obstacle::~Obstacle(){
 	delete mShape;
 }
 
+void Obstacle::setScale(const Ogre::Vector3& v){
+	mNode->setScale(v);
+	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
+}

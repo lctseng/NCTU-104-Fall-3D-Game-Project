@@ -2,6 +2,7 @@
 
 using namespace NCTU;
 using namespace Ogre;
+using namespace OgreBulletCollisions;
 
 /*!
 	\brief Create a sphere obstacle (full)
@@ -17,7 +18,8 @@ SphereObstacle::SphereObstacle(
 		Real radius,
 		const Quaternion& orientation)
 	:Obstacle(mgmt,restitution,friction,mass),
-	mIndex(index)
+	mIndex(index),
+	mRadius(radius)
 {
 	// create ogre objects
 	mEntity = mManager->getSceneMgr()->createEntity(
@@ -45,4 +47,8 @@ SphereObstacle::SphereObstacle(
 					);// orientation of the box     
 	mBody->getBulletObject()->setUserPointer(this);
 	
+}
+void SphereObstacle::setScale(const Ogre::Vector3& v){
+	mNode->setScale(v * mRadius);
+	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
 }

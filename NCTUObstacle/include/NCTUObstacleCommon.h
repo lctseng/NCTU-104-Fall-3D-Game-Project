@@ -20,6 +20,8 @@
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
 
+#include "Utils/OgreBulletConverter.h"
+
 #include "OgreBulletDynamicsRigidBody.h"
 #include "Shapes/OgreBulletCollisionsStaticPlaneShape.h" // for static planes
 #include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
@@ -42,9 +44,12 @@ namespace NCTU{
 		Obstacle(const Obstacle&);
 		virtual ~Obstacle();
 		
+		virtual void setScale(const Ogre::Vector3&);
+
 		inline Ogre::SceneNode* getSceneNode(){return mNode;}
 		inline Ogre::Entity* getEntity(){return mEntity;}
 		inline OgreBulletDynamics::RigidBody* getBody(){return mBody;}
+		inline OgreBulletCollisions::CollisionShape* getShape(){return mShape;}
 
 		inline void setVelocity(const Ogre::Vector3 v){mBody->setLinearVelocity(v);}
 		inline Ogre::Vector3 getVelocity() const {return mBody->getLinearVelocity();}
@@ -79,6 +84,7 @@ namespace NCTU{
 	class PlayerObstacle : public Obstacle{
 	public:
 		PlayerObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass);
+		virtual void setScale(const Ogre::Vector3&);
 	protected:
 
 	};
@@ -86,15 +92,19 @@ namespace NCTU{
 	class CubeObstacle : public Obstacle{
 	public:
 		CubeObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,int index,const Ogre::Vector3& position,const Ogre::Vector3& size,const Ogre::Quaternion& orientation);
+		virtual void setScale(const Ogre::Vector3&);
 	protected:
 		int mIndex;
+		Ogre::Vector3 mInitScale;
 	};
 	// -------------------------------------------------------------
 	class SphereObstacle : public Obstacle{
 	public:
 		SphereObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,int index,const Ogre::Vector3& position,Ogre::Real radius,const Ogre::Quaternion& orientation);
+		virtual void setScale(const Ogre::Vector3&);
 	protected:
 		int mIndex;
+		Ogre::Real mRadius;
 	};
 	// -------------------------------------------------------------
 	class ObstacleManager{
@@ -123,7 +133,6 @@ namespace NCTU{
 		inline FloorObstacle* getFloor(){return mFloorObstacle;}
 
 		inline void stepSimulation(Ogre::Real time){mWorld->stepSimulation(time);}
-		
 		
 
 	private:
