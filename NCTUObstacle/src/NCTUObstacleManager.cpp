@@ -7,7 +7,8 @@ using std::deque;
 ObstacleManager::ObstacleManager()
 	:mSceneMgr(nullptr),
 	mObstacleIndex(0),
-	mPlayerObstacle(nullptr)
+	mPlayerObstacle(nullptr),
+	mFloorObstacle(nullptr)
 {
 
 }
@@ -100,4 +101,9 @@ SphereObstacle* ObstacleManager::createSphere(
 	++mObstacleIndex;
 	mObstacles.push_back(obj);
 	return obj;
+}
+void ObstacleManager::setFloorCallback(btCollisionWorld::ContactResultCallback& callback){
+	assert(mFloorObstacle != nullptr);
+	assert(mPlayerObstacle != nullptr);
+	mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),mFloorObstacle->getBody()->getBulletObject(),callback);
 }

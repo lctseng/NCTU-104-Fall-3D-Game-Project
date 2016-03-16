@@ -25,6 +25,7 @@
 #include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
 #include "Shapes/OgreBulletCollisionsSphereShape.h"       // for Spheres
 
+#include "btBulletCollisionCommon.h"
 
 namespace NCTU{
 
@@ -43,6 +44,7 @@ namespace NCTU{
 		
 		inline Ogre::SceneNode* getSceneNode(){return mNode;}
 		inline Ogre::Entity* getEntity(){return mEntity;}
+		inline OgreBulletDynamics::RigidBody* getBody(){return mBody;}
 
 		inline void setVelocity(const Ogre::Vector3 v){mBody->setLinearVelocity(v);}
 		inline Ogre::Vector3 getVelocity() const {return mBody->getLinearVelocity();}
@@ -50,7 +52,7 @@ namespace NCTU{
 
 
 		inline void setPosition(const Ogre::Vector3 v){mBody->setPosition(v);}
-
+		
 
 	protected:
 		ObstacleManager* mManager;
@@ -111,12 +113,16 @@ namespace NCTU{
 		SphereObstacle* createSphere(Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,const Ogre::Vector3& position,Ogre::Real radius = 1.0f,const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1));
 
 
+		void setFloorCallback(btCollisionWorld::ContactResultCallback& callback);
+
+
 		inline OgreBulletDynamics::DynamicsWorld* getWorld(){return mWorld;}
 		inline Ogre::SceneManager* getSceneMgr(){return mSceneMgr;}
 		inline PlayerObstacle* getPlayer(){return mPlayerObstacle;}
 		inline FloorObstacle* getFloor(){return mFloorObstacle;}
 
 		inline void stepSimulation(Ogre::Real time){mWorld->stepSimulation(time);}
+		
 		
 
 	private:
@@ -137,4 +143,7 @@ namespace NCTU{
 		int mObstacleIndex; // general obstacle
 	};
 };
+
+
+
 #endif
