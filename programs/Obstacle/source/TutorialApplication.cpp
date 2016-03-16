@@ -8,6 +8,7 @@
 
 using namespace Ogre;
 using namespace std;
+using namespace OgreBulletCollisions;
 
 
 // [NEW]
@@ -39,13 +40,10 @@ struct ObstacleContactResultCallback : public btCollisionWorld::ContactResultCal
         int index1)
     {
 		if(cp.getDistance() < 0.0f){
-			btVector3 pa = cp.getPositionWorldOnA();
-			btVector3 pb = cp.getPositionWorldOnB();
-			btVector3 n = cp.m_normalWorldOnB;
 			cout << "[collide with obstacle]" << endl 
-				<< "ptA:" << StringConverter::toString(Vector3(pa[0],pa[1],pa[2])) << endl
-				<< "ptB:" << StringConverter::toString(Vector3(pb[0],pb[1],pb[2])) << endl
-				<< "normal:" << StringConverter::toString(Vector3(n[0],n[1],n[2])) << endl;
+				<< "ptA:" << StringConverter::toString(BtOgreConverter::to(cp.getPositionWorldOnA())) << endl
+				<< "ptB:" << StringConverter::toString(BtOgreConverter::to(cp.getPositionWorldOnB())) << endl
+				<< "normal:" << StringConverter::toString(BtOgreConverter::to(cp.m_normalWorldOnB)) << endl;
 		}
 		return 0;
     }
@@ -115,11 +113,22 @@ void BasicTutorial_00::createScene(void)
 				0.0f, // restitution
 				1.0f, // friction
 				0.0, // mass
-				Vector3(0,100,0), // position
+				Vector3(-350,100,0), // position
 				Vector3(200,200,200), // size
 				Quaternion(0,0,0,1) // orientation
 				);
 	obstacle->getEntity()->setMaterialName("Examples/BumpyMetal");
+	// -----------
+	// [NEW]
+	NCTU::CubeObstacle* obstacle2 = mObstacleMgr->createCube(
+				0.0f, // restitution
+				1.0f, // friction
+				0.0, // mass
+				Vector3(350,175,0), // position
+				Vector3(200,200,200), // size
+				Quaternion(0,0,0,1) // orientation
+				);
+	obstacle2->getEntity()->setMaterialName("Examples/BumpyMetal");
 	// -----------
 
 	Light *light = mSceneMgr->createLight("Light1"); 
@@ -199,6 +208,13 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 		timeUntilNextToggle = 0.0f;
 		mEnableCollision = !mEnableCollision;
 	}
+	static Real playerScaleFactor = 50.0f;
+	if(mKeyboard->isKeyDown(OIS::KC_Z)){
+		mPlayerObstacle->setScale(Vector3(0.5,0.5,0.5));
+	}
+	else{
+		mPlayerObstacle->setScale(Vector3(1,1,1));
+	}
 	if(mKeyboard->isKeyDown(OIS::KC_F8) && timeUntilNextToggle > 0.5f){
 		timeUntilNextToggle = 0.0f;
 		mPlayerObstacle->setVelocity(mInitVelocity);
@@ -262,6 +278,9 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 					);        
 		obstacle->setVelocity(
 				mCamera->getDerivedDirection().normalisedCopy() * 7.0f ); // shooting speed
+		if(mKeyboard->isKeyDown(OIS::KC_Z)){
+			obstacle->setScale(Vector3(0.5,0.5,0.5));
+		}
          
 	}
 	
@@ -286,7 +305,9 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 		obstacle->setVelocity(
 				mCamera->getDerivedDirection().normalisedCopy() * 7.0f ); // shooting speed
 		obstacle->getEntity()->setMaterialName("Bullet/Capsule");
-
+		if(mKeyboard->isKeyDown(OIS::KC_Z)){
+			obstacle->setScale(Vector3(0.5,0.5,0.5));
+		}
 	}
 
 
