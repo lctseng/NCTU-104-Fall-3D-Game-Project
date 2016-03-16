@@ -17,7 +17,7 @@ FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real fricti
 		"obstacle.floor",
 		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		mPlane,
-		15000,15000, // width, height
+		150000,150000, // width, height
 		20,20, // x- and y-segments
 		true, // normal
 		1, // num texture sets
