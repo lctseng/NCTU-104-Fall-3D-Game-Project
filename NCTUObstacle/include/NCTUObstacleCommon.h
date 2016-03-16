@@ -113,7 +113,8 @@ namespace NCTU{
 		SphereObstacle* createSphere(Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,const Ogre::Vector3& position,Ogre::Real radius = 1.0f,const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1));
 
 
-		void setFloorCallback(btCollisionWorld::ContactResultCallback& callback);
+		void setPlayerFloorCallback(btCollisionWorld::ContactResultCallback& callback);
+		void setPlayerAllObstacleCallback(btCollisionWorld::ContactResultCallback& callback);
 
 
 		inline OgreBulletDynamics::DynamicsWorld* getWorld(){return mWorld;}

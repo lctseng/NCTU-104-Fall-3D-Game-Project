@@ -102,8 +102,14 @@ SphereObstacle* ObstacleManager::createSphere(
 	mObstacles.push_back(obj);
 	return obj;
 }
-void ObstacleManager::setFloorCallback(btCollisionWorld::ContactResultCallback& callback){
+void ObstacleManager::setPlayerFloorCallback(btCollisionWorld::ContactResultCallback& callback){
 	assert(mFloorObstacle != nullptr);
 	assert(mPlayerObstacle != nullptr);
 	mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),mFloorObstacle->getBody()->getBulletObject(),callback);
+}
+void ObstacleManager::setPlayerAllObstacleCallback(btCollisionWorld::ContactResultCallback& callback){
+	assert(mPlayerObstacle != nullptr);
+	for(int i=0;i<mObstacles.size();i++){
+		mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),mObstacles[i]->getBody()->getBulletObject(),callback);	
+	}
 }
