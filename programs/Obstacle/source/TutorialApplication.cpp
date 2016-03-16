@@ -10,7 +10,7 @@ using namespace Ogre;
 BasicTutorial_00::BasicTutorial_00(void) {
 	// [NEW]
 	mObstacleMgr = new NCTU::ObstacleManager();
-	mInitVelocity = Vector3(150,0,0);
+	mInitVelocity = Vector3(300,0,0);
 	mInitPosition = Vector3( -1000, 50, 30 );
 	// ------
 }
@@ -29,7 +29,7 @@ void BasicTutorial_00::createScene(void)
 			AxisAlignedBox ( //aligned box for Bullet
 				Ogre::Vector3 (-10000, -10000, -10000), 
                 Ogre::Vector3 (10000,  10000,  10000)),
-			Vector3(0,-9.81 * 30,0) // Gravity
+			Vector3(0,-9.81 * 90,0) // Gravity
 		);
 	// -----------
 	mSceneMgr->setAmbientLight( ColourValue( 0.8, 0.8, 0.8 ) ); //bright
@@ -42,8 +42,8 @@ void BasicTutorial_00::createScene(void)
 	NCTU::FloorObstacle* floor = mObstacleMgr->createFloor(
 			Vector3::UNIT_Y, // normal
 			0, // distance
-			0.1, // restitution
-			0.3 // friction
+			0.1f, // restitution
+			0.3f // friction
 			);
 	floor->getEntity()->setMaterialName("Examples/BeachStones");
 	// -----------
@@ -51,7 +51,7 @@ void BasicTutorial_00::createScene(void)
 	// [NEW]
 	// Player
 	mPlayerObstacle = mObstacleMgr->createPlayer(
-				1.0f, // restitution
+				0.6f, // restitution
 				10.0f, // friction
 				10.0f // mass
 				);
@@ -157,7 +157,7 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	}
 	if(mKeyboard->isKeyDown(OIS::KC_SPACE) && timeUntilNextToggle > 0.2f){
 		timeUntilNextToggle = 0.0f;
-		mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 10,0));
+		mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 20,0));
 	}
 	if(mKeyboard->isKeyDown(OIS::KC_I) && timeUntilNextToggle > 0.1f){
 		timeUntilNextToggle = 0.0f;
