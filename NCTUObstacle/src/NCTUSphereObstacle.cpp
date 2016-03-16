@@ -42,6 +42,7 @@ SphereObstacle::SphereObstacle(
 					mMass,          // dynamic bodymass
 					position,      // starting position of the box
 					orientation
-					);// orientation of the box          
+					);// orientation of the box     
+	mBody->getBulletObject()->setUserPointer(this);
 	
 }

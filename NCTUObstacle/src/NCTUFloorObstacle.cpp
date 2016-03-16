@@ -37,4 +37,5 @@ FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real fricti
 			"floor",
 			mManager->getWorld());
 	mBody->setStaticShape(mShape, mFriction, mRestitution); // (shape, restitution, friction)
+	mBody->getBulletObject()->setUserPointer(this);
 }
