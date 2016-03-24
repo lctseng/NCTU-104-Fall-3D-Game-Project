@@ -89,11 +89,13 @@
     <ClCompile Include="source\BaseApplication.cpp" />
     <ClCompile Include="source\BasicTools.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MouseHandler.cpp" />
     <ClCompile Include="source\TutorialApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\BaseApplication.h" />
     <ClInclude Include="source\BasicTools.h" />
+    <ClInclude Include="source\MouseHandler.h" />
     <ClInclude Include="source\TutorialApplication.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -6,7 +6,10 @@
 #include "TutorialApplication.h"
 
 using namespace Ogre;
-BasicTutorial_00::BasicTutorial_00(void) {}
+BasicTutorial_00::BasicTutorial_00(void) {
+
+	mousetest = new MouseHandler();
+}
 
 void BasicTutorial_00::createScene(void) 
 {
@@ -37,6 +40,20 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 		mAnimationState->setLoop( true );
 		mAnimationState->setEnabled( true );
 	}
+
+	mousetest->updateData();
 	return true;
 }
+bool BasicTutorial_00::keyPressed( const OIS::KeyEvent &arg ){
 
+	mousetest->keyPressed(arg);
+
+	return BaseApplication::keyPressed(arg);
+}
+
+bool BasicTutorial_00::keyReleased( const OIS::KeyEvent &arg ){
+
+	mousetest->keyReleased(arg);
+
+	return BaseApplication::keyReleased(arg);
+}
