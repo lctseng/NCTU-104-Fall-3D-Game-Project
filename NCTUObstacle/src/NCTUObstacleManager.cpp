@@ -109,7 +109,13 @@ void ObstacleManager::setPlayerFloorCallback(btCollisionWorld::ContactResultCall
 }
 void ObstacleManager::setPlayerAllObstacleCallback(btCollisionWorld::ContactResultCallback& callback){
 	assert(mPlayerObstacle != nullptr);
-	for(int i=0;i<mObstacles.size();i++){
+	for(unsigned i=0;i<mObstacles.size();i++){
 		mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),mObstacles[i]->getBody()->getBulletObject(),callback);	
+	}
+}
+
+void ObstacleManager::updateCollision(const FrameEvent& evt){
+	if(mPlayerObstacle){
+		mPlayerObstacle->updateCollision(evt);
 	}
 }

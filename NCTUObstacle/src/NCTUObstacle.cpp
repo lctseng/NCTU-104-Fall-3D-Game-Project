@@ -9,7 +9,8 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 :mManager(mgmt),
 mFriction(friction),
 mRestitution(restitution),
-mMass(mass)
+mMass(mass),
+mIsBumpObstacle(false)
 {
 	
 }

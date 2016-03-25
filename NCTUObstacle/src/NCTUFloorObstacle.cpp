@@ -17,11 +17,11 @@ FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real fricti
 		"obstacle.floor",
 		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		mPlane,
-		150000,150000, // width, height
-		20,20, // x- and y-segments
+		1500000,1500000, // width, height
+		250,250, // x- and y-segments
 		true, // normal
 		1, // num texture sets
-		100,100, // x- and y-tiles
+		1000,1000, // x- and y-tiles
 		Vector3::UNIT_Z // upward vector
 		); 
 	// plane entity

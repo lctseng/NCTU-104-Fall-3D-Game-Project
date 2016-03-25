@@ -53,11 +53,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>.\include;..\ogrebullet\Dynamics\include;..\ogrebullet\Collisions\include;..\bullet3-2.83.7\src;..\include\OGRE;..\include\OIS;..\boost_1_42;..\ogrebullet\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -80,6 +81,7 @@
     <ClCompile Include="src\NCTUCubeObstacle.cpp" />
     <ClCompile Include="src\NCTUFloorObstacle.cpp" />
     <ClCompile Include="src\NCTUObstacle.cpp" />
+    <ClCompile Include="src\NCTUObstacleCallback.cpp" />
     <ClCompile Include="src\NCTUObstacleManager.cpp" />
     <ClCompile Include="src\NCTUPlayerObstacle.cpp" />
     <ClCompile Include="src\NCTUSphereObstacle.cpp" />
