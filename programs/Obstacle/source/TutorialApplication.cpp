@@ -11,51 +11,27 @@ using namespace std;
 using namespace OgreBulletCollisions;
 
 
-// [NEW]
-// collision callbacks
-struct FloorContactResultCallback : public btCollisionWorld::ContactResultCallback
-{
-    btScalar addSingleResult(btManifoldPoint& cp,
-        const btCollisionObjectWrapper* colObj0Wrap,
-        int partId0,
-        int index0,
-        const btCollisionObjectWrapper* colObj1Wrap,
-        int partId1,
-        int index1)
-    {
-		if(cp.getDistance() < 0.0f){
-			cout << "collide with floor" << endl;
-		}
-		return 0;
-    }
-};
-struct ObstacleContactResultCallback : public btCollisionWorld::ContactResultCallback
-{
-    btScalar addSingleResult(btManifoldPoint& cp,
-        const btCollisionObjectWrapper* colObj0Wrap,
-        int partId0,
-        int index0,
-        const btCollisionObjectWrapper* colObj1Wrap,
-        int partId1,
-        int index1)
-    {
-		if(cp.getDistance() < 0.0f){
-			cout << "[collide with obstacle]" << endl 
-				<< "ptA:" << StringConverter::toString(BtOgreConverter::to(cp.getPositionWorldOnA())) << endl
-				<< "ptB:" << StringConverter::toString(BtOgreConverter::to(cp.getPositionWorldOnB())) << endl
-				<< "normal:" << StringConverter::toString(BtOgreConverter::to(cp.m_normalWorldOnB)) << endl;
-		}
-		return 0;
-    }
-};
 
+void BasicTutorial_00::createCamera(void){
+	BaseApplication::createCamera();
+	// set offset
+	mCamera->setPosition(mCameraInitPosition);
+	mCamera->lookAt(mCameraInitLookAt);
+
+}
 
 BasicTutorial_00::BasicTutorial_00(void) {
 	// [NEW]
 	mObstacleMgr = new NCTU::ObstacleManager();
-	mInitVelocity = Vector3(300,0,0);
-	mInitPosition = Vector3( -1000, 50, 30 );
-	mEnableCollision = false;
+	mInitVelocity = Vector3(700,0,0);
+	mInitPosition = Vector3( -1000, 50, 0 );
+	mEnableCollision = true;
+	mEnableFreeMode = false;
+	mCameraInitLookAt = Vector3(-1000,0,0);
+	mCameraInitPosition = Vector3(-1000,250,3200);
+	mCameraLookAtOffset = mCameraInitLookAt - mInitPosition;
+	mCameraPositionOffset = mCameraInitPosition - mInitPosition;
+
 	// ------
 }
 
@@ -73,7 +49,7 @@ void BasicTutorial_00::createScene(void)
 			AxisAlignedBox ( //aligned box for Bullet
 				Ogre::Vector3 (-10000, -10000, -10000), 
                 Ogre::Vector3 (10000,  10000,  10000)),
-			Vector3(0,-9.81 * 90,0) // Gravity
+			Vector3(0,-9.81 * 400,0) // Gravity
 		);
 	// -----------
 	mSceneMgr->setAmbientLight( ColourValue( 0.8, 0.8, 0.8 ) ); //bright
@@ -95,7 +71,7 @@ void BasicTutorial_00::createScene(void)
 	// [NEW]
 	// Player
 	mPlayerObstacle = mObstacleMgr->createPlayer(
-				0.6f, // restitution
+				0.0f, // restitution
 				10.0f, // friction
 				10.0f // mass
 				);
@@ -104,10 +80,53 @@ void BasicTutorial_00::createScene(void)
 	mPlayerObstacle->setVelocity(mInitVelocity);
 	// -----------
 
-	// [NEW]
-	//mObstacleMgr->setFloorCallback(new FloorContactResultCallback);
+
+	// [NEW] Loops for create lots of obstacle
+	srand(time(0));
+	int nextX = 350;
+	for(int i=0;i<20;i++){
+		Vector3 position;
+		Vector3 size;
+		String material;
+		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > conditionVectors;
+		switch(rand() %4){
+		case 0: case 1: // normal box
+			position = Vector3(nextX,100,0);
+			size = Vector3(100,200,200);
+			material = "Examples/BumpyMetal";
+			nextX += 700;
+			conditionVectors.push_back(make_pair(Vector3(-1,0,0),45.0f)); // side
+			break;
+		case 2: // tall box
+			position = Vector3(nextX,375,0);
+			size = Vector3(200,600,200);
+			material = "Examples/BumpyMetal";
+			nextX += 700;
+			conditionVectors.push_back(make_pair(Vector3(-1,0,0),45.0f)); // side
+			conditionVectors.push_back(make_pair(Vector3(0,-1,0),80.0f)); // bottom
+			break;
+		case 3: // all dead box
+			position = Vector3(nextX,100,0);
+			size = Vector3(100,200,200);
+			nextX += 700;
+			conditionVectors.push_back(make_pair(Vector3(-1,0,0),180.0f)); // all side
+		}
+		
+		NCTU::CubeObstacle* obstacle = mObstacleMgr->createCube(
+					0.0f, // restitution
+					0.0f, // friction
+					0.0, // mass
+					position, // position
+					size, // size
+					Quaternion(0,0,0,1) // orientation
+					);
+		if(material.length() > 0){
+			obstacle->getEntity()->setMaterialName(material);
+		}
+		obstacle->mCollisionConditionVectors = conditionVectors;
+	}
 	
-	
+	/*
 	// [NEW]
 	NCTU::CubeObstacle* obstacle = mObstacleMgr->createCube(
 				0.0f, // restitution
@@ -125,17 +144,19 @@ void BasicTutorial_00::createScene(void)
 				1.0f, // friction
 				0.0, // mass
 				Vector3(350,175,0), // position
-				Vector3(200,200,200), // size
+				Vector3(200,400,200), // size
 				Quaternion(0,0,0,1) // orientation
 				);
 	obstacle2->getEntity()->setMaterialName("Examples/BumpyMetal");
 	// -----------
+	*/
 
-	Light *light = mSceneMgr->createLight("Light1"); 
-	light->setType(Light::LT_POINT); 
-	light->setPosition(Vector3(100, 1200, 250)); 
-	light->setDiffuseColour(0.8, 0.8, 0.8);		
-	light->setSpecularColour(1.0, 1.0, 1.0);	
+	mLight = mSceneMgr->createLight("Light1"); 
+	mLight->setType(Light::LT_POINT); 
+	mLight->setPosition(Vector3(100, 3000, 250)); 
+	mLight->setDiffuseColour(0.8, 0.8, 0.8);		
+	mLight->setSpecularColour(1.0, 1.0, 1.0);	
+	mLightOffset = mLight->getPosition() - mInitPosition;
 }
 bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 {
@@ -144,6 +165,14 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 	processUnbufferedKeyInput(evt); // Process keys, go into functions
 	// [NEW]
 	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
+	if(!mEnableFreeMode){
+		// [NEW]
+		updateLightPosition(evt);
+		// [NEW]
+		updateCameraPosition(evt);
+		// [NEW]
+		equalizeSpeed(evt);
+	}
 	// [NEW]
 	if(mEnableCollision){
 		checkCollision(evt);
@@ -153,16 +182,44 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 
     return ret;
 }
+// [NEW]
+void BasicTutorial_00::updateLightPosition(const FrameEvent& evt){
+	mLight->setPosition(mPlayerObstacle->getSceneNode()->getPosition() + mLightOffset);
+}
+// [NEW]
+void BasicTutorial_00::updateCameraPosition(const FrameEvent& evt){
+	Vector3 playerPos = mPlayerObstacle->getSceneNode()->getPosition();
+	playerPos[1] = mInitPosition[1];
+	mCamera->setPosition(playerPos + mCameraPositionOffset);
+	mCamera->lookAt(playerPos + mCameraLookAtOffset);
+}
 
 // [NEW]
+void BasicTutorial_00::equalizeSpeed(const FrameEvent& evt){
+	Vector3 currentV = mPlayerObstacle->getVelocity();
+	Vector3 finalV = mInitVelocity;
+	finalV[1] = currentV[1];
+	mPlayerObstacle->setVelocity(finalV);
+}
+// [NEW]
 void BasicTutorial_00::checkCollision(const FrameEvent& evt){
-	// floor callback
-	FloorContactResultCallback f_callback;
-	mObstacleMgr->setPlayerFloorCallback(f_callback);
-	// obstacle callback
-	ObstacleContactResultCallback o_callback;
-	mObstacleMgr->setPlayerAllObstacleCallback(o_callback);
+	// this is essential to update all collision information
+	mObstacleMgr->updateCollision(evt);
 
+	// when we bump into obstacle
+	if(mPlayerObstacle->IsBumpObstacle()){
+		mPlayerObstacle->setVelocity(mInitVelocity);
+		mPlayerObstacle->setPosition(mInitPosition);
+	}
+
+	/*
+	if(mPlayerObstacle->isOnFloor()){
+		cout << "On Floor" << endl;
+	}
+	else{
+		cout << "Not On Floor" << endl;
+	}
+	*/
 
 	/*
 	auto* world = mWorld->getBulletCollisionWorld();
@@ -204,46 +261,56 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	frontDir.normalise();
 	static Vector3 upVector = Vector3::UNIT_Y;
 
+	// toggle settings
 	if(mKeyboard->isKeyDown(OIS::KC_F7) && timeUntilNextToggle > 0.2f){
 		timeUntilNextToggle = 0.0f;
 		mEnableCollision = !mEnableCollision;
 	}
+	if(mKeyboard->isKeyDown(OIS::KC_F9) && timeUntilNextToggle > 0.2f){
+		timeUntilNextToggle = 0.0f;
+		mEnableFreeMode = !mEnableFreeMode;
+	}
+
+
 	static Real playerScaleFactor = 50.0f;
-	if(mKeyboard->isKeyDown(OIS::KC_Z)){
-		mPlayerObstacle->setScale(Vector3(0.5,0.5,0.5));
+	if(mKeyboard->isKeyDown(OIS::KC_Z) && mPlayerObstacle->isSlideEnable()){
+		mPlayerObstacle->setSliding(true);
 	}
 	else{
-		mPlayerObstacle->setScale(Vector3(1,1,1));
+		mPlayerObstacle->setSliding(false);
 	}
 	if(mKeyboard->isKeyDown(OIS::KC_F8) && timeUntilNextToggle > 0.5f){
 		timeUntilNextToggle = 0.0f;
 		mPlayerObstacle->setVelocity(mInitVelocity);
 		mPlayerObstacle->setPosition(mInitPosition);
 	}
-	if(mKeyboard->isKeyDown(OIS::KC_SPACE) && timeUntilNextToggle > 0.2f){
-		timeUntilNextToggle = 0.0f;
-		mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 20,0));
+	if(mKeyboard->isKeyDown(OIS::KC_SPACE) && mPlayerObstacle->isJumpEnable() ){
+		//timeUntilNextToggle = 0.0f;
+		Vector3 finalV = mPlayerObstacle->getVelocity();
+		finalV[1] = speed_rate * 35.0f;
+		mPlayerObstacle->setVelocity(finalV);
+		//mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 35,0));
 	}
-	if(mKeyboard->isKeyDown(OIS::KC_I) && timeUntilNextToggle > 0.1f){
-		timeUntilNextToggle = 0.0f;
-		mPlayerObstacle->applyVelocityChange(frontDir * speedAdjustment(currentVel,frontDir) * speed_rate);
-	}
-	if(mKeyboard->isKeyDown(OIS::KC_K) && timeUntilNextToggle > 0.1f){
-		timeUntilNextToggle = 0.0f;
-		Vector3 goDir = frontDir * -1;
-		mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
-	}
-	if(mKeyboard->isKeyDown(OIS::KC_J) && timeUntilNextToggle > 0.1f){
-		timeUntilNextToggle = 0.0f;
-		Vector3 goDir = upVector.crossProduct(frontDir);
-		mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
-
-	}
-	if(mKeyboard->isKeyDown(OIS::KC_L) && timeUntilNextToggle > 0.1f){
-		timeUntilNextToggle = 0.0f;
-		Vector3 goDir = upVector.crossProduct(frontDir) * -1;
-		mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
-
+	if(mEnableFreeMode){
+		if(mKeyboard->isKeyDown(OIS::KC_I) && timeUntilNextToggle > 0.1f){
+			timeUntilNextToggle = 0.0f;
+			mPlayerObstacle->applyVelocityChange(frontDir * speedAdjustment(currentVel,frontDir) * speed_rate);
+		}
+		if(mKeyboard->isKeyDown(OIS::KC_K) && timeUntilNextToggle > 0.1f){
+			timeUntilNextToggle = 0.0f;
+			Vector3 goDir = frontDir * -1;
+			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
+		}
+		if(mKeyboard->isKeyDown(OIS::KC_J) && timeUntilNextToggle > 0.1f){
+			timeUntilNextToggle = 0.0f;
+			Vector3 goDir = upVector.crossProduct(frontDir);
+			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
+		}
+		if(mKeyboard->isKeyDown(OIS::KC_L) && timeUntilNextToggle > 0.1f){
+			timeUntilNextToggle = 0.0f;
+			Vector3 goDir = upVector.crossProduct(frontDir) * -1;
+			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
+		}
 	}
 	if(mKeyboard->isKeyDown(OIS::KC_O) && timeUntilNextToggle > 0.1f){
 		timeUntilNextToggle = 0.0f;

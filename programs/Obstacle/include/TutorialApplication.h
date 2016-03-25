@@ -17,6 +17,7 @@ class BasicTutorial_00 : public BaseApplication
 {
 private:
 protected:
+	virtual void createCamera(void);
 	virtual bool frameStarted(const FrameEvent& evt);
 	// [NEW]
 	virtual bool processUnbufferedKeyInput(const FrameEvent& evt);
@@ -27,6 +28,13 @@ protected:
 	virtual void checkCollision(const FrameEvent& evt);
 
 	// [NEW]
+	virtual void updateLightPosition(const FrameEvent& evt);
+	virtual void updateCameraPosition(const FrameEvent& evt);
+
+	// [NEW]
+	virtual void equalizeSpeed(const FrameEvent& evt);
+
+	// [NEW]
 	NCTU::ObstacleManager* mObstacleMgr;
 
 	// [NEW]
@@ -34,8 +42,19 @@ protected:
 	Vector3 mInitVelocity;
 	Vector3 mInitPosition;
 	NCTU::PlayerObstacle* mPlayerObstacle;
-	bool mEnableCollision;
+	Light *mLight;
 
+	// settings
+	bool mEnableCollision;
+	bool mEnableFreeMode;
+
+
+	// internal offset
+	Vector3 mLightOffset;
+	Vector3 mCameraPositionOffset;
+	Vector3 mCameraLookAtOffset;
+	Vector3 mCameraInitLookAt;
+	Vector3 mCameraInitPosition;
 
 public:
 	BasicTutorial_00(void);
