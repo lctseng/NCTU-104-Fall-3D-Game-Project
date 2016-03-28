@@ -20,6 +20,18 @@ programs/*/Debug/*.lastbuildstate
 programs/*/Debug/*.unsuccessfulbuild
 programs/*/Release/*.unsuccessfulbuild
 
+*.tlog
+*.unsuccessfulbuild
+*.lastbuildstate
+
+demo_hello.exe*
+demo_hello.exp
+demo_hello.lib
+OgreBulletDynamicsDemo.exe*
+OgreBulletDynamicsDemo.exp
+OgreBulletDynamicsDemo.lib
+
+demo_hello_manifest.rc
 
 
 # User-specific files

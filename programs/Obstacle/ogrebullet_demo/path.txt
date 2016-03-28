@@ -1,0 +1,5 @@
+## Include Path
+.\include;..\..\..\ogrebullet\Dynamics\include;..\..\..\ogrebullet\Collisions\include;..\..\..\bullet3-2.83.7\src;..\..\..\include\OGRE;..\..\..\include\OIS;..\..\..\boost_1_42;..\..\..\ogrebullet\include;%(AdditionalIncludeDirectories)
+
+## Library Path
+..\..\..\lib\$(Configuration);..\..\..\bullet3-2.83.7\bin;..\..\..\boost_1_42\lib;..\..\..\ogrebullet\lib;%(AdditionalLibraryDirectories);

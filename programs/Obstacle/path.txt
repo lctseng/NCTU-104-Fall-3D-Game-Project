@@ -1,0 +1,8 @@
+## Include Path
+.\include;..\..\ogrebullet\Dynamics\include;..\..\ogrebullet\Collisions\include;..\..\bullet3-2.83.7\src;..\..\include\OGRE;..\..\include\OIS;..\..\boost_1_42;..\..\ogrebullet\include;..\..\NCTUObstacle\include;%(AdditionalIncludeDirectories)
+
+## Library Path
+..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;%(AdditionalLibraryDirectories);
+
+## Lib
+OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;%(AdditionalDependencies)
