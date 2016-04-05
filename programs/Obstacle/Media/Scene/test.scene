@@ -1,0 +1,55 @@
+<scene exported_by="Liang-Chi Tseng" previous_export_time="1459856215.6932032" formatVersion="1.0.1" export_time="1459856407.1508298" >
+  <nodes >
+    <node name="Mball.003" >
+      <position z="24.203659" x="-11.141891" y="-141.176086" />
+      <rotation qy="0.000000" qw="1.000000" qz="-0.000000" qx="0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity damping_rot="0.10000000149011612" mass="1.0" meshFile="Mesh.mesh" ghost="False" inertia_tensor="0.4000000059604645" mass_radius="1.0" actor="False" physics_type="NO_COLLISION" damping_trans="0.03999999910593033" anisotropic_friction="False" velocity_min="0.0" lock_rot_z="False" velocity_max="0.0" lock_trans_z="False" lock_trans_x="False" lock_rot_x="False" friction_y="1.0" friction_x="1.0" name="Mesh" friction_z="1.0" lock_trans_y="False" lock_rot_y="False" />
+    </node>
+    <node name="Suzanne" >
+      <position z="139.051834" x="77.140442" y="65.879303" />
+      <rotation qy="0.000000" qw="1.000000" qz="-0.000000" qx="0.000000" />
+      <scale z="100.000000" x="100.000000" y="100.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity damping_rot="0.10000000149011612" mass="1.0" meshFile="Suzanne.mesh" ghost="False" inertia_tensor="0.4000000059604645" mass_radius="1.0" actor="False" physics_type="STATIC" damping_trans="0.03999999910593033" anisotropic_friction="False" velocity_min="0.0" lock_rot_z="False" velocity_max="0.0" lock_trans_z="False" lock_trans_x="False" lock_rot_x="False" friction_y="1.0" friction_x="1.0" name="Suzanne" friction_z="1.0" lock_trans_y="False" lock_rot_y="False" />
+    </node>
+    <node name="Cube" >
+      <position z="-253.744873" x="-122.551704" y="-17.625420" />
+      <rotation qy="0.000000" qw="1.000000" qz="-0.000000" qx="0.000000" />
+      <scale z="100.000000" x="100.000000" y="100.000000" />
+      <user_data type="float" value="1.0" name="prop" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity damping_rot="0.10000000149011612" mass="1.0" meshFile="Cube.011.mesh" ghost="False" inertia_tensor="0.4000000059604645" mass_radius="1.0" actor="False" physics_type="STATIC" damping_trans="0.03999999910593033" anisotropic_friction="False" velocity_min="0.0" lock_rot_z="False" velocity_max="0.0" lock_trans_z="False" lock_trans_x="False" lock_rot_x="False" friction_y="1.0" friction_x="1.0" name="Cube.011" friction_z="1.0" lock_trans_y="False" lock_rot_y="False" />
+    </node>
+    <node name="Mball.002" >
+      <position z="-124.146454" x="-118.553253" y="-263.164429" />
+      <rotation qy="0.000000" qw="1.000000" qz="-0.000000" qx="0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="Mball.001" >
+      <position z="-63.580101" x="-65.168228" y="-181.545212" />
+      <rotation qy="0.000000" qw="1.000000" qz="-0.000000" qx="0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+  </nodes>
+  <externals />
+  <environment />
+</scene>
