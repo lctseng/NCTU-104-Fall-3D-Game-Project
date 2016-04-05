@@ -87,7 +87,14 @@
     <ClCompile Include="src\NCTUSphereObstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\NCTUCubeObstacle.h" />
+    <ClInclude Include="include\NCTUFloorObstacle.h" />
+    <ClInclude Include="include\NCTUObstacle.h" />
+    <ClInclude Include="include\NCTUObstacleCallback.h" />
     <ClInclude Include="include\NCTUObstacleCommon.h" />
+    <ClInclude Include="include\NCTUObstacleManager.h" />
+    <ClInclude Include="include\NCTUPlayerObstacle.h" />
+    <ClInclude Include="include\NCTUSphereObstacle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

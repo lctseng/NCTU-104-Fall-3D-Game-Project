@@ -1,5 +1,6 @@
 #include "NCTUObstacleCommon.h"
-
+#include "NCTUObstacleManager.h"
+#include "NCTUPlayerObstacle.h"
 
 using namespace NCTU;
 using namespace Ogre;
@@ -15,7 +16,7 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	// for ogre
 	mEntity
 		= mManager->getSceneMgr()
-		->createEntity( "obstacle.player", "ellipsoid.mesh" ); 
+		->createEntity( "obstacle.player", "Suzanne.mesh" ); 
 	mEntity->setCastShadows(true);
 	mNode
 		= mManager->getSceneMgr()

@@ -1,5 +1,5 @@
 #include "NCTUObstacleCommon.h"
-
+#include "NCTUObstacle.h"
 
 using namespace NCTU;
 using namespace Ogre;

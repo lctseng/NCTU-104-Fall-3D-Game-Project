@@ -1,4 +1,5 @@
 #include "NCTUObstacleCommon.h"
+#include "NCTUObstacleCallback.h"
 #include <iostream>
 
 using namespace NCTU;

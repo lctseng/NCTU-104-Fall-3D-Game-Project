@@ -1,4 +1,5 @@
 #include "NCTUObstacleCommon.h"
+#include "NCTUObstacleManager.h"
 
 using namespace Ogre;
 using namespace NCTU;
@@ -51,6 +52,10 @@ void ObstacleManager::setup(Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox&
 	mWorld->setShowDebugShapes(true);      // enable it if you want to see the Bullet containers
 	SceneNode *node = mSceneMgr->getRootSceneNode()->createChildSceneNode("NCTUObstacle::debugDrawer", Ogre::Vector3::ZERO);
 	node->attachObject(static_cast <SimpleRenderable *> (mDebugDrawer));
+	// collision register
+	btCollisionDispatcher * dispatcher = 
+		static_cast<btCollisionDispatcher*>(mWorld->getBulletCollisionWorld()->getDispatcher());
+	btGImpactCollisionAlgorithm::registerAlgorithm(dispatcher);
 }
 
 FloorObstacle* ObstacleManager::createFloor(const Vector3& normal,Real distance,Real restitution, Real friction){

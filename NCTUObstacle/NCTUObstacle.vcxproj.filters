@@ -41,5 +41,26 @@
     <ClInclude Include="include\NCTUObstacleCommon.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="include\NCTUObstacleManager.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUObstacleCallback.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUPlayerObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUCubeObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUSphereObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUFloorObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
