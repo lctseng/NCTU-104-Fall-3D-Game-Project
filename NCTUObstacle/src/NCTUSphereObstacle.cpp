@@ -1,4 +1,3 @@
-#include "NCTUObstacleCommon.h"
 #include "NCTUObstacleManager.h"
 #include "NCTUSphereObstacle.h"
 

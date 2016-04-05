@@ -24,9 +24,9 @@
 #include "Utils/OgreBulletConverter.h"
 
 #include "OgreBulletDynamicsRigidBody.h"
-#include "Shapes/OgreBulletCollisionsStaticPlaneShape.h" // for static planes
-#include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
-#include "Shapes/OgreBulletCollisionsSphereShape.h"       // for Spheres
+
+
+
 
 #include "btBulletCollisionCommon.h"
 

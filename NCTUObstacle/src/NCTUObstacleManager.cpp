@@ -1,4 +1,3 @@
-#include "NCTUObstacleCommon.h"
 #include "NCTUObstacleManager.h"
 
 using namespace Ogre;
@@ -73,9 +72,12 @@ FloorObstacle* ObstacleManager::createFloor(Plane& plane,Entity* entity,Real res
 PlayerObstacle* ObstacleManager::createPlayer(
 	Real restitution,
 	Real friction,
-	Real mass)
+	Real mass,
+	const String& name,
+	Real scale
+	)
 {
-	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass);
+	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass,name,scale);
 	return mPlayerObstacle;
 }
 

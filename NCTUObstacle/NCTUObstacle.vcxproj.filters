@@ -38,9 +38,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\NCTUObstacleCommon.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
     <ClInclude Include="include\NCTUObstacleManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
@@ -60,6 +57,9 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="include\NCTUObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUObstaclePreRequisites.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

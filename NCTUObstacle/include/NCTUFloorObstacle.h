@@ -1,7 +1,9 @@
 #ifndef NCTU_FLOOR_OBSTACLE_h_
 #define NCTU_FLOOR_OBSTACLE_h_
 
-#include "NCTUObstacleCommon.h"
+
+#include "NCTUObstaclePreRequisites.h"
+#include "Shapes/OgreBulletCollisionsStaticPlaneShape.h" // for static planes
 #include "NCTUObstacle.h"
 
 

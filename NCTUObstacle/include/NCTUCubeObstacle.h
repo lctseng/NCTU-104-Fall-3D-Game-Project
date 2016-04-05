@@ -1,7 +1,8 @@
 #ifndef NCTU_CUBE_OBSTACLE_h_
 #define NCTU_CUBE_OBSTACLE_h_
 
-#include "NCTUObstacleCommon.h"
+#include "NCTUObstaclePreRequisites.h"
+#include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
 #include "NCTUObstacle.h"
 
 

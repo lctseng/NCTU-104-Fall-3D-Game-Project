@@ -1,7 +1,7 @@
 #ifndef NCTU_OBSTACLE_CALLBACK_h_
 #define NCTU_OBSTACLE_CALLBACK_h_
 
-#include "NCTUObstacleCommon.h"
+#include "NCTUObstaclePreRequisites.h"
 #include "NCTUObstacle.h"
 
 namespace NCTU{

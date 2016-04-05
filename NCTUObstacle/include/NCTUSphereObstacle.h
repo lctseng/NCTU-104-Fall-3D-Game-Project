@@ -1,7 +1,8 @@
 #ifndef NCTU_SPHERE_OBSTACLE_h_
 #define NCTU_SPHERE_OBSTACLE_h_
 
-#include "NCTUObstacleCommon.h"
+#include "NCTUObstaclePreRequisites.h"
+#include "Shapes/OgreBulletCollisionsSphereShape.h"       // for Spheres
 #include "NCTUObstacle.h"
 
 

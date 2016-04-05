@@ -1,4 +1,3 @@
-#include "NCTUObstacleCommon.h"
 #include "NCTUObstacleManager.h"
 #include "NCTUPlayerObstacle.h"
 
@@ -6,28 +5,28 @@ using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
 
-PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass)
+PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Real scale)
 	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
 {
 	// some default settings
-	Real radius = 50.0f;
+	mScaleDifference = scale;
 	Vector3 position(0,0,0);
 	Quaternion orientation(0,0,0,1);
 	// for ogre
 	mEntity
 		= mManager->getSceneMgr()
-		->createEntity( "obstacle.player", "Suzanne.mesh" ); 
+		->createEntity( "obstacle.player", name ); 
 	mEntity->setCastShadows(true);
 	mNode
 		= mManager->getSceneMgr()
 		->getRootSceneNode()
 		->createChildSceneNode( 
 		"playerNode", position ); 
-	mNode->scale(radius,radius,radius);
+	mNode->scale(scale,scale,scale);
 	mNode->attachObject( mEntity );
 	mEntity->setMaterialName("Bullet/Ball");
 	// for bullet
-	mShape = new OgreBulletCollisions::SphereCollisionShape(radius);
+	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
 		"playerRigid",
 		mManager->getWorld());
@@ -39,13 +38,6 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 					position,      // starting position of the box
 					orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
-}
-
-void PlayerObstacle::setScale(const Ogre::Vector3& v){
-	// some default settings
-	Real radius = 50.0f;
-	mNode->setScale(v * radius);
-	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
 }
 void PlayerObstacle::updateCollision(const FrameEvent& evt){
 	Obstacle::updateCollision(evt);
@@ -67,9 +59,6 @@ void PlayerObstacle::setSliding(bool val){
 	mIsSliding = val;
 	if(mIsSliding){
 		setScale(Vector3(0.5,0.5,0.5));
-		//Vector3 finalPos = getPosition();
-		//finalPos[1] -= 50.0f;
-		//setPosition(finalPos);
 	}
 	else{
 		setScale(Vector3(1,1,1));

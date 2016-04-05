@@ -1,7 +1,11 @@
 #ifndef NCTU_OBSTACLE_h_
 #define NCTU_OBSTACLE_h_
 
-#include "NCTUObstacleCommon.h"
+#include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+#include "Shapes/OgreBulletCollisionsGImpactShape.h"
+
+#include "NCTUObstaclePreRequisites.h"
+
 
 #include <deque>
 
@@ -58,6 +62,10 @@ namespace NCTU{
 		Ogre::Real mMass;
 		Ogre::SceneNode* mNode;
 		Ogre::Entity* mEntity;
+
+		Ogre::Real mScaleDifference;
+
+		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
 
 	private:
 	};
