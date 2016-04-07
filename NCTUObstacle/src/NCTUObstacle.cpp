@@ -11,7 +11,7 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 	mRestitution(restitution),
 	mMass(mass),
 	mIsBumpObstacle(false),
-	mScaleDifference(1.0f)
+	mScaleDifference(1,1,1)
 {
 
 }
@@ -41,6 +41,7 @@ OgreBulletCollisions::CollisionShape* Obstacle::generateFittingShape(SceneNode* 
 									這邊直接用_getFullTransform()從node取得最方便*/
 
 	//使用createConcave產生我們所要的GImpactConcaveShape
-	OgreBulletCollisions::GImpactConcaveShape *concaveMeshShape = converter->createConcave();
-	return concaveMeshShape;
+
+	GImpactConcaveShape *shape = converter->createConcave();
+	return shape;
 }

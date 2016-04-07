@@ -2,7 +2,6 @@
 #define NCTU_CUBE_OBSTACLE_h_
 
 #include "NCTUObstaclePreRequisites.h"
-#include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
 #include "NCTUObstacle.h"
 
 

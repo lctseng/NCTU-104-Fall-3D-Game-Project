@@ -74,10 +74,22 @@ PlayerObstacle* ObstacleManager::createPlayer(
 	Real friction,
 	Real mass,
 	const String& name,
-	Real scale
+	Vector3 scale
 	)
 {
 	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass,name,scale);
+	return mPlayerObstacle;
+}
+
+PlayerObstacle* ObstacleManager::createPlayer(
+	Real restitution,
+	Real friction,
+	Real mass,
+	SceneNode* node,
+	Entity* ent
+	)
+{
+	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass,node,ent);
 	return mPlayerObstacle;
 }
 
@@ -109,6 +121,22 @@ SphereObstacle* ObstacleManager::createSphere(
 	mObstacles.push_back(obj);
 	return obj;
 }
+
+
+GeneralObstacle* ObstacleManager::createGeneralObstacle(
+	Real restitution, 
+	Real friction, 
+	Real mass,
+	SceneNode* node,
+	Entity* ent
+	)
+{
+	GeneralObstacle* obj = new GeneralObstacle(this,restitution,friction,mass,mObstacleIndex,node,ent);
+	++mObstacleIndex;
+	mObstacles.push_back(obj);
+	return obj;
+}
+
 void ObstacleManager::setPlayerFloorCallback(btCollisionWorld::ContactResultCallback& callback){
 	assert(mFloorObstacle != nullptr);
 	assert(mPlayerObstacle != nullptr);

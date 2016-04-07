@@ -26,6 +26,13 @@
 #include "OgreBulletDynamicsRigidBody.h"
 
 
+#include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+
+#include "Shapes/OgreBulletCollisionsSphereShape.h"       // for Spheres
+#include "Shapes/OgreBulletCollisionsBoxShape.h"       // for Boxes
+#include "Shapes/OgreBulletCollisionsGImpactShape.h"
+#include "Shapes/OgreBulletCollisionsTriMeshShape.h"
+#include "Shapes/OgreBulletCollisionsConvexHullShape.h"
 
 
 #include "btBulletCollisionCommon.h"
@@ -38,6 +45,7 @@ namespace NCTU{
 	class Obstacle;
 	class SphereObstacle;
 	class CubeObstacle;
+	class GeneralObstacle;
 	class FloorObstacle; // specialized
 	class PlayerObstacle; // a player (by default, a ball)
 

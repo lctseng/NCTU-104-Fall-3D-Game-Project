@@ -1,9 +1,6 @@
 #ifndef NCTU_OBSTACLE_h_
 #define NCTU_OBSTACLE_h_
 
-#include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
-#include "Shapes/OgreBulletCollisionsGImpactShape.h"
-
 #include "NCTUObstaclePreRequisites.h"
 
 
@@ -18,7 +15,7 @@ namespace NCTU{
 		virtual ~Obstacle();
 		
 		virtual void setScale(const Ogre::Vector3&);
-		virtual void updateCollision(const Ogre::FrameEvent& evt){}
+		virtual void updateCollision(const Ogre::FrameEvent& evt){};
 
 		inline Ogre::SceneNode* getSceneNode(){return mNode;}
 		inline Ogre::Entity* getEntity(){return mEntity;}
@@ -30,7 +27,7 @@ namespace NCTU{
 		inline void applyVelocityChange(const Ogre::Vector3 v){setVelocity(getVelocity() + v);}
 
 
-		inline void setPosition(const Ogre::Vector3 v){mBody->setPosition(v);}
+		inline void setPosition(const Ogre::Vector3 v){mBody->setPosition(v); mNode->setPosition(v);}
 		inline Ogre::Vector3 getPosition() const {return mNode->getPosition();}
 		
 
@@ -63,7 +60,7 @@ namespace NCTU{
 		Ogre::SceneNode* mNode;
 		Ogre::Entity* mEntity;
 
-		Ogre::Real mScaleDifference;
+		Ogre::Vector3 mScaleDifference;
 
 		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
 

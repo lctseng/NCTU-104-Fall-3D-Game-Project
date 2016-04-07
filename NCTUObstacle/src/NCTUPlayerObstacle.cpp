@@ -5,7 +5,7 @@ using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
 
-PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Real scale)
+PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Vector3 scale)
 	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
 {
 	// some default settings
@@ -22,7 +22,7 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 		->getRootSceneNode()
 		->createChildSceneNode( 
 		"playerNode", position ); 
-	mNode->scale(scale,scale,scale);
+	mNode->scale(scale);
 	mNode->attachObject( mEntity );
 	mEntity->setMaterialName("Bullet/Ball");
 	// for bullet
@@ -38,6 +38,34 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 					position,      // starting position of the box
 					orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
+}
+PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,SceneNode* node, Entity* ent)
+:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
+{
+	// create settings
+	mScaleDifference = node->getScale();
+	Vector3 oldPosition = node->getPosition();
+	Vector3 position(0,0,0);
+	node->setPosition(0,0,0); // reset position
+	Quaternion orientation = node->getOrientation();
+	// save node and entity
+	mNode = node;
+	mEntity = ent;
+	mEntity->setCastShadows(true);
+	// bullet
+	mShape = generateFittingShape(mNode,mEntity);
+	mBody = new OgreBulletDynamics::RigidBody(
+		"playerRigid",
+		mManager->getWorld());
+	mBody->setShape(   mNode,
+					mShape,
+					mRestitution,         // dynamic body restitution
+					mFriction,         // dynamic body friction
+					mMass,          // dynamic bodymass
+					position,      // starting position of the box
+					orientation);// orientation of the box       
+	mBody->getBulletObject()->setUserPointer(this);
+	setPosition(oldPosition);
 }
 void PlayerObstacle::updateCollision(const FrameEvent& evt){
 	Obstacle::updateCollision(evt);
