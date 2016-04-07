@@ -7,7 +7,9 @@
 #define __BasicTutorial_00_h_
  
 #include "BaseApplication.h"
-#include "NCTUObstacleCommon.h"
+
+
+#include "DotSceneLoader.h"
 
 
 
@@ -55,6 +57,9 @@ protected:
 	Vector3 mCameraLookAtOffset;
 	Vector3 mCameraInitLookAt;
 	Vector3 mCameraInitPosition;
+
+	// dotScene
+	DotSceneLoader mDotScene;
 
 public:
 	BasicTutorial_00(void);
