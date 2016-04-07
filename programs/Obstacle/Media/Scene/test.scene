@@ -1,0 +1,348 @@
+<scene previous_export_time="1460038616.7424154" exported_by="Liang-Chi Tseng" export_time="1460038692.935786" formatVersion="1.0.1" >
+  <nodes >
+    <node name="DeadPlane.002" >
+      <position y="169.970444" z="-0.000221" x="6549.759766" />
+      <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+      <scale y="100.000000" z="100.000000" x="10.000000" />
+      <user_data name="restitution" type="int" value="0" />
+      <user_data name="ObstacleType" type="str" value="Static" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="DeadPlane.mesh" mass="1.0" lock_rot_y="False" name="DeadPlane" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+      <node name="DataField.008" >
+        <position y="-73.826759" z="-2.402610" x="0.716797" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="0.555556" z="0.500000" x="1.000000" />
+        <user_data name="TouchAngle" type="int" value="180" />
+        <user_data name="TouchVectorX" type="int" value="0" />
+        <user_data name="TouchVectorY" type="int" value="1" />
+        <user_data name="TouchVectorZ" type="int" value="0" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+    </node>
+    <node name="Cube.001" >
+      <position y="280.137360" z="-0.000001" x="2166.336670" />
+      <rotation qx="0.000000" qy="0.000000" qw="0.793353" qz="0.608761" />
+      <scale y="11.999999" z="5.000000" x="1.000000" />
+      <user_data name="ObstacleType" type="str" value="Static" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="Cube.007.mesh" mass="1.0" lock_rot_y="False" name="Cube.007" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+    </node>
+    <node name="NormalSet" >
+      <position y="100.000000" z="-0.000000" x="0.000000" />
+      <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+      <scale y="1.000000" z="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <node name="Normal" >
+        <position y="0.000000" z="0.000001" x="9159.394531" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="90.000000" z="100.000000" x="50.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="NormalObstacle.mesh" mass="1.0" lock_rot_y="False" name="NormalObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.003" >
+          <position y="3.322828" z="-2.402609" x="0.146149" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="40" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="Normal.002" >
+        <position y="-8.494446" z="-0.000013" x="4416.212402" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="90.000000" z="100.000000" x="50.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="NormalObstacle.mesh" mass="1.0" lock_rot_y="False" name="NormalObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.006" >
+          <position y="3.322828" z="-2.402609" x="0.146141" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="30" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="Normal.003" >
+        <position y="0.000000" z="0.000005" x="8854.015625" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="90.000000" z="100.000000" x="50.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="NormalObstacle.mesh" mass="1.0" lock_rot_y="False" name="NormalObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.001" >
+          <position y="3.322828" z="-2.402609" x="0.146149" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="40" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="Normal.004" >
+        <position y="0.000000" z="0.000007" x="6399.693848" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="90.000000" z="100.000000" x="50.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="NormalObstacle.mesh" mass="1.0" lock_rot_y="False" name="NormalObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.007" >
+          <position y="3.322828" z="-2.402609" x="0.146141" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="30" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+    </node>
+    <node name="HighSet" >
+      <position y="270.000000" z="-0.000000" x="0.000000" />
+      <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+      <scale y="1.000000" z="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <node name="High" >
+        <position y="0.000000" z="0.000004" x="1442.159424" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="200.000000" z="100.000000" x="100.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="HighObstacle.mesh" mass="1.0" lock_rot_y="False" name="HighObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.004" >
+          <position y="3.322828" z="-2.402609" x="0.146144" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="40" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="High.001" >
+        <position y="0.000000" z="-0.000001" x="5398.253418" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="200.000000" z="100.000000" x="50.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="HighObstacle.mesh" mass="1.0" lock_rot_y="False" name="HighObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.002" >
+          <position y="3.322828" z="-2.402609" x="0.146141" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="46" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="High.002" >
+        <position y="0.000000" z="0.000008" x="7639.625000" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="200.000000" z="100.000000" x="50.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="HighObstacle.mesh" mass="1.0" lock_rot_y="False" name="HighObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.000" >
+          <position y="3.322828" z="-2.402609" x="0.146149" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="46" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="High.003" >
+        <position y="0.000000" z="0.000016" x="3329.125488" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="200.000000" z="100.000000" x="150.000000" />
+        <user_data name="restitution" type="int" value="0" />
+        <user_data name="ObstacleType" type="str" value="Static" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="HighObstacle.mesh" mass="1.0" lock_rot_y="False" name="HighObstacle" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+        <node name="DataField.005" >
+          <position y="3.322828" z="-2.402609" x="0.146145" />
+          <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+          <scale y="0.555556" z="0.500000" x="1.000000" />
+          <user_data name="TouchAngle" type="int" value="40" />
+          <user_data name="TouchVectorX" type="int" value="-1" />
+          <user_data name="TouchVectorY" type="int" value="0" />
+          <user_data name="TouchVectorZ" type="int" value="0" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+    </node>
+    <node name="Player" >
+      <position y="50.000000" z="-0.000000" x="-302.517365" />
+      <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+      <scale y="1.000000" z="1.000000" x="1.000000" />
+      <user_data name="ObstacleType" type="str" value="Player" />
+      <user_data name="mass" type="int" value="10" />
+      <user_data name="friction" type="int" value="0" />
+      <user_data name="restitution" type="int" value="0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="Sphere.mesh" mass="1.0" lock_rot_y="False" name="Sphere" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+      <node name="Torus" >
+        <position y="138.713852" z="-1.605850" x="0.621368" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="1.000000" z="1.000000" x="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="Torus.mesh" mass="1.0" lock_rot_y="False" name="Torus" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+      </node>
+    </node>
+    <node name="Cube.000" >
+      <position y="453.314789" z="0.000020" x="676.140686" />
+      <rotation qx="0.000000" qy="0.000000" qw="0.923880" qz="-0.382683" />
+      <scale y="7.999999" z="5.000000" x="1.000000" />
+      <user_data name="ObstacleType" type="str" value="Static" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="Cube.008.mesh" mass="1.0" lock_rot_y="False" name="Cube.008" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+    </node>
+    <node name="DeadPlane" >
+      <position y="0.000000" z="-0.000234" x="1780.349609" />
+      <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+      <scale y="10.000000" z="100.000000" x="1000.000000" />
+      <user_data name="restitution" type="int" value="0" />
+      <user_data name="ObstacleType" type="str" value="Static" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="DeadPlane.mesh" mass="1.0" lock_rot_y="False" name="DeadPlane" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+      <node name="DataField.010" >
+        <position y="-73.826752" z="-2.402610" x="0.716840" />
+        <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+        <scale y="0.555556" z="0.500000" x="1.000000" />
+        <user_data name="TouchAngle" type="int" value="180" />
+        <user_data name="TouchVectorX" type="int" value="0" />
+        <user_data name="TouchVectorY" type="int" value="1" />
+        <user_data name="TouchVectorZ" type="int" value="0" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+    </node>
+    <node name="DeadPlane.001" >
+      <position y="0.000000" z="-0.000234" x="1780.349609" />
+      <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
+      <scale y="10.000000" z="100.000000" x="1000.000000" />
+      <user_data name="restitution" type="int" value="0" />
+      <user_data name="ObstacleType" type="str" value="Static" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity ghost="False" lock_rot_x="False" velocity_max="0.0" anisotropic_friction="False" lock_trans_y="False" lock_trans_z="False" physics_type="STATIC" lock_rot_z="False" mass_radius="1.0" damping_trans="0.03999999910593033" meshFile="DeadPlane.001.mesh" mass="1.0" lock_rot_y="False" name="DeadPlane.001" friction_z="1.0" friction_y="1.0" lock_trans_x="False" inertia_tensor="0.4000000059604645" damping_rot="0.10000000149011612" actor="False" velocity_min="0.0" friction_x="1.0" />
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="D:\School\大四下學期\3D遊戲設計\NCTU-104-Fall-3D-Game-Project\programs\Obstacle\Media\Scene\MaterialObstacle.004.material" />
+    </item>
+    <item type="material" >
+      <file name="D:\School\大四下學期\3D遊戲設計\NCTU-104-Fall-3D-Game-Project\programs\Obstacle\Media\Scene\MaterialObstacle.material" />
+    </item>
+    <item type="material" >
+      <file name="D:\School\大四下學期\3D遊戲設計\NCTU-104-Fall-3D-Game-Project\programs\Obstacle\Media\Scene\Material.003.material" />
+    </item>
+    <item type="material" >
+      <file name="D:\School\大四下學期\3D遊戲設計\NCTU-104-Fall-3D-Game-Project\programs\Obstacle\Media\Scene\Material.015.material" />
+    </item>
+    <item type="material" >
+      <file name="D:\School\大四下學期\3D遊戲設計\NCTU-104-Fall-3D-Game-Project\programs\Obstacle\Media\Scene\MaterialObstacle.002.material" />
+    </item>
+  </externals>
+  <environment />
+</scene>

@@ -1,4 +1,4 @@
-#include "NCTUObstacleCommon.h"
+#include "NCTUObstacleManager.h"
 
 using namespace Ogre;
 using namespace NCTU;
@@ -48,9 +48,13 @@ void ObstacleManager::setup(Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox&
 	mDebugDrawer = new OgreBulletCollisions::DebugDrawer();
 	mDebugDrawer->setDrawWireframe(true);   // we want to see the Bullet containers
 	mWorld->setDebugDrawer(mDebugDrawer);
-	mWorld->setShowDebugShapes(true);      // enable it if you want to see the Bullet containers
+	mWorld->setShowDebugShapes(false);      // enable it if you want to see the Bullet containers
 	SceneNode *node = mSceneMgr->getRootSceneNode()->createChildSceneNode("NCTUObstacle::debugDrawer", Ogre::Vector3::ZERO);
 	node->attachObject(static_cast <SimpleRenderable *> (mDebugDrawer));
+	// collision register
+	btCollisionDispatcher * dispatcher = 
+		static_cast<btCollisionDispatcher*>(mWorld->getBulletCollisionWorld()->getDispatcher());
+	btGImpactCollisionAlgorithm::registerAlgorithm(dispatcher);
 }
 
 FloorObstacle* ObstacleManager::createFloor(const Vector3& normal,Real distance,Real restitution, Real friction){
@@ -68,9 +72,24 @@ FloorObstacle* ObstacleManager::createFloor(Plane& plane,Entity* entity,Real res
 PlayerObstacle* ObstacleManager::createPlayer(
 	Real restitution,
 	Real friction,
-	Real mass)
+	Real mass,
+	const String& name,
+	Vector3 scale
+	)
 {
-	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass);
+	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass,name,scale);
+	return mPlayerObstacle;
+}
+
+PlayerObstacle* ObstacleManager::createPlayer(
+	Real restitution,
+	Real friction,
+	Real mass,
+	SceneNode* node,
+	Entity* ent
+	)
+{
+	mPlayerObstacle = new PlayerObstacle(this,restitution,friction,mass,node,ent);
 	return mPlayerObstacle;
 }
 
@@ -102,6 +121,22 @@ SphereObstacle* ObstacleManager::createSphere(
 	mObstacles.push_back(obj);
 	return obj;
 }
+
+
+GeneralObstacle* ObstacleManager::createGeneralObstacle(
+	Real restitution, 
+	Real friction, 
+	Real mass,
+	SceneNode* node,
+	Entity* ent
+	)
+{
+	GeneralObstacle* obj = new GeneralObstacle(this,restitution,friction,mass,mObstacleIndex,node,ent);
+	++mObstacleIndex;
+	mObstacles.push_back(obj);
+	return obj;
+}
+
 void ObstacleManager::setPlayerFloorCallback(btCollisionWorld::ContactResultCallback& callback){
 	assert(mFloorObstacle != nullptr);
 	assert(mPlayerObstacle != nullptr);

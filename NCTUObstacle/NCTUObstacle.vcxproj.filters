@@ -36,9 +36,36 @@
     <ClCompile Include="src\NCTUObstacleCallback.cpp">
       <Filter>原始程式檔</Filter>
     </ClCompile>
+    <ClCompile Include="source\NCTUGeneralObstacle.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\NCTUObstacleCommon.h">
+    <ClInclude Include="include\NCTUObstacleManager.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUObstacleCallback.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUPlayerObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUCubeObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUSphereObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUFloorObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUObstacle.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUObstaclePreRequisites.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUGeneralObstacle.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

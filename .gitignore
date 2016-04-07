@@ -20,6 +20,9 @@ programs/*/Debug/*.lastbuildstate
 programs/*/Debug/*.unsuccessfulbuild
 programs/*/Release/*.unsuccessfulbuild
 
+# Ignore custom library
+NCTUObstacle/lib/Release/NCTUObstacle.lib
+
 *.tlog
 *.unsuccessfulbuild
 *.lastbuildstate

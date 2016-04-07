@@ -1,66 +1,48 @@
-material Ogre/Earring
+material ogre.mat/SOLID/TEX/ogre.tex.jpg/VertCol
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.7 0.7 0
-			diffuse 0.7 0.7 0
-
+			diffuse vertexcolour
+                  specular 0.000000 0.000000 0.000000 12.500000
 			texture_unit
 			{
-				texture spheremap.png
-				colour_op_ex add src_texture src_current
-				colour_op_multipass_fallback one one
-				env_map spherical
+				texture ogre.tex.jpg
 			}
 		}
 	}
 }
-
-material Ogre/Skin
+material ogre.mat/ALPHA/TEX/ogre.tex.jpg/VertCol/TWOSIDE
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.3 0.8 0.3
-
+			diffuse vertexcolour
+                  specular 0.000000 0.000000 0.000000 12.500000
+			scene_blend alpha_blend 
+			cull_hardware none
+			cull_software none
 			texture_unit
 			{
-				texture GreenSkin.jpg
-				tex_address_mode mirror
+				texture ogre.tex.jpg
 			}
 		}
 	}
 }
-
-material Ogre/Tusks
+material Material.001/SOLID/TEX/ogreahead.tex.jpg/VertCol
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.7 0.7 0.6
-
+			diffuse vertexcolour
+                  specular 0.000000 0.000000 0.000000 12.500000
 			texture_unit
 			{
-				texture tusk.jpg
-				scale 0.2 0.2
+				texture ogreahead.tex.jpg
 			}
-		}
-	}
-}
-
-material Ogre/Eyes
-{
-	technique
-	{
-		pass
-		{
-			ambient 1 0.4 0.4
-			diffuse 1 0.7 0
-			emissive 0.3 0.1 0
 		}
 	}
 }

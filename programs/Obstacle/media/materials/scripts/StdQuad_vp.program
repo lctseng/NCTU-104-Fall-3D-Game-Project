@@ -69,3 +69,4 @@ vertex_program Ogre/Compositor/StdQuad_vp unified
 	delegate Ogre/Compositor/StdQuad_GLSL_vp
 	delegate Ogre/Compositor/StdQuad_Cg_vp
 }
+
