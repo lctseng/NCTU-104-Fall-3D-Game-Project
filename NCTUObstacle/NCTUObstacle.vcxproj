@@ -78,9 +78,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\NCTUGeneralObstacle.cpp" />
     <ClCompile Include="src\NCTUCubeObstacle.cpp" />
     <ClCompile Include="src\NCTUFloorObstacle.cpp" />
+    <ClCompile Include="src\NCTUGeneralObstacle.cpp" />
     <ClCompile Include="src\NCTUObstacle.cpp" />
     <ClCompile Include="src\NCTUObstacleCallback.cpp" />
     <ClCompile Include="src\NCTUObstacleManager.cpp" />
