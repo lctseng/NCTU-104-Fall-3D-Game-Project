@@ -11,14 +11,12 @@ GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real fr
 	// create settings
 	mScaleDifference = node->getScale();
 	Vector3 oldPosition = node->getPosition();
-	Vector3 position = oldPosition;
-	//Vector3 position(0,0,0);
 	node->setPosition(0,0,0); // reset position
-	Quaternion orientation = node->getOrientation();
+	Quaternion oldOrientation = node->getOrientation();
+	node->setOrientation(0,0,0,1); // reset orientation
 	// save node and entity
 	mNode = node;
 	mEntity = ent;
-	mEntity->setCastShadows(true);
 	// bullet
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
@@ -35,5 +33,6 @@ GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real fr
  
 	mBody->getBulletObject()->setUserPointer(this);
 	setPosition(oldPosition);
+	setOrientation(oldOrientation);
 }
 

@@ -48,7 +48,7 @@ void ObstacleManager::setup(Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox&
 	mDebugDrawer = new OgreBulletCollisions::DebugDrawer();
 	mDebugDrawer->setDrawWireframe(true);   // we want to see the Bullet containers
 	mWorld->setDebugDrawer(mDebugDrawer);
-	mWorld->setShowDebugShapes(true);      // enable it if you want to see the Bullet containers
+	mWorld->setShowDebugShapes(false);      // enable it if you want to see the Bullet containers
 	SceneNode *node = mSceneMgr->getRootSceneNode()->createChildSceneNode("NCTUObstacle::debugDrawer", Ogre::Vector3::ZERO);
 	node->attachObject(static_cast <SimpleRenderable *> (mDebugDrawer));
 	// collision register

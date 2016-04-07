@@ -30,6 +30,8 @@ namespace NCTU{
 		inline void setPosition(const Ogre::Vector3 v){mBody->setPosition(v); mNode->setPosition(v);}
 		inline Ogre::Vector3 getPosition() const {return mNode->getPosition();}
 		
+		inline void setOrientation(const Ogre::Quaternion q){mBody->setOrientation(q); mNode->setOrientation(q);}
+		inline Ogre::Quaternion getOrientation() const {return mNode->getOrientation();}
 
 		virtual inline void setOnFloor(bool val) {mOnFloor = val;}
 		virtual inline bool getOnFloor() const {return mOnFloor;}
