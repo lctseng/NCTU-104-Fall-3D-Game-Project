@@ -1,0 +1,42 @@
+// MaterialObstacle.002 genrated by blender2ogre 0.5.9
+
+material MaterialObstacle.002 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass MaterialObstacle.002
+        {
+            ambient 0.9113931655883789 0.8509254455566406 0.8773989081382751 1.0
+            diffuse 0.7291145433353563 0.6807403665891343 0.7019191369700302 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture capsule.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
