@@ -11,7 +11,8 @@
 
 #include "DotSceneLoader.h"
 
-
+//[KEYBOARD]
+#include "KeyBoardHandler.h"
 
 
 using namespace Ogre;
@@ -46,6 +47,9 @@ protected:
 	NCTU::PlayerObstacle* mPlayerObstacle;
 	Light *mLight;
 
+	//[KEYBOARD]
+	KeyBoardHandler *keyboardhandler;
+
 	// settings
 	bool mEnableCollision;
 	bool mEnableFreeMode;
@@ -66,7 +70,9 @@ public:
 	~BasicTutorial_00(void);
 	virtual void createScene(void);
 
-
+	//[KEYBOARD]
+	virtual bool keyPressed( const OIS::KeyEvent &arg );
+	virtual bool keyReleased( const OIS::KeyEvent &arg );
 
 };
  

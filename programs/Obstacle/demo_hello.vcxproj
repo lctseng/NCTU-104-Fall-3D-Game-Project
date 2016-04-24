@@ -98,6 +98,7 @@
     <ClCompile Include="source\BaseApplication.cpp" />
     <ClCompile Include="source\BasicTools.cpp" />
     <ClCompile Include="source\DotSceneLoader.cpp" />
+    <ClCompile Include="source\KeyBoardHandler.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\TutorialApplication.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="include\BaseApplication.h" />
     <ClInclude Include="include\BasicTools.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
+    <ClInclude Include="include\KeyBoardHandler.h" />
     <ClInclude Include="include\TutorialApplication.h" />
   </ItemGroup>
   <ItemGroup>
