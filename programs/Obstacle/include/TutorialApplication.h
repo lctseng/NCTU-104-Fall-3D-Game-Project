@@ -55,6 +55,9 @@ protected:
 	bool mEnableFreeMode;
 	bool mDisableLose;
 
+	int mNearClipMin;
+	int mNearClipMax;
+
 
 	// internal offset
 	Vector3 mLightOffset;

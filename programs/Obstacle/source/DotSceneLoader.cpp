@@ -506,7 +506,7 @@ void DotSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
 	processObstacleProperty(XMLNode,name,pNode,pEntity);
 }
 
-void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop){
+void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop, bool saveAsGeneral){
 	TiXmlElement *pElement;
 	pElement = XMLNode->FirstChildElement("user_data");
 	int touchDataReq = 0x0000;
@@ -540,6 +540,46 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 			touchVector.z = getAttribReal(pElement,"value",0.0f);
 			cout << "--> vectorZ: " << touchVector.z << endl;
 		}
+		else{ // not a default name
+			if(saveAsGeneral){
+				// save this property as general property
+				// get type
+				GeneralProperty prop;
+				String typeStr = getAttrib(pElement,"type","NULL");
+				if(typeStr == "str"){
+					// determine pure boolean?
+					prop.valueStr =  getAttrib(pElement,"value","");
+					if(prop.valueStr == "true"){
+						prop.valType = typeBOOL;
+						prop.valBool = true;
+					}
+					else if(prop.valueStr == "false"){
+						prop.valType = typeBOOL;
+						prop.valBool = false;
+					}
+					else{
+						prop.valType = typeSTR;
+					}
+				}
+				else if(typeStr == "int"){
+					prop.valType = typeINT;
+					prop.valFloat = prop.valInt = getAttribReal(pElement,"value",0.0);	
+				}
+				else if(typeStr == "float"){
+					prop.valType = typeFLOAT;
+					prop.valInt = prop.valFloat = getAttribReal(pElement,"value",0.0);
+				}
+				if(prop.valType != typeNONE){
+					cout << "--> Saving General Property: " << attrName << endl;
+					// save it!
+					if(mGeneralProps.find(attrName) != mGeneralProps.end()){ // check overwrite?
+						cout << "--> WARNING!!! OVERWRITE VALUE for " << attrName << endl;
+					}
+					mGeneralProps[attrName] = prop;
+				}
+			}
+
+		}
 		// next element
 		pElement = pElement->NextSiblingElement("user_data");
 	}
@@ -564,7 +604,7 @@ void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 		String nodeName = getAttrib(pElement, "name");
 		if(nodeName.find(SCENE_RESERVED_NAME) != String::npos){ // process reserved node
 			// process this node
-			processObstacleExtraField(pElement,prop);
+			processObstacleExtraField(pElement,prop,name == "Player");
 		}
 		pElement = pElement->NextSiblingElement("node");
 	}

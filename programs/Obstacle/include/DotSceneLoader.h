@@ -39,6 +39,26 @@ namespace Ogre
 			: nodeName(node), propertyNm(propertyName), valueName(value), typeName(type) {}
 	};
  
+	enum VarType{
+		typeNONE, typeINT, typeSTR, typeFLOAT, typeBOOL
+	};
+
+	class GeneralProperty{
+	public:
+		String valueStr;
+		int valInt;
+		Real valFloat;
+		bool valBool;
+		VarType valType;
+		GeneralProperty():valType(typeNONE){}
+	};
+
+	class propMap : public std::map<String,GeneralProperty>{
+	public:
+		bool hasKey(const String& key) const{
+			return this->find(key) != this->end();
+		}
+	};
 
 	class ObstacleProperty{
 	public:
@@ -62,6 +82,8 @@ namespace Ogre
 		std::vector<nodeProperty> nodeProperties;
 		std::vector<String> staticObjects;
 		std::vector<String> dynamicObjects;
+
+		propMap mGeneralProps;
  
 
 	protected:
@@ -96,7 +118,7 @@ namespace Ogre
 
 
 		void processObstacleProperty(TiXmlElement *XMLNode, const String& name, SceneNode* node, Entity* ent);
-		void processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop);
+		void processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop, bool saveAsGeneral = false);
 
 
 		String getAttrib(TiXmlElement *XMLNode, const String &parameter, const String &defaultValue = "");
@@ -114,7 +136,8 @@ namespace Ogre
 		String m_sGroupName;
 		String m_sPrependNode;
 		NCTU::ObstacleManager* mObstacleMgr;
-		std::map<String,ObstacleProperty> mObstacleProperties;
+		
+
 	};
 }
  

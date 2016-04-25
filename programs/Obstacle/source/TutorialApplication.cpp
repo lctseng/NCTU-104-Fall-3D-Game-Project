@@ -22,12 +22,8 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mEnableCollision = true;
 	mEnableFreeMode = false;
 	mDisableLose = false;
-	//mCameraInitLookAt = Vector3(-1000,0,0);
-	//mCameraInitPosition = Vector3(-1000,250,3200);
 	mCameraInitLookAt = Vector3(-1000,150,0);
 	mCameraInitPosition = Vector3(-1600,350,0);
-	mCameraLookAtOffset = mCameraInitLookAt - mInitPosition;
-	mCameraPositionOffset = mCameraInitPosition - mInitPosition;
 
 	// ------
 	//[KEYBOARD]
@@ -36,15 +32,13 @@ BasicTutorial_00::BasicTutorial_00(void) {
 
 BasicTutorial_00::~BasicTutorial_00(void) {
 	// [NEW]
+	delete keyboardhandler;
 	delete mObstacleMgr;
+
 }
 
 void BasicTutorial_00::createCamera(void){
 	BaseApplication::createCamera();
-	// set offset
-	mCamera->setPosition(mCameraInitPosition);
-	mCamera->lookAt(mCameraInitLookAt);
-
 }
 
 
@@ -81,61 +75,66 @@ void BasicTutorial_00::createScene(void)
 	floor->getEntity()->setMaterialName("Examples/BeachStones");
 	// -----------
 
-	/*
-	// [NEW] Loops for create lots of obstacle
-	srand(time(0));
-	int nextX = 350;
-	for(int i=0;i<20;i++){
-		Vector3 position;
-		Vector3 size;
-		String material;
-		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > conditionVectors;
-		switch(rand() %4){
-		case 0: case 1: // normal box
-			position = Vector3(nextX,100,0);
-			size = Vector3(100,200,200);
-			material = "Examples/BumpyMetal";
-			nextX += 700;
-			conditionVectors.push_back(make_pair(Vector3(-1,0,0),45.0f)); // side
-			break;
-		case 2: // tall box
-			position = Vector3(nextX,375,0);
-			size = Vector3(200,600,200);
-			material = "Examples/BumpyMetal";
-			nextX += 700;
-			conditionVectors.push_back(make_pair(Vector3(-1,0,0),45.0f)); // side
-			conditionVectors.push_back(make_pair(Vector3(0,-1,0),80.0f)); // bottom
-			break;
-		case 3: // all dead box
-			position = Vector3(nextX,100,0);
-			size = Vector3(100,200,200);
-			nextX += 700;
-			conditionVectors.push_back(make_pair(Vector3(-1,0,0),180.0f)); // all side
-		}
-
-		NCTU::CubeObstacle* obstacle = mObstacleMgr->createCube(
-			0.0f, // restitution
-			0.0f, // friction
-			0.0, // mass
-			position, // position
-			size, // size
-			Quaternion(0,0,0,1) // orientation
-			);
-		if(material.length() > 0){
-			obstacle->getEntity()->setMaterialName(material);
-		}
-		obstacle->mCollisionConditionVectors = conditionVectors;
-	}
-	*/
-
-
-
 
 	mDotScene.parseDotScene("test.scene",ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,mSceneMgr,mObstacleMgr);
 	// player setup
 	mPlayerObstacle = mObstacleMgr->getPlayer();
+	// apply general props
+	propMap& props = mDotScene.mGeneralProps;
+	// setup init velocity
+	if(props.hasKey("InitVelocityX")){
+		mInitVelocity.x = props["InitVelocityX"].valFloat;
+	}
+	if(props.hasKey("InitVelocityY")){
+		mInitVelocity.y = props["InitVelocityY"].valFloat;
+	}
+	if(props.hasKey("InitVelocityZ")){
+		mInitVelocity.z = props["InitVelocityZ"].valFloat;
+	}
 	mPlayerObstacle->setVelocity(mInitVelocity);
+	// setup init position
+	if(props.hasKey("InitPositionX")){
+		mInitPosition.x = props["InitPositionX"].valFloat;
+	}
+	if(props.hasKey("InitPositionY")){
+		mInitPosition.y = props["InitPositionY"].valFloat;
+	}
+	if(props.hasKey("InitPositionZ")){
+		mInitPosition.z = props["InitPositionZ"].valFloat;
+	}
 	mPlayerObstacle->setPosition(mInitPosition);
+	// camera clip distance
+	if(props.hasKey("CameraClipMin")){
+		mNearClipMin = props["CameraClipMin"].valInt;
+	}
+	if(props.hasKey("CameraClipMax")){
+		mNearClipMax = props["CameraClipMax"].valInt;
+	}
+	mCamera->setNearClipDistance(mNearClipMax);
+	// camera position
+	if(props.hasKey("CameraInitLookAtX")){
+		mCameraInitLookAt.x = props["CameraInitLookAtX"].valInt;
+	}
+	if(props.hasKey("CameraInitLookAtY")){
+		mCameraInitLookAt.y = props["CameraInitLookAtY"].valInt;
+	}
+	if(props.hasKey("CameraInitLookAtZ")){
+		mCameraInitLookAt.z = props["CameraInitLookAtZ"].valInt;
+	}
+	if(props.hasKey("CameraInitPositionX")){
+		mCameraInitPosition.x = props["CameraInitPositionX"].valInt;
+	}
+	if(props.hasKey("CameraInitPositionY")){
+		mCameraInitPosition.y = props["CameraInitPositionY"].valInt;
+	}
+	if(props.hasKey("CameraInitPositionZ")){
+		mCameraInitPosition.z = props["CameraInitPositionZ"].valInt;
+	}
+	mCameraLookAtOffset = mCameraInitLookAt - mInitPosition;
+	mCameraPositionOffset = mCameraInitPosition - mInitPosition;
+	mCamera->setPosition(mCameraInitPosition);
+	mCamera->lookAt(mCameraInitLookAt);
+	
 }
 bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 {
@@ -173,10 +172,10 @@ void BasicTutorial_00::updateCameraPosition(const FrameEvent& evt){
 	mCamera->lookAt(playerPos + mCameraLookAtOffset);
 	// clip
 	if(mPlayerObstacle->getVelocity().y <= -150.0f){
-		mCamera->setNearClipDistance(5);	
+		mCamera->setNearClipDistance(mNearClipMin);	
 	}
 	else{
-		mCamera->setNearClipDistance(400);
+		mCamera->setNearClipDistance(mNearClipMax);
 	}
 	//cout << mPlayerObstacle->getVelocity() << endl;
 }
@@ -202,41 +201,6 @@ void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 		}
 		
 	}
-
-	/*
-	if(mPlayerObstacle->isOnFloor()){
-	cout << "On Floor" << endl;
-	}
-	else{
-	cout << "Not On Floor" << endl;
-	}
-	*/
-
-	/*
-	auto* world = mWorld->getBulletCollisionWorld();
-	int numManifolds = world->getDispatcher()->getNumManifolds();
-	for (int i=0;i<numManifolds;i++)
-	{
-	btPersistentManifold* contactManifold =  world->getDispatcher()->getManifoldByIndexInternal(i);
-	btCollisionObject* obA = const_cast<btCollisionObject*>(contactManifold->getBody0());
-	btCollisionObject* obB = const_cast<btCollisionObject*>(contactManifold->getBody1());
-	// check if it's player
-
-	int numContacts = contactManifold->getNumContacts();
-	for (int j=0;j<numContacts;j++)
-	{
-	btManifoldPoint& pt = contactManifold->getContactPoint(j);
-	if (pt.getDistance()<0.f)
-	{
-	const btVector3& ptA = pt.getPositionWorldOnA();
-	const btVector3& ptB = pt.getPositionWorldOnB();
-	const btVector3& normalOnB = pt.m_normalWorldOnB;
-	std::cout << "Collision Body A: " << obA->getCollisionShape()->getName() << std::endl;
-	std::cout << "Collision Body B: " << obB->getCollisionShape()->getName() << std::endl;
-	}
-	}
-	}
-	*/
 }
 
 // [NEW]
