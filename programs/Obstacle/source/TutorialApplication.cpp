@@ -21,6 +21,7 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mInitPosition = Vector3( -1000, 50, 0 );
 	mEnableCollision = true;
 	mEnableFreeMode = false;
+	mDisableLose = false;
 	//mCameraInitLookAt = Vector3(-1000,0,0);
 	//mCameraInitPosition = Vector3(-1000,250,3200);
 	mCameraInitLookAt = Vector3(-1000,150,0);
@@ -194,9 +195,12 @@ void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 	mObstacleMgr->updateCollision(evt);
 
 	// when we bump into obstacle
-	if(mPlayerObstacle->IsBumpObstacle()){
-		mPlayerObstacle->setVelocity(mInitVelocity);
-		mPlayerObstacle->setPosition(mInitPosition);
+	if(mPlayerObstacle->IsBumpObstacle() ){
+		if(!mDisableLose){
+			mPlayerObstacle->setVelocity(mInitVelocity);
+			mPlayerObstacle->setPosition(mInitPosition);
+		}
+		
 	}
 
 	/*
@@ -258,7 +262,9 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 		timeUntilNextToggle = 0.0f;
 		mEnableFreeMode = !mEnableFreeMode;
 	}
-
+	if(keyboardhandler->isKeyTriggered(OIS::KC_F11)){
+		mDisableLose = !mDisableLose;
+	}
 	static Real playerScaleFactor = 50.0f;
 	if(keyboardhandler->isKeyPressing(OIS::KC_Z) && mPlayerObstacle->isSlideEnable()){
 		mPlayerObstacle->setSliding(true);

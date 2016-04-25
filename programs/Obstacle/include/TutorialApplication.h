@@ -53,6 +53,7 @@ protected:
 	// settings
 	bool mEnableCollision;
 	bool mEnableFreeMode;
+	bool mDisableLose;
 
 
 	// internal offset
