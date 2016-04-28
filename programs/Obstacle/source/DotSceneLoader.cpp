@@ -548,12 +548,12 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 				String typeStr = getAttrib(pElement,"type","NULL");
 				if(typeStr == "str"){
 					// determine pure boolean?
-					prop.valueStr =  getAttrib(pElement,"value","");
-					if(prop.valueStr == "true"){
+					prop.valStr =  getAttrib(pElement,"value","");
+					if(prop.valStr == "true"){
 						prop.valType = typeBOOL;
 						prop.valBool = true;
 					}
-					else if(prop.valueStr == "false"){
+					else if(prop.valStr == "false"){
 						prop.valType = typeBOOL;
 						prop.valBool = false;
 					}

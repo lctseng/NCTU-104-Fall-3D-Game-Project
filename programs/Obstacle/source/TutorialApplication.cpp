@@ -22,6 +22,7 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mEnableCollision = true;
 	mEnableFreeMode = false;
 	mDisableLose = false;
+	mGameStarted = false;
 	mCameraInitLookAt = Vector3(-1000,150,0);
 	mCameraInitPosition = Vector3(-1600,350,0);
 
@@ -72,7 +73,6 @@ void BasicTutorial_00::createScene(void)
 		0.1f, // restitution
 		0.3f // friction
 		);
-	floor->getEntity()->setMaterialName("Examples/BeachStones");
 	// -----------
 
 
@@ -91,7 +91,7 @@ void BasicTutorial_00::createScene(void)
 	if(props.hasKey("InitVelocityZ")){
 		mInitVelocity.z = props["InitVelocityZ"].valFloat;
 	}
-	mPlayerObstacle->setVelocity(mInitVelocity);
+	//mPlayerObstacle->setVelocity(mInitVelocity);
 	// setup init position
 	if(props.hasKey("InitPositionX")){
 		mInitPosition.x = props["InitPositionX"].valFloat;
@@ -134,6 +134,20 @@ void BasicTutorial_00::createScene(void)
 	mCameraPositionOffset = mCameraInitPosition - mInitPosition;
 	mCamera->setPosition(mCameraInitPosition);
 	mCamera->lookAt(mCameraInitLookAt);
+	// sky
+	if(props.hasKey("SkyType") && props.hasKey("SkyName")){
+		if(props["SkyType"].valStr == "Dome"){
+			mSceneMgr->setSkyDome(true, props["SkyName"].valStr, 5, 8);
+		}
+		else if(props["SkyType"].valStr == "Box"){
+			mSceneMgr->setSkyBox(true, props["SkyName"].valStr);
+		}
+	}
+	// floor material
+	if(props.hasKey("GroundMaterialName")){
+		floor->getEntity()->setMaterialName(props["GroundMaterialName"].valStr);
+	}
+	
 	
 }
 bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
@@ -149,13 +163,28 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 		// [NEW]
 		updateCameraPosition(evt);
 		// [NEW]
-		equalizeSpeed(evt);
+		if(mGameStarted){
+			equalizeSpeed(evt);
+		}
 	}
 	// [NEW]
 	if(mEnableCollision){
 		checkCollision(evt);
 	}
-
+	/*
+	if(mPlayerObstacle->isOnFloor()){
+		cout << "On Floor: true" << endl;
+	}
+	else{
+		cout << "On Floor: false" << endl;
+	}
+	if(mPlayerObstacle->IsOnObstaclePlane()){
+		cout << "On Obstacle: true" << endl;
+	}
+	else{
+		cout << "On Obstacle: false" << endl;
+	}
+	*/
 
 
 	return ret;
@@ -206,9 +235,6 @@ void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 // [NEW]
 bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 {
-
-	static Real timeUntilNextToggle = 0.0f;
-	timeUntilNextToggle += evt.timeSinceLastFrame;
 	static Real speed_rate = 40.0f;
 	Vector3 frontDir =  mCamera->getDerivedDirection();
 	Vector3 currentVel = mPlayerObstacle->getVelocity();
@@ -218,12 +244,10 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 
 	// toggle settings
 
-	if(keyboardhandler->isKeyPressing(OIS::KC_F7) && timeUntilNextToggle > 0.2f){
-		timeUntilNextToggle = 0.0f;
+	if(keyboardhandler->isKeyPressing(OIS::KC_F7)){
 		mEnableCollision = !mEnableCollision;
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_F9) && timeUntilNextToggle > 0.2f){
-		timeUntilNextToggle = 0.0f;
+	if(keyboardhandler->isKeyPressing(OIS::KC_F9) ){
 		mEnableFreeMode = !mEnableFreeMode;
 	}
 	if(keyboardhandler->isKeyTriggered(OIS::KC_F11)){
@@ -236,47 +260,40 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	else{
 		mPlayerObstacle->setSliding(false);
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_F8) && timeUntilNextToggle > 0.5f){
-		timeUntilNextToggle = 0.0f;
+	if(keyboardhandler->isKeyPressing(OIS::KC_F8)){
+		mGameStarted = true;
 		mPlayerObstacle->setVelocity(mInitVelocity);
 		mPlayerObstacle->setPosition(mInitPosition);
 	}
 	if(keyboardhandler->isKeyTriggered(OIS::KC_SPACE) && mPlayerObstacle->isJumpEnable() ){
-		timeUntilNextToggle = 0.0f;
 		Vector3 finalV = mPlayerObstacle->getVelocity();
 		finalV[1] = speed_rate * 35.0f;
 		mPlayerObstacle->setVelocity(finalV);
 		//mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 35,0));
 	}
 	if(mEnableFreeMode){
-		if(keyboardhandler->isKeyPressing(OIS::KC_I) && timeUntilNextToggle > 0.1f){
-			timeUntilNextToggle = 0.0f;
+		if(keyboardhandler->isKeyPressing(OIS::KC_I)){
 			mPlayerObstacle->applyVelocityChange(frontDir * speedAdjustment(currentVel,frontDir) * speed_rate);
 		}
-		if(keyboardhandler->isKeyPressing(OIS::KC_K) && timeUntilNextToggle > 0.1f){
-			timeUntilNextToggle = 0.0f;
+		if(keyboardhandler->isKeyPressing(OIS::KC_K) ){
 			Vector3 goDir = frontDir * -1;
 			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
 		}
-		if(keyboardhandler->isKeyPressing(OIS::KC_J) && timeUntilNextToggle > 0.1f){
-			timeUntilNextToggle = 0.0f;
+		if(keyboardhandler->isKeyPressing(OIS::KC_J) ){
 			Vector3 goDir = upVector.crossProduct(frontDir);
 			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
 		}
-		if(keyboardhandler->isKeyPressing(OIS::KC_L) && timeUntilNextToggle > 0.1f){
-			timeUntilNextToggle = 0.0f;
+		if(keyboardhandler->isKeyPressing(OIS::KC_L) ){
 			Vector3 goDir = upVector.crossProduct(frontDir) * -1;
 			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
 		}
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_O) && timeUntilNextToggle > 0.1f){
-		timeUntilNextToggle = 0.0f;
+	if(keyboardhandler->isKeyPressing(OIS::KC_O) ){
 		speed_rate += 1.0f;
 		Ogre::LogManager::getSingleton().logMessage("[DEMO] Player Speed Rate: " + StringConverter::toString(speed_rate));
 		mCamera->setNearClipDistance(speed_rate);
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_P) && timeUntilNextToggle > 0.1f){
-		timeUntilNextToggle = 0.0f;
+	if(keyboardhandler->isKeyPressing(OIS::KC_P) ){
 		speed_rate -= 1.0f;
 		if(speed_rate < 0.0f){
 			speed_rate = 0.0;	
@@ -286,14 +303,12 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	}
 
 
-	if(keyboardhandler->isKeyPressing(OIS::KC_B) && timeUntilNextToggle > 0.1f)
+	if(keyboardhandler->isKeyPressing(OIS::KC_B) )
 	{
 		Real mass = 10.0f;
 		if(keyboardhandler->isKeyPressing(OIS::KC_N)){
 			mass = 0.0f;
 		}
-
-		timeUntilNextToggle = 0.0f;
 		NCTU::CubeObstacle* obstacle = mObstacleMgr->createCube(
 			0.6f, // restitution
 			1.0f, // friction
@@ -312,9 +327,8 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 
 
 
-	if(keyboardhandler->isKeyPressing(OIS::KC_V) && timeUntilNextToggle > 0.1f)
+	if(keyboardhandler->isKeyPressing(OIS::KC_V) )
 	{
-		timeUntilNextToggle = 0.0f;
 
 		Real mass = 10.0f;
 		if(keyboardhandler->isKeyPressing(OIS::KC_N)){

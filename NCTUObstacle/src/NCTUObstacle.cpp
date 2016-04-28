@@ -1,5 +1,5 @@
 #include "NCTUObstacle.h"
-
+#include <iostream>
 using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
@@ -11,7 +11,9 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 	mRestitution(restitution),
 	mMass(mass),
 	mIsBumpObstacle(false),
-	mScaleDifference(1,1,1)
+	mScaleDifference(1,1,1),
+	mFloorTouchValue(FLOOR_TOUCH_THRESHOLD),
+	mObstaclePlaneTouchValue(OBSTACLE_PLANE_TOUCH_THRESHOLD)
 {
 
 }
@@ -25,6 +27,25 @@ void Obstacle::setScale(const Ogre::Vector3& v){
 	mNode->setScale(v * mScaleDifference);
 	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
 }
+
+void Obstacle::setOnFloor(bool val){
+	if(val){
+		mFloorTouchValue = 0;
+	}
+	else{
+		++mFloorTouchValue;
+	}
+}
+void Obstacle::setIsOnObstaclePlane(bool val){
+	if(val){
+		mObstaclePlaneTouchValue = 0;
+	}
+	else{
+		++mObstaclePlaneTouchValue;
+	}
+}
+
+
 
 OgreBulletCollisions::CollisionShape* Obstacle::generateFittingShape(SceneNode* node, Entity* ent){
 	/*

@@ -2,7 +2,8 @@
 #define NCTU_OBSTACLE_h_
 
 #include "NCTUObstaclePreRequisites.h"
-
+#define FLOOR_TOUCH_THRESHOLD 5
+#define OBSTACLE_PLANE_TOUCH_THRESHOLD 5
 
 #include <deque>
 
@@ -33,25 +34,23 @@ namespace NCTU{
 		inline void setOrientation(const Ogre::Quaternion q){mBody->setOrientation(q); mNode->setOrientation(q);}
 		inline Ogre::Quaternion getOrientation() const {return mNode->getOrientation();}
 
-		virtual inline void setOnFloor(bool val) {mOnFloor = val;}
-		virtual inline bool getOnFloor() const {return mOnFloor;}
+		virtual inline void setOnFloor(bool val);
+		virtual inline bool getOnFloor() const {return mFloorTouchValue < FLOOR_TOUCH_THRESHOLD;}
 		virtual inline bool isOnFloor() const {return getOnFloor();}
 		
 		virtual inline void setIsBumpObstacle(bool val) {mIsBumpObstacle = val;}
 		virtual bool getIsBumpObstacle() const {return mIsBumpObstacle;}
 		virtual bool IsBumpObstacle() const {return mIsBumpObstacle;}
 
-		virtual inline void setIsOnObstaclePlane(bool val) {mOnObstaclePlane = val;}
-		virtual bool getIsOnObstaclePlane() const {return mOnObstaclePlane;}
-		virtual bool IsOnObstaclePlane() const {return getIsOnObstaclePlane();}
+		virtual inline void setIsOnObstaclePlane(bool val);
+		virtual inline bool getIsOnObstaclePlane() const {return mObstaclePlaneTouchValue < OBSTACLE_PLANE_TOUCH_THRESHOLD;}
+		virtual inline bool IsOnObstaclePlane() const {return getIsOnObstaclePlane();}
 		
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 
 	protected:
 
-		bool mOnFloor;
 		bool mIsBumpObstacle;
-		bool mOnObstaclePlane;
 
 		ObstacleManager* mManager;
 		OgreBulletDynamics::RigidBody* mBody;
@@ -63,6 +62,9 @@ namespace NCTU{
 		Ogre::Entity* mEntity;
 
 		Ogre::Vector3 mScaleDifference;
+
+		int mFloorTouchValue;
+		int mObstaclePlaneTouchValue;
 
 		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
 

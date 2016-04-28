@@ -45,7 +45,7 @@ namespace Ogre
 
 	class GeneralProperty{
 	public:
-		String valueStr;
+		String valStr;
 		int valInt;
 		Real valFloat;
 		bool valBool;

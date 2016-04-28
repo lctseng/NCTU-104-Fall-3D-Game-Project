@@ -73,13 +73,13 @@ void PlayerObstacle::updateCollision(const FrameEvent& evt){
 	updateAllObstacleCollision(evt);
 }
 void PlayerObstacle::updateFloorCollision(const FrameEvent& evt){
-	mOnFloor = false;
+	setOnFloor(false);
 	FloorContactResultCallback f_callback(this);
 	mManager->setPlayerFloorCallback(f_callback);
 }
 void PlayerObstacle::updateAllObstacleCollision(const FrameEvent& evt){
 	mIsBumpObstacle = false;
-	mOnObstaclePlane = false;
+	setIsOnObstaclePlane(false);
 	ObstacleContactResultCallback callback(this);
 	mManager->setPlayerAllObstacleCallback(callback);
 }

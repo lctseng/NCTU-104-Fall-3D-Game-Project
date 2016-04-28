@@ -58,6 +58,8 @@ protected:
 	int mNearClipMin;
 	int mNearClipMax;
 
+	bool mGameStarted;
+
 
 	// internal offset
 	Vector3 mLightOffset;
