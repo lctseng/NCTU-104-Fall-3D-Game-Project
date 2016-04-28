@@ -33,7 +33,9 @@ void Obstacle::setOnFloor(bool val){
 		mFloorTouchValue = 0;
 	}
 	else{
-		++mFloorTouchValue;
+		if(mFloorTouchValue < FLOOR_TOUCH_THRESHOLD){
+			++mFloorTouchValue;
+		}
 	}
 }
 void Obstacle::setIsOnObstaclePlane(bool val){
@@ -41,7 +43,9 @@ void Obstacle::setIsOnObstaclePlane(bool val){
 		mObstaclePlaneTouchValue = 0;
 	}
 	else{
-		++mObstaclePlaneTouchValue;
+		if(mObstaclePlaneTouchValue < OBSTACLE_PLANE_TOUCH_THRESHOLD){
+			++mObstaclePlaneTouchValue;
+		}
 	}
 }
 
