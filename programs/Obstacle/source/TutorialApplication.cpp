@@ -147,6 +147,8 @@ void BasicTutorial_00::createScene(void)
 	if(props.hasKey("GroundMaterialName")){
 		floor->getEntity()->setMaterialName(props["GroundMaterialName"].valStr);
 	}
+	// record init orientation
+	mInitOrientation = mPlayerObstacle->getOrientation();
 	
 	
 }
@@ -167,6 +169,7 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 			equalizeSpeed(evt);
 		}
 	}
+	fixOrientation(evt);
 	// [NEW]
 	if(mEnableCollision){
 		checkCollision(evt);
@@ -217,6 +220,12 @@ void BasicTutorial_00::equalizeSpeed(const FrameEvent& evt){
 	finalV[1] = currentV[1];
 	mPlayerObstacle->setVelocity(finalV);
 }
+
+// [NEW]
+void BasicTutorial_00::fixOrientation(const FrameEvent& evt){
+	mPlayerObstacle->setOrientation(mInitOrientation);
+}
+
 // [NEW]
 void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 	// this is essential to update all collision information
@@ -288,15 +297,15 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 			mPlayerObstacle->applyVelocityChange(goDir * speed_rate * speedAdjustment(currentVel,goDir));
 		}
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_O) ){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_O) ){
 		speed_rate += 1.0f;
 		Ogre::LogManager::getSingleton().logMessage("[DEMO] Player Speed Rate: " + StringConverter::toString(speed_rate));
 		mCamera->setNearClipDistance(speed_rate);
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_P) ){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_P) ){
 		speed_rate -= 1.0f;
-		if(speed_rate < 0.0f){
-			speed_rate = 0.0;	
+		if(speed_rate < 1.0f){
+			speed_rate = 1.0f;	
 		}
 		mCamera->setNearClipDistance(speed_rate);
 		Ogre::LogManager::getSingleton().logMessage("[DEMO] Player Speed Rate: " + StringConverter::toString(speed_rate));

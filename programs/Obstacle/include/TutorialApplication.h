@@ -36,6 +36,7 @@ protected:
 
 	// [NEW]
 	virtual void equalizeSpeed(const FrameEvent& evt);
+	virtual void fixOrientation(const FrameEvent& evt);
 
 	// [NEW]
 	NCTU::ObstacleManager* mObstacleMgr;
@@ -44,6 +45,7 @@ protected:
 	// Games
 	Vector3 mInitVelocity;
 	Vector3 mInitPosition;
+	Quaternion mInitOrientation;
 	NCTU::PlayerObstacle* mPlayerObstacle;
 	Light *mLight;
 
