@@ -244,10 +244,10 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 
 	// toggle settings
 
-	if(keyboardhandler->isKeyPressing(OIS::KC_F7)){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_F7)){
 		mEnableCollision = !mEnableCollision;
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_F9) ){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_F9) ){
 		mEnableFreeMode = !mEnableFreeMode;
 	}
 	if(keyboardhandler->isKeyTriggered(OIS::KC_F11)){
@@ -260,7 +260,7 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	else{
 		mPlayerObstacle->setSliding(false);
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_F8)){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_F8)){
 		mGameStarted = true;
 		mPlayerObstacle->setVelocity(mInitVelocity);
 		mPlayerObstacle->setPosition(mInitPosition);
