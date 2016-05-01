@@ -32,5 +32,18 @@ namespace NCTU{
 			int index1);
 		Obstacle* mSubject;
 	};
+	struct BulletContactResultCallback : public btCollisionWorld::ContactResultCallback
+	{
+		BulletContactResultCallback(BulletObstacle* me,Obstacle* tgr):mSubject(me),mObject(tgr){}
+		btScalar addSingleResult(btManifoldPoint& cp,
+			const btCollisionObjectWrapper* colObj0Wrap,
+			int partId0,
+			int index0,
+			const btCollisionObjectWrapper* colObj1Wrap,
+			int partId1,
+			int index1);
+		Obstacle* mObject;
+		BulletObstacle* mSubject;
+	};
 };
 #endif

@@ -1,15 +1,15 @@
 #include "NCTUObstacleManager.h"
-#include "NCTUSphereObstacle.h"
+#include "NCTUBulletObstacle.h"
 
 using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
 
 /*!
-	\brief Create a sphere obstacle (full)
+	\brief Create a bullet obstacle (full)
 */
 
-SphereObstacle::SphereObstacle(
+BulletObstacle::BulletObstacle(
 		ObstacleManager* mgmt,
 		Real restitution,
 		Real friction,
@@ -35,8 +35,8 @@ SphereObstacle::SphereObstacle(
 	mShape = new OgreBulletCollisions::SphereCollisionShape(radius);
 	// and the Bullet rigid body
 	mBody = new OgreBulletDynamics::RigidBody(
-		"obstacle.sphere." + StringConverter::toString(mIndex),
-		mManager->getWorld(),COL_GROUP_ALL,COL_MASK_OBSTACLE);
+		"obstacle.bullet." + StringConverter::toString(mIndex),
+		mManager->getWorld(),COL_GROUP_NO_BULLET,COL_MASK_BULLET);
 
 	mBody->setShape(   mNode,
 					mShape,
@@ -49,7 +49,16 @@ SphereObstacle::SphereObstacle(
 	mBody->getBulletObject()->setUserPointer(this);
 	
 }
-void SphereObstacle::setScale(const Ogre::Vector3& v){
+void BulletObstacle::setScale(const Ogre::Vector3& v){
 	mNode->setScale(v * mRadius);
 	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
+}
+
+void BulletObstacle::destroy(){
+	mManager->removeBulletIterator(mBulletIterator);
+	Obstacle::destroy();
+}
+
+void BulletObstacle::onBulletHit(){
+	destroy();
 }

@@ -56,7 +56,7 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
 		"playerRigid",
-		mManager->getWorld());
+		mManager->getWorld(),COL_GROUP_NO_BULLET,COL_MASK_PLAYER);
 	mBody->setShape(   mNode,
 					mShape,
 					mRestitution,         // dynamic body restitution

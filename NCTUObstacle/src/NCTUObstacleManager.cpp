@@ -15,7 +15,7 @@ ObstacleManager::ObstacleManager()
 ObstacleManager::~ObstacleManager()
 {
 	// obstacles
-	std::deque<Obstacle *>::iterator it = mObstacles.begin();
+	std::list<Obstacle *>::iterator it = mObstacles.begin();
 	while (mObstacles.end() != it)
 	{   
 		delete *it;
@@ -104,6 +104,7 @@ CubeObstacle* ObstacleManager::createCube(
 	CubeObstacle* obj = new CubeObstacle(this,restitution,friction,mass,mObstacleIndex,position,size,orientation);
 	++mObstacleIndex;
 	mObstacles.push_back(obj);
+	obj->setMyIterator(--mObstacles.end());
 	return obj;
 }
 
@@ -119,6 +120,24 @@ SphereObstacle* ObstacleManager::createSphere(
 	SphereObstacle* obj = new SphereObstacle(this,restitution,friction,mass,mObstacleIndex,position,radius,orientation);
 	++mObstacleIndex;
 	mObstacles.push_back(obj);
+	obj->setMyIterator(--mObstacles.end());
+	return obj;
+}
+
+BulletObstacle* ObstacleManager::createBullet(
+	Real restitution,
+	Real friction, 
+	Real mass,
+	const Vector3& position,
+	Real radius,
+	const Quaternion& orientation)
+{
+	BulletObstacle* obj = new BulletObstacle(this,restitution,friction,mass,mObstacleIndex,position,radius,orientation);
+	++mObstacleIndex;
+	mObstacles.push_back(obj);
+	obj->setMyIterator(--mObstacles.end());
+	mBullets.push_back(obj);
+	obj->setBulletIterator(--mBullets.end());
 	return obj;
 }
 
@@ -134,6 +153,7 @@ GeneralObstacle* ObstacleManager::createGeneralObstacle(
 	GeneralObstacle* obj = new GeneralObstacle(this,restitution,friction,mass,mObstacleIndex,node,ent);
 	++mObstacleIndex;
 	mObstacles.push_back(obj);
+	obj->setMyIterator(--mObstacles.end());
 	return obj;
 }
 
@@ -144,13 +164,47 @@ void ObstacleManager::setPlayerFloorCallback(btCollisionWorld::ContactResultCall
 }
 void ObstacleManager::setPlayerAllObstacleCallback(btCollisionWorld::ContactResultCallback& callback){
 	assert(mPlayerObstacle != nullptr);
-	for(unsigned i=0;i<mObstacles.size();i++){
-		mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),mObstacles[i]->getBody()->getBulletObject(),callback);	
+	// obstacles
+	std::list<Obstacle *>::iterator it = mObstacles.begin();
+	for(;it != mObstacles.end();it++){
+		mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),(*it)->getBody()->getBulletObject(),callback);	
 	}
 }
 
 void ObstacleManager::updateCollision(const FrameEvent& evt){
 	if(mPlayerObstacle){
 		mPlayerObstacle->updateCollision(evt);
+	}
+}
+void ObstacleManager::updateLifeTime(const FrameEvent& evt){
+	// obstacles
+	std::list<Obstacle *>::iterator it = mObstacles.begin();
+	for(;it != mObstacles.end();it++){
+		(*it)->updateLifeTime(evt);
+	}
+	// check erase
+	it = mObstacles.begin();
+	while(it != mObstacles.end()){
+		if((*it)->needDeleted()){
+			// remove this one!
+			it = deleteByIterator(it); // auto forward
+		}
+		else{
+			++it;
+		}
+	}
+}
+void ObstacleManager::updateBulletCollision(const FrameEvent& evt){
+	// set all bullet collision to all object
+	std::list<BulletObstacle *>::iterator bullet_it = mBullets.begin();
+	for(;bullet_it != mBullets.end();++bullet_it){
+		std::list<Obstacle *>::iterator obj_it = mObstacles.begin();
+		for(;obj_it != mObstacles.end();++obj_it){
+			// don't set for yourself :)
+			if(*bullet_it != *obj_it){
+				BulletContactResultCallback callback(*bullet_it,*obj_it);
+				mWorld->getBulletCollisionWorld()->contactPairTest((*bullet_it)->getBody()->getBulletObject(),(*obj_it)->getBody()->getBulletObject(),callback);		
+			}
+		}
 	}
 }

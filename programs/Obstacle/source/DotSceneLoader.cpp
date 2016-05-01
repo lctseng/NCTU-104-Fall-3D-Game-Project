@@ -509,9 +509,14 @@ void DotSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
 void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop, bool saveAsGeneral){
 	TiXmlElement *pElement;
 	pElement = XMLNode->FirstChildElement("user_data");
+	// touch data
 	int touchDataReq = 0x0000;
 	Real touchAngle = 0.0f;
 	Vector3 touchVector = Vector3::ZERO;
+	// hp material data
+	int hpMaterialReq = 0x00;
+	int hpCond = -1;
+	String hpMaterial;
 	while(pElement)
 	{
 		// fetch angle
@@ -539,6 +544,18 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 			// get its type
 			touchVector.z = getAttribReal(pElement,"value",0.0f);
 			cout << "--> vectorZ: " << touchVector.z << endl;
+		}
+		else if(attrName == "HitPointCondition"){
+			hpMaterialReq |= 0x01;
+			// get its type
+			hpCond = getAttribReal(pElement,"value",-1.0f);
+			cout << "--> HitPointCondition: " << hpCond << endl;
+		}
+		else if(attrName == "HitPointMaterial"){
+			hpMaterialReq |= 0x10;
+			// get its type
+			hpMaterial = getAttrib(pElement,"value","");
+			cout << "--> HitPointMaterial: " << hpMaterial << endl;
 		}
 		else{ // not a default name
 			if(saveAsGeneral){
@@ -584,11 +601,18 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 		pElement = pElement->NextSiblingElement("user_data");
 	}
 	// check data fulfill
+	// touch data
 	if(touchDataReq == 0x1111){
 		cout << "Touch Data Entered, Vector = " << touchVector << ", Angle: " << touchAngle << endl;
 		prop.conditionVectors.push_back(make_pair(touchVector,touchAngle));
 	}
+	// hp material
+	if(hpMaterialReq == 0x11){
+		cout << "HP material change enabled, hp = " << hpCond << ", material name: " << hpMaterial << endl;
+		prop.hpChangeMaterials[hpCond] = hpMaterial;
+	}
 }
+
 
 void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String& name,SceneNode* node, Entity* ent){
 	// data init
@@ -633,6 +657,10 @@ void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 			prop.restitution = getAttribReal(pElement,"value",1.0f);
 			cout << "--> restitution: " << prop.restitution << endl;
 		}
+		else if(attrName == "HitPoint"){
+			prop.hitPoint = (int)getAttribReal(pElement,"value",-1.0f);
+			cout << "--> HP: " << prop.hitPoint << endl;
+		}
 		// next element
 		pElement = pElement->NextSiblingElement("user_data");
 	}
@@ -668,6 +696,8 @@ void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 	if(pObstacle){
 		// setup other data for existed obstacle
 		pObstacle->mCollisionConditionVectors = prop.conditionVectors;
+		pObstacle->mHpChangeMaterials = prop.hpChangeMaterials;
+		pObstacle->setHitPoint(prop.hitPoint);
 	}
 }
 

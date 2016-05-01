@@ -5,7 +5,7 @@ using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
 
-GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass, int index,SceneNode* node, Entity* ent)
+GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass, INDEX_TYPE index,SceneNode* node, Entity* ent)
 :Obstacle(mgmt,restitution,friction,mass),mIndex(index)
 {
 	// create settings
@@ -21,7 +21,7 @@ GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real fr
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
 		"obstacle.general." + StringConverter::toString(mIndex),
-		mManager->getWorld());
+		mManager->getWorld(),COL_GROUP_ALL,COL_MASK_OBSTACLE);
 	mBody->setShape(   mNode,
 					mShape,
 					mRestitution,         // dynamic body restitution

@@ -78,6 +78,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\NCTUBulletObstacle.cpp" />
     <ClCompile Include="src\NCTUCubeObstacle.cpp" />
     <ClCompile Include="src\NCTUFloorObstacle.cpp" />
     <ClCompile Include="src\NCTUGeneralObstacle.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="src\NCTUSphereObstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\NCTUBulletObstacle.h" />
     <ClInclude Include="include\NCTUCubeObstacle.h" />
     <ClInclude Include="include\NCTUFloorObstacle.h" />
     <ClInclude Include="include\NCTUGeneralObstacle.h" />

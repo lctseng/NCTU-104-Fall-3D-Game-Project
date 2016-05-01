@@ -14,7 +14,7 @@ CubeObstacle::CubeObstacle(
 		Real restitution,
 		Real friction,
 		Real mass,
-		int index,
+		INDEX_TYPE index,
 		const Vector3& position,
 		const Vector3& size,
 		const Quaternion& orientation)
@@ -47,7 +47,7 @@ CubeObstacle::CubeObstacle(
 	// and the Bullet rigid body
 	mBody = new OgreBulletDynamics::RigidBody(
 		"obstacle.cube." + StringConverter::toString(mIndex),
-		mManager->getWorld());
+		mManager->getWorld(),COL_GROUP_ALL,COL_MASK_OBSTACLE);
 	mBody->setShape(   mNode,
 					mShape,
 					mRestitution,         // dynamic body restitution

@@ -6,10 +6,12 @@
 #include "NCTUPlayerObstacle.h"
 #include "NCTUCubeObstacle.h"
 #include "NCTUSphereObstacle.h"
+#include "NCTUBulletObstacle.h"
 #include "NCTUFloorObstacle.h"
 #include "NCTUGeneralObstacle.h"
+#include "NCTUObstacleCallback.h"
 
-#include <deque>
+#include <list>
 
 namespace NCTU{
 	// -------------------------------------------------------------
@@ -42,9 +44,35 @@ namespace NCTU{
 			Ogre::Entity* ent
 			);
 
-		CubeObstacle* createCube(Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,const Ogre::Vector3& position,const Ogre::Vector3& size = Ogre::Vector3::ZERO,const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1));
-		SphereObstacle* createSphere(Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,const Ogre::Vector3& position,Ogre::Real radius = 1.0f,const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1));
+		CubeObstacle* createCube(
+			Ogre::Real restitution,
+			Ogre::Real friction,
+			Ogre::Real mass,
+			const Ogre::Vector3& position,
+			const Ogre::Vector3& size = Ogre::Vector3::ZERO,
+			const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1)
+			);
+
+		SphereObstacle* createSphere(
+			Ogre::Real restitution, 
+			Ogre::Real friction,
+			Ogre::Real mass,
+			const Ogre::Vector3& position,
+			Ogre::Real radius = 1.0f,
+			const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1)
+			);
 		
+		
+		BulletObstacle* createBullet(
+			Ogre::Real restitution,
+			Ogre::Real friction, 
+			Ogre::Real mass,
+			const Ogre::Vector3& position,
+			Ogre::Real radius = 20.0f,
+			const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1)
+			);
+
+
 		GeneralObstacle* createGeneralObstacle(
 			Ogre::Real restitution,
 			Ogre::Real friction,
@@ -57,6 +85,8 @@ namespace NCTU{
 		void setPlayerAllObstacleCallback(btCollisionWorld::ContactResultCallback& callback);
 
 		void updateCollision(const Ogre::FrameEvent& evt);
+		void updateLifeTime(const Ogre::FrameEvent& evt);
+		void updateBulletCollision(const Ogre::FrameEvent& evt);
 
 		inline OgreBulletDynamics::DynamicsWorld* getWorld(){return mWorld;}
 		inline Ogre::SceneManager* getSceneMgr(){return mSceneMgr;}
@@ -64,14 +94,18 @@ namespace NCTU{
 		inline FloorObstacle* getFloor(){return mFloorObstacle;}
 
 		inline void stepSimulation(Ogre::Real time){mWorld->stepSimulation(time);}
+		
 
-
+		inline std::list<Obstacle *>::iterator deleteByIterator(std::list<Obstacle *>::iterator it){delete *it; return mObstacles.erase(it);}
+		inline std::list<BulletObstacle *>::iterator removeBulletIterator(std::list<BulletObstacle *>::iterator it){return mBullets.erase(it);}
 	private:
 		// Core
 		Ogre::SceneManager* mSceneMgr;
 
 		// General
-		std::deque<Obstacle*> mObstacles;  // Store all obstacle except plane and player
+		std::list<Obstacle*> mObstacles;  // Store all obstacle except plane and player
+		std::list<BulletObstacle*> mBullets;  // Store all bullet, only for reference
+
 		Ogre::AxisAlignedBox  mBulletBox; // box for bullet
 		Ogre::Vector3 mGravityVector; // gravity for bullet
 		OgreBulletDynamics::DynamicsWorld *mWorld;   // OgreBullet World
@@ -81,7 +115,7 @@ namespace NCTU{
 		// special pointer for Player
 		PlayerObstacle* mPlayerObstacle;
 
-		int mObstacleIndex; // general obstacle
+		INDEX_TYPE mObstacleIndex; // general obstacle
 	};
 };
 #endif

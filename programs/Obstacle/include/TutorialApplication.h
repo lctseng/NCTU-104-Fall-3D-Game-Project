@@ -61,7 +61,10 @@ protected:
 	int mNearClipMax;
 
 	bool mGameStarted;
+	
 
+	Real mBulletLifeTime;
+	Real mBulletSpeedFactor;
 
 	// internal offset
 	Vector3 mLightOffset;

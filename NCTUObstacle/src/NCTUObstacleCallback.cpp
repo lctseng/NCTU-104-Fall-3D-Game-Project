@@ -1,4 +1,5 @@
 #include "NCTUObstacleCallback.h"
+#include "NCTUBulletObstacle.h"
 #include <iostream>
 
 using namespace NCTU;
@@ -51,6 +52,21 @@ btScalar ObstacleContactResultCallback::addSingleResult(btManifoldPoint& cp,
 			<< "ptB:" << Ogre::StringConverter::toString(OgreBulletCollisions::BtOgreConverter::to(cp.getPositionWorldOnB())) << std::endl
 			<< "normal:" << Ogre::StringConverter::toString(OgreBulletCollisions::BtOgreConverter::to(cp.m_normalWorldOnB)) << std::endl;
 		*/
+	}
+	return 0;
+}
+
+btScalar BulletContactResultCallback::addSingleResult(btManifoldPoint& cp,
+	const btCollisionObjectWrapper* colObj0Wrap,
+	int partId0,
+	int index0,
+	const btCollisionObjectWrapper* colObj1Wrap,
+	int partId1,
+	int index1)
+{
+	if(cp.getDistance() < 0.0f && mSubject->isAlive()){
+		mSubject->onBulletHit();
+		mObject->onBulletHit();
 	}
 	return 0;
 }

@@ -14,11 +14,11 @@ namespace NCTU{
 			Ogre::Real restitution, 
 			Ogre::Real friction, 
 			Ogre::Real mass,
-			int index,
+			INDEX_TYPE index,
 			Ogre::SceneNode* node, 
 			Ogre::Entity* ent);
 	protected:
-		int mIndex;
+		INDEX_TYPE mIndex;
 	};
 };
 

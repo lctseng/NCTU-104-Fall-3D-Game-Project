@@ -36,7 +36,7 @@ FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real fricti
 	mShape = new OgreBulletCollisions::StaticPlaneCollisionShape(normal, distance); // (normal vector, distance)
 	mBody = new OgreBulletDynamics::RigidBody(
 			"floor",
-			mManager->getWorld());
+			mManager->getWorld(),COL_GROUP_ALL,COL_MASK_FLOOR);
 	mBody->setStaticShape(mShape, mFriction, mRestitution); // (shape, restitution, friction)
 	mBody->getBulletObject()->setUserPointer(this);
 }

@@ -53,12 +53,6 @@ namespace Ogre
 		GeneralProperty():valType(typeNONE){}
 	};
 
-	class propMap : public std::map<String,GeneralProperty>{
-	public:
-		bool hasKey(const String& key) const{
-			return this->find(key) != this->end();
-		}
-	};
 
 	class ObstacleProperty{
 	public:
@@ -66,8 +60,10 @@ namespace Ogre
 		Real mass;
 		Real friction;
 		Real restitution;
+		int hitPoint;
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > conditionVectors;
-		ObstacleProperty():obstacle_type("None"),mass(1.0f),friction(1.0f),restitution(1.0f){}
+		propMap<int,String> hpChangeMaterials;
+		ObstacleProperty():obstacle_type("None"),mass(1.0f),friction(1.0f),restitution(1.0f),hitPoint(-1){}
 	};
 
 	class DotSceneLoader
@@ -83,7 +79,7 @@ namespace Ogre
 		std::vector<String> staticObjects;
 		std::vector<String> dynamicObjects;
 
-		propMap mGeneralProps;
+		propMap<String,GeneralProperty> mGeneralProps;
  
 
 	protected:

@@ -25,7 +25,10 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mGameStarted = false;
 	mCameraInitLookAt = Vector3(-1000,150,0);
 	mCameraInitPosition = Vector3(-1600,350,0);
-
+	mBulletSpeedFactor = 1000.0f;
+	mNearClipMin = 5;
+	mNearClipMax = 400;
+	mBulletLifeTime = 1.0f;
 	// ------
 	//[KEYBOARD]
 	keyboardhandler = new KeyBoardHandler();
@@ -80,7 +83,7 @@ void BasicTutorial_00::createScene(void)
 	// player setup
 	mPlayerObstacle = mObstacleMgr->getPlayer();
 	// apply general props
-	propMap& props = mDotScene.mGeneralProps;
+	propMap<String,GeneralProperty>& props = mDotScene.mGeneralProps;
 	// setup init velocity
 	if(props.hasKey("InitVelocityX")){
 		mInitVelocity.x = props["InitVelocityX"].valFloat;
@@ -147,6 +150,17 @@ void BasicTutorial_00::createScene(void)
 	if(props.hasKey("GroundMaterialName")){
 		floor->getEntity()->setMaterialName(props["GroundMaterialName"].valStr);
 	}
+	// bullet
+	if(props.hasKey("BulletLifeTime")){
+		mBulletLifeTime = 	props["BulletLifeTime"].valFloat;
+	}
+	if(props.hasKey("BulletSpeedFactor")){
+		mBulletSpeedFactor = mInitVelocity.length() * props["BulletSpeedFactor"].valFloat;
+	}
+	else{
+		mBulletSpeedFactor = mInitVelocity.length() * 5;	
+	}
+	
 	// record init orientation
 	mInitOrientation = mPlayerObstacle->getOrientation();
 	
@@ -159,6 +173,8 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 	processUnbufferedKeyInput(evt); // Process keys, go into functions
 	// [NEW]
 	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
+	mObstacleMgr->updateLifeTime(evt);
+	mObstacleMgr->updateBulletCollision(evt);
 	if(!mEnableFreeMode){
 		// [NEW]
 		updateLightPosition(evt);
@@ -300,7 +316,7 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 	if(keyboardhandler->isKeyTriggered(OIS::KC_O) ){
 		speed_rate += 1.0f;
 		Ogre::LogManager::getSingleton().logMessage("[DEMO] Player Speed Rate: " + StringConverter::toString(speed_rate));
-		mCamera->setNearClipDistance(speed_rate);
+		//mCamera->setNearClipDistance(speed_rate);
 	}
 	if(keyboardhandler->isKeyTriggered(OIS::KC_P) ){
 		speed_rate -= 1.0f;
@@ -357,6 +373,20 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 		if(keyboardhandler->isKeyPressing(OIS::KC_Z)){
 			obstacle->setScale(Vector3(0.5,0.5,0.5));
 		}
+	}
+	if(keyboardhandler->isKeyTriggered(OIS::KC_X) ){
+		NCTU::BulletObstacle* obstacle = mObstacleMgr->createBullet(
+			0.6f, // restitution
+			1.0f, // friction
+			1.0f, // mass
+			(mCamera->getDerivedPosition() + mCamera->getDerivedDirection().normalisedCopy() * 500) // position
+			);     
+		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
+		shoot_v.y = 0.3f;
+		obstacle->setVelocity(
+			shoot_v * mBulletSpeedFactor); // shooting speed
+		obstacle->getEntity()->setMaterialName("Bullet/Capsule");
+		obstacle->setLifeTime(mBulletLifeTime);
 	}
 
 	return true;

@@ -1,5 +1,5 @@
-#ifndef NCTU_OBSTACLE_COMMON_h_
-#define NCTU_OBSTACLE_COMMON_h_
+#ifndef NCTU_OBSTACLE_PRE_REQUISITES_h_
+#define NCTU_OBSTACLE_PRE_REQUISITES_h_
 
 #include <OgreCamera.h>
 #include <OgreEntity.h>
@@ -37,7 +37,15 @@
 
 #include "btBulletCollisionCommon.h"
 
+#define COL_MASK_PLAYER 0x1
+#define COL_MASK_OBSTACLE 0x2
+#define COL_MASK_FLOOR 0x4
+#define COL_MASK_BULLET 0x8
 
+#define COL_GROUP_ALL (COL_MASK_PLAYER | COL_MASK_OBSTACLE | COL_MASK_FLOOR | COL_MASK_BULLET)
+#define COL_GROUP_NO_BULLET (COL_MASK_PLAYER | COL_MASK_OBSTACLE | COL_MASK_FLOOR)
+
+typedef unsigned long INDEX_TYPE;
 
 namespace NCTU{
 
@@ -47,9 +55,19 @@ namespace NCTU{
 	class CubeObstacle;
 	class GeneralObstacle;
 	class FloorObstacle; // specialized
-	class PlayerObstacle; // a player (by default, a ball)
+	class PlayerObstacle; // a player
+	class BulletObstacle;
 
 };
+
+template<class Key, class Value>
+class propMap : public std::map<Key,Value>{
+public:
+	bool hasKey(const Key& key) const{
+		return this->find(key) != this->end();
+	}
+};
+
 
 
 

@@ -9,10 +9,10 @@ namespace NCTU{
 	// -------------------------------------------------------------
 	class CubeObstacle : public Obstacle{
 	public:
-		CubeObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,int index,const Ogre::Vector3& position,const Ogre::Vector3& size,const Ogre::Quaternion& orientation);
+		CubeObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,INDEX_TYPE index,const Ogre::Vector3& position,const Ogre::Vector3& size,const Ogre::Quaternion& orientation);
 		virtual void setScale(const Ogre::Vector3&);
 	protected:
-		int mIndex;
+		INDEX_TYPE mIndex;
 		Ogre::Vector3 mInitScale;
 	};
 };
