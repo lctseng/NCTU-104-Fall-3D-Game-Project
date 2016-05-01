@@ -10,5 +10,6 @@
 #include <OgreConfigFile.h>
 
 extern void genNameUsingIndex(const Ogre::String & prefix, int index, Ogre::String &out_name);
-
+extern void logMessage(const  Ogre::String &msg);
+extern void logMessage(const Ogre::Vector3 &v);
 #endif
