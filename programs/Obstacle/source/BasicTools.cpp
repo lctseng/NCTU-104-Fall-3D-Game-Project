@@ -6,7 +6,7 @@ void genNameUsingIndex(const Ogre::String & prefix, int index, Ogre::String &out
 }
 void logMessage(const  Ogre::String &msg)
 {
-	 Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
 }
 
 void logMessage(const Ogre::Vector3 &v)
@@ -20,6 +20,6 @@ void logMessage(const Ogre::Vector3 &v)
 	out2 << v.z;
 
 	msg = out0.str() + "\t\t" + out1.str() + "\t\t" + out2.str();
-	
-Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+
+	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
 }
