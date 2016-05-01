@@ -19,23 +19,37 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 	mLifeTime(0.0f), 
 	mLifeTimeEnable(false),
 	mDeleteMark(false),
-	mHitPoint(-1) // invincible
+	mHitPoint(-1), // invincible
+	mName("obstacle"),
+	mParticleSystemInit(false),
+	mFrozen(false),
+	mEntityDetached(false)
 {
 
 }
 Obstacle::~Obstacle(){
-	// delete shape and body
-	delete mBody;
-	delete mShape;
+	// delete physics
+	destroyPhysics();
+	// destory particle system
+	destroyParticleSystem();
 	// detach node and entity
-	mNode->detachObject(mEntity);
+	detachEntity();
 	mManager->getSceneMgr()->destroyEntity(mEntity);
 	mManager->getSceneMgr()->destroySceneNode(mNode);
 }
 
+void Obstacle::detachEntity(){
+	if(!mEntityDetached){
+		mNode->detachObject(mEntity);
+	}
+}
+
 void Obstacle::setScale(const Ogre::Vector3& v){
 	mNode->setScale(v * mScaleDifference);
-	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
+	if(mShape){
+		mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
+	}
+	
 }
 
 void Obstacle::setOnFloor(bool val){
@@ -63,14 +77,32 @@ void Obstacle::updateLifeTime(const Ogre::FrameEvent& evt){
 	if(mLifeTimeEnable){
 		mLifeTime -= evt.timeSinceLastFrame;
 		if(mLifeTime <= 0.0f){
-			destroy();
+			onLifeEnd();
 		}
 	}
 }
 
+void Obstacle::onLifeEnd(){
+	destroy();
+}
+
 void Obstacle::destroy(){
-	mLifeTime = 0.0f;
-	mDeleteMark = true;
+	if(!mDeleteMark){
+		mLifeTime = 0.0f;
+		mDeleteMark = true;
+	}
+}
+
+void Obstacle::destroyPhysics(){
+	mFrozen = true;
+	if(mBody){
+		delete mBody;
+		mBody = nullptr;
+	}
+	if(mShape){
+		delete mShape;
+		mShape = nullptr;
+	}
 }
 
 void Obstacle::onBulletHit(){
@@ -106,4 +138,44 @@ OgreBulletCollisions::CollisionShape* Obstacle::generateFittingShape(SceneNode* 
 
 	GImpactConcaveShape *shape = converter->createConcave();
 	return shape;
+}
+
+void Obstacle::initParticleSystem(const String& particleName){
+	if(!mParticleSystemInit){
+		mParticleSystemInit = true;
+		mParticleSystemName = "particle." + mName;
+		mParticleSystemNode = static_cast<SceneNode*>(
+			mNode->createChild());
+		mParticleSystem = mManager->getSceneMgr()->createParticleSystem(
+			mParticleSystemName, particleName);
+
+		ParticleEmitter *e = mParticleSystem->getEmitter(0);
+		e->setEnabled(false);
+		mParticleSystemNode->attachObject(mParticleSystem);
+		mParticleSystemNode->setPosition(Vector3::ZERO);
+		mParticleSystemNode->setVisible(false);
+	}
+}
+void Obstacle::setOffParticleSystem(){
+	if(mParticleSystemInit)	{
+		mParticleSystemNode->setVisible(true);
+		mParticleSystem->setVisible(true);
+		ParticleEmitter *e = mParticleSystem->getEmitter(0);
+		e->setEnabled(true);
+	}
+}
+void Obstacle::destroyParticleSystem(){
+	if(mParticleSystemInit){
+		mParticleSystemNode->detachObject(mParticleSystem);
+		mManager->getSceneMgr()->destroyParticleSystem(mParticleSystem);
+		mManager->getSceneMgr()->destroySceneNode(mParticleSystemNode);
+		mParticleSystemInit = false;
+	}
+}
+
+void Obstacle::stopParticleSystem(){
+	if(mParticleSystemInit)	{
+		ParticleEmitter *e = mParticleSystem->getEmitter(0);
+		e->setEnabled(false);
+	}
 }

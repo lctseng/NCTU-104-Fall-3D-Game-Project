@@ -8,6 +8,7 @@ using namespace OgreBulletCollisions;
 GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass, INDEX_TYPE index,SceneNode* node, Entity* ent)
 :Obstacle(mgmt,restitution,friction,mass),mIndex(index)
 {
+	mName = "obstacle.general." + StringConverter::toString(mIndex);
 	// create settings
 	mScaleDifference = node->getScale();
 	Vector3 oldPosition = node->getPosition();
@@ -20,7 +21,7 @@ GeneralObstacle::GeneralObstacle(ObstacleManager* mgmt,Real restitution, Real fr
 	// bullet
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
-		"obstacle.general." + StringConverter::toString(mIndex),
+		mName,
 		mManager->getWorld(),COL_GROUP_ALL,COL_MASK_OBSTACLE);
 	mBody->setShape(   mNode,
 					mShape,

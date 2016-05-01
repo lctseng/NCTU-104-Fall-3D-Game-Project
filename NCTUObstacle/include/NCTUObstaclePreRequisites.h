@@ -4,6 +4,7 @@
 #include <OgreEntity.h>
 #include <OgreSceneNode.h>
 
+#include "NCTUAudio.h"
 
 #include "Utils/OgreBulletConverter.h"
 

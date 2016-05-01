@@ -10,12 +10,13 @@ using namespace Ogre;
 FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real friction,const Vector3& normal,Real distance)
 	:Obstacle(mgmt,restitution,friction,0.0f),mPlane(normal,distance)
 {
+	mName = "obstacle.floor";
 	// store params
 	mNormal = normal;
 	mDistance = distance;
 	// Create Ogre object
 	MeshManager::getSingleton().createPlane(
-		"obstacle.floor",
+		mName,
 		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		mPlane,
 		1500000,1500000, // width, height
@@ -27,7 +28,7 @@ FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real fricti
 		); 
 	// plane entity
 	mEntity = mManager->getSceneMgr()->createEntity(
-				"floorEntity", "obstacle.floor"); 
+				mName, mName); 
 	mNode = mManager->getSceneMgr()		
 		->getRootSceneNode()
 		->createChildSceneNode();
@@ -35,7 +36,7 @@ FloorObstacle::FloorObstacle(ObstacleManager* mgmt,Real restitution, Real fricti
 	// create bullet object
 	mShape = new OgreBulletCollisions::StaticPlaneCollisionShape(normal, distance); // (normal vector, distance)
 	mBody = new OgreBulletDynamics::RigidBody(
-			"floor",
+			mName,
 			mManager->getWorld(),COL_GROUP_ALL,COL_MASK_FLOOR);
 	mBody->setStaticShape(mShape, mFriction, mRestitution); // (shape, restitution, friction)
 	mBody->getBulletObject()->setUserPointer(this);

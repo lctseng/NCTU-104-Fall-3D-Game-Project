@@ -7,10 +7,15 @@
 using std::string;
 
 namespace NCTU{
-	void playFile (const string& fileName);
-	void playSE (const string& fileName);
-	void playBGM (const string& fileName);
-	void playHello();
+	namespace Audio{
+		static bool hasInit = false;
+		void playFile (const string& fileName);
+		void playSE (const string& fileName);
+		void playBGM (const string& fileName);
+		void playHello();
+		void init(int argc, char *argv[]);
+		void cleanUp();
+	};
 };
 
 #endif

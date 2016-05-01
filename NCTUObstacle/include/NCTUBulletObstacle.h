@@ -13,12 +13,15 @@ namespace NCTU{
 		virtual void setScale(const Ogre::Vector3&);
 		virtual inline void setBulletIterator(std::list<BulletObstacle *>::iterator it){mBulletIterator = it;}
 		virtual void onBulletHit();
+		virtual inline bool isAlive() const;
+		virtual inline void cleanUp();
 	protected:
 		int mIndex;
 		Ogre::Real mRadius;
 		std::list<BulletObstacle *>::iterator mBulletIterator;
+		bool mHit;
 
-		virtual void destroy();
+		virtual inline void onLifeEnd();
 	};
 };
 

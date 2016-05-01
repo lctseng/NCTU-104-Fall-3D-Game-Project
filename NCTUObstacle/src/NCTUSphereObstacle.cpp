@@ -22,9 +22,10 @@ SphereObstacle::SphereObstacle(
 	mIndex(index),
 	mRadius(radius)
 {
+	mName = "obstacle.sphere." + StringConverter::toString(mIndex);
 	// create ogre objects
 	mEntity = mManager->getSceneMgr()->createEntity(
-		"obstacle.sphere." + StringConverter::toString(mIndex),
+		mName,
 		"ellipsoid.mesh");   
 	mEntity->setCastShadows(true);
 
@@ -35,7 +36,7 @@ SphereObstacle::SphereObstacle(
 	mShape = new OgreBulletCollisions::SphereCollisionShape(radius);
 	// and the Bullet rigid body
 	mBody = new OgreBulletDynamics::RigidBody(
-		"obstacle.sphere." + StringConverter::toString(mIndex),
+		mName,
 		mManager->getWorld(),COL_GROUP_ALL,COL_MASK_OBSTACLE);
 
 	mBody->setShape(   mNode,

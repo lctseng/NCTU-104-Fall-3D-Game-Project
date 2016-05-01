@@ -65,6 +65,8 @@ btScalar BulletContactResultCallback::addSingleResult(btManifoldPoint& cp,
 	int index1)
 {
 	if(cp.getDistance() < 0.0f && mSubject->isAlive()){
+		//std::cout << "Subject:" << mSubject << std::endl;
+		//std::cout << "Object:" << mObject << std::endl;
 		mSubject->onBulletHit();
 		mObject->onBulletHit();
 	}

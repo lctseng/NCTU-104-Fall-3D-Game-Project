@@ -1,5 +1,5 @@
 ## Include Path
-.\include;..\ogrebullet\Dynamics\include;..\ogrebullet\Collisions\include;..\bullet3-2.83.7\src;..\include\OGRE;..\include\OIS;..\boost_1_42;..\ogrebullet\include;%(AdditionalIncludeDirectories)
+.\include;..\include;..\include\AL;..\ogrebullet\Dynamics\include;..\ogrebullet\Collisions\include;..\bullet3-2.83.7\src;..\include\OGRE;..\include\OIS;..\boost_1_42;..\ogrebullet\include;..\NCTUAudio\include;%(AdditionalIncludeDirectories)
 
 ## Library Path
 ..\bullet3-2.83.7\bin;..\boost_1_42\lib;..\ogrebullet\lib;%(AdditionalLibraryDirectories);

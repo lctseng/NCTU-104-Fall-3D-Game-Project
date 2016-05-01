@@ -20,11 +20,13 @@ BulletObstacle::BulletObstacle(
 		const Quaternion& orientation)
 	:Obstacle(mgmt,restitution,friction,mass),
 	mIndex(index),
-	mRadius(radius)
+	mRadius(radius),
+	mHit(false)
 {
+	mName = "obstacle.bullet." + StringConverter::toString(mIndex);
 	// create ogre objects
 	mEntity = mManager->getSceneMgr()->createEntity(
-		"obstacle.sphere." + StringConverter::toString(mIndex),
+		mName,
 		"ellipsoid.mesh");   
 	mEntity->setCastShadows(true);
 
@@ -35,7 +37,7 @@ BulletObstacle::BulletObstacle(
 	mShape = new OgreBulletCollisions::SphereCollisionShape(radius);
 	// and the Bullet rigid body
 	mBody = new OgreBulletDynamics::RigidBody(
-		"obstacle.bullet." + StringConverter::toString(mIndex),
+		mName,
 		mManager->getWorld(),COL_GROUP_NO_BULLET,COL_MASK_BULLET);
 
 	mBody->setShape(   mNode,
@@ -47,18 +49,41 @@ BulletObstacle::BulletObstacle(
 					orientation
 					);// orientation of the box     
 	mBody->getBulletObject()->setUserPointer(this);
+	// fire a particle system
+	initParticleSystem("Examples/JetEngine1");
+	setOffParticleSystem();
 	
 }
 void BulletObstacle::setScale(const Ogre::Vector3& v){
 	mNode->setScale(v * mRadius);
-	mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
+	if(mShape){
+		mShape->getBulletShape()->setLocalScaling(OgreBtConverter::to(v));
+	}
 }
 
-void BulletObstacle::destroy(){
+void BulletObstacle::cleanUp(){
 	mManager->removeBulletIterator(mBulletIterator);
-	Obstacle::destroy();
+	Obstacle::cleanUp();
+}
+
+void BulletObstacle::onLifeEnd(){
+	if(mFrozen){
+		destroy();
+	}
+	else{
+		destroyPhysics();
+		detachEntity();
+		stopParticleSystem();
+		setLifeTime(1.0f);
+		Audio::playSE("Cursor1.wav");
+	}
+}
+
+bool BulletObstacle::isAlive() const {
+	return Obstacle::isAlive() && !mHit;
 }
 
 void BulletObstacle::onBulletHit(){
-	destroy();
+	setLifeTime(0.0f);
+	mHit = true;
 }

@@ -53,8 +53,12 @@ namespace NCTU{
 		
 
 		virtual inline void setMyIterator(std::list<Obstacle *>::iterator it){mMyIterator = it;}
+		virtual inline void cleanUp(){}
+		virtual inline void onLifeEnd();
+		virtual void destroyPhysics();
+		virtual void detachEntity();
 
-		virtual inline bool isAlive() const {return !needDeleted();}
+		virtual inline bool isAlive() const {return !mDeleteMark && !mFrozen;}
 		virtual inline bool needDeleted()const {return mDeleteMark;}
 		virtual inline void setLifeTime(Ogre::Real v){mLifeTimeEnable = true; mLifeTime = v;};
 		virtual inline void cancelLifeTime(){mLifeTimeEnable = false;};
@@ -62,6 +66,11 @@ namespace NCTU{
 		virtual inline void setHitPoint(int val){ mHitPoint = val;};
 		virtual inline int getHitPoint() const {return mHitPoint;}
 		virtual inline bool isInvincible() const {return mHitPoint < 0;}
+
+		virtual void initParticleSystem(const Ogre::String& particleName);
+		virtual void setOffParticleSystem();
+		virtual void stopParticleSystem();
+		virtual void destroyParticleSystem();
 
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 		propMap<int,Ogre::String> mHpChangeMaterials;
@@ -77,6 +86,7 @@ namespace NCTU{
 		Ogre::Real mMass;
 		Ogre::SceneNode* mNode;
 		Ogre::Entity* mEntity;
+		Ogre::String mName;
 
 		Ogre::Vector3 mScaleDifference;
 
@@ -85,9 +95,19 @@ namespace NCTU{
 		Ogre::Real mLifeTime;
 		bool mLifeTimeEnable;
 		bool mDeleteMark;
+		bool mEntityDetached;
 		int mHitPoint;
 
+		bool mFrozen;
+
 		std::list<Obstacle *>::iterator mMyIterator;
+
+		// particle system
+		bool mParticleSystemInit;
+		Ogre::SceneNode* mParticleSystemNode;
+		Ogre::ParticleSystem* mParticleSystem;
+		Ogre::String mParticleSystemName;
+
 
 		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
 		virtual void destroy();

@@ -64,8 +64,8 @@ FloorObstacle* ObstacleManager::createFloor(const Vector3& normal,Real distance,
 }
 /* TODO
 FloorObstacle* ObstacleManager::createFloor(Plane& plane,Entity* entity,Real restitution, Real friction){
-	mFloorObstacle = new FloorObstacle(this,restitution,friction,plane,entity);
-	return mFloorObstacle;
+mFloorObstacle = new FloorObstacle(this,restitution,friction,plane,entity);
+return mFloorObstacle;
 }
 */
 
@@ -167,7 +167,9 @@ void ObstacleManager::setPlayerAllObstacleCallback(btCollisionWorld::ContactResu
 	// obstacles
 	std::list<Obstacle *>::iterator it = mObstacles.begin();
 	for(;it != mObstacles.end();it++){
-		mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),(*it)->getBody()->getBulletObject(),callback);	
+		if((*it)->isAlive()){
+			mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),(*it)->getBody()->getBulletObject(),callback);	
+		}
 	}
 }
 
@@ -186,6 +188,7 @@ void ObstacleManager::updateLifeTime(const FrameEvent& evt){
 	it = mObstacles.begin();
 	while(it != mObstacles.end()){
 		if((*it)->needDeleted()){
+			(*it)->cleanUp();
 			// remove this one!
 			it = deleteByIterator(it); // auto forward
 		}
@@ -198,12 +201,15 @@ void ObstacleManager::updateBulletCollision(const FrameEvent& evt){
 	// set all bullet collision to all object
 	std::list<BulletObstacle *>::iterator bullet_it = mBullets.begin();
 	for(;bullet_it != mBullets.end();++bullet_it){
-		std::list<Obstacle *>::iterator obj_it = mObstacles.begin();
-		for(;obj_it != mObstacles.end();++obj_it){
-			// don't set for yourself :)
-			if(*bullet_it != *obj_it){
-				BulletContactResultCallback callback(*bullet_it,*obj_it);
-				mWorld->getBulletCollisionWorld()->contactPairTest((*bullet_it)->getBody()->getBulletObject(),(*obj_it)->getBody()->getBulletObject(),callback);		
+		if((*bullet_it)->isAlive()){
+			std::list<Obstacle *>::iterator obj_it = mObstacles.begin();
+			for(;obj_it != mObstacles.end();++obj_it){
+				if(*bullet_it != *obj_it){ // don't set for yourself :)
+					if((*obj_it)->isAlive()){
+						BulletContactResultCallback callback(*bullet_it,*obj_it);
+						mWorld->getBulletCollisionWorld()->contactPairTest((*bullet_it)->getBody()->getBulletObject(),(*obj_it)->getBody()->getBulletObject(),callback);		
+					}
+				}
 			}
 		}
 	}

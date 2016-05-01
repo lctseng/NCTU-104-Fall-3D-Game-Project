@@ -8,6 +8,7 @@ using namespace OgreBulletCollisions;
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Vector3 scale)
 	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
 {
+	mName = "obstacle.player";
 	// some default settings
 	mScaleDifference = scale;
 	Vector3 position(0,0,0);
@@ -15,20 +16,20 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	// for ogre
 	mEntity
 		= mManager->getSceneMgr()
-		->createEntity( "obstacle.player", name ); 
+		->createEntity( mName, name ); 
 	mEntity->setCastShadows(true);
 	mNode
 		= mManager->getSceneMgr()
 		->getRootSceneNode()
 		->createChildSceneNode( 
-		"playerNode", position ); 
+		mName, position ); 
 	mNode->scale(scale);
 	mNode->attachObject( mEntity );
 	mEntity->setMaterialName("Bullet/Ball");
 	// for bullet
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
-		"playerRigid",
+		mName,
 		mManager->getWorld());
 	mBody->setShape(   mNode,
 					mShape,
@@ -42,6 +43,7 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,SceneNode* node, Entity* ent)
 :Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
 {
+	mName = "obstacle.player";
 	// create settings
 	mScaleDifference = node->getScale();
 	Vector3 oldPosition = node->getPosition();
@@ -55,7 +57,7 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	// bullet
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
-		"playerRigid",
+		mName,
 		mManager->getWorld(),COL_GROUP_NO_BULLET,COL_MASK_PLAYER);
 	mBody->setShape(   mNode,
 					mShape,
