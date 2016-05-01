@@ -5,6 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dynamics_Demos", "ogrebulle
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "demo_hello", "demo_hello.vcxproj", "{A5A99C00-DD9C-485F-AC1E-3214E4658ABD}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A} = {0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}
 		{02A532FD-C038-4A55-B3E3-3D299067939E} = {02A532FD-C038-4A55-B3E3-3D299067939E}
 	EndProjectSection
 EndProject
@@ -13,6 +14,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OgreBulletDynamics", "..\..\ogrebullet\Dynamics\scripts\VC8\OgreBulletDynamics_VC8.vcxproj", "{022634CE-F06A-4F71-AA07-3CE7BB1841AE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NCTUObstacle", "..\..\NCTUObstacle\NCTUObstacle.vcxproj", "{02A532FD-C038-4A55-B3E3-3D299067939E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NCTUAudio", "..\..\NCTUAudio\NCTUAudio.vcxproj", "{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +55,12 @@ Global
 		{02A532FD-C038-4A55-B3E3-3D299067939E}.Release|Win32.ActiveCfg = Release|Win32
 		{02A532FD-C038-4A55-B3E3-3D299067939E}.Release|Win32.Build.0 = Release|Win32
 		{02A532FD-C038-4A55-B3E3-3D299067939E}.Release|x64.ActiveCfg = Release|Win32
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}.Debug|Win32.Build.0 = Debug|Win32
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}.Debug|x64.ActiveCfg = Debug|Win32
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}.Release|Win32.ActiveCfg = Release|Win32
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}.Release|Win32.Build.0 = Release|Win32
+		{0D8D04AD-449E-45B3-AC1A-1565E82A2D1A}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

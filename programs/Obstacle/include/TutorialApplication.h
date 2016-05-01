@@ -8,6 +8,9 @@
  
 #include "BaseApplication.h"
 
+// OpenAL & alut
+#include "NCTUAudio.h"
+
 
 #include "DotSceneLoader.h"
 

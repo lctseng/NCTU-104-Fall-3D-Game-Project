@@ -10,6 +10,7 @@
 #include "NCTUFloorObstacle.h"
 #include "NCTUGeneralObstacle.h"
 #include "NCTUObstacleCallback.h"
+#include <OgreSceneManager.h>
 
 #include <list>
 

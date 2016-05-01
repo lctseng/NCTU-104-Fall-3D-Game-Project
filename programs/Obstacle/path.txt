@@ -1,8 +1,8 @@
 ## Include Path
-..\..\include;.\include;..\..\ogrebullet\Dynamics\include;..\..\ogrebullet\Collisions\include;..\..\bullet3-2.83.7\src;..\..\include\OGRE;..\..\include\OIS;..\..\include\TinyXML;..\..\boost_1_42;..\..\ogrebullet\include;..\..\NCTUObstacle\include;%(AdditionalIncludeDirectories)
+..\..\include;.\include;..\..\ogrebullet\Dynamics\include;..\..\ogrebullet\Collisions\include;..\..\bullet3-2.83.7\src;..\..\include\OGRE;..\..\include\OIS;..\..\include\TinyXML;..\..\include\AL;..\..\boost_1_42;..\..\ogrebullet\include;..\..\NCTUObstacle\include;..\..\NCTUAudio\include;%(AdditionalIncludeDirectories)
 
 ## Library Path
-..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;%(AdditionalLibraryDirectories);
+..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;..\..\NCTUAudio\lib;%(AdditionalLibraryDirectories);
 
 ## Lib
-OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;tinyxml.lib;%(AdditionalDependencies)
+OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;%(AdditionalDependencies)
