@@ -66,6 +66,10 @@ protected:
 	Real mBulletLifeTime;
 	Real mBulletSpeedFactor;
 
+	Real mAirJumpSpeed;
+	int mAirJumpLeft;
+	int mAirJumpMax;
+
 	// internal offset
 	Vector3 mLightOffset;
 	Vector3 mCameraPositionOffset;

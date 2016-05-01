@@ -29,6 +29,9 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mNearClipMin = 5;
 	mNearClipMax = 400;
 	mBulletLifeTime = 1.0f;
+	mAirJumpSpeed = 800.0f;
+	mAirJumpMax = 5;
+	mAirJumpLeft = mAirJumpMax;
 	// ------
 	//[KEYBOARD]
 	keyboardhandler = new KeyBoardHandler();
@@ -160,7 +163,13 @@ void BasicTutorial_00::createScene(void)
 	else{
 		mBulletSpeedFactor = mInitVelocity.length() * 5;	
 	}
-	
+	// air jump 
+	if(props.hasKey("AirJumpSpeed")){
+		mAirJumpSpeed = props["AirJumpSpeed"].valFloat;
+	}
+	if(props.hasKey("AirJumpMax")){
+		mAirJumpMax = props["AirJumpMax"].valInt;
+	}
 	// record init orientation
 	mInitOrientation = mPlayerObstacle->getOrientation();
 	
@@ -189,6 +198,9 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 	// [NEW]
 	if(mEnableCollision){
 		checkCollision(evt);
+	}
+	if(mPlayerObstacle->isOnFloor() || mPlayerObstacle->IsOnObstaclePlane()){
+		mAirJumpLeft = mAirJumpMax;
 	}
 	/*
 	if(mPlayerObstacle->isOnFloor()){
@@ -290,9 +302,17 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 		mPlayerObstacle->setVelocity(mInitVelocity);
 		mPlayerObstacle->setPosition(mInitPosition);
 	}
-	if(keyboardhandler->isKeyTriggered(OIS::KC_SPACE) && mPlayerObstacle->isJumpEnable() ){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_SPACE)){
 		Vector3 finalV = mPlayerObstacle->getVelocity();
-		finalV[1] = speed_rate * 35.0f;
+		// normal jump?
+		if(mPlayerObstacle->isJumpEnable()){
+			finalV[1] = speed_rate * 35.0f;
+		}
+		else if(finalV.y < 0.0f && mAirJumpLeft > 0){ // air jump?
+			finalV[1] += mAirJumpSpeed;
+			--mAirJumpLeft;
+			cout << "Air Jump Left: " << mAirJumpLeft << endl;
+		}
 		mPlayerObstacle->setVelocity(finalV);
 		//mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 35,0));
 	}
