@@ -4,7 +4,6 @@
 // Instructor: SAI-KEUNG WONG
 //
 #include "TutorialApplication.h"
-
 using namespace Ogre;
 BasicTutorial_00::BasicTutorial_00(void) {}
 
@@ -28,7 +27,10 @@ void BasicTutorial_00::createScene(void)
 	mAnimationState = mEntity->getAnimationState( "Idle" );
 	mAnimationState->setLoop( true );
 	mAnimationState->setEnabled( true );
+
+	NCamera = new NCTUCamera(mCamera, mSceneMgr);
 }
+
 bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 {
 	mAnimationState->addTime(evt.timeSinceLastFrame);
@@ -36,6 +38,15 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 		mAnimationState = mEntity->getAnimationState( "Walk" );
 		mAnimationState->setLoop( true );
 		mAnimationState->setEnabled( true );
+
+	}
+
+	if(mKeyboard->isKeyDown(OIS::KC_E)){
+		NCamera->TurnCamera(turnRight, Vector3(50, 0, 0));
+	}
+
+	if(mKeyboard->isKeyDown(OIS::KC_Q)){
+		NCamera->TurnCamera(turnLeft, Vector3(50, 0, 0));
 	}
 	return true;
 }
