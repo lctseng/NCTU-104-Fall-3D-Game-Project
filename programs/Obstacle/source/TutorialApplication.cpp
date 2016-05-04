@@ -243,8 +243,10 @@ void BasicTutorial_00::updateCameraPosition(const FrameEvent& evt){
 	//playerPos[1] = mInitPosition[1];
 	mCamera->setPosition(playerPos + mCameraPositionOffset);
 	mCamera->lookAt(playerPos + mCameraLookAtOffset);
+	mCameraMotion.record(mPlayerObstacle->getVelocity());
+
 	// clip
-	if(mPlayerObstacle->getVelocity().y <= -150.0f){
+	if(mCameraMotion.isDown()){
 		mCamera->setNearClipDistance(mNearClipMin);	
 	}
 	else{

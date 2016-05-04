@@ -7,6 +7,7 @@
 #define __BasicTutorial_00_h_
  
 #include "BaseApplication.h"
+#include "BasicTools.h"
 
 // OpenAL & alut
 #include "NCTUAudio.h"
@@ -80,6 +81,8 @@ protected:
 	Vector3 mCameraLookAtOffset;
 	Vector3 mCameraInitLookAt;
 	Vector3 mCameraInitPosition;
+
+	CameraMotion mCameraMotion;
 
 	// dotScene
 	DotSceneLoader mDotScene;
