@@ -5,6 +5,9 @@ using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
 
+
+
+BulletHitHandler BulletObstacle::mBulletHitHandler = nullptr;
 /*!
 	\brief Create a bullet obstacle (full)
 */
@@ -15,13 +18,16 @@ BulletObstacle::BulletObstacle(
 		Real friction,
 		Real mass,
 		INDEX_TYPE index,
+		HpType bulletType,
 		const Vector3& position,
 		Real radius,
-		const Quaternion& orientation)
+		const Quaternion& orientation
+		)
 	:Obstacle(mgmt,restitution,friction,mass),
 	mIndex(index),
 	mRadius(radius),
-	mHit(false)
+	mHit(false),
+	mBulletType(bulletType)
 {
 	mName = "obstacle.bullet." + StringConverter::toString(mIndex);
 	// create ogre objects
@@ -50,7 +56,12 @@ BulletObstacle::BulletObstacle(
 					);// orientation of the box     
 	mBody->getBulletObject()->setUserPointer(this);
 	// fire a particle system
-	initParticleSystem("Examples/JetEngine1");
+	if(mBulletType == typeRed){
+		initParticleSystem("Examples/JetEngine1");	
+	}
+	else{
+		initParticleSystem("Examples/JetEngine3");
+	}
 	setOffParticleSystem();
 	
 }
@@ -83,7 +94,10 @@ bool BulletObstacle::isAlive() const {
 	return Obstacle::isAlive() && !mHit;
 }
 
-void BulletObstacle::onBulletHit(){
+void BulletObstacle::onBulletHit(BulletObstacle* bullet, Obstacle* object){
 	setLifeTime(0.0f);
 	mHit = true;
+	if(BulletObstacle::mBulletHitHandler){
+		BulletObstacle::mBulletHitHandler(bullet,object);
+	}
 }

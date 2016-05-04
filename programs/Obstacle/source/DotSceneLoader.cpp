@@ -661,6 +661,23 @@ void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 			prop.hitPoint = (int)getAttribReal(pElement,"value",-1.0f);
 			cout << "--> HP: " << prop.hitPoint << endl;
 		}
+		else if(attrName == "HpType"){
+			String type = getAttrib(pElement,"value","Both");
+			if(type == "Red"){
+				prop.hpType = typeRed;
+			}
+			else if(type == "Blue"){
+				prop.hpType = typeBlue;
+			}
+			else{
+				prop.hpType = typeBoth;
+			}
+			cout << "--> HP Type: " << prop.hpType << endl;
+		}
+		else if(attrName == "BumpSpeed"){
+			prop.bumpSpeed = getAttribReal(pElement,"value", 0.0f);
+			cout << "--> BumpSpeed: " << prop.bumpSpeed << endl;
+		}
 		// next element
 		pElement = pElement->NextSiblingElement("user_data");
 	}
@@ -697,7 +714,8 @@ void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 		// setup other data for existed obstacle
 		pObstacle->mCollisionConditionVectors = prop.conditionVectors;
 		pObstacle->mHpChangeMaterials = prop.hpChangeMaterials;
-		pObstacle->setHitPoint(prop.hitPoint);
+		pObstacle->setHitPoint(prop.hitPoint,prop.hpType);
+		pObstacle->setBumpSpeed(prop.bumpSpeed);
 	}
 }
 

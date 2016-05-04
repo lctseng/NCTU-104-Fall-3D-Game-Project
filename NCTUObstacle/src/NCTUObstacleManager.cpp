@@ -128,11 +128,13 @@ BulletObstacle* ObstacleManager::createBullet(
 	Real restitution,
 	Real friction, 
 	Real mass,
+	HpType bulletType,
 	const Vector3& position,
 	Real radius,
-	const Quaternion& orientation)
+	const Quaternion& orientation
+	)
 {
-	BulletObstacle* obj = new BulletObstacle(this,restitution,friction,mass,mObstacleIndex,position,radius,orientation);
+	BulletObstacle* obj = new BulletObstacle(this,restitution,friction,mass,mObstacleIndex,bulletType,position,radius,orientation);
 	++mObstacleIndex;
 	mObstacles.push_back(obj);
 	obj->setMyIterator(--mObstacles.end());

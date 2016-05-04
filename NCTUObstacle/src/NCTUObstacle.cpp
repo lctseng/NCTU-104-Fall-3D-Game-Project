@@ -20,10 +20,12 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 	mLifeTimeEnable(false),
 	mDeleteMark(false),
 	mHitPoint(-1), // invincible
+	mHpType(typeBoth),
 	mName("obstacle"),
 	mParticleSystemInit(false),
 	mFrozen(false),
-	mEntityDetached(false)
+	mEntityDetached(false),
+	mBumpSpeed(0.0f)
 {
 
 }
@@ -105,19 +107,7 @@ void Obstacle::destroyPhysics(){
 	}
 }
 
-void Obstacle::onBulletHit(){
-	if(mHitPoint > 0){
-		if(--mHitPoint == 0){
-			destroy();
-		}	
-		else{
-			// change the material if needed
-			if(mHpChangeMaterials.hasKey(mHitPoint)){
-				mEntity->setMaterialName(mHpChangeMaterials[mHitPoint]);
-			}
-		}
-	}
-	cout << "Hp Left:" << mHitPoint << endl;
+void Obstacle::onBulletHit(BulletObstacle* bullet,Obstacle* object){
 }
 
 OgreBulletCollisions::CollisionShape* Obstacle::generateFittingShape(SceneNode* node, Entity* ent){
@@ -178,4 +168,22 @@ void Obstacle::stopParticleSystem(){
 		ParticleEmitter *e = mParticleSystem->getEmitter(0);
 		e->setEnabled(false);
 	}
+}
+
+int Obstacle::decreaseHp(int value){
+	if(mHitPoint > 0){
+		mHitPoint -= value;
+		if(mHitPoint <= 0){
+			mHitPoint = 0;
+			destroy();
+		}
+		else{
+			// change the material if needed
+			if(mHpChangeMaterials.hasKey(mHitPoint)){
+				mEntity->setMaterialName(mHpChangeMaterials[mHitPoint]);
+			}
+		}
+	}
+	cout << "Hp Left:" << mHitPoint << endl;
+	return mHitPoint;
 }

@@ -43,7 +43,18 @@ namespace NCTU{
 	class PlayerObstacle; // a player
 	class BulletObstacle;
 
+	typedef void(*BulletHitHandler)(BulletObstacle*, Obstacle*);
+
+	enum HpType {
+		typeRed, typeBlue, typeBoth
+	};
+
+
 };
+
+
+
+
 
 template<class Key, class Value>
 class propMap : public std::map<Key,Value>{

@@ -61,9 +61,11 @@ namespace Ogre
 		Real friction;
 		Real restitution;
 		int hitPoint;
+		NCTU::HpType hpType;
+		Real bumpSpeed;
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > conditionVectors;
 		propMap<int,String> hpChangeMaterials;
-		ObstacleProperty():obstacle_type("None"),mass(1.0f),friction(1.0f),restitution(1.0f),hitPoint(-1){}
+		ObstacleProperty():obstacle_type("None"),mass(1.0f),friction(1.0f),restitution(1.0f),hitPoint(-1),hpType(NCTU::typeBoth),bumpSpeed(0.0f){}
 	};
 
 	class DotSceneLoader

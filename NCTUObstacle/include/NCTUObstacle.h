@@ -45,7 +45,7 @@ namespace NCTU{
 		virtual bool getIsBumpObstacle() const {return mIsBumpObstacle;}
 		virtual bool IsBumpObstacle() const {return mIsBumpObstacle;}
 
-		virtual void onBulletHit();
+		virtual void onBulletHit(BulletObstacle*, Obstacle*);
 
 		virtual inline void setIsOnObstaclePlane(bool val);
 		virtual inline bool getIsOnObstaclePlane() const {return mObstaclePlaneTouchValue < OBSTACLE_PLANE_TOUCH_THRESHOLD;}
@@ -63,7 +63,7 @@ namespace NCTU{
 		virtual inline void setLifeTime(Ogre::Real v){mLifeTimeEnable = true; mLifeTime = v;};
 		virtual inline void cancelLifeTime(){mLifeTimeEnable = false;};
 
-		virtual inline void setHitPoint(int val){ mHitPoint = val;};
+		virtual inline void setHitPoint(int val, HpType type){ mHitPoint = val;mHpType = type;};
 		virtual inline int getHitPoint() const {return mHitPoint;}
 		virtual inline bool isInvincible() const {return mHitPoint < 0;}
 
@@ -71,6 +71,11 @@ namespace NCTU{
 		virtual void setOffParticleSystem();
 		virtual void stopParticleSystem();
 		virtual void destroyParticleSystem();
+
+		virtual inline HpType getHpType()const {return mHpType;}
+		virtual int decreaseHp(int value = 1);
+		virtual inline void setBumpSpeed(Ogre::Real val){mBumpSpeed = val;}
+		virtual inline Ogre::Real getBumpSpeed() const {return mBumpSpeed;}
 
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 		propMap<int,Ogre::String> mHpChangeMaterials;
@@ -97,6 +102,8 @@ namespace NCTU{
 		bool mDeleteMark;
 		bool mEntityDetached;
 		int mHitPoint;
+		HpType mHpType;
+		Ogre::Real mBumpSpeed;
 
 		bool mFrozen;
 

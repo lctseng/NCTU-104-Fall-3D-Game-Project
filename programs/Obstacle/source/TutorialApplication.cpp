@@ -7,12 +7,23 @@
 #include <iostream>
 
 using namespace Ogre;
+using namespace NCTU;
 using namespace std;
 using namespace OgreBulletCollisions;
 
 
-
-
+void onBulletHit(BulletObstacle* bullet,Obstacle* object)
+{
+	if(!dynamic_cast<NCTU::BulletObstacle*>(object)){ // works for non-bullet
+		if(object->getHpType() == typeBoth  || bullet->getBulletType() == typeBoth || bullet->getBulletType() == object->getHpType()){
+			object->decreaseHp();
+		}		
+		else{
+			// error hit
+			cout << "Error bullet color! bullet: "<< bullet->getBulletType() << ", obstacle: " << object->getHpType() << endl;
+		}
+	}
+}
 
 BasicTutorial_00::BasicTutorial_00(void) {
 	// [NEW]
@@ -35,6 +46,8 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	// ------
 	//[KEYBOARD]
 	keyboardhandler = new KeyBoardHandler();
+	// [Bullet]
+	NCTU::BulletObstacle::setHandlerBulletHit(onBulletHit);
 }
 
 BasicTutorial_00::~BasicTutorial_00(void) {
@@ -399,6 +412,22 @@ bool BasicTutorial_00::processUnbufferedKeyInput(const FrameEvent& evt)
 			0.6f, // restitution
 			1.0f, // friction
 			1.0f, // mass
+			NCTU::typeRed,
+			(mCamera->getDerivedPosition() + mCamera->getDerivedDirection().normalisedCopy() * 500) // position
+			);     
+		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
+		shoot_v.y = 0.3f;
+		obstacle->setVelocity(
+			shoot_v * mBulletSpeedFactor); // shooting speed
+		obstacle->getEntity()->setMaterialName("Bullet/Capsule");
+		obstacle->setLifeTime(mBulletLifeTime);
+	}
+	if(keyboardhandler->isKeyTriggered(OIS::KC_C) ){
+		NCTU::BulletObstacle* obstacle = mObstacleMgr->createBullet(
+			0.6f, // restitution
+			1.0f, // friction
+			1.0f, // mass
+			NCTU::typeBlue,
 			(mCamera->getDerivedPosition() + mCamera->getDerivedDirection().normalisedCopy() * 500) // position
 			);     
 		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;

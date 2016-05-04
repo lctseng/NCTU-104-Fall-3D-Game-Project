@@ -19,6 +19,7 @@
 
 
 using namespace Ogre;
+
 class BasicTutorial_00 : public BaseApplication
 {
 private:

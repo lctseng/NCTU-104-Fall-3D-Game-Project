@@ -120,8 +120,8 @@ particle_system Examples/Rain
 particle_system Examples/JetEngine1
 {
 	material 		Examples/Flare
-	particle_width 	25
-	particle_height	25
+	particle_width 	70
+	particle_height	70
 	cull_each		false
 	quota			200
 	billboard_type	point
@@ -163,6 +163,35 @@ particle_system Examples/JetEngine2
         direction       0 -1 0
         velocity_min    350
         velocity_max    400
+        colour_range_start  0.5 1 1
+        colour_range_end    0.3 0.8 1
+		
+	}
+	affector ColourFader
+	{
+		red -1
+		green -1
+		blue -0.5
+	}
+	
+}
+particle_system Examples/JetEngine3
+{
+	material 		Examples/Flare
+	particle_width 	70
+	particle_height	70
+	cull_each		false
+	quota			200
+	billboard_type	point
+
+	emitter Point
+	{
+		angle 5
+		emission_rate 100
+        time_to_live    1
+        direction       0 -1 0
+        velocity_min    250
+        velocity_max    300
         colour_range_start  0.5 1 1
         colour_range_end    0.3 0.8 1
 		

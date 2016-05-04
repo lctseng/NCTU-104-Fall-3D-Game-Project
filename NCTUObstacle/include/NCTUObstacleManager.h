@@ -15,6 +15,8 @@
 #include <list>
 
 namespace NCTU{
+
+	
 	// -------------------------------------------------------------
 	class ObstacleManager{
 	public:
@@ -68,6 +70,7 @@ namespace NCTU{
 			Ogre::Real restitution,
 			Ogre::Real friction, 
 			Ogre::Real mass,
+			HpType bulletType,
 			const Ogre::Vector3& position,
 			Ogre::Real radius = 20.0f,
 			const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1)
