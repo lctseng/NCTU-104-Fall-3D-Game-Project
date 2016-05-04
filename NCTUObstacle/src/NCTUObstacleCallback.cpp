@@ -41,19 +41,19 @@ btScalar ObstacleContactResultCallback::addSingleResult(btManifoldPoint& cp,
 			}
 		}
 		// check on plane
-		if(normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45
-			){
-				mSubject->setIsOnObstaclePlane(true);
-		}
-		// check bumping
-		Real bumpSpeed  = obstacle->getBumpSpeed();
-		if(bumpSpeed > 0.0f){
-			Vector3 finalV = mSubject->getVelocity();
-			if(finalV.y <= 1){
-				finalV.y += bumpSpeed;
-				mSubject->setVelocity(finalV);
+		if(normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45){
+			mSubject->setIsOnObstaclePlane(true);
+			// check bumping
+			Real bumpSpeed  = obstacle->getBumpSpeed();
+			if(bumpSpeed > 0.0f){
+				Vector3 finalV = mSubject->getVelocity();
+				if(finalV.y <= 1){
+					finalV.y += bumpSpeed;
+					mSubject->setVelocity(finalV);
+				}
 			}
 		}
+
 		/*
 		std::cout << "[collide with obstacle]" << std::endl 
 		<< "ptA:" << Ogre::StringConverter::toString(OgreBulletCollisions::BtOgreConverter::to(cp.getPositionWorldOnA())) << std::endl
