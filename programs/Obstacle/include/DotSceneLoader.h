@@ -76,13 +76,16 @@ namespace Ogre
  
 		void parseDotScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr, NCTU::ObstacleManager* obstacleMgr, SceneNode *pAttachNode = NULL, const String &sPrependNode = "");
 		String getProperty(const String &ndNm, const String &prop);
- 
+		void destroyDedicatedSceneNodes();
+
+
 		std::vector<nodeProperty> nodeProperties;
 		std::vector<String> staticObjects;
 		std::vector<String> dynamicObjects;
 
 		propMap<String,GeneralProperty> mGeneralProps;
  
+
 
 	protected:
 		void processScene(TiXmlElement *XMLRoot);
@@ -115,7 +118,7 @@ namespace Ogre
 		void processLightAttenuation(TiXmlElement *XMLNode, Light *pLight);
 
 
-		void processObstacleProperty(TiXmlElement *XMLNode, const String& name, SceneNode* node, Entity* ent);
+		bool processObstacleProperty(TiXmlElement *XMLNode, const String& name, SceneNode* node, Entity* ent);
 		void processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop, bool saveAsGeneral = false);
 
 
@@ -127,8 +130,10 @@ namespace Ogre
 		Vector3 parseVector3(TiXmlElement *XMLNode);
 		Quaternion parseQuaternion(TiXmlElement *XMLNode);
 		ColourValue parseColour(TiXmlElement *XMLNode);
+			
+		std::deque<SceneNode*> mDedicatedSceneNodes;
  
- 
+
 		SceneManager *mSceneMgr;
 		SceneNode *mAttachNode;
 		String m_sGroupName;

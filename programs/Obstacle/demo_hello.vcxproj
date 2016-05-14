@@ -83,8 +83,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)/demo_hello.exe</OutputFile>
-      <AdditionalLibraryDirectories>..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;..\..\NCTUAudio\lib;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;..\..\NCTUAudio\lib;..\..\lib\Release\CEGUI;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>
       </AdditionalOptions>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -99,15 +99,26 @@
     <ClCompile Include="source\BaseApplication.cpp" />
     <ClCompile Include="source\BasicTools.cpp" />
     <ClCompile Include="source\DotSceneLoader.cpp" />
+    <ClCompile Include="source\GameConsoleWindow.cpp" />
+    <ClCompile Include="source\GameMenuWindow.cpp" />
+    <ClCompile Include="source\MainMenuWindow.cpp" />
+    <ClCompile Include="source\NCTUGUIManager.cpp" />
     <ClCompile Include="source\KeyBoardHandler.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\NCTUGUIWindow.cpp" />
     <ClCompile Include="source\TutorialApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseApplication.h" />
     <ClInclude Include="include\BasicTools.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
+    <ClInclude Include="include\GameConsoleWindow.h" />
+    <ClInclude Include="include\GameMenuWindow.h" />
+    <ClInclude Include="include\MainMenuWindow.h" />
+    <ClInclude Include="include\NCTUGUIManager.h" />
     <ClInclude Include="include\KeyBoardHandler.h" />
+    <ClInclude Include="include\NCTUGUIWindow.h" />
+    <ClInclude Include="include\NCTUPrerequisite.h" />
     <ClInclude Include="include\TutorialApplication.h" />
   </ItemGroup>
   <ItemGroup>

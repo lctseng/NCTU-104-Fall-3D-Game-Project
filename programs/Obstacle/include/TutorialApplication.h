@@ -11,6 +11,7 @@
 
 // OpenAL & alut
 #include "NCTUAudio.h"
+#include "NCTUGUIManager.h"
 
 
 #include "DotSceneLoader.h"
@@ -27,8 +28,13 @@ private:
 protected:
 	virtual void createCamera(void);
 	virtual bool frameStarted(const FrameEvent& evt);
-	// [NEW]
-	virtual bool processUnbufferedKeyInput(const FrameEvent& evt);
+
+	virtual void updateBasic(const FrameEvent& evt);
+	virtual void updatePlayingGame(const FrameEvent& evt);
+	virtual void updatePausedGame(const FrameEvent& evt);
+	virtual void processInputBasic(const FrameEvent& evt);
+	virtual void processInputPlayingGame(const FrameEvent& evt);
+	virtual void processInputPausedGame(const FrameEvent& evt);
 	
 	// [NEW]
 	virtual Real speedAdjustment(const Vector3& old,const Vector3& go);
@@ -43,6 +49,9 @@ protected:
 	virtual void equalizeSpeed(const FrameEvent& evt);
 	virtual void fixOrientation(const FrameEvent& evt);
 
+	virtual Vector3 getFrontDirection();
+
+
 	// [NEW]
 	NCTU::ObstacleManager* mObstacleMgr;
 
@@ -52,6 +61,7 @@ protected:
 	Vector3 mInitPosition;
 	Quaternion mInitOrientation;
 	NCTU::PlayerObstacle* mPlayerObstacle;
+	NCTU::FloorObstacle* mFloor;
 	Light *mLight;
 
 	//[KEYBOARD]
@@ -66,6 +76,9 @@ protected:
 	int mNearClipMax;
 
 	bool mGameStarted;
+	bool mGamePaused;
+
+	Real mSpeedRate;
 	
 
 	Real mBulletLifeTime;
@@ -74,6 +87,9 @@ protected:
 	Real mAirJumpSpeed;
 	int mAirJumpLeft;
 	int mAirJumpMax;
+
+	Real mPauseTimeInterval;
+	Real mPauseTimeIntervalMax;
 
 	// internal offset
 	Vector3 mLightOffset;
@@ -86,6 +102,11 @@ protected:
 
 	// dotScene
 	DotSceneLoader mDotScene;
+	// GUI
+	NCTU::GUIManager* mGUI;
+
+	void loadLevelFromScene(const String& sceneName);
+
 
 public:
 	BasicTutorial_00(void);
@@ -95,7 +116,17 @@ public:
 	//[KEYBOARD]
 	virtual bool keyPressed( const OIS::KeyEvent &arg );
 	virtual bool keyReleased( const OIS::KeyEvent &arg );
-
+	//[Mouse]
+    virtual bool mouseMoved( const OIS::MouseEvent &arg );
+    virtual bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
+    virtual bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
+	// [Menu Control]
+	virtual void startGame();
+	virtual void exitGame();
+	virtual void pauseGame();
+	virtual void resumeGame();
+	virtual void backToMainMenu();
+	virtual void resetGame();
 };
  
 #endif // #ifndef __BasicTutorial_00_h_

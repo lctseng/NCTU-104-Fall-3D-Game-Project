@@ -503,8 +503,15 @@ void DotSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
 		processUserDataReference(pElement, pNode);
 
 	// Process Obstacle Property
-	processObstacleProperty(XMLNode,name,pNode,pEntity);
+	if(processObstacleProperty(XMLNode,name,pNode,pEntity)){
+		// node is controlled by obstacle 
+	}
+	else{
+		// node is dedicated, need to be collected
+		mDedicatedSceneNodes.push_back(pNode);
+	}
 }
+
 
 void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstacleProperty& prop, bool saveAsGeneral){
 	TiXmlElement *pElement;
@@ -614,11 +621,12 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 }
 
 
-void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String& name,SceneNode* node, Entity* ent){
+bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String& name,SceneNode* node, Entity* ent){
 	// data init
 	TiXmlElement *pElement;
 	ObstacleProperty prop;
 	Obstacle* pObstacle = nullptr;
+	bool obstacleCreated = false;
 	// 
 	
 	// Process text node: reserved field
@@ -711,12 +719,14 @@ void DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 			);
 	}
 	if(pObstacle){
+		obstacleCreated = true;
 		// setup other data for existed obstacle
 		pObstacle->mCollisionConditionVectors = prop.conditionVectors;
 		pObstacle->mHpChangeMaterials = prop.hpChangeMaterials;
 		pObstacle->setHitPoint(prop.hitPoint,prop.hpType);
 		pObstacle->setBumpSpeed(prop.bumpSpeed);
 	}
+	return obstacleCreated;
 }
 
 void DotSceneLoader::processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent)
@@ -1102,4 +1112,20 @@ void DotSceneLoader::processUserDataReference(TiXmlElement *XMLNode, Entity *pEn
 {
 	String str = XMLNode->Attribute("id");
 	pEntity->setUserAny(Any(str));
+}
+
+void DotSceneLoader::destroyDedicatedSceneNodes(){
+	std::deque<SceneNode*>::iterator it;
+	for(it = mDedicatedSceneNodes.begin();it != mDedicatedSceneNodes.end();++it){
+		SceneNode* node = (*it);
+		// Destroy all the attached objects
+		SceneNode::ObjectIterator itObject = node->getAttachedObjectIterator();
+		while ( itObject.hasMoreElements() )
+		{
+			MovableObject* pObject = static_cast<MovableObject*>(itObject.getNext());
+			node->getCreator()->destroyMovableObject( pObject );
+		}
+		mSceneMgr->destroySceneNode(node);
+	}
+	mDedicatedSceneNodes.clear();
 }

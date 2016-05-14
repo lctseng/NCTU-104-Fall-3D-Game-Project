@@ -9,6 +9,15 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{8313e7ca-e0dc-4193-a3c9-259defa1ac5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DotScene">
+      <UniqueIdentifier>{f492bcc0-dd77-4586-8bc1-785acc8218a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KeyBoard">
+      <UniqueIdentifier>{aa98c49b-9cf6-4d55-8d7b-3f03411d5553}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\BaseApplication.cpp">
@@ -23,11 +32,26 @@
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\NCTUGUIManager.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameConsoleWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NCTUGUIWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
     <ClCompile Include="source\DotSceneLoader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>DotScene</Filter>
     </ClCompile>
     <ClCompile Include="source\KeyBoardHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>KeyBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameMenuWindow.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,11 +64,29 @@
     <ClInclude Include="include\TutorialApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\DotSceneLoader.h">
+    <ClInclude Include="include\GameConsoleWindow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUGUIManager.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MainMenuWindow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUPrerequisite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\NCTUGUIWindow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DotSceneLoader.h">
+      <Filter>DotScene</Filter>
+    </ClInclude>
     <ClInclude Include="include\KeyBoardHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>KeyBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameMenuWindow.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -14,7 +14,31 @@ ObstacleManager::ObstacleManager()
 }
 ObstacleManager::~ObstacleManager()
 {
-	// obstacles
+	removeAllObstacles();
+	removeFloorObstacle();
+	removePlayerObstacle();
+	// world
+	if(mWorld){
+		delete mWorld->getDebugDrawer();
+		mWorld->setDebugDrawer(0);
+		delete mWorld;
+	}
+}
+void ObstacleManager::removeFloorObstacle(){
+	// floor
+	if(mFloorObstacle){
+		delete mFloorObstacle;
+		mFloorObstacle = nullptr;
+	}
+}
+void ObstacleManager::removePlayerObstacle(){
+	// player
+	if(mPlayerObstacle){
+		delete mPlayerObstacle;
+		mPlayerObstacle = nullptr;
+	}
+}
+void ObstacleManager::removeAllObstacles(){
 	std::list<Obstacle *>::iterator it = mObstacles.begin();
 	while (mObstacles.end() != it)
 	{   
@@ -22,20 +46,7 @@ ObstacleManager::~ObstacleManager()
 		++it;
 	}
 	mObstacles.clear();
-	// floor
-	if(mFloorObstacle){
-		delete mFloorObstacle;
-	}
-	// player
-	if(mPlayerObstacle){
-		delete mPlayerObstacle;
-	}
-	// world
-	if(mWorld){
-		delete mWorld->getDebugDrawer();
-		mWorld->setDebugDrawer(0);
-		delete mWorld;
-	}
+	mBullets.clear();
 }
 
 void ObstacleManager::setup(Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox& bound,const Ogre::Vector3 g){

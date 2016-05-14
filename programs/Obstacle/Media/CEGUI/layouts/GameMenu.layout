@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="TaharezLook/Menubar" name="GameMenu" >
+        <Property name="Area" value="{{0,307},{0,259},{1,-348},{0,489}}" />
+        <Window type="TaharezLook/Label" name="MenuTitle" >
+            <Property name="Area" value="{{0,109},{0,22},{0,285},{0,54}}" />
+            <Property name="Font" value="Jura-18" />
+            <Property name="Text" value="Game Paused" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="TaharezLook/Button" name="MainMenuButton" >
+            <Property name="Area" value="{{0,142},{0,128},{0,239},{0,174}}" />
+            <Property name="Text" value="Main Menu" />
+        </Window>
+        <Window type="TaharezLook/Button" name="ResumeButton" >
+            <Property name="Area" value="{{0,142},{0,72},{0,239},{0,118}}" />
+            <Property name="Text" value="Resume" />
+        </Window>
+        <Window type="TaharezLook/Button" name="ExitButton" >
+            <Property name="Area" value="{{0,141},{0,178},{0,238},{0,224}}" />
+            <Property name="Text" value="Exit Game" />
+        </Window>
+    </Window>
+</GUILayout>

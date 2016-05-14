@@ -99,6 +99,10 @@ namespace NCTU{
 
 		inline void stepSimulation(Ogre::Real time){mWorld->stepSimulation(time);}
 		
+		void removePlayerObstacle();
+		void removeFloorObstacle();
+		void removeAllObstacles();
+
 
 		inline std::list<Obstacle *>::iterator deleteByIterator(std::list<Obstacle *>::iterator it){delete *it; return mObstacles.erase(it);}
 		inline std::list<BulletObstacle *>::iterator removeBulletIterator(std::list<BulletObstacle *>::iterator it){return mBullets.erase(it);}

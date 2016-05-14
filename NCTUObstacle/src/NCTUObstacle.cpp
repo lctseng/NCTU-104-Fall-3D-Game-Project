@@ -38,6 +38,7 @@ Obstacle::~Obstacle(){
 	detachEntity();
 	mManager->getSceneMgr()->destroyEntity(mEntity);
 	mManager->getSceneMgr()->destroySceneNode(mNode);
+	//cout << "Obstacle "  << mName << "Destroyed" << endl;
 }
 
 void Obstacle::detachEntity(){
