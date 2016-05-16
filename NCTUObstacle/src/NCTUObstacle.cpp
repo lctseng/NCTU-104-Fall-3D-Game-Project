@@ -1,5 +1,6 @@
 #include "NCTUObstacle.h"
 #include "NCTUObstacleManager.h"
+#include "TutorialApplication.h"
 #include <iostream>
 using namespace NCTU;
 using namespace Ogre;
@@ -175,6 +176,7 @@ int Obstacle::decreaseHp(int value){
 	if(mHitPoint > 0){
 		mHitPoint -= value;
 		if(mHitPoint <= 0){
+			mManager->getApp()->changeScore(100);
 			mHitPoint = 0;
 			destroy();
 		}

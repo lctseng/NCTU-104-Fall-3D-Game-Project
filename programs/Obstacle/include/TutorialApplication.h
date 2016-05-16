@@ -134,6 +134,8 @@ public:
 	virtual void resetGame();
 	// GUI
 	void refreshScore();
+	int& score() {return mScore;};
+	void changeScore(int val);
 };
  
 #endif // #ifndef __BasicTutorial_00_h_

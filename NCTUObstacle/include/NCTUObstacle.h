@@ -77,6 +77,8 @@ namespace NCTU{
 		virtual inline void setBumpSpeed(Ogre::Real val){mBumpSpeed = val;}
 		virtual inline Ogre::Real getBumpSpeed() const {return mBumpSpeed;}
 
+		virtual inline ObstacleManager* getManager(){return mManager;}
+
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 		propMap<int,Ogre::String> mHpChangeMaterials;
 	protected:

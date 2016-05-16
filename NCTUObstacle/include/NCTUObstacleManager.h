@@ -96,6 +96,7 @@ namespace NCTU{
 		inline Ogre::SceneManager* getSceneMgr(){return mSceneMgr;}
 		inline PlayerObstacle* getPlayer(){return mPlayerObstacle;}
 		inline FloorObstacle* getFloor(){return mFloorObstacle;}
+		inline BasicTutorial_00* getApp(){return mApp;}
 
 		inline void stepSimulation(Ogre::Real time){mWorld->stepSimulation(time);}
 		

@@ -1,5 +1,6 @@
 #include "NCTUObstacleManager.h"
 #include "NCTUBulletObstacle.h"
+#include "TutorialApplication.h"
 
 using namespace NCTU;
 using namespace Ogre;

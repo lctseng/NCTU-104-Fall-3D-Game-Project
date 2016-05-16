@@ -20,6 +20,7 @@ void onBulletHit(BulletObstacle* bullet,Obstacle* object)
 		}		
 		else{
 			// error hit
+			bullet->getManager()->getApp()->changeScore(-10);
 			cout << "Error bullet color! bullet: "<< bullet->getBulletType() << ", obstacle: " << object->getHpType() << endl;
 		}
 	}
@@ -577,3 +578,11 @@ void BasicTutorial_00::refreshScore(){
 	mGUI->getScoreBar()->drawScore(mScore);
 }
 
+
+void BasicTutorial_00::changeScore(int val){
+	mScore += val;
+	if(mScore < 0){
+		mScore = 0;
+	}
+	refreshScore();
+}
