@@ -22,6 +22,8 @@
 
 #include "btBulletCollisionCommon.h"
 
+#include "NCTUPreRequisite.h"
+
 #define COL_MASK_PLAYER 0x1
 #define COL_MASK_OBSTACLE 0x2
 #define COL_MASK_FLOOR 0x4
@@ -31,6 +33,7 @@
 #define COL_GROUP_NO_BULLET (COL_MASK_PLAYER | COL_MASK_OBSTACLE | COL_MASK_FLOOR)
 
 typedef unsigned long INDEX_TYPE;
+typedef int (*ScoreHandler)(int change);
 
 namespace NCTU{
 

@@ -23,6 +23,10 @@ GUIManager::~GUIManager()
 		delete mGameMenu;
 		mGameMenu = nullptr;
 	}
+	if(mScoreBar){
+		delete mScoreBar;
+		mScoreBar = nullptr;
+	}
 	CEGUI::WindowManager::getSingleton().destroyAllWindows();
 	CEGUI::OgreRenderer::destroySystem();
 	
@@ -64,11 +68,18 @@ void GUIManager::createGameMenu(){
 	mGameMenu->setApp(mApp);
 	mGameMenu->setup();
 }
+void GUIManager::createScoreBar(){
+	mScoreBar = new ScoreBarWindow();
+	mScoreBar->setApp(mApp);
+	mScoreBar->setup();
+}
 
 void GUIManager::createAllWindow(){
 	createMainMenu();
 	createGameMenu();
+	createScoreBar();
 	mMainMenu->setVisible(true);
+	mScoreBar->setVisible(true);
 }
 
 

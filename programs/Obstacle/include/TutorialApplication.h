@@ -87,6 +87,9 @@ protected:
 	Real mAirJumpSpeed;
 	int mAirJumpLeft;
 	int mAirJumpMax;
+	int mScore;
+	Real mTimeScoreTemp;
+	double mTimeElapsed;
 
 	Real mPauseTimeInterval;
 	Real mPauseTimeIntervalMax;
@@ -106,6 +109,8 @@ protected:
 	NCTU::GUIManager* mGUI;
 
 	void loadLevelFromScene(const String& sceneName);
+
+	void onLoseGame();
 
 
 public:
@@ -127,6 +132,8 @@ public:
 	virtual void resumeGame();
 	virtual void backToMainMenu();
 	virtual void resetGame();
+	// GUI
+	void refreshScore();
 };
  
 #endif // #ifndef __BasicTutorial_00_h_

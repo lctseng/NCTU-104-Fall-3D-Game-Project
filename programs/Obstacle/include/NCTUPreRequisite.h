@@ -9,6 +9,7 @@ namespace NCTU{
 	class MainMenuWindow;
 	class GameMenuWindow;
 	class GameConsoleWindow;
+	class ScoreBarWindow;
 };
 
 #endif

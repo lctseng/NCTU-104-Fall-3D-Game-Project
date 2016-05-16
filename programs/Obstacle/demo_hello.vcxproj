@@ -84,7 +84,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)/demo_hello.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;..\..\NCTUAudio\lib;..\..\lib\Release\CEGUI;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>
       </AdditionalOptions>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -96,6 +96,15 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUBulletObstacle.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUCubeObstacle.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUFloorObstacle.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUGeneralObstacle.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacle.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacleCallback.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacleManager.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUPlayerObstacle.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUSphereObstacle.cpp" />
     <ClCompile Include="source\BaseApplication.cpp" />
     <ClCompile Include="source\BasicTools.cpp" />
     <ClCompile Include="source\DotSceneLoader.cpp" />
@@ -106,9 +115,20 @@
     <ClCompile Include="source\KeyBoardHandler.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\NCTUGUIWindow.cpp" />
+    <ClCompile Include="source\ScoreBarWindow.cpp" />
     <ClCompile Include="source\TutorialApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUBulletObstacle.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUCubeObstacle.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUFloorObstacle.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUGeneralObstacle.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacle.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacleCallback.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacleManager.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstaclePreRequisites.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUPlayerObstacle.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUSphereObstacle.h" />
     <ClInclude Include="include\BaseApplication.h" />
     <ClInclude Include="include\BasicTools.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
@@ -119,6 +139,7 @@
     <ClInclude Include="include\KeyBoardHandler.h" />
     <ClInclude Include="include\NCTUGUIWindow.h" />
     <ClInclude Include="include\NCTUPrerequisite.h" />
+    <ClInclude Include="include\ScoreBarWindow.h" />
     <ClInclude Include="include\TutorialApplication.h" />
   </ItemGroup>
   <ItemGroup>

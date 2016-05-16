@@ -1,4 +1,5 @@
 #include "NCTUObstacleManager.h"
+#include "TutorialApplication.h"
 
 using namespace Ogre;
 using namespace NCTU;
@@ -8,7 +9,9 @@ ObstacleManager::ObstacleManager()
 	:mSceneMgr(nullptr),
 	mObstacleIndex(0),
 	mPlayerObstacle(nullptr),
-	mFloorObstacle(nullptr)
+	mFloorObstacle(nullptr),
+	mScoreHandler(nullptr),
+	mApp(nullptr)
 {
 
 }
@@ -49,8 +52,9 @@ void ObstacleManager::removeAllObstacles(){
 	mBullets.clear();
 }
 
-void ObstacleManager::setup(Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox& bound,const Ogre::Vector3 g){
+void ObstacleManager::setup(BasicTutorial_00* app,Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox& bound,const Ogre::Vector3 g){
 	// param assign
+	mApp = app;
 	mSceneMgr = mgmt;
 	mBulletBox = bound;
 	mGravityVector = g;

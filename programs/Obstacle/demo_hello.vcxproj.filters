@@ -18,6 +18,9 @@
     <Filter Include="KeyBoard">
       <UniqueIdentifier>{aa98c49b-9cf6-4d55-8d7b-3f03411d5553}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Obstacle">
+      <UniqueIdentifier>{d84195bc-4fc6-42e9-a47d-19e298715dc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\BaseApplication.cpp">
@@ -53,6 +56,36 @@
     <ClCompile Include="source\GameMenuWindow.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="source\ScoreBarWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUBulletObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUCubeObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUFloorObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUGeneralObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacleCallback.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacleManager.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUPlayerObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUSphereObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseApplication.h">
@@ -87,6 +120,39 @@
     </ClInclude>
     <ClInclude Include="include\GameMenuWindow.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScoreBarWindow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUBulletObstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUCubeObstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUFloorObstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUGeneralObstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacleCallback.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacleManager.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstaclePreRequisites.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUPlayerObstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUSphereObstacle.h">
+      <Filter>Obstacle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

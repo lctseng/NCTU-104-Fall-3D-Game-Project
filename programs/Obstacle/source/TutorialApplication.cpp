@@ -47,6 +47,9 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mSpeedRate = 40.0f;
 	mPauseTimeIntervalMax = 0.5f;
 	mPauseTimeInterval = 0.0f;
+	mScore = 0;
+	mTimeScoreTemp = 0.0f;
+	mTimeElapsed = 0.0;
 	// ------
 	//[KEYBOARD]
 	keyboardhandler = new KeyBoardHandler();
@@ -170,6 +173,7 @@ void BasicTutorial_00::createScene(void)
 
 	// [NEW]
 	mObstacleMgr->setup(
+		this,
 		mSceneMgr,
 		AxisAlignedBox ( //aligned box for Bullet
 		Ogre::Vector3 (-10000, -10000, -10000), 
@@ -228,6 +232,16 @@ void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
 	}
 	processInputPlayingGame(evt);
 	mCameraMotion.record(mPlayerObstacle->getVelocity());
+	// Score
+	mTimeScoreTemp += evt.timeSinceLastFrame;
+	mTimeElapsed += evt.timeSinceLastFrame;
+	if(mTimeScoreTemp > 0.2f){
+		int pts = mTimeScoreTemp / 0.2f;
+		mTimeScoreTemp -= 0.2f * pts;
+		mScore += pts;
+		refreshScore();
+	}
+	mGUI->getScoreBar()->drawTime(mTimeElapsed);
 }
 void BasicTutorial_00::processInputBasic(const FrameEvent& evt){
 	if(keyboardhandler->isKeyTriggered(OIS::KC_F7)){
@@ -454,8 +468,7 @@ void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 	// when we bump into obstacle
 	if(mPlayerObstacle->IsBumpObstacle() ){
 		if(!mDisableLose){
-			mPlayerObstacle->setVelocity(mInitVelocity);
-			mPlayerObstacle->setPosition(mInitPosition);
+			onLoseGame();
 		}
 		
 	}
@@ -540,6 +553,12 @@ void BasicTutorial_00::backToMainMenu(){
 	mGUI->getMainMenu()->setVisible(true);
 }
 void BasicTutorial_00::resetGame(){
+	// score
+	mScore = 0;
+	mTimeScoreTemp = 0.0f;
+	mTimeElapsed = 0.0;
+	mGUI->getScoreBar()->reset();
+	// system
 	mGameStarted = false;
 	mGamePaused = true;
 	mObstacleMgr->removeAllObstacles();
@@ -549,5 +568,12 @@ void BasicTutorial_00::resetGame(){
 	mPlayerObstacle->setVelocity(mInitVelocity);
 	mPlayerObstacle->setPosition(mInitPosition);
 }
+void BasicTutorial_00::onLoseGame(){
+	mPlayerObstacle->setVelocity(mInitVelocity);
+	mPlayerObstacle->setPosition(mInitPosition);
+}
 
+void BasicTutorial_00::refreshScore(){
+	mGUI->getScoreBar()->drawScore(mScore);
+}
 

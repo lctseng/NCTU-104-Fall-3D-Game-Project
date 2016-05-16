@@ -10,6 +10,7 @@
 #include "GameConsoleWindow.h"
 #include "MainMenuWindow.h"
 #include "GameMenuWindow.h"
+#include "ScoreBarWindow.h"
 
 namespace NCTU{
 	class GUIManager{
@@ -23,6 +24,7 @@ namespace NCTU{
 		void createConsole();
 		void createMainMenu();
 		void createGameMenu();
+		void createScoreBar();
 
 		void update(double timestep);
 
@@ -36,6 +38,7 @@ namespace NCTU{
 
 		MainMenuWindow* getMainMenu(){return mMainMenu;}
 		GameMenuWindow* getGameMenu(){return mGameMenu;}
+		ScoreBarWindow* getScoreBar(){return mScoreBar;}
 
 	protected:
 		CEGUI::OgreRenderer* mRenderer;
@@ -44,6 +47,7 @@ namespace NCTU{
 		GameConsoleWindow* mConsole;
 		MainMenuWindow*  mMainMenu;
 		GameMenuWindow*  mGameMenu;
+		ScoreBarWindow* mScoreBar;
 		// 
 		
 		CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);

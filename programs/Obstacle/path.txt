@@ -5,4 +5,4 @@
 ..\..\lib\$(Configuration);..\..\bullet3-2.83.7\bin;..\..\boost_1_42\lib;..\..\ogrebullet\lib;..\..\NCTUObstacle\lib\Release;..\..\NCTUAudio\lib;..\..\lib\Release\CEGUI;%(AdditionalLibraryDirectories);
 
 ## Lib
-OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;NCTUObstacle.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)
+OgreMain.lib;ois.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;bulletcollision_vs2010.lib;bulletdynamics_vs2010.lib;linearmath_vs2010.lib;ConvexDecomposition_vs2010.lib;tinyxml.lib;alut.lib;OpenAL32.lib;NCTUAudio.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)

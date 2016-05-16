@@ -24,7 +24,7 @@ namespace NCTU{
 		ObstacleManager(const ObstacleManager&);
 		~ObstacleManager();
 
-		void setup(Ogre::SceneManager*,const Ogre::AxisAlignedBox& bound,const Ogre::Vector3 g);
+		void setup(BasicTutorial_00* app,Ogre::SceneManager*,const Ogre::AxisAlignedBox& bound,const Ogre::Vector3 g);
 
 		FloorObstacle* createFloor(const Ogre::Vector3& normal,Ogre::Real distance,Ogre::Real restitution, Ogre::Real friction);
 		FloorObstacle* createFloor(Ogre::Plane& plane,Ogre::Entity* entity,Ogre::Real restitution, Ogre::Real friction);
@@ -103,6 +103,7 @@ namespace NCTU{
 		void removeFloorObstacle();
 		void removeAllObstacles();
 
+		ScoreHandler mScoreHandler;
 
 		inline std::list<Obstacle *>::iterator deleteByIterator(std::list<Obstacle *>::iterator it){delete *it; return mObstacles.erase(it);}
 		inline std::list<BulletObstacle *>::iterator removeBulletIterator(std::list<BulletObstacle *>::iterator it){return mBullets.erase(it);}
@@ -122,6 +123,8 @@ namespace NCTU{
 		FloorObstacle* mFloorObstacle;
 		// special pointer for Player
 		PlayerObstacle* mPlayerObstacle;
+
+		BasicTutorial_00* mApp;
 
 		INDEX_TYPE mObstacleIndex; // general obstacle
 	};

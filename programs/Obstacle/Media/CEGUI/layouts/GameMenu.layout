@@ -2,7 +2,7 @@
 
 <GUILayout version="4" >
     <Window type="TaharezLook/Menubar" name="GameMenu" >
-        <Property name="Area" value="{{0,307},{0,259},{1,-348},{0,489}}" />
+        <Property name="Area" value="{{0,345},{0,261},{1,-310},{0,491}}" />
         <Window type="TaharezLook/Label" name="MenuTitle" >
             <Property name="Area" value="{{0,109},{0,22},{0,285},{0,54}}" />
             <Property name="Font" value="Jura-18" />
