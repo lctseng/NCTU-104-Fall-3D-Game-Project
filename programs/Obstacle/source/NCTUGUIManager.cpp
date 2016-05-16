@@ -5,7 +5,11 @@ using namespace NCTU;
 
 GUIManager::GUIManager()
 :mRenderer(nullptr),
-mConsole(nullptr)
+mConsole(nullptr),
+mMainMenu(nullptr),
+mGameMenu(nullptr),
+mScoreBar(nullptr),
+mGameOver(nullptr)
 {
 	
 }
@@ -26,6 +30,10 @@ GUIManager::~GUIManager()
 	if(mScoreBar){
 		delete mScoreBar;
 		mScoreBar = nullptr;
+	}
+	if(mGameOver){
+		delete mGameOver;
+		mGameOver = nullptr;
 	}
 	CEGUI::WindowManager::getSingleton().destroyAllWindows();
 	CEGUI::OgreRenderer::destroySystem();
@@ -73,11 +81,17 @@ void GUIManager::createScoreBar(){
 	mScoreBar->setApp(mApp);
 	mScoreBar->setup();
 }
+void GUIManager::createGameOver(){
+	mGameOver = new GameOverWindow();
+	mGameOver->setApp(mApp);
+	mGameOver->setup();
+}
 
 void GUIManager::createAllWindow(){
 	createMainMenu();
 	createGameMenu();
 	createScoreBar();
+	createGameOver();
 	mMainMenu->setVisible(true);
 	mScoreBar->setVisible(true);
 }

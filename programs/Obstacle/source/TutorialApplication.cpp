@@ -35,6 +35,7 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mEnableFreeMode = false;
 	mDisableLose = false;
 	mGameStarted = false;
+	mGameOvered = false;
 	mCameraInitLookAt = Vector3(-1000,150,0);
 	mCameraInitPosition = Vector3(-1600,350,0);
 	mBulletSpeedFactor = 1000.0f;
@@ -204,8 +205,8 @@ void BasicTutorial_00::createScene(void)
 	// -----------
 	loadLevelFromScene("test.scene");
 
-	
-	
+
+
 }
 
 void BasicTutorial_00::updateBasic(const FrameEvent &evt){
@@ -419,8 +420,13 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 			updatePlayingGame(evt);
 		}
 		else{
-			// Update for paused game
-			updatePausedGame(evt);
+			if(!mGameOvered){// Update for paused game
+				updatePausedGame(evt);
+			}
+			else{
+				// Update for overed game
+				// Nothing
+			}
 		}
 	}
 
@@ -471,7 +477,7 @@ void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 		if(!mDisableLose){
 			onLoseGame();
 		}
-		
+
 	}
 }
 
@@ -551,6 +557,7 @@ void BasicTutorial_00::resumeGame(){
 void BasicTutorial_00::backToMainMenu(){
 	resetGame();
 	mGUI->getGameMenu()->setVisible(false);
+	mGUI->getGameOver()->setVisible(false);
 	mGUI->getMainMenu()->setVisible(true);
 }
 void BasicTutorial_00::resetGame(){
@@ -570,8 +577,9 @@ void BasicTutorial_00::resetGame(){
 	mPlayerObstacle->setPosition(mInitPosition);
 }
 void BasicTutorial_00::onLoseGame(){
-	mPlayerObstacle->setVelocity(mInitVelocity);
-	mPlayerObstacle->setPosition(mInitPosition);
+	mGameOvered = true;
+	mGamePaused = true;
+	mGUI->getGameOver()->setVisible(true);
 }
 
 void BasicTutorial_00::refreshScore(){

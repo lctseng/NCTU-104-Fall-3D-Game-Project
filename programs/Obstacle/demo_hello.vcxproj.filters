@@ -86,6 +86,9 @@
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUSphereObstacle.cpp">
       <Filter>Obstacle</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameOverWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseApplication.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUSphereObstacle.h">
       <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameOverWindow.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

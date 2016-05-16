@@ -110,6 +110,7 @@
     <ClCompile Include="source\DotSceneLoader.cpp" />
     <ClCompile Include="source\GameConsoleWindow.cpp" />
     <ClCompile Include="source\GameMenuWindow.cpp" />
+    <ClCompile Include="source\GameOverWindow.cpp" />
     <ClCompile Include="source\MainMenuWindow.cpp" />
     <ClCompile Include="source\NCTUGUIManager.cpp" />
     <ClCompile Include="source\KeyBoardHandler.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="include\DotSceneLoader.h" />
     <ClInclude Include="include\GameConsoleWindow.h" />
     <ClInclude Include="include\GameMenuWindow.h" />
+    <ClInclude Include="include\GameOverWindow.h" />
     <ClInclude Include="include\MainMenuWindow.h" />
     <ClInclude Include="include\NCTUGUIManager.h" />
     <ClInclude Include="include\KeyBoardHandler.h" />

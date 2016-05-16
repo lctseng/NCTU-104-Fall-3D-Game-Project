@@ -10,6 +10,7 @@
 #include "GameConsoleWindow.h"
 #include "MainMenuWindow.h"
 #include "GameMenuWindow.h"
+#include "GameOverWindow.h"
 #include "ScoreBarWindow.h"
 
 namespace NCTU{
@@ -25,6 +26,7 @@ namespace NCTU{
 		void createMainMenu();
 		void createGameMenu();
 		void createScoreBar();
+		void createGameOver();
 
 		void update(double timestep);
 
@@ -39,6 +41,7 @@ namespace NCTU{
 		MainMenuWindow* getMainMenu(){return mMainMenu;}
 		GameMenuWindow* getGameMenu(){return mGameMenu;}
 		ScoreBarWindow* getScoreBar(){return mScoreBar;}
+		GameOverWindow* getGameOver(){return mGameOver;}
 
 	protected:
 		CEGUI::OgreRenderer* mRenderer;
@@ -47,6 +50,7 @@ namespace NCTU{
 		GameConsoleWindow* mConsole;
 		MainMenuWindow*  mMainMenu;
 		GameMenuWindow*  mGameMenu;
+		GameOverWindow*  mGameOver;
 		ScoreBarWindow* mScoreBar;
 		// 
 		

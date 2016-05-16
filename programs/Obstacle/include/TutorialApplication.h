@@ -77,6 +77,7 @@ protected:
 
 	bool mGameStarted;
 	bool mGamePaused;
+	bool mGameOvered;
 
 	Real mSpeedRate;
 	
