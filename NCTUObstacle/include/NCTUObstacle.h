@@ -3,7 +3,9 @@
 
 #include "NCTUObstaclePreRequisites.h"
 #define FLOOR_TOUCH_THRESHOLD 5
-#define OBSTACLE_PLANE_TOUCH_THRESHOLD 5
+#define OBSTACLE_PLANE_TOUCH_THRESHOLD 10
+#define FLOOR_TOUCH_STRICT_THRESHOLD 1
+#define OBSTACLE_PLANE_TOUCH_STRICT_THRESHOLD 1
 
 #include <deque>
 #include <list>
@@ -38,8 +40,8 @@ namespace NCTU{
 		virtual inline Ogre::Quaternion getOrientation() const {return mNode->getOrientation();}
 
 		virtual inline void setOnFloor(bool val);
-		virtual inline bool getOnFloor() const {return mFloorTouchValue < FLOOR_TOUCH_THRESHOLD;}
-		virtual inline bool isOnFloor() const {return getOnFloor();}
+		virtual inline bool getOnFloor(int threshold = FLOOR_TOUCH_THRESHOLD) const {return mFloorTouchValue < FLOOR_TOUCH_THRESHOLD;}
+		virtual inline bool isOnFloor(int threshold = FLOOR_TOUCH_THRESHOLD) const {return getOnFloor(threshold);}
 		
 		virtual inline void setIsBumpObstacle(bool val) {mIsBumpObstacle = val;}
 		virtual bool getIsBumpObstacle() const {return mIsBumpObstacle;}
@@ -48,8 +50,8 @@ namespace NCTU{
 		virtual void onBulletHit(BulletObstacle*, Obstacle*);
 
 		virtual inline void setIsOnObstaclePlane(bool val);
-		virtual inline bool getIsOnObstaclePlane() const {return mObstaclePlaneTouchValue < OBSTACLE_PLANE_TOUCH_THRESHOLD;}
-		virtual inline bool IsOnObstaclePlane() const {return getIsOnObstaclePlane();}
+		virtual inline bool getIsOnObstaclePlane(int threshold = OBSTACLE_PLANE_TOUCH_THRESHOLD) const {return mObstaclePlaneTouchValue < threshold;}
+		virtual inline bool IsOnObstaclePlane(int threshold = OBSTACLE_PLANE_TOUCH_THRESHOLD) const {return getIsOnObstaclePlane(threshold);}
 		
 
 		virtual inline void setMyIterator(std::list<Obstacle *>::iterator it){mMyIterator = it;}

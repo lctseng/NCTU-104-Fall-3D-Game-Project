@@ -233,6 +233,7 @@ void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
 	mCameraCtrl->updatePlayingGame(evt);
 	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
 	mObstacleMgr->updateLifeTime(evt);
+	mPlayerObstacle->updatePlayingGame(evt);
 	mObstacleMgr->updateBulletCollision(evt);
 	if(mEnableCollision){
 		checkCollision(evt);
@@ -359,25 +360,15 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 		}
 		mCameraCtrl->TurnCamera(turnRight,mPlayerObstacle->getPosition());
 	}
-	if(keyboardhandler->isKeyPressing(OIS::KC_Z) && mPlayerObstacle->isSlideEnable()){
-		mPlayerObstacle->setSliding(true);
+	if(keyboardhandler->isKeyPressing(OIS::KC_Z)){
+		mPlayerObstacle->requireSlide(true);
 	}
 	else{
-		mPlayerObstacle->setSliding(false);
+		mPlayerObstacle->requireSlide(false);
 	}
 	if(keyboardhandler->isKeyTriggered(OIS::KC_SPACE)){
-		Vector3 finalV = mPlayerObstacle->getVelocity();
-		// normal jump?
-		if(mPlayerObstacle->isJumpEnable()){
-			finalV[1] = mSpeedRate * 35.0f;
-		}
-		//else if(finalV.y < 0.0f && mAirJumpLeft > 0){ // air jump?
-		//	finalV[1] += mAirJumpSpeed;
-		//	--mAirJumpLeft;
-		//	cout << "Air Jump Left: " << mAirJumpLeft << endl;
-		//}
-		mPlayerObstacle->setVelocity(finalV);
-		//mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 35,0));
+		mPlayerObstacle->performJump();
+
 	}
 
 
@@ -387,10 +378,10 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 			1.0f, // friction
 			1.0f, // mass
 			NCTU::typeRed,
-			(mCamera->getDerivedPosition() + mCamera->getDerivedDirection().normalisedCopy() * 500) // position
+			(mPlayerObstacle->getPosition() - mCamera->getDerivedDirection().normalisedCopy() * 200) // position
 			);     
 		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
-		shoot_v.y = 0.3f;
+		shoot_v.y = 0.1f;
 		obstacle->setVelocity(
 			shoot_v * mBulletSpeedFactor); // shooting speed
 		obstacle->getEntity()->setMaterialName("Bullet/Capsule");
@@ -402,10 +393,10 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 			1.0f, // friction
 			1.0f, // mass
 			NCTU::typeBlue,
-			(mCamera->getDerivedPosition() + mCamera->getDerivedDirection().normalisedCopy() * 500) // position
+			(mPlayerObstacle->getPosition() - mCamera->getDerivedDirection().normalisedCopy() * 200) // position
 			);     
 		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
-		shoot_v.y = 0.3f;
+		shoot_v.y = 0.1f;
 		obstacle->setVelocity(
 			shoot_v * mBulletSpeedFactor); // shooting speed
 		obstacle->getEntity()->setMaterialName("Bullet/Capsule");
@@ -439,6 +430,10 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 		if(!mGamePaused){
 			// Update for playing game
 			updatePlayingGame(evt);
+			//cout << "On Floor:" << mPlayerObstacle->isOnFloor() << endl;
+			//cout << "On Obstacle:" << mPlayerObstacle->IsOnObstaclePlane() << endl;
+
+
 		}
 		else{
 			if(!mGameOvered){// Update for paused game

@@ -16,19 +16,29 @@ namespace NCTU{
 		virtual void setSliding(bool val);
 		
 		virtual void updateCollision(const Ogre::FrameEvent& evt);
+		virtual void updatePlayingGame(const Ogre::FrameEvent& evt);
+
 		virtual bool isJumpEnable();
 		virtual bool isSlideEnable();
 
 		virtual inline bool isSliding() const {return mIsSliding;}
 		
+		virtual void performJump();
+
+		virtual inline void requireSlide(bool v){mSlideRequiring = v;}
 
 	protected:
 		
 		virtual void updateFloorCollision(const Ogre::FrameEvent& evt);
 		virtual void updateAllObstacleCollision(const Ogre::FrameEvent& evt);
+		virtual void updateSliding(const Ogre::FrameEvent& evt);
+		virtual void updateJumping(const Ogre::FrameEvent& evt);
 
 		bool mIsSliding;
 		
+		Ogre::Real mSlidingValidTime;
+		Ogre::Real mJumpCoolDown;
+		bool mSlideRequiring;
 
 
 

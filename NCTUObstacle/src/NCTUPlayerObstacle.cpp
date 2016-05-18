@@ -1,12 +1,14 @@
 #include "NCTUObstacleManager.h"
 #include "NCTUPlayerObstacle.h"
+#include <iostream>
 
 using namespace NCTU;
 using namespace Ogre;
 using namespace OgreBulletCollisions;
+using namespace std;
 
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Vector3 scale)
-	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
+	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false),mSlidingValidTime(0.0f),mJumpCoolDown(0.0f)
 {
 	mName = "obstacle.player";
 	// some default settings
@@ -32,16 +34,16 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 		mName,
 		mManager->getWorld());
 	mBody->setShape(   mNode,
-					mShape,
-					mRestitution,         // dynamic body restitution
-					mFriction,         // dynamic body friction
-					mMass,          // dynamic bodymass
-					position,      // starting position of the box
-					orientation);// orientation of the box       
+		mShape,
+		mRestitution,         // dynamic body restitution
+		mFriction,         // dynamic body friction
+		mMass,          // dynamic bodymass
+		position,      // starting position of the box
+		orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
 }
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,SceneNode* node, Entity* ent)
-:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
+	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
 {
 	mName = "obstacle.player";
 	// create settings
@@ -60,12 +62,12 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 		mName,
 		mManager->getWorld(),COL_GROUP_NO_BULLET,COL_MASK_PLAYER);
 	mBody->setShape(   mNode,
-					mShape,
-					mRestitution,         // dynamic body restitution
-					mFriction,         // dynamic body friction
-					mMass,          // dynamic bodymass
-					position,      // starting position of the box
-					orientation);// orientation of the box       
+		mShape,
+		mRestitution,         // dynamic body restitution
+		mFriction,         // dynamic body friction
+		mMass,          // dynamic bodymass
+		position,      // starting position of the box
+		orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
 	setPosition(oldPosition);
 }
@@ -73,6 +75,9 @@ void PlayerObstacle::updateCollision(const FrameEvent& evt){
 	Obstacle::updateCollision(evt);
 	updateFloorCollision(evt);
 	updateAllObstacleCollision(evt);
+	//cout << mSlidingValidTime << endl;
+	//cout << "Floor:" << mFloorTouchValue << endl;
+	//cout << "Obs:" << mObstaclePlaneTouchValue << endl;
 }
 void PlayerObstacle::updateFloorCollision(const FrameEvent& evt){
 	setOnFloor(false);
@@ -85,6 +90,29 @@ void PlayerObstacle::updateAllObstacleCollision(const FrameEvent& evt){
 	ObstacleContactResultCallback callback(this);
 	mManager->setPlayerAllObstacleCallback(callback);
 }
+void PlayerObstacle::updateSliding(const FrameEvent& evt){
+	if(mSlidingValidTime > 0.0f){
+		mSlidingValidTime -= evt.timeSinceLastFrame;
+	}
+	if(isOnFloor(FLOOR_TOUCH_STRICT_THRESHOLD) || IsOnObstaclePlane(OBSTACLE_PLANE_TOUCH_STRICT_THRESHOLD)){
+		mSlidingValidTime = 0.2f;
+	}
+	if(mSlideRequiring && isSlideEnable()){
+		setSliding(true);
+	}
+	else{
+		setSliding(false);
+	}
+}
+void PlayerObstacle::updateJumping(const FrameEvent& evt){
+	if(mJumpCoolDown > 0.0f){
+		mJumpCoolDown -= evt.timeSinceLastFrame;
+	}
+}
+void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
+	updateSliding(evt);
+	updateJumping(evt);
+}
 void PlayerObstacle::setSliding(bool val){
 	mIsSliding = val;
 	if(mIsSliding){
@@ -96,8 +124,30 @@ void PlayerObstacle::setSliding(bool val){
 }
 
 bool PlayerObstacle::isJumpEnable(){
-	return ( isOnFloor() || IsOnObstaclePlane()) && !isSliding() ;
+	return ( isOnFloor() || IsOnObstaclePlane()) && !isSliding() && mJumpCoolDown <= 0.0f ;
 }
 bool PlayerObstacle::isSlideEnable(){
-	return mNode->getPosition()[1] <= 55.0f;
+	return mSlidingValidTime > 0.0f && mJumpCoolDown <= 0.0f;
+	//return mNode->getPosition()[1] <= 55.0f;
 }
+
+void PlayerObstacle::performJump(){
+	// normal jump?
+	if(isJumpEnable()){
+		Vector3 finalV = getVelocity();
+		finalV[1] = 1400.0f;
+		setVelocity(finalV);
+		// cancel slide
+		mSlidingValidTime = 0.0f;
+		mJumpCoolDown = 0.5f;
+	}
+	// Air jump is deprecated
+	//else if(finalV.y < 0.0f && mAirJumpLeft > 0){ // air jump?
+	//	finalV[1] += mAirJumpSpeed;
+	//	--mAirJumpLeft;
+	//	cout << "Air Jump Left: " << mAirJumpLeft << endl;
+	//}
+
+	
+}
+
