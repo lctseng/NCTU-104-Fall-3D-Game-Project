@@ -8,6 +8,7 @@ using namespace NCTU;
 
 void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr,ObstacleManager* obstacleMgr , SceneNode *pAttachNode, const String &sPrependNode)
 {
+	mGeneralProps.clear();
 	// set up shared object values
 	m_sGroupName = groupName;
 	mSceneMgr = yourSceneMgr;

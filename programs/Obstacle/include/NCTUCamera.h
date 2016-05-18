@@ -18,9 +18,13 @@ using namespace Ogre;
 
 
 
-class NCTUCamera{
 
+class NCTUCamera{
+public:
+	enum TurningState { STATE_TURNING, STATE_NORMAL};
+	static const Real TURNING_TIME;
 private:
+
 	Camera *mCamera;
 	SceneManager *mSceneMgr;
 	Vector3 mCameraIniPosition;
@@ -28,6 +32,11 @@ private:
 	SceneNode *Parent;
 	BasicTutorial_00* mApp;
 	CameraMotion mCameraMotion;
+
+	TurningState mTurningState;
+	std::deque<int> mAngleLeft;
+	Real mTurningInterval;
+
 
 public:
 	NCTUCamera();
@@ -37,6 +46,7 @@ public:
 	void updateBasic(const FrameEvent& evt);
 	void updatePlayingGame(const FrameEvent& evt);
 	void setupCamera();
+	bool isTurnOK() const;
 
 	CameraMotion& getMotion(){return mCameraMotion;}
 

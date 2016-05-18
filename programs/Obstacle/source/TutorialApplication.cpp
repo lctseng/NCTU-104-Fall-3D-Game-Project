@@ -345,14 +345,14 @@ void BasicTutorial_00::processInputBasic(const FrameEvent& evt){
 
 }
 void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
-	if(keyboardhandler->isKeyTriggered(OIS::KC_LEFT)){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_LEFT) && mCameraCtrl->isTurnOK()){
 		mCameraCtrl->TurnCamera(turnLeft,mPlayerObstacle->getPosition());
 		currentDirection -= 1;
 		if(currentDirection < 0){
 			currentDirection = 3;
 		}
 	}
-	if(keyboardhandler->isKeyTriggered(OIS::KC_RIGHT)){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_RIGHT) && mCameraCtrl->isTurnOK()){
 		currentDirection += 1;
 		if(currentDirection > 3){
 			currentDirection = 0;
