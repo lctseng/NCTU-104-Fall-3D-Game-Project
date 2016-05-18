@@ -12,6 +12,7 @@
 // OpenAL & alut
 #include "NCTUAudio.h"
 #include "NCTUGUIManager.h"
+#include "NCTUCamera.h"
 
 
 #include "DotSceneLoader.h"
@@ -43,13 +44,16 @@ protected:
 
 	// [NEW]
 	virtual void updateLightPosition(const FrameEvent& evt);
-	virtual void updateCameraPosition(const FrameEvent& evt);
 
 	// [NEW]
 	virtual void equalizeSpeed(const FrameEvent& evt);
 	virtual void fixOrientation(const FrameEvent& evt);
 
 	virtual Vector3 getFrontDirection();
+
+	void loadLevelFromScene(const String& sceneName);
+
+	void onLoseGame();
 
 
 	// [NEW]
@@ -71,9 +75,6 @@ protected:
 	bool mEnableCollision;
 	bool mEnableFreeMode;
 	bool mDisableLose;
-
-	int mNearClipMin;
-	int mNearClipMax;
 
 	bool mGameStarted;
 	bool mGamePaused;
@@ -97,28 +98,31 @@ protected:
 
 	// internal offset
 	Vector3 mLightOffset;
-	Vector3 mCameraPositionOffset;
-	Vector3 mCameraLookAtOffset;
-	Vector3 mCameraInitLookAt;
-	Vector3 mCameraInitPosition;
 
-	CameraMotion mCameraMotion;
+	int currentDirection;
+	Vector3 mDirectionVectors[4];
+
 
 	// dotScene
 	DotSceneLoader mDotScene;
 	// GUI
 	NCTU::GUIManager* mGUI;
 
-	void loadLevelFromScene(const String& sceneName);
+	NCTUCamera* mCameraCtrl;
 
-	void onLoseGame();
+
 
 
 public:
 	BasicTutorial_00(void);
 	~BasicTutorial_00(void);
 	virtual void createScene(void);
-
+	//[State]
+	virtual inline bool isStarted(){return mGameStarted;}
+	virtual inline bool isPaused(){return mGamePaused;}
+	virtual inline bool isOvered(){return mGameOvered;}
+	//[Get component]
+	virtual inline NCTU::PlayerObstacle* getPlayer(){return mPlayerObstacle;}
 	//[KEYBOARD]
 	virtual bool keyPressed( const OIS::KeyEvent &arg );
 	virtual bool keyReleased( const OIS::KeyEvent &arg );

@@ -107,11 +107,13 @@
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUSphereObstacle.cpp" />
     <ClCompile Include="source\BaseApplication.cpp" />
     <ClCompile Include="source\BasicTools.cpp" />
+    <ClCompile Include="source\CameraMotion.cpp" />
     <ClCompile Include="source\DotSceneLoader.cpp" />
     <ClCompile Include="source\GameConsoleWindow.cpp" />
     <ClCompile Include="source\GameMenuWindow.cpp" />
     <ClCompile Include="source\GameOverWindow.cpp" />
     <ClCompile Include="source\MainMenuWindow.cpp" />
+    <ClCompile Include="source\NCTUCamera.cpp" />
     <ClCompile Include="source\NCTUGUIManager.cpp" />
     <ClCompile Include="source\KeyBoardHandler.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -132,11 +134,13 @@
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUSphereObstacle.h" />
     <ClInclude Include="include\BaseApplication.h" />
     <ClInclude Include="include\BasicTools.h" />
+    <ClInclude Include="include\CameraMotion.h" />
     <ClInclude Include="include\DotSceneLoader.h" />
     <ClInclude Include="include\GameConsoleWindow.h" />
     <ClInclude Include="include\GameMenuWindow.h" />
     <ClInclude Include="include\GameOverWindow.h" />
     <ClInclude Include="include\MainMenuWindow.h" />
+    <ClInclude Include="include\NCTUCamera.h" />
     <ClInclude Include="include\NCTUGUIManager.h" />
     <ClInclude Include="include\KeyBoardHandler.h" />
     <ClInclude Include="include\NCTUGUIWindow.h" />

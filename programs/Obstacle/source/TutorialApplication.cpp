@@ -36,11 +36,8 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mDisableLose = false;
 	mGameStarted = false;
 	mGameOvered = false;
-	mCameraInitLookAt = Vector3(-1000,150,0);
-	mCameraInitPosition = Vector3(-1600,350,0);
+
 	mBulletSpeedFactor = 1000.0f;
-	mNearClipMin = 5;
-	mNearClipMax = 400;
 	mBulletLifeTime = 1.0f;
 	mAirJumpSpeed = 800.0f;
 	mAirJumpMax = 5;
@@ -52,6 +49,7 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mScore = 0;
 	mTimeScoreTemp = 0.0f;
 	mTimeElapsed = 0.0;
+	currentDirection = DIRECTION_FRONT;
 	// ------
 	//[KEYBOARD]
 	keyboardhandler = new KeyBoardHandler();
@@ -59,6 +57,8 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	NCTU::BulletObstacle::setHandlerBulletHit(onBulletHit);
 	// [GUI]
 	mGUI = new NCTU::GUIManager();
+	// [Camera]
+	mCameraCtrl = new NCTUCamera();
 }
 
 BasicTutorial_00::~BasicTutorial_00(void) {
@@ -66,6 +66,7 @@ BasicTutorial_00::~BasicTutorial_00(void) {
 	delete keyboardhandler;
 	delete mObstacleMgr;
 	delete mGUI;
+	delete mCameraCtrl;
 }
 
 void BasicTutorial_00::createCamera(void){
@@ -89,6 +90,11 @@ void BasicTutorial_00::loadLevelFromScene(const String& sceneName){
 	if(props.hasKey("InitVelocityZ")){
 		mInitVelocity.z = props["InitVelocityZ"].valFloat;
 	}
+	mDirectionVectors[DIRECTION_FRONT] = mInitVelocity;
+	mDirectionVectors[DIRECTION_BACK] = mInitVelocity * -1;
+	mDirectionVectors[DIRECTION_LEFT] = mInitVelocity.crossProduct(Vector3(0,-1,0));
+	mDirectionVectors[DIRECTION_RIGHT] = mInitVelocity.crossProduct(Vector3(0,1,0));
+
 	//mPlayerObstacle->setVelocity(mInitVelocity);
 	// setup init position
 	if(props.hasKey("InitPositionX")){
@@ -103,35 +109,34 @@ void BasicTutorial_00::loadLevelFromScene(const String& sceneName){
 	mPlayerObstacle->setPosition(mInitPosition);
 	// camera clip distance
 	if(props.hasKey("CameraClipMin")){
-		mNearClipMin = props["CameraClipMin"].valInt;
+		mCameraCtrl->mNearClipMin = props["CameraClipMin"].valInt;
 	}
 	if(props.hasKey("CameraClipMax")){
-		mNearClipMax = props["CameraClipMax"].valInt;
+		mCameraCtrl->mNearClipMax = props["CameraClipMax"].valInt;
 	}
-	mCamera->setNearClipDistance(mNearClipMax);
 	// camera position
 	if(props.hasKey("CameraInitLookAtX")){
-		mCameraInitLookAt.x = props["CameraInitLookAtX"].valInt;
+		mCameraCtrl->mCameraInitLookAt.x = props["CameraInitLookAtX"].valInt;
 	}
 	if(props.hasKey("CameraInitLookAtY")){
-		mCameraInitLookAt.y = props["CameraInitLookAtY"].valInt;
+		mCameraCtrl->mCameraInitLookAt.y = props["CameraInitLookAtY"].valInt;
 	}
 	if(props.hasKey("CameraInitLookAtZ")){
-		mCameraInitLookAt.z = props["CameraInitLookAtZ"].valInt;
+		mCameraCtrl->mCameraInitLookAt.z = props["CameraInitLookAtZ"].valInt;
 	}
 	if(props.hasKey("CameraInitPositionX")){
-		mCameraInitPosition.x = props["CameraInitPositionX"].valInt;
+		mCameraCtrl->mCameraInitPosition.x = props["CameraInitPositionX"].valInt;
 	}
 	if(props.hasKey("CameraInitPositionY")){
-		mCameraInitPosition.y = props["CameraInitPositionY"].valInt;
+		mCameraCtrl->mCameraInitPosition.y = props["CameraInitPositionY"].valInt;
 	}
 	if(props.hasKey("CameraInitPositionZ")){
-		mCameraInitPosition.z = props["CameraInitPositionZ"].valInt;
+		mCameraCtrl->mCameraInitPosition.z = props["CameraInitPositionZ"].valInt;
 	}
-	mCameraLookAtOffset = mCameraInitLookAt - mInitPosition;
-	mCameraPositionOffset = mCameraInitPosition - mInitPosition;
-	mCamera->setPosition(mCameraInitPosition);
-	mCamera->lookAt(mCameraInitLookAt);
+	mCameraCtrl->mCameraLookAtOffset = mCameraCtrl->mCameraInitLookAt - mInitPosition;
+	mCameraCtrl->mCameraPositionOffset = mCameraCtrl->mCameraInitPosition - mInitPosition;
+	mCameraCtrl->setupCamera();
+
 	// sky
 	if(props.hasKey("SkyType") && props.hasKey("SkyName")){
 		if(props["SkyType"].valStr == "Dome"){
@@ -169,6 +174,8 @@ void BasicTutorial_00::loadLevelFromScene(const String& sceneName){
 
 void BasicTutorial_00::createScene(void) 
 {
+	// [Camera]
+	mCameraCtrl->setup(mCamera,mSceneMgr,this);
 	// [GUI]
 	mGUI->setup(this);
 	mGUI->createAllWindow();
@@ -214,7 +221,7 @@ void BasicTutorial_00::updateBasic(const FrameEvent &evt){
 	mGUI->update(evt.timeSinceLastFrame);
 	if(!mEnableFreeMode){
 		updateLightPosition(evt);
-		updateCameraPosition(evt);
+		mCameraCtrl->updateBasic(evt);		
 		equalizeSpeed(evt);
 	}
 	fixOrientation(evt);
@@ -223,6 +230,7 @@ void BasicTutorial_00::updateBasic(const FrameEvent &evt){
 }
 
 void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
+	mCameraCtrl->updatePlayingGame(evt);
 	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
 	mObstacleMgr->updateLifeTime(evt);
 	mObstacleMgr->updateBulletCollision(evt);
@@ -233,7 +241,6 @@ void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
 		mAirJumpLeft = mAirJumpMax;
 	}
 	processInputPlayingGame(evt);
-	mCameraMotion.record(mPlayerObstacle->getVelocity());
 	// Score
 	mTimeScoreTemp += evt.timeSinceLastFrame;
 	mTimeElapsed += evt.timeSinceLastFrame;
@@ -338,6 +345,20 @@ void BasicTutorial_00::processInputBasic(const FrameEvent& evt){
 
 }
 void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_LEFT)){
+		mCameraCtrl->TurnCamera(turnLeft,mPlayerObstacle->getPosition());
+		currentDirection -= 1;
+		if(currentDirection < 0){
+			currentDirection = 3;
+		}
+	}
+	if(keyboardhandler->isKeyTriggered(OIS::KC_RIGHT)){
+		currentDirection += 1;
+		if(currentDirection > 3){
+			currentDirection = 0;
+		}
+		mCameraCtrl->TurnCamera(turnRight,mPlayerObstacle->getPosition());
+	}
 	if(keyboardhandler->isKeyPressing(OIS::KC_Z) && mPlayerObstacle->isSlideEnable()){
 		mPlayerObstacle->setSliding(true);
 	}
@@ -436,28 +457,12 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 void BasicTutorial_00::updateLightPosition(const FrameEvent& evt){
 	mLight->setPosition(mPlayerObstacle->getSceneNode()->getPosition() + mLightOffset);
 }
-// [NEW]
-void BasicTutorial_00::updateCameraPosition(const FrameEvent& evt){
-	Vector3 playerPos = mPlayerObstacle->getSceneNode()->getPosition();
-	//playerPos[1] = mInitPosition[1];
-	mCamera->setPosition(playerPos + mCameraPositionOffset);
-	mCamera->lookAt(playerPos + mCameraLookAtOffset);
-	// clip
-	if(!mGameStarted || mCameraMotion.isDown()){
-		mCamera->setNearClipDistance(mNearClipMin);	
-	}
-	else{
-		mCamera->setNearClipDistance(mNearClipMax);
-	}
-	//cout << mPlayerObstacle->getVelocity() << endl;
-	//cout << mCamera->getPosition() << endl;
-}
 
 // [NEW]
 void BasicTutorial_00::equalizeSpeed(const FrameEvent& evt){
 	// speed
 	Vector3 currentV = mPlayerObstacle->getVelocity();
-	Vector3 finalV = mInitVelocity;
+	Vector3 finalV = mDirectionVectors[currentDirection];
 	finalV[1] = currentV[1];
 	mPlayerObstacle->setVelocity(finalV);
 }
@@ -503,6 +508,7 @@ Real BasicTutorial_00::speedAdjustment(const Vector3& old,const Vector3& go){
 bool BasicTutorial_00::keyPressed( const OIS::KeyEvent &arg ){
 	keyboardhandler->keyPressed(arg);
 	mGUI->keyPressed(arg); // GUI
+	//mCameraMan->injectKeyDown(arg);
 	return BaseApplication::keyPressed(arg);
 }
 
@@ -510,6 +516,7 @@ bool BasicTutorial_00::keyPressed( const OIS::KeyEvent &arg ){
 bool BasicTutorial_00::keyReleased( const OIS::KeyEvent &arg ){
 	keyboardhandler->keyReleased(arg);
 	mGUI->keyReleased(arg); // GUI
+	//mCameraMan->injectKeyUp(arg);
 	return BaseApplication::keyReleased(arg);
 
 }
@@ -517,6 +524,9 @@ bool BasicTutorial_00::keyReleased( const OIS::KeyEvent &arg ){
 bool BasicTutorial_00::mouseMoved( const OIS::MouseEvent &arg )
 {
 	mGUI->mouseMoved(arg);
+	if(mEnableFreeMode){
+		//mCameraMan->injectMouseMove(arg);
+	}
 	return BaseApplication::mouseMoved(arg);
 }
 // GUI
@@ -539,7 +549,8 @@ void BasicTutorial_00::startGame(){
 	// start game
 	mGameStarted = true;
 	mGamePaused = false;
-	mPlayerObstacle->setVelocity(mInitVelocity);
+	currentDirection = DIRECTION_FRONT;
+	mPlayerObstacle->setVelocity(mDirectionVectors[DIRECTION_FRONT]);
 	mPlayerObstacle->setPosition(mInitPosition);
 }
 

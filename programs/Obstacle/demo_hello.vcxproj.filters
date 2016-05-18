@@ -21,6 +21,9 @@
     <Filter Include="Obstacle">
       <UniqueIdentifier>{d84195bc-4fc6-42e9-a47d-19e298715dc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{d716f35d-73e9-4708-9312-0e5f1f3d8fdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\BaseApplication.cpp">
@@ -88,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="source\GameOverWindow.cpp">
       <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NCTUCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CameraMotion.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +168,12 @@
     </ClInclude>
     <ClInclude Include="include\GameOverWindow.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NCTUCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CameraMotion.h">
+      <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
