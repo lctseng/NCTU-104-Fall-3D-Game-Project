@@ -371,11 +371,11 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 		if(mPlayerObstacle->isJumpEnable()){
 			finalV[1] = mSpeedRate * 35.0f;
 		}
-		else if(finalV.y < 0.0f && mAirJumpLeft > 0){ // air jump?
-			finalV[1] += mAirJumpSpeed;
-			--mAirJumpLeft;
-			cout << "Air Jump Left: " << mAirJumpLeft << endl;
-		}
+		//else if(finalV.y < 0.0f && mAirJumpLeft > 0){ // air jump?
+		//	finalV[1] += mAirJumpSpeed;
+		//	--mAirJumpLeft;
+		//	cout << "Air Jump Left: " << mAirJumpLeft << endl;
+		//}
 		mPlayerObstacle->setVelocity(finalV);
 		//mPlayerObstacle->applyVelocityChange(Vector3(0,speed_rate * 35,0));
 	}
