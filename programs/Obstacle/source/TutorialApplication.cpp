@@ -346,19 +346,23 @@ void BasicTutorial_00::processInputBasic(const FrameEvent& evt){
 
 }
 void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
-	if(keyboardhandler->isKeyTriggered(OIS::KC_LEFT) && mCameraCtrl->isTurnOK()){
-		mCameraCtrl->TurnCamera(turnLeft,mPlayerObstacle->getPosition());
-		currentDirection -= 1;
-		if(currentDirection < 0){
-			currentDirection = 3;
+	if(!mEnableFreeMode){
+		if(keyboardhandler->isKeyTriggered(OIS::KC_LEFT) && mCameraCtrl->isTurnOK() && mPlayerObstacle->isTurnOK(turnLeft)){
+			currentDirection -= 1;
+			if(currentDirection < 0){
+				currentDirection = 3;
+			}
+			mCameraCtrl->TurnCamera(turnLeft,mPlayerObstacle->getPosition());
+			mPlayerObstacle->onTurn(turnLeft);
 		}
-	}
-	if(keyboardhandler->isKeyTriggered(OIS::KC_RIGHT) && mCameraCtrl->isTurnOK()){
-		currentDirection += 1;
-		if(currentDirection > 3){
-			currentDirection = 0;
+		if(keyboardhandler->isKeyTriggered(OIS::KC_RIGHT) && mCameraCtrl->isTurnOK() && mPlayerObstacle->isTurnOK(turnRight)){
+			currentDirection += 1;
+			if(currentDirection > 3){
+				currentDirection = 0;
+			}
+			mCameraCtrl->TurnCamera(turnRight,mPlayerObstacle->getPosition());
+			mPlayerObstacle->onTurn(turnRight);
 		}
-		mCameraCtrl->TurnCamera(turnRight,mPlayerObstacle->getPosition());
 	}
 	if(keyboardhandler->isKeyPressing(OIS::KC_Z)){
 		mPlayerObstacle->requireSlide(true);
@@ -503,7 +507,9 @@ Real BasicTutorial_00::speedAdjustment(const Vector3& old,const Vector3& go){
 bool BasicTutorial_00::keyPressed( const OIS::KeyEvent &arg ){
 	keyboardhandler->keyPressed(arg);
 	mGUI->keyPressed(arg); // GUI
-	//mCameraMan->injectKeyDown(arg);
+	if(mEnableFreeMode){
+		mCameraMan->injectKeyDown(arg);
+	}
 	return BaseApplication::keyPressed(arg);
 }
 
@@ -511,7 +517,9 @@ bool BasicTutorial_00::keyPressed( const OIS::KeyEvent &arg ){
 bool BasicTutorial_00::keyReleased( const OIS::KeyEvent &arg ){
 	keyboardhandler->keyReleased(arg);
 	mGUI->keyReleased(arg); // GUI
-	//mCameraMan->injectKeyUp(arg);
+	if(mEnableFreeMode){
+		mCameraMan->injectKeyUp(arg);
+	}
 	return BaseApplication::keyReleased(arg);
 
 }
@@ -520,7 +528,7 @@ bool BasicTutorial_00::mouseMoved( const OIS::MouseEvent &arg )
 {
 	mGUI->mouseMoved(arg);
 	if(mEnableFreeMode){
-		//mCameraMan->injectMouseMove(arg);
+		mCameraMan->injectMouseMove(arg);
 	}
 	return BaseApplication::mouseMoved(arg);
 }
@@ -547,6 +555,7 @@ void BasicTutorial_00::startGame(){
 	currentDirection = DIRECTION_FRONT;
 	mPlayerObstacle->setVelocity(mDirectionVectors[DIRECTION_FRONT]);
 	mPlayerObstacle->setPosition(mInitPosition);
+	mPlayerObstacle->resetAction();
 }
 
 void BasicTutorial_00::exitGame(){
@@ -581,6 +590,7 @@ void BasicTutorial_00::resetGame(){
 	loadLevelFromScene("test.scene");
 	mPlayerObstacle->setVelocity(mInitVelocity);
 	mPlayerObstacle->setPosition(mInitPosition);
+	mPlayerObstacle->resetAction();
 }
 void BasicTutorial_00::onLoseGame(){
 	mGameOvered = true;

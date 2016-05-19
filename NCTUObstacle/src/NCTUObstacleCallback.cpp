@@ -43,6 +43,7 @@ btScalar ObstacleContactResultCallback::addSingleResult(btManifoldPoint& cp,
 		// check on plane
 		if(normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45){
 			mSubject->setIsOnObstaclePlane(true);
+			mSubject->setCurrentObstacle(obstacle);
 			// check bumping
 			Real bumpSpeed  = obstacle->getBumpSpeed();
 			if(bumpSpeed > 0.0f){

@@ -22,6 +22,7 @@ namespace NCTU{
 		virtual void setScale(const Ogre::Vector3&);
 		virtual void updateCollision(const Ogre::FrameEvent& evt){};
 		virtual void updateLifeTime(const Ogre::FrameEvent& evt);
+		virtual void updatePlayingGame(const Ogre::FrameEvent& evt);
 
 		virtual inline Ogre::SceneNode* getSceneNode(){return mNode;}
 		virtual inline Ogre::Entity* getEntity(){return mEntity;}
@@ -81,6 +82,15 @@ namespace NCTU{
 
 		virtual inline ObstacleManager* getManager(){return mManager;}
 
+		virtual void setCurrentObstacle(Obstacle* obj);
+		virtual inline void setTurnType(const Ogre::String& v){mTurnType = v;}
+		virtual inline const Ogre::String& getTurnType() const {return mTurnType;}
+
+		virtual inline void setTurnUsed(bool v){mTurnUsed = v;}
+		virtual inline bool getTurnUsed() const {return mTurnUsed;}
+
+
+
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 		propMap<int,Ogre::String> mHpChangeMaterials;
 	protected:
@@ -108,10 +118,16 @@ namespace NCTU{
 		int mHitPoint;
 		HpType mHpType;
 		Ogre::Real mBumpSpeed;
+		Ogre::String mTurnType;
+		bool mTurnUsed;
 
 		bool mFrozen;
+		
 
 		std::list<Obstacle *>::iterator mMyIterator;
+
+		Obstacle* mCurrentObstacle;
+		Ogre::Real mCurrentObstacleValid;
 
 		// particle system
 		bool mParticleSystemInit;

@@ -26,6 +26,10 @@ namespace NCTU{
 		virtual void performJump();
 
 		virtual inline void requireSlide(bool v){mSlideRequiring = v;}
+		virtual void resetAction();
+		
+		virtual bool isTurnOK(int turn);
+		virtual void onTurn(int turn);
 
 	protected:
 		
@@ -39,6 +43,8 @@ namespace NCTU{
 		Ogre::Real mSlidingValidTime;
 		Ogre::Real mJumpCoolDown;
 		bool mSlideRequiring;
+
+		
 
 
 

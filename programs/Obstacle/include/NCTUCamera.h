@@ -3,9 +3,6 @@
 #define NCTUCamera_H
 
 
-#define turnRight 0
-#define turnLeft 1
-
 #include <OgreCamera.h>
 #include "CameraMotion.h"
 #include <math.h>

@@ -9,6 +9,9 @@ class NCTUCamera;
 #define DIRECTION_BACK 2
 #define DIRECTION_LEFT 3
 
+#define turnRight 0
+#define turnLeft 1
+
 namespace NCTU{
 	class GUIWindow;
 	class MainMenuWindow;

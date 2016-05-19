@@ -1,0 +1,35 @@
+// hanayo genrated by blender2ogre 0.5.9
+
+material hanayo 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass hanayo
+        {
+            ambient 0.7013976573944092 0.7253406047821045 0.8000000715255737 1.0
+            diffuse 0.561118134276839 0.5802724924724174 0.640000066757203 1.0
+            specular 0.5 0.00042476612725295126 0.0 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

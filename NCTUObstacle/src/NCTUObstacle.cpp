@@ -26,7 +26,9 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 	mParticleSystemInit(false),
 	mFrozen(false),
 	mEntityDetached(false),
-	mBumpSpeed(0.0f)
+	mBumpSpeed(0.0f),
+	mTurnUsed(false),
+	mCurrentObstacleValid(0.0f)
 {
 
 }
@@ -189,4 +191,21 @@ int Obstacle::decreaseHp(int value){
 	}
 	cout << "Hp Left:" << mHitPoint << endl;
 	return mHitPoint;
+}
+void Obstacle::setCurrentObstacle(Obstacle* obj){
+	mCurrentObstacle = obj;
+	if(obj){
+		mCurrentObstacleValid = 0.1f;	
+	}
+	else{
+		mCurrentObstacleValid = 0.0f;
+	}
+}
+void Obstacle::updatePlayingGame(const FrameEvent& evt){
+	if(mCurrentObstacleValid > 0.0f){
+		mCurrentObstacleValid -= evt.timeSinceLastFrame;
+	}
+	else{
+		mCurrentObstacle = nullptr;
+	}
 }

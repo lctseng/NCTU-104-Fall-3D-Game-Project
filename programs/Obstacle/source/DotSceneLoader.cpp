@@ -533,37 +533,49 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 			touchDataReq |= 0x0001;
 			// get its type
 			touchAngle = getAttribReal(pElement,"value",0.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> angle: " << touchAngle << endl;
+#endif
 		}
 		else if(attrName == "TouchVectorX"){
 			touchDataReq |= 0x0010;
 			// get its type
 			touchVector.x = getAttribReal(pElement,"value",0.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> vectorX: " << touchVector.x << endl;
+#endif
 		}
 		else if(attrName == "TouchVectorY"){
 			touchDataReq |= 0x0100;
 			// get its type
 			touchVector.y = getAttribReal(pElement,"value",0.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> vectorY: " << touchVector.y << endl;
+#endif
 		}
 		else if(attrName == "TouchVectorZ"){
 			touchDataReq |= 0x1000;
 			// get its type
 			touchVector.z = getAttribReal(pElement,"value",0.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> vectorZ: " << touchVector.z << endl;
+#endif
 		}
 		else if(attrName == "HitPointCondition"){
 			hpMaterialReq |= 0x01;
 			// get its type
 			hpCond = getAttribReal(pElement,"value",-1.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> HitPointCondition: " << hpCond << endl;
+#endif
 		}
 		else if(attrName == "HitPointMaterial"){
 			hpMaterialReq |= 0x10;
 			// get its type
 			hpMaterial = getAttrib(pElement,"value","");
+#ifdef VERBOSE_LOAD
 			cout << "--> HitPointMaterial: " << hpMaterial << endl;
+#endif
 		}
 		else{ // not a default name
 			if(saveAsGeneral){
@@ -611,12 +623,16 @@ void DotSceneLoader::processObstacleExtraField(TiXmlElement *XMLNode, ObstaclePr
 	// check data fulfill
 	// touch data
 	if(touchDataReq == 0x1111){
+#ifdef VERBOSE_LOAD
 		cout << "Touch Data Entered, Vector = " << touchVector << ", Angle: " << touchAngle << endl;
+#endif
 		prop.conditionVectors.push_back(make_pair(touchVector,touchAngle));
 	}
 	// hp material
 	if(hpMaterialReq == 0x11){
+#ifdef VERBOSE_LOAD
 		cout << "HP material change enabled, hp = " << hpCond << ", material name: " << hpMaterial << endl;
+#endif
 		prop.hpChangeMaterials[hpCond] = hpMaterial;
 	}
 }
@@ -645,30 +661,42 @@ bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 	
 	//search each user data, store obstacle data first
 	pElement = XMLNode->FirstChildElement("user_data");
+#ifdef VERBOSE_LOAD
 	cout << "[User data] " << name << endl;
+#endif
 	while(pElement)
 	{
 		String attrName = getAttrib(pElement,"name","NULL");
 		if(attrName == "ObstacleType"){
 			// get its type
 			prop.obstacle_type = getAttrib(pElement,"value","NULL");
+#ifdef VERBOSE_LOAD
 			cout << "--> ObstacleType: " << prop.obstacle_type << endl;
+#endif
 		}
 		else if(attrName == "mass"){
 			prop.mass = getAttribReal(pElement,"value",1.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> mass: " << prop.mass << endl;
+#endif
 		}
 		else if(attrName == "friction"){
 			prop.friction = getAttribReal(pElement,"value",1.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> friction: " << prop.friction << endl;
+#endif
 		}
 		else if(attrName == "restitution"){
 			prop.restitution = getAttribReal(pElement,"value",1.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> restitution: " << prop.restitution << endl;
+#endif
 		}
 		else if(attrName == "HitPoint"){
 			prop.hitPoint = (int)getAttribReal(pElement,"value",-1.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> HP: " << prop.hitPoint << endl;
+#endif
 		}
 		else if(attrName == "HpType"){
 			String type = getAttrib(pElement,"value","Both");
@@ -681,11 +709,21 @@ bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 			else{
 				prop.hpType = typeBoth;
 			}
+#ifdef VERBOSE_LOAD
 			cout << "--> HP Type: " << prop.hpType << endl;
+#endif
 		}
 		else if(attrName == "BumpSpeed"){
 			prop.bumpSpeed = getAttribReal(pElement,"value", 0.0f);
+#ifdef VERBOSE_LOAD
 			cout << "--> BumpSpeed: " << prop.bumpSpeed << endl;
+#endif
+		}
+		else if(attrName == "TurnType"){
+			prop.turnType = getAttrib(pElement,"value", "None");
+#ifdef VERBOSE_LOAD
+			cout << "--> TurnType: " << prop.turnType << endl;
+#endif
 		}
 		// next element
 		pElement = pElement->NextSiblingElement("user_data");
@@ -726,6 +764,7 @@ bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 		pObstacle->mHpChangeMaterials = prop.hpChangeMaterials;
 		pObstacle->setHitPoint(prop.hitPoint,prop.hpType);
 		pObstacle->setBumpSpeed(prop.bumpSpeed);
+		pObstacle->setTurnType(prop.turnType);
 	}
 	return obstacleCreated;
 }

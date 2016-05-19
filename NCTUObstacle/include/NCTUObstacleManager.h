@@ -98,7 +98,7 @@ namespace NCTU{
 		inline FloorObstacle* getFloor(){return mFloorObstacle;}
 		inline BasicTutorial_00* getApp(){return mApp;}
 
-		inline void stepSimulation(Ogre::Real time){mWorld->stepSimulation(time);}
+		void stepSimulation(Ogre::Real time);
 		
 		void removePlayerObstacle();
 		void removeFloorObstacle();

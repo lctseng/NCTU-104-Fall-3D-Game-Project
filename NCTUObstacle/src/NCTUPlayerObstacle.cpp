@@ -110,6 +110,7 @@ void PlayerObstacle::updateJumping(const FrameEvent& evt){
 	}
 }
 void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
+	Obstacle::updatePlayingGame(evt);
 	updateSliding(evt);
 	updateJumping(evt);
 }
@@ -150,4 +151,37 @@ void PlayerObstacle::performJump(){
 
 	
 }
+void PlayerObstacle::resetAction(){
+	mIsSliding = false;
+	mSlidingValidTime = 0.0f;
+	mJumpCoolDown = 0.0f;
+}
 
+bool PlayerObstacle::isTurnOK(int turn){
+	// check obstacle touched or used?
+	if(!mCurrentObstacle || mCurrentObstacle->getTurnUsed()){
+		return false;
+	}
+	// check turn type
+	switch(turn){
+	case turnRight:
+		if(mCurrentObstacle->getTurnType() == "Right" || mCurrentObstacle->getTurnType() == "Both"){
+			return true;
+		}
+		break;
+	case turnLeft:
+		if(mCurrentObstacle->getTurnType() == "Left" || mCurrentObstacle->getTurnType() == "Both"){
+			return true;
+		}
+		break;
+	}
+	return false;
+}
+void PlayerObstacle::onTurn(int turn){
+	if(mCurrentObstacle){
+		mCurrentObstacle->setTurnUsed(true);
+		Vector3 finalPos = mCurrentObstacle->getPosition();
+		finalPos.y = getPosition().y;
+		setPosition(finalPos);
+	}
+}

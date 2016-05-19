@@ -15,7 +15,7 @@
 #include "NCTUSphereObstacle.h"
 #include "NCTUFloorObstacle.h"
  
-
+//#define VERBOSE_LOAD
 #define SCENE_RESERVED_NAME "DataField"
 
 // Forward declarations
@@ -63,6 +63,7 @@ namespace Ogre
 		int hitPoint;
 		NCTU::HpType hpType;
 		Real bumpSpeed;
+		String turnType;
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > conditionVectors;
 		propMap<int,String> hpChangeMaterials;
 		ObstacleProperty():obstacle_type("None"),mass(1.0f),friction(1.0f),restitution(1.0f),hitPoint(-1),hpType(NCTU::typeBoth),bumpSpeed(0.0f){}

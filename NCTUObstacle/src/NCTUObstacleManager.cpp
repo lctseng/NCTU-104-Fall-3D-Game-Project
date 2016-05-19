@@ -231,3 +231,6 @@ void ObstacleManager::updateBulletCollision(const FrameEvent& evt){
 		}
 	}
 }
+void ObstacleManager::stepSimulation(Ogre::Real time){
+	mWorld->stepSimulation(time);
+}
