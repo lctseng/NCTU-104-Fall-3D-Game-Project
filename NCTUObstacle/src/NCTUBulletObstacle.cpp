@@ -59,9 +59,11 @@ BulletObstacle::BulletObstacle(
 	// fire a particle system
 	if(mBulletType == typeRed){
 		initParticleSystem("Examples/JetEngine1");	
+		Audio::playSE("ShootRed.wav");
 	}
 	else{
 		initParticleSystem("Examples/JetEngine3");
+		Audio::playSE("ShootBlue.wav");
 	}
 	setOffParticleSystem();
 	
@@ -87,7 +89,6 @@ void BulletObstacle::onLifeEnd(){
 		detachEntity();
 		stopParticleSystem();
 		setLifeTime(1.0f);
-		Audio::playSE("Cursor1.wav");
 	}
 }
 

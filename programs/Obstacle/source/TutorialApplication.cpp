@@ -16,7 +16,19 @@ void onBulletHit(BulletObstacle* bullet,Obstacle* object)
 {
 	if(!dynamic_cast<NCTU::BulletObstacle*>(object)){ // works for non-bullet
 		if(object->getHpType() == typeBoth  || bullet->getBulletType() == typeBoth || bullet->getBulletType() == object->getHpType()){
-			object->decreaseHp();
+			if(object->decreaseHp() >= 0){
+				switch(object->getHpType()){
+				case typeRed:
+					Audio::playSE("HitRed.wav");
+					break;
+				case typeBlue:
+					Audio::playSE("HitBlue.wav");
+					break;
+				case typeBoth:
+					Audio::playSE("HitGeneral.wav");
+					break;
+				}
+			}
 		}		
 		else{
 			// error hit
@@ -591,6 +603,7 @@ void BasicTutorial_00::onLoseGame(){
 	mGameOvered = true;
 	mGamePaused = true;
 	mGUI->getGameOver()->setVisible(true);
+	Audio::playSE("Dead.wav");
 }
 
 void BasicTutorial_00::refreshScore(){

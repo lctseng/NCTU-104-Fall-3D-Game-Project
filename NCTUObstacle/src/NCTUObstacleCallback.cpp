@@ -51,6 +51,7 @@ btScalar ObstacleContactResultCallback::addSingleResult(btManifoldPoint& cp,
 				if(finalV.y <= 1){
 					finalV.y += bumpSpeed;
 					mSubject->setVelocity(finalV);
+					Audio::playSE("BumpJump.wav");
 				}
 			}
 		}

@@ -180,6 +180,17 @@ int Obstacle::decreaseHp(int value){
 		if(mHitPoint <= 0){
 			mManager->getApp()->changeScore(100);
 			mHitPoint = 0;
+			switch(getHpType()){
+			case typeRed:
+				Audio::playSE("BreakRed.wav");
+				break;
+			case typeBlue:
+				Audio::playSE("BreakBlue.wav");
+				break;
+			case typeBoth:
+				Audio::playSE("BreakGeneral.wav");
+				break;
+			}
 			destroy();
 		}
 		else{
