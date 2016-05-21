@@ -5,15 +5,18 @@
         <Property name="Area" value="{{0,0},{0,0},{1,-1},{1,0}}" />
         <Window type="TaharezLook/StaticImage" name="Background" >
             <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}}" />
-            <Property name="Image" value="TaharezLook/MainMenuBackground" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="Disabled" value="true" />
             <Property name="BackgroundEnabled" value="false" />
             <Property name="WantsMultiClickEvents" value="false" />
         </Window>
         <Window type="TaharezLook/Button" name="PlayButton" >
-            <Property name="Area" value="{{0.5,-49},{0,332},{0.5,49},{0,378}}" />
-            <Property name="Text" value="Play Game" />
+            <Property name="Area" value="{{0.5,-75},{0,332},{0.5,75},{0,378}}" />
+            <Property name="Text" value="Start Game" />
+        </Window>
+        <Window type="TaharezLook/Button" name="LevelButton" >
+            <Property name="Area" value="{{0.5,-75},{0,385},{0.5,75},{0,431}}" />
+            <Property name="Text" value="Select Level" />
         </Window>
         <Window type="TaharezLook/Label" name="MenuTitle" >
             <Property name="Area" value="{{0.5,-88},{0,288},{0.5,88},{0,320}}" />
@@ -23,7 +26,7 @@
             <Property name="NormalTextColour" value="FFFF0000" />
         </Window>
         <Window type="TaharezLook/Button" name="ExitButton" >
-            <Property name="Area" value="{{0.5,-49},{0,396},{0.5,49},{0,442}}" />
+            <Property name="Area" value="{{0.5,-75},{0,442},{0.5,75},{0,488}}" />
             <Property name="Text" value="Exit Game" />
         </Window>
     </Window>

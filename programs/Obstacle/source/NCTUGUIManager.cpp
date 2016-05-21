@@ -7,6 +7,7 @@ GUIManager::GUIManager()
 :mRenderer(nullptr),
 mConsole(nullptr),
 mMainMenu(nullptr),
+mLevelMenu(nullptr),
 mGameMenu(nullptr),
 mScoreBar(nullptr),
 mGameOver(nullptr)
@@ -22,6 +23,10 @@ GUIManager::~GUIManager()
 	if(mMainMenu){
 		delete mMainMenu;
 		mMainMenu = nullptr;
+	}
+	if(mLevelMenu){
+		delete mLevelMenu;
+		mLevelMenu = nullptr;
 	}
 	if(mGameMenu){
 		delete mGameMenu;
@@ -71,6 +76,11 @@ void GUIManager::createMainMenu(){
 	mMainMenu->setApp(mApp);
 	mMainMenu->setup();
 }
+void GUIManager::createLevelMenu(){
+	mLevelMenu = new LevelMenuWindow();
+	mLevelMenu->setApp(mApp);
+	mLevelMenu->setup();
+}
 void GUIManager::createGameMenu(){
 	mGameMenu = new GameMenuWindow();
 	mGameMenu->setApp(mApp);
@@ -89,10 +99,11 @@ void GUIManager::createGameOver(){
 
 void GUIManager::createAllWindow(){
 	createMainMenu();
+	createLevelMenu();
 	createGameMenu();
 	createScoreBar();
 	createGameOver();
-	mMainMenu->setVisible(true);
+	mLevelMenu->setVisible(true);
 	mScoreBar->setVisible(true);
 }
 

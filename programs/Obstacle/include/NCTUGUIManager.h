@@ -9,9 +9,11 @@
 #include "NCTUPreRequisite.h"
 #include "GameConsoleWindow.h"
 #include "MainMenuWindow.h"
+#include "LevelMenuWindow.h"
 #include "GameMenuWindow.h"
 #include "GameOverWindow.h"
 #include "ScoreBarWindow.h"
+
 
 namespace NCTU{
 	class GUIManager{
@@ -24,6 +26,7 @@ namespace NCTU{
 
 		void createConsole();
 		void createMainMenu();
+		void createLevelMenu();
 		void createGameMenu();
 		void createScoreBar();
 		void createGameOver();
@@ -39,6 +42,7 @@ namespace NCTU{
 		bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
 
 		MainMenuWindow* getMainMenu(){return mMainMenu;}
+		LevelMenuWindow* getLevelMenu(){return mLevelMenu;}
 		GameMenuWindow* getGameMenu(){return mGameMenu;}
 		ScoreBarWindow* getScoreBar(){return mScoreBar;}
 		GameOverWindow* getGameOver(){return mGameOver;}
@@ -49,6 +53,7 @@ namespace NCTU{
 		// Test Console
 		GameConsoleWindow* mConsole;
 		MainMenuWindow*  mMainMenu;
+		LevelMenuWindow*  mLevelMenu;
 		GameMenuWindow*  mGameMenu;
 		GameOverWindow*  mGameOver;
 		ScoreBarWindow* mScoreBar;

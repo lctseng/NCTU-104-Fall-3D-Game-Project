@@ -98,6 +98,9 @@
     <ClCompile Include="source\CameraMotion.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="source\LevelMenuWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseApplication.h">
@@ -174,6 +177,9 @@
     </ClInclude>
     <ClInclude Include="include\CameraMotion.h">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LevelMenuWindow.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

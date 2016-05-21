@@ -110,6 +110,7 @@ protected:
 
 	NCTUCamera* mCameraCtrl;
 
+	String mCurrentLevelName;
 
 
 
@@ -137,10 +138,14 @@ public:
 	virtual void resumeGame();
 	virtual void backToMainMenu();
 	virtual void resetGame();
+	virtual void enterLevelMenu();
+	virtual void exitLevelMenu();
 	// GUI
 	void refreshScore();
 	int& score() {return mScore;};
 	void changeScore(int val);
+	virtual inline const String& getCurrentLevelName() const {return mCurrentLevelName;}
+	virtual void setCurrentLevelName(const String&);
 };
  
 #endif // #ifndef __BasicTutorial_00_h_

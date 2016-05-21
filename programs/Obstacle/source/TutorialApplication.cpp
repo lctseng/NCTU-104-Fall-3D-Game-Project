@@ -210,10 +210,7 @@ void BasicTutorial_00::createScene(void)
 		0.3f // friction
 		);
 	// -----------
-	loadLevelFromScene("test.scene");
-
-
-
+	loadLevelFromScene("");
 }
 
 void BasicTutorial_00::updateBasic(const FrameEvent &evt){
@@ -545,7 +542,7 @@ bool BasicTutorial_00::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButt
 
 // Menu Control
 void BasicTutorial_00::startGame(){
-	// cloose GUI
+	// close GUI
 	mGUI->getMainMenu()->setVisible(false);
 	// start game
 	mGameStarted = true;
@@ -585,7 +582,7 @@ void BasicTutorial_00::resetGame(){
 	mObstacleMgr->removeAllObstacles();
 	mObstacleMgr->removePlayerObstacle();
 	mDotScene.destroyDedicatedSceneNodes();
-	loadLevelFromScene("test.scene");
+	loadLevelFromScene(getCurrentLevelName());
 	mPlayerObstacle->setVelocity(mInitVelocity);
 	mPlayerObstacle->setPosition(mInitPosition);
 	mPlayerObstacle->resetAction();
@@ -607,4 +604,21 @@ void BasicTutorial_00::changeScore(int val){
 		mScore = 0;
 	}
 	refreshScore();
+}
+
+void BasicTutorial_00::setCurrentLevelName(const String& newLevel){
+	// check level
+	if(mCurrentLevelName != newLevel){
+		mCurrentLevelName = newLevel;
+		resetGame();
+	}
+	exitLevelMenu();
+}
+void BasicTutorial_00::exitLevelMenu(){
+	mGUI->getMainMenu()->setVisible(true);
+	mGUI->getLevelMenu()->setVisible(false);
+}
+void BasicTutorial_00::enterLevelMenu(){
+	mGUI->getMainMenu()->setVisible(false);
+	mGUI->getLevelMenu()->setVisible(true);
 }

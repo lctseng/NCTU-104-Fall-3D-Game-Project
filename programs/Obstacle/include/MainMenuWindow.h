@@ -8,9 +8,11 @@ namespace NCTU{
 	{
 	public:
 		MainMenuWindow();           
+		virtual void setVisible(bool visible);
 	protected:
 		virtual void registerHandlers();          
 		bool onPressPlay(const CEGUI::EventArgs &e);
+		bool onPressLevel(const CEGUI::EventArgs &e);
 		bool onPressExit(const CEGUI::EventArgs &e);
 	};
 };

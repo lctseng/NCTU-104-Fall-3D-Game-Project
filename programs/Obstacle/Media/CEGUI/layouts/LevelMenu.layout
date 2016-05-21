@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="TaharezLook/Menubar" name="LevelMenu" >
+        <Property name="Area" value="{{0,0},{0,0},{1,-1},{1,0}}" />
+        <Window type="TaharezLook/StaticImage" name="Background" >
+            <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Property name="Image" value="TaharezLook/LevelSelectMenuBackground" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="Disabled" value="true" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="WantsMultiClickEvents" value="false" />
+        </Window>
+        <Window type="TaharezLook/Label" name="MenuTitle" >
+            <Property name="Area" value="{{0.5,-88},{0,288},{0.5,88},{0,320}}" />
+            <Property name="Font" value="Jura-18" />
+            <Property name="Text" value="Select Level" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FFFF0000" />
+        </Window>
+        <Window type="TaharezLook/Button" name="Level1Button" >
+            <Property name="Area" value="{{0.5,-49},{0,332},{0.5,49},{0,378}}" />
+            <Property name="Text" value="Level 1" />
+        </Window>
+        <Window type="TaharezLook/Button" name="Level2Button" >
+            <Property name="Area" value="{{0.5,-49},{0,396},{0.5,49},{0,442}}" />
+            <Property name="Text" value="Level 2" />
+        </Window>
+        <Window type="TaharezLook/Button" name="Level3Button" >
+            <Property name="Area" value="{{0.5,-49},{0,461},{0.5,49},{0,507}}" />
+            <Property name="Text" value="Level 3" />
+        </Window>
+        <Window type="TaharezLook/Button" name="CancelButton" >
+            <Property name="Area" value="{{0.5,-49},{0,530},{0.5,49},{0,576}}" />
+            <Property name="Text" value="Cancel" />
+            <Property name="HoverTextColour" value="tl:FFFF00FF tr:FFFF00FF bl:FFFF00FF br:FFFF00FF" />
+            <Property name="NormalTextColour" value="tl:FFFF00FF tr:FFFF00FF bl:FFFF00FF br:FFFF00FF" />
+            <Property name="PushedTextColour" value="tl:FFFF00FF tr:FFFF00FF bl:FFFF00FF br:FFFF00FF" />
+        </Window>
+    </Window>
+</GUILayout>

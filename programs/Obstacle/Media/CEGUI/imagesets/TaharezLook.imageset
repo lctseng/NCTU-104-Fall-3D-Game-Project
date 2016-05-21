@@ -242,5 +242,8 @@
     <Image height="11" name="TreeListClosed" width="7" xPos="175" yPos="111" />
     <Image height="7" name="TreeListOpened" width="11" xPos="164" yPos="111" />
     <Image height="14" name="UpArrow" width="11" xPos="27" yPos="146" />
-    <Image height="768" name="MainMenuBackground" width="1024" xPos="0" yPos="256" />
+    <Image height="768" name="LevelSelectMenuBackground" width="1024" xPos="0" yPos="256" />
+    <Image height="768" name="Level1MenuBackground" width="1024" xPos="0" yPos="1024" />
+    <Image height="768" name="Level2MenuBackground" width="1024" xPos="0" yPos="1792" />
+    <Image height="768" name="Level3MenuBackground" width="1024" xPos="0" yPos="2560" />
 </Imageset>

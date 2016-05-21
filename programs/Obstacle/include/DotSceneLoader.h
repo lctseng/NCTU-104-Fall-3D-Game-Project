@@ -78,7 +78,7 @@ namespace Ogre
 		void parseDotScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr, NCTU::ObstacleManager* obstacleMgr, SceneNode *pAttachNode = NULL, const String &sPrependNode = "");
 		String getProperty(const String &ndNm, const String &prop);
 		void destroyDedicatedSceneNodes();
-
+		void loadDummyScene();
 
 		std::vector<nodeProperty> nodeProperties;
 		std::vector<String> staticObjects;

@@ -6,75 +6,88 @@ using namespace std;
 using namespace Ogre;
 using namespace NCTU;
 
+void DotSceneLoader::loadDummyScene(){
+	mObstacleMgr->createPlayer(
+		1.0,1.0,1.0,"sphere.mesh");
+}
+
 void DotSceneLoader::parseDotScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr,ObstacleManager* obstacleMgr , SceneNode *pAttachNode, const String &sPrependNode)
 {
 	mGeneralProps.clear();
-	// set up shared object values
-	m_sGroupName = groupName;
 	mSceneMgr = yourSceneMgr;
-	m_sPrependNode = sPrependNode;
 	mObstacleMgr = obstacleMgr;
-	staticObjects.clear();
-	dynamicObjects.clear();
+	if(SceneName.empty()){
+		loadDummyScene();
+	}
+	else{
+		// set up shared object values
+		m_sGroupName = groupName;
+		m_sPrependNode = sPrependNode;
 
-	TiXmlDocument   *XMLDoc = 0;
-	TiXmlElement   *XMLRoot;
+		staticObjects.clear();
+		dynamicObjects.clear();
 
-	//try
-	{
-		// Strip the path
-		Ogre::String basename, path;
-		Ogre::StringUtil::splitFilename(SceneName, basename, path);
+		TiXmlDocument   *XMLDoc = 0;
+		TiXmlElement   *XMLRoot;
 
-		DataStreamPtr pStream = ResourceGroupManager::getSingleton().
-			openResource( basename, groupName );
-
-		//DataStreamPtr pStream = ResourceGroupManager::getSingleton().
-		//	openResource( SceneName, groupName );
-
-		String data = pStream->getAsString();
-		// Open the .scene File
-		XMLDoc = new TiXmlDocument();
-		XMLDoc->Parse( data.c_str() );
-		pStream->close();
-		pStream.setNull();
-
-		if( XMLDoc->Error() )
+		//try
 		{
-			//We'll just log, and continue on gracefully
-			LogManager::getSingleton().logMessage("[DotSceneLoader] The TiXmlDocument reported an error");
-			delete XMLDoc;
+			// Strip the path
+			Ogre::String basename, path;
+			Ogre::StringUtil::splitFilename(SceneName, basename, path);
+
+			DataStreamPtr pStream = ResourceGroupManager::getSingleton().
+				openResource( basename, groupName );
+
+			//DataStreamPtr pStream = ResourceGroupManager::getSingleton().
+			//	openResource( SceneName, groupName );
+
+			String data = pStream->getAsString();
+			// Open the .scene File
+			XMLDoc = new TiXmlDocument();
+			XMLDoc->Parse( data.c_str() );
+			pStream->close();
+			pStream.setNull();
+
+			if( XMLDoc->Error() )
+			{
+				//We'll just log, and continue on gracefully
+				LogManager::getSingleton().logMessage("[DotSceneLoader] The TiXmlDocument reported an error");
+				delete XMLDoc;
+				return;
+			}
+		}
+		/*
+		catch(...)
+		{
+		//We'll just log, and continue on gracefully
+		LogManager::getSingleton().logMessage("[DotSceneLoader] Error creating TiXmlDocument");
+		delete XMLDoc;
+		return;
+		}
+		*/
+
+		// Validate the File
+		XMLRoot = XMLDoc->RootElement();
+		if( String( XMLRoot->Value()) != "scene"  ) {
+			LogManager::getSingleton().logMessage( "[DotSceneLoader] Error: Invalid .scene File. Missing <scene>" );
+			delete XMLDoc;      
 			return;
 		}
-	}
-	/*
-	catch(...)
-	{
-	//We'll just log, and continue on gracefully
-	LogManager::getSingleton().logMessage("[DotSceneLoader] Error creating TiXmlDocument");
-	delete XMLDoc;
-	return;
-	}
-	*/
 
-	// Validate the File
-	XMLRoot = XMLDoc->RootElement();
-	if( String( XMLRoot->Value()) != "scene"  ) {
-		LogManager::getSingleton().logMessage( "[DotSceneLoader] Error: Invalid .scene File. Missing <scene>" );
-		delete XMLDoc;      
-		return;
+		// figure out where to attach any nodes we create
+		mAttachNode = pAttachNode;
+		if(!mAttachNode)
+			mAttachNode = mSceneMgr->getRootSceneNode();
+
+		// Process the scene
+		processScene(XMLRoot);
+
+		// Close the XML File
+		delete XMLDoc;
+
 	}
 
-	// figure out where to attach any nodes we create
-	mAttachNode = pAttachNode;
-	if(!mAttachNode)
-		mAttachNode = mSceneMgr->getRootSceneNode();
-
-	// Process the scene
-	processScene(XMLRoot);
-
-	// Close the XML File
-	delete XMLDoc;
 }
 
 void DotSceneLoader::processScene(TiXmlElement *XMLRoot)
@@ -645,7 +658,7 @@ bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 	Obstacle* pObstacle = nullptr;
 	bool obstacleCreated = false;
 	// 
-	
+
 	// Process text node: reserved field
 	pElement = XMLNode->FirstChildElement("node");
 	while(pElement)
@@ -657,8 +670,8 @@ bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 		}
 		pElement = pElement->NextSiblingElement("node");
 	}
-	
-	
+
+
 	//search each user data, store obstacle data first
 	pElement = XMLNode->FirstChildElement("user_data");
 #ifdef VERBOSE_LOAD
