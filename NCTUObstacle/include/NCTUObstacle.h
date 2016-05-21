@@ -2,7 +2,7 @@
 #define NCTU_OBSTACLE_h_
 
 #include "NCTUObstaclePreRequisites.h"
-#define FLOOR_TOUCH_THRESHOLD 5
+#define FLOOR_TOUCH_THRESHOLD 20
 #define OBSTACLE_PLANE_TOUCH_THRESHOLD 10
 #define FLOOR_TOUCH_STRICT_THRESHOLD 1
 #define OBSTACLE_PLANE_TOUCH_STRICT_THRESHOLD 1
@@ -89,7 +89,7 @@ namespace NCTU{
 		virtual inline void setTurnUsed(bool v){mTurnUsed = v;}
 		virtual inline bool getTurnUsed() const {return mTurnUsed;}
 
-
+		virtual inline const Ogre::String& getName() const {return mName;}
 
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 		propMap<int,Ogre::String> mHpChangeMaterials;

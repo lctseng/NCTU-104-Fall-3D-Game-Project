@@ -1,9 +1,10 @@
 #include "NCTUObstacleManager.h"
 #include "TutorialApplication.h"
+#include <iostream>
 
 using namespace Ogre;
 using namespace NCTU;
-using std::deque;
+using namespace std;
 
 ObstacleManager::ObstacleManager()
 	:mSceneMgr(nullptr),
@@ -155,6 +156,7 @@ BulletObstacle* ObstacleManager::createBullet(
 	obj->setMyIterator(--mObstacles.end());
 	mBullets.push_back(obj);
 	obj->setBulletIterator(--mBullets.end());
+	//cout << "create index:" << mObstacleIndex << endl;
 	return obj;
 }
 

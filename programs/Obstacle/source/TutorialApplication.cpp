@@ -370,7 +370,7 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 	else{
 		mPlayerObstacle->requireSlide(false);
 	}
-	if(keyboardhandler->isKeyTriggered(OIS::KC_SPACE)){
+	if(mPlayerObstacle->isJumpEnable() && keyboardhandler->isKeyTriggered(OIS::KC_SPACE)){
 		mPlayerObstacle->performJump();
 
 	}
@@ -390,6 +390,7 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 			shoot_v * mBulletSpeedFactor); // shooting speed
 		obstacle->getEntity()->setMaterialName("Bullet/Capsule");
 		obstacle->setLifeTime(mBulletLifeTime);
+
 	}
 	if(keyboardhandler->isKeyTriggered(OIS::KC_C) ){
 		NCTU::BulletObstacle* obstacle = mObstacleMgr->createBullet(
@@ -434,8 +435,6 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 		if(!mGamePaused){
 			// Update for playing game
 			updatePlayingGame(evt);
-			//cout << "On Floor:" << mPlayerObstacle->isOnFloor() << endl;
-			//cout << "On Obstacle:" << mPlayerObstacle->IsOnObstaclePlane() << endl;
 
 
 		}
@@ -449,7 +448,6 @@ bool BasicTutorial_00::frameStarted(const FrameEvent &evt)
 			}
 		}
 	}
-
 	return true;
 }
 // [NEW]

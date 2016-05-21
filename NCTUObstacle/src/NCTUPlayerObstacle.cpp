@@ -113,6 +113,12 @@ void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
 	Obstacle::updatePlayingGame(evt);
 	updateSliding(evt);
 	updateJumping(evt);
+	//cout << "Floor:" << isOnFloor() << endl;
+	//cout << "Floor cnt:" << mFloorTouchValue << endl;
+	//cout << "Obs:" << IsOnObstaclePlane()<< endl;
+	//cout << "Obs cnt:" << mObstaclePlaneTouchValue << endl;
+	//cout << "Not Sliding:" << isSliding() << endl;
+	//cout << "Time:" << mJumpCoolDown << endl;
 }
 void PlayerObstacle::setSliding(bool val){
 	mIsSliding = val;
@@ -133,15 +139,13 @@ bool PlayerObstacle::isSlideEnable(){
 }
 
 void PlayerObstacle::performJump(){
-	// normal jump?
-	if(isJumpEnable()){
-		Vector3 finalV = getVelocity();
-		finalV[1] = 1400.0f;
-		setVelocity(finalV);
-		// cancel slide
-		mSlidingValidTime = 0.0f;
-		mJumpCoolDown = 0.5f;
-	}
+	// normal jump
+	Vector3 finalV = getVelocity();
+	finalV[1] = 1400.0f;
+	setVelocity(finalV);
+	// cancel slide
+	mSlidingValidTime = 0.0f;
+	mJumpCoolDown = 0.5f;
 	// Air jump is deprecated
 	//else if(finalV.y < 0.0f && mAirJumpLeft > 0){ // air jump?
 	//	finalV[1] += mAirJumpSpeed;

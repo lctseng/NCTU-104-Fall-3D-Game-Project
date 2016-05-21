@@ -35,13 +35,13 @@ btScalar ObstacleContactResultCallback::addSingleResult(btManifoldPoint& cp,
 		// check normal on B
 		for(auto it = obstacle->mCollisionConditionVectors.begin();it != obstacle->mCollisionConditionVectors.end();++it){
 			auto& entry = *it;
-			if(normalOnB.angleBetween(entry.first).valueDegrees() <= entry.second){
+			if(!dynamic_cast<NCTU::BulletObstacle*>(obstacle) && normalOnB.angleBetween(entry.first).valueDegrees() <= entry.second){
 				mSubject->setIsBumpObstacle(true);
 				break;
 			}
 		}
 		// check on plane
-		if(normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45){
+		if( !dynamic_cast<NCTU::BulletObstacle*>(obstacle) && normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45 ){
 			mSubject->setIsOnObstaclePlane(true);
 			mSubject->setCurrentObstacle(obstacle);
 			// check bumping
