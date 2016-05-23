@@ -16,19 +16,42 @@ void onBulletHit(BulletObstacle* bullet,Obstacle* object)
 {
 	if(!dynamic_cast<NCTU::BulletObstacle*>(object)){ // works for non-bullet
 		if(object->getHpType() == typeBoth  || bullet->getBulletType() == typeBoth || bullet->getBulletType() == object->getHpType()){
-			if(object->decreaseHp() >= 0){
+			int finalHp = object->decreaseHp();
+			if(finalHp > 0){
 				switch(object->getHpType()){
 				case typeRed:
 					Audio::playSE("HitRed.wav");
+					bullet->initParticleSystem("Examples/RedFountain",1);
 					break;
 				case typeBlue:
 					Audio::playSE("HitBlue.wav");
+					bullet->initParticleSystem("Examples/BlueFountain",1);
 					break;
 				case typeBoth:
+					bullet->initParticleSystem("Examples/PurpleFountain",1);
 					Audio::playSE("HitGeneral.wav");
 					break;
 				}
 			}
+			else if(finalHp == 0){
+				switch(object->getHpType()){
+				case typeRed:
+					//Audio::playSE("HitRed.wav");
+					bullet->initParticleSystem("Examples/SmokeRed",1);
+					break;
+				case typeBlue:
+					//Audio::playSE("HitBlue.wav");
+					bullet->initParticleSystem("Examples/SmokeBlue",1);
+					break;
+				case typeBoth:
+					//Audio::playSE("HitGeneral.wav");
+					bullet->initParticleSystem("Examples/SmokePurple",1);
+					break;
+				}
+			}
+			bullet->setOffParticleSystem(1);
+
+			
 		}		
 		else{
 			// error hit
@@ -62,6 +85,7 @@ BasicTutorial_00::BasicTutorial_00(void) {
 	mTimeScoreTemp = 0.0f;
 	mTimeElapsed = 0.0;
 	currentDirection = DIRECTION_FRONT;
+	mCurrentBGM = "Level.wav";
 	// ------
 	//[KEYBOARD]
 	keyboardhandler = new KeyBoardHandler();
@@ -223,6 +247,7 @@ void BasicTutorial_00::createScene(void)
 		);
 	// -----------
 	loadLevelFromScene("");
+	NCTU::Audio::playBGM("Menu.wav");
 }
 
 void BasicTutorial_00::updateBasic(const FrameEvent &evt){
@@ -563,6 +588,7 @@ void BasicTutorial_00::startGame(){
 	mPlayerObstacle->setVelocity(mDirectionVectors[DIRECTION_FRONT]);
 	mPlayerObstacle->setPosition(mInitPosition);
 	mPlayerObstacle->resetAction();
+	NCTU::Audio::playBGM(mCurrentBGM);
 }
 
 void BasicTutorial_00::exitGame(){
@@ -571,16 +597,19 @@ void BasicTutorial_00::exitGame(){
 void BasicTutorial_00::pauseGame(){
 	mGamePaused = true;
 	mGUI->getGameMenu()->setVisible(true);
+	NCTU::Audio::pauseBGM();
 }
 void BasicTutorial_00::resumeGame(){
 	mGamePaused = false;
 	mGUI->getGameMenu()->setVisible(false);
+	NCTU::Audio::resumeBGM();
 }
 void BasicTutorial_00::backToMainMenu(){
 	resetGame();
 	mGUI->getGameMenu()->setVisible(false);
 	mGUI->getGameOver()->setVisible(false);
 	mGUI->getMainMenu()->setVisible(true);
+	NCTU::Audio::playBGM("Menu.wav");
 }
 void BasicTutorial_00::resetGame(){
 	// score
@@ -604,6 +633,9 @@ void BasicTutorial_00::onLoseGame(){
 	mGamePaused = true;
 	mGUI->getGameOver()->setVisible(true);
 	Audio::playSE("Dead.wav");
+	Audio::playBGM("GameOver.wav");
+	mPlayerObstacle->initParticleSystem("Examples/GreenyNimbus");
+	mPlayerObstacle->setOffParticleSystem();
 }
 
 void BasicTutorial_00::refreshScore(){

@@ -28,7 +28,8 @@ BulletObstacle::BulletObstacle(
 	mIndex(index),
 	mRadius(radius),
 	mHit(false),
-	mBulletType(bulletType)
+	mBulletType(bulletType),
+	mParticleLifeTime(3.0f)
 {
 	mName = "obstacle.bullet." + StringConverter::toString(mIndex);
 	// create ogre objects
@@ -58,14 +59,14 @@ BulletObstacle::BulletObstacle(
 	mBody->getBulletObject()->setUserPointer(this);
 	// fire a particle system
 	if(mBulletType == typeRed){
-		initParticleSystem("Examples/JetEngine1");	
+		initParticleSystem("Examples/JetEngine1",0);	
 		Audio::playSE("ShootRed.wav");
 	}
 	else{
-		initParticleSystem("Examples/JetEngine3");
+		initParticleSystem("Examples/JetEngine3",0);
 		Audio::playSE("ShootBlue.wav");
 	}
-	setOffParticleSystem();
+	setOffParticleSystem(0);
 	
 }
 void BulletObstacle::setScale(const Ogre::Vector3& v){
@@ -87,10 +88,25 @@ void BulletObstacle::onLifeEnd(){
 	else{
 		destroyPhysics();
 		detachEntity();
-		stopParticleSystem();
-		setLifeTime(1.0f);
+		stopParticleSystem(0);
+		setLifeTime(5.0f);
+		if(mParticleSystems.size() > 1 && mParticleSystems[1].mParticleSystemInit){
+			mParticleSystems[1].mParticleSystemNode->lookAt(mManager->getPlayer()->getPosition(),Node::TS_WORLD,Vector3::UNIT_Y);	
+		}
 	}
 }
+
+void BulletObstacle::updateLifeTime(const Ogre::FrameEvent& evt){
+	Obstacle::updateLifeTime(evt);
+	if(mFrozen){
+		mParticleLifeTime -= evt.timeSinceLastFrame;
+		if(mParticleLifeTime <= 0){
+			stopParticleSystem(1);
+			// TODO:: stop particle system	
+		}
+	}
+}
+
 
 bool BulletObstacle::isAlive() const {
 	return Obstacle::isAlive() && !mHit;

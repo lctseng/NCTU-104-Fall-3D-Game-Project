@@ -15,6 +15,7 @@ namespace NCTU{
 		virtual inline bool isAlive() const;
 		virtual inline void cleanUp();
 		virtual inline HpType getBulletType()const {return mBulletType;}
+		virtual void updateLifeTime(const Ogre::FrameEvent& evt);
 
 		static void setHandlerBulletHit(BulletHitHandler handler){mBulletHitHandler = handler;};
 	protected:
@@ -27,6 +28,7 @@ namespace NCTU{
 		virtual inline void onLifeEnd();
 		static BulletHitHandler mBulletHitHandler;
 
+		Ogre::Real mParticleLifeTime;
 		
 	};
 };

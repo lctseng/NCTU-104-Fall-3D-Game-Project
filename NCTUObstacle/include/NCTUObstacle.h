@@ -12,6 +12,21 @@
 #include <map>
 
 namespace NCTU{
+
+	struct ParticleSystemPack{
+		bool mParticleSystemInit;
+		Ogre::SceneNode* mParticleSystemNode;
+		Ogre::ParticleSystem* mParticleSystem;
+		Ogre::String mParticleSystemName;
+		ParticleSystemPack():
+				mParticleSystemInit(false),
+				mParticleSystemNode(nullptr),
+				mParticleSystem(nullptr),
+				mParticleSystemName()
+			{}
+	};
+
+
 	// -------------------------------------------------------------
 	class Obstacle{
 	public:
@@ -70,9 +85,9 @@ namespace NCTU{
 		virtual inline int getHitPoint() const {return mHitPoint;}
 		virtual inline bool isInvincible() const {return mHitPoint < 0;}
 
-		virtual void initParticleSystem(const Ogre::String& particleName);
-		virtual void setOffParticleSystem();
-		virtual void stopParticleSystem();
+		virtual void initParticleSystem(const Ogre::String& particleName, int index = 0);
+		virtual void setOffParticleSystem(int index = 0);
+		virtual void stopParticleSystem(int index = 0);
 		virtual void destroyParticleSystem();
 
 		virtual inline HpType getHpType()const {return mHpType;}
@@ -130,10 +145,7 @@ namespace NCTU{
 		Ogre::Real mCurrentObstacleValid;
 
 		// particle system
-		bool mParticleSystemInit;
-		Ogre::SceneNode* mParticleSystemNode;
-		Ogre::ParticleSystem* mParticleSystem;
-		Ogre::String mParticleSystemName;
+		std::deque<ParticleSystemPack> mParticleSystems;
 
 
 		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 

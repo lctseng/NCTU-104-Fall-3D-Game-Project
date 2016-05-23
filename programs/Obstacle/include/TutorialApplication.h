@@ -111,7 +111,7 @@ protected:
 	NCTUCamera* mCameraCtrl;
 
 	String mCurrentLevelName;
-
+	String mCurrentBGM;
 
 
 public:

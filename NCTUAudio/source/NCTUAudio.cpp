@@ -100,7 +100,34 @@ void NCTU::Audio::playSE (const string& fileName){
 	playFile("Audio/SE/" + fileName);
 }
 void NCTU::Audio::playBGM (const string& fileName){
-	playFile("Audio/BGM/" + fileName);
+	stopBGM();
+	if(!fileName.empty()){
+		playFileInSlot("Audio/BGM/" + fileName,bgmSlot);	
+	}
+}
+void NCTU::Audio::stopBGM (){
+	clearSlot(bgmSlot);
+}
+void NCTU::Audio::pauseBGM (){
+	if(bgmSlot.used){
+		alSourcePause(bgmSlot.source);
+	}
+}
+void NCTU::Audio::resumeBGM (){
+	if(bgmSlot.used){
+		alSourcePlay (bgmSlot.source);
+	}
+}
+
+
+void NCTU::Audio::clearSlot( SoundSlot& slot){
+	if(slot.used){
+		alSourceStop (slot.source);
+		alSourcei(slot.source,AL_BUFFER,0);
+		alDeleteSources(1,&slot.source);
+		alDeleteBuffers(1,&slot.buffer);
+		slot.used = false;
+	}
 }
 
 void NCTU::Audio::playHello(){

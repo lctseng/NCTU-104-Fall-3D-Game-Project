@@ -23,7 +23,6 @@ Obstacle::Obstacle(ObstacleManager* mgmt,Real restitution,Real friction,Real mas
 	mHitPoint(-1), // invincible
 	mHpType(typeBoth),
 	mName("obstacle"),
-	mParticleSystemInit(false),
 	mFrozen(false),
 	mEntityDetached(false),
 	mBumpSpeed(0.0f),
@@ -134,43 +133,81 @@ OgreBulletCollisions::CollisionShape* Obstacle::generateFittingShape(SceneNode* 
 	return shape;
 }
 
-void Obstacle::initParticleSystem(const String& particleName){
-	if(!mParticleSystemInit){
-		mParticleSystemInit = true;
-		mParticleSystemName = "particle." + mName;
-		mParticleSystemNode = static_cast<SceneNode*>(
+void Obstacle::initParticleSystem(const String& particleName, int index){
+	// check entry exists
+	if(index >= mParticleSystems.size()){
+		// exceeds, fill entries to fill
+		for(int i=mParticleSystems.size();i<=index;i++){
+			mParticleSystems.push_back(ParticleSystemPack());
+		}
+	}
+	ParticleSystemPack& pack = mParticleSystems[index];
+	if(!pack.mParticleSystemInit){
+		pack.mParticleSystemInit = true;
+		pack.mParticleSystemName = "particle." + StringConverter::toString(index) + "." + mName;
+		pack.mParticleSystemNode = static_cast<SceneNode*>(
 			mNode->createChild());
-		mParticleSystem = mManager->getSceneMgr()->createParticleSystem(
-			mParticleSystemName, particleName);
+		pack.mParticleSystem = mManager->getSceneMgr()->createParticleSystem(
+			pack.mParticleSystemName, particleName);
 
-		ParticleEmitter *e = mParticleSystem->getEmitter(0);
+		ParticleEmitter *e = pack.mParticleSystem->getEmitter(0);
 		e->setEnabled(false);
-		mParticleSystemNode->attachObject(mParticleSystem);
-		mParticleSystemNode->setPosition(Vector3::ZERO);
-		mParticleSystemNode->setVisible(false);
+		pack.mParticleSystemNode->attachObject(pack.mParticleSystem);
+		pack.mParticleSystemNode->setPosition(Vector3::ZERO);
+		pack.mParticleSystemNode->setVisible(false);
 	}
 }
-void Obstacle::setOffParticleSystem(){
-	if(mParticleSystemInit)	{
-		mParticleSystemNode->setVisible(true);
-		mParticleSystem->setVisible(true);
-		ParticleEmitter *e = mParticleSystem->getEmitter(0);
-		e->setEnabled(true);
+void Obstacle::setOffParticleSystem(int index){
+	// check entry exists
+	if(index >= mParticleSystems.size()){
+		return; // exceeds
 	}
+	else if(index < 0){
+		// all
+		for(int i=0;i<mParticleSystems.size();i++){
+			setOffParticleSystem(i);
+		}
+	}
+	else{
+		ParticleSystemPack& pack = mParticleSystems[index];
+		if(pack.mParticleSystemInit)	{
+			pack.mParticleSystemNode->setVisible(true);
+			pack.mParticleSystem->setVisible(true);
+			ParticleEmitter *e = pack.mParticleSystem->getEmitter(0);
+			e->setEnabled(true);
+		}
+	}
+
 }
 void Obstacle::destroyParticleSystem(){
-	if(mParticleSystemInit){
-		mParticleSystemNode->detachObject(mParticleSystem);
-		mManager->getSceneMgr()->destroyParticleSystem(mParticleSystem);
-		mManager->getSceneMgr()->destroySceneNode(mParticleSystemNode);
-		mParticleSystemInit = false;
+	for(int i=0;i<mParticleSystems.size();i++){
+		ParticleSystemPack& pack = mParticleSystems[i];
+		if(pack.mParticleSystemInit){
+			pack.mParticleSystemNode->detachObject(pack.mParticleSystem);
+			mManager->getSceneMgr()->destroyParticleSystem(pack.mParticleSystem);
+			mManager->getSceneMgr()->destroySceneNode(pack.mParticleSystemNode);
+			pack.mParticleSystemInit = false;
+		}
 	}
 }
 
-void Obstacle::stopParticleSystem(){
-	if(mParticleSystemInit)	{
-		ParticleEmitter *e = mParticleSystem->getEmitter(0);
-		e->setEnabled(false);
+void Obstacle::stopParticleSystem(int index){
+	// check entry exists
+	if(index >= mParticleSystems.size()){
+		return; // exceeds
+	}
+	else if(index < 0){
+		// all
+		for(int i=0;i<mParticleSystems.size();i++){
+			stopParticleSystem(i);
+		}
+	}
+	else{
+		ParticleSystemPack& pack = mParticleSystems[index];
+		if(pack.mParticleSystemInit)	{
+			ParticleEmitter *e = pack.mParticleSystem->getEmitter(0);
+			e->setEnabled(false);
+		}
 	}
 }
 
