@@ -51,6 +51,7 @@ void ObstacleManager::removeAllObstacles(){
 	}
 	mObstacles.clear();
 	mBullets.clear();
+	mPickups.clear();
 }
 
 void ObstacleManager::setup(BasicTutorial_00* app,Ogre::SceneManager* mgmt,const Ogre::AxisAlignedBox& bound,const Ogre::Vector3 g){
@@ -176,6 +177,20 @@ GeneralObstacle* ObstacleManager::createGeneralObstacle(
 	return obj;
 }
 
+PickupObstacle* ObstacleManager::createPickup(
+	SceneNode* node,
+	Entity* ent
+	)
+{
+	PickupObstacle* obj = new PickupObstacle(this,mObstacleIndex,node,ent);
+	++mObstacleIndex;
+	mObstacles.push_back(obj);
+	mPickups.push_back(obj);
+	obj->setPickupIterator(--mPickups.end());
+	obj->setMyIterator(--mObstacles.end());
+	return obj;
+}
+
 void ObstacleManager::setPlayerFloorCallback(btCollisionWorld::ContactResultCallback& callback){
 	assert(mFloorObstacle != nullptr);
 	assert(mPlayerObstacle != nullptr);
@@ -188,6 +203,25 @@ void ObstacleManager::setPlayerAllObstacleCallback(btCollisionWorld::ContactResu
 	for(;it != mObstacles.end();it++){
 		if((*it)->isAlive()){
 			mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),(*it)->getBody()->getBulletObject(),callback);	
+		}
+	}
+}
+void ObstacleManager::updatePlayerPickupsCollision(const FrameEvent& evt){
+	assert(mPlayerObstacle != nullptr);
+	// obstacles
+	std::list<PickupObstacle *>::iterator it = mPickups.begin();
+	for(;it != mPickups.end();it++){
+		if((*it)->isAlive()){
+			PickupContactResultCallback callback(mPlayerObstacle,*it);
+			mWorld->getBulletCollisionWorld()->contactPairTest(mPlayerObstacle->getBody()->getBulletObject(),(*it)->getBody()->getBulletObject(),callback);	
+		}
+	}
+}
+void ObstacleManager::updatePickupsEffects(const FrameEvent& evt){
+	std::list<PickupObstacle *>::iterator it = mPickups.begin();
+	for(;it != mPickups.end();it++){
+		if((*it)->isAlive()){
+			(*it)->updateEffect(evt);
 		}
 	}
 }
@@ -224,7 +258,7 @@ void ObstacleManager::updateBulletCollision(const FrameEvent& evt){
 			std::list<Obstacle *>::iterator obj_it = mObstacles.begin();
 			for(;obj_it != mObstacles.end();++obj_it){
 				if(*bullet_it != *obj_it){ // don't set for yourself :)
-					if((*obj_it)->isAlive()){
+					if((*obj_it)->isAlive() && (*obj_it)->canBeShoot()){
 						BulletContactResultCallback callback(*bullet_it,*obj_it);
 						mWorld->getBulletCollisionWorld()->contactPairTest((*bullet_it)->getBody()->getBulletObject(),(*obj_it)->getBody()->getBulletObject(),callback);		
 					}

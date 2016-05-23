@@ -28,6 +28,7 @@
 #define COL_MASK_OBSTACLE 0x2
 #define COL_MASK_FLOOR 0x4
 #define COL_MASK_BULLET 0x8
+#define COL_MASK_PICKUP 0x10
 
 #define COL_GROUP_ALL (COL_MASK_PLAYER | COL_MASK_OBSTACLE | COL_MASK_FLOOR | COL_MASK_BULLET)
 #define COL_GROUP_NO_BULLET (COL_MASK_PLAYER | COL_MASK_OBSTACLE | COL_MASK_FLOOR)
@@ -45,6 +46,7 @@ namespace NCTU{
 	class FloorObstacle; // specialized
 	class PlayerObstacle; // a player
 	class BulletObstacle;
+	class PickupObstacle;
 
 	typedef void(*BulletHitHandler)(BulletObstacle*, Obstacle*);
 

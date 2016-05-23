@@ -31,6 +31,12 @@ namespace NCTU{
 		virtual bool isTurnOK(int turn);
 		virtual void onTurn(int turn);
 
+		virtual bool canBeShoot() const{ return false;}
+		virtual bool canStandOn() const{ return false;}
+		virtual bool canCauseDead() const{ return false;}
+
+		virtual void onPickupGet();
+
 	protected:
 		
 		virtual void updateFloorCollision(const Ogre::FrameEvent& evt);
@@ -43,6 +49,7 @@ namespace NCTU{
 		Ogre::Real mSlidingValidTime;
 		Ogre::Real mJumpCoolDown;
 		bool mSlideRequiring;
+		Ogre::Real mParticleTime;
 
 		
 

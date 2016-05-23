@@ -101,6 +101,9 @@
     <ClCompile Include="source\LevelMenuWindow.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUPickupObstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseApplication.h">
@@ -180,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="include\LevelMenuWindow.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUPickupObstacle.h">
+      <Filter>Obstacle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

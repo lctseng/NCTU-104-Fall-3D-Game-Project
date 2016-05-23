@@ -105,6 +105,13 @@ namespace NCTU{
 		virtual inline bool getTurnUsed() const {return mTurnUsed;}
 
 		virtual inline const Ogre::String& getName() const {return mName;}
+		virtual bool canBeShoot() const{ return true;}
+		virtual bool canStandOn() const{ return true;}
+		virtual bool canCauseDead() const{ return true;}
+
+		virtual void destroy();
+		virtual void freeze() {mFrozen = true;}
+		virtual void unfreeze() {mFrozen = false;}
 
 		std::deque<std::pair<Ogre::Vector3,Ogre::Real> > mCollisionConditionVectors;
 		propMap<int,Ogre::String> mHpChangeMaterials;
@@ -149,7 +156,7 @@ namespace NCTU{
 
 
 		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
-		virtual void destroy();
+		
 
 
 	private:

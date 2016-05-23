@@ -146,6 +146,8 @@ public:
 	void changeScore(int val);
 	virtual inline const String& getCurrentLevelName() const {return mCurrentLevelName;}
 	virtual void setCurrentLevelName(const String&);
+
+	void onPickupGet();
 };
  
 #endif // #ifndef __BasicTutorial_00_h_

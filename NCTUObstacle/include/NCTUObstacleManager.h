@@ -7,6 +7,7 @@
 #include "NCTUCubeObstacle.h"
 #include "NCTUSphereObstacle.h"
 #include "NCTUBulletObstacle.h"
+#include "NCTUPickupObstacle.h"
 #include "NCTUFloorObstacle.h"
 #include "NCTUGeneralObstacle.h"
 #include "NCTUObstacleCallback.h"
@@ -76,6 +77,10 @@ namespace NCTU{
 			const Ogre::Quaternion& orientation = Ogre::Quaternion(0,0,0,1)
 			);
 
+		PickupObstacle* createPickup(
+			Ogre::SceneNode* node,
+			Ogre::Entity* ent
+			);
 
 		GeneralObstacle* createGeneralObstacle(
 			Ogre::Real restitution,
@@ -87,10 +92,13 @@ namespace NCTU{
 
 		void setPlayerFloorCallback(btCollisionWorld::ContactResultCallback& callback);
 		void setPlayerAllObstacleCallback(btCollisionWorld::ContactResultCallback& callback);
+		
 
 		void updateCollision(const Ogre::FrameEvent& evt);
 		void updateLifeTime(const Ogre::FrameEvent& evt);
 		void updateBulletCollision(const Ogre::FrameEvent& evt);
+		void updatePlayerPickupsCollision(const Ogre::FrameEvent& evt);
+		void updatePickupsEffects(const Ogre::FrameEvent& evt);
 
 		inline OgreBulletDynamics::DynamicsWorld* getWorld(){return mWorld;}
 		inline Ogre::SceneManager* getSceneMgr(){return mSceneMgr;}
@@ -108,6 +116,7 @@ namespace NCTU{
 
 		inline std::list<Obstacle *>::iterator deleteByIterator(std::list<Obstacle *>::iterator it){delete *it; return mObstacles.erase(it);}
 		inline std::list<BulletObstacle *>::iterator removeBulletIterator(std::list<BulletObstacle *>::iterator it){return mBullets.erase(it);}
+		inline std::list<PickupObstacle *>::iterator removePickupIterator(std::list<PickupObstacle *>::iterator it){return mPickups.erase(it);}
 	private:
 		// Core
 		Ogre::SceneManager* mSceneMgr;
@@ -115,6 +124,7 @@ namespace NCTU{
 		// General
 		std::list<Obstacle*> mObstacles;  // Store all obstacle except plane and player
 		std::list<BulletObstacle*> mBullets;  // Store all bullet, only for reference
+		std::list<PickupObstacle*> mPickups;  // Store all pickup, only for reference
 
 		Ogre::AxisAlignedBox  mBulletBox; // box for bullet
 		Ogre::Vector3 mGravityVector; // gravity for bullet

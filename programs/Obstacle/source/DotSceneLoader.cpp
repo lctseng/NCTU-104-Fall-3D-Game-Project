@@ -761,6 +761,12 @@ bool DotSceneLoader::processObstacleProperty(TiXmlElement *XMLNode, const String
 			ent
 			);
 	}
+	else if(prop.obstacle_type == "Pickup"){
+		pObstacle = mObstacleMgr->createPickup(
+			node,
+			ent
+			);
+	}
 	else if(prop.obstacle_type == "Static"){ // just a short hand for zero-mass obstacle
 		pObstacle = mObstacleMgr->createGeneralObstacle(
 			prop.restitution, // restitution

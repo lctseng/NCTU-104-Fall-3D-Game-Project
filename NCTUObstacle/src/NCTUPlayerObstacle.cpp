@@ -8,7 +8,7 @@ using namespace OgreBulletCollisions;
 using namespace std;
 
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Vector3 scale)
-	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false),mSlidingValidTime(0.0f),mJumpCoolDown(0.0f)
+	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false),mSlidingValidTime(0.0f),mJumpCoolDown(0.0f),mParticleTime(0.0f)
 {
 	mName = "obstacle.player";
 	// some default settings
@@ -70,6 +70,8 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 		orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
 	setPosition(oldPosition);
+	initParticleSystem("Examples/GreenyNimbus",0);
+	initParticleSystem("Examples/GreenyNimbus",1);
 }
 void PlayerObstacle::updateCollision(const FrameEvent& evt){
 	Obstacle::updateCollision(evt);
@@ -113,6 +115,13 @@ void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
 	Obstacle::updatePlayingGame(evt);
 	updateSliding(evt);
 	updateJumping(evt);
+	// particle system
+	if(mParticleTime > 0.0f){
+		mParticleTime -= evt.timeSinceLastFrame;
+		if(mParticleTime <= 0.0f){
+			stopParticleSystem(1);
+		}
+	}
 	//cout << "Floor:" << isOnFloor() << endl;
 	//cout << "Floor cnt:" << mFloorTouchValue << endl;
 	//cout << "Obs:" << IsOnObstaclePlane()<< endl;
@@ -188,4 +197,9 @@ void PlayerObstacle::onTurn(int turn){
 		finalPos.y = getPosition().y;
 		setPosition(finalPos);
 	}
+}
+void PlayerObstacle::onPickupGet(){
+	setOffParticleSystem(1);
+	mParticleTime = 3.0f;
+	Audio::playSE("Pickup.wav");
 }

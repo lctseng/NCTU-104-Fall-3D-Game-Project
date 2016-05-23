@@ -14,7 +14,7 @@ using namespace OgreBulletCollisions;
 
 void onBulletHit(BulletObstacle* bullet,Obstacle* object)
 {
-	if(!dynamic_cast<NCTU::BulletObstacle*>(object)){ // works for non-bullet
+	if(object->canBeShoot()){ // works for non-bullet
 		if(object->getHpType() == typeBoth  || bullet->getBulletType() == typeBoth || bullet->getBulletType() == object->getHpType()){
 			int finalHp = object->decreaseHp();
 			if(finalHp > 0){
@@ -269,6 +269,8 @@ void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
 	mObstacleMgr->updateLifeTime(evt);
 	mPlayerObstacle->updatePlayingGame(evt);
 	mObstacleMgr->updateBulletCollision(evt);
+	mObstacleMgr->updatePlayerPickupsCollision(evt);
+	mObstacleMgr->updatePickupsEffects(evt);
 	if(mEnableCollision){
 		checkCollision(evt);
 	}
@@ -634,8 +636,7 @@ void BasicTutorial_00::onLoseGame(){
 	mGUI->getGameOver()->setVisible(true);
 	Audio::playSE("Dead.wav");
 	Audio::playBGM("GameOver.wav");
-	mPlayerObstacle->initParticleSystem("Examples/GreenyNimbus");
-	mPlayerObstacle->setOffParticleSystem();
+	mPlayerObstacle->setOffParticleSystem(0);
 }
 
 void BasicTutorial_00::refreshScore(){
@@ -666,4 +667,8 @@ void BasicTutorial_00::exitLevelMenu(){
 void BasicTutorial_00::enterLevelMenu(){
 	mGUI->getMainMenu()->setVisible(false);
 	mGUI->getLevelMenu()->setVisible(true);
+}
+
+void BasicTutorial_00::onPickupGet(){
+	changeScore(100);
 }

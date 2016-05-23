@@ -103,6 +103,7 @@
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacle.cpp" />
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacleCallback.cpp" />
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUObstacleManager.cpp" />
+    <ClCompile Include="..\..\NCTUObstacle\src\NCTUPickupObstacle.cpp" />
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUPlayerObstacle.cpp" />
     <ClCompile Include="..\..\NCTUObstacle\src\NCTUSphereObstacle.cpp" />
     <ClCompile Include="source\BaseApplication.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacleCallback.h" />
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstacleManager.h" />
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUObstaclePreRequisites.h" />
+    <ClInclude Include="..\..\NCTUObstacle\include\NCTUPickupObstacle.h" />
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUPlayerObstacle.h" />
     <ClInclude Include="..\..\NCTUObstacle\include\NCTUSphereObstacle.h" />
     <ClInclude Include="include\BaseApplication.h" />

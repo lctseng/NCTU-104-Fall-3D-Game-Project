@@ -1,5 +1,8 @@
 #include "NCTUObstacleCallback.h"
 #include "NCTUBulletObstacle.h"
+#include "NCTUPlayerObstacle.h"
+#include "NCTUPickupObstacle.h"
+#include "TutorialApplication.h"
 #include <iostream>
 
 using namespace NCTU;
@@ -35,13 +38,13 @@ btScalar ObstacleContactResultCallback::addSingleResult(btManifoldPoint& cp,
 		// check normal on B
 		for(auto it = obstacle->mCollisionConditionVectors.begin();it != obstacle->mCollisionConditionVectors.end();++it){
 			auto& entry = *it;
-			if(!dynamic_cast<NCTU::BulletObstacle*>(obstacle) && normalOnB.angleBetween(entry.first).valueDegrees() <= entry.second){
+			if(obstacle->canCauseDead() && normalOnB.angleBetween(entry.first).valueDegrees() <= entry.second){
 				mSubject->setIsBumpObstacle(true);
 				break;
 			}
 		}
 		// check on plane
-		if( !dynamic_cast<NCTU::BulletObstacle*>(obstacle) && normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45 ){
+		if( obstacle->canStandOn() && normalOnB.angleBetween(Vector3(0,1,0)).valueDegrees() < 45 ){
 			mSubject->setIsOnObstaclePlane(true);
 			mSubject->setCurrentObstacle(obstacle);
 			// check bumping
@@ -79,6 +82,22 @@ btScalar BulletContactResultCallback::addSingleResult(btManifoldPoint& cp,
 		//std::cout << "Object:" << mObject << std::endl;
 		mSubject->onBulletHit(mSubject,mObject);
 		//mObject->onBulletHit();
+	}
+	return 0;
+}
+btScalar PickupContactResultCallback::addSingleResult(btManifoldPoint& cp,
+	const btCollisionObjectWrapper* colObj0Wrap,
+	int partId0,
+	int index0,
+	const btCollisionObjectWrapper* colObj1Wrap,
+	int partId1,
+	int index1)
+{
+	if(cp.getDistance() < 0.0f && mObject->isAlive()){
+		mSubject->onPickupGet();
+		mSubject->getManager()->getApp()->onPickupGet();
+		mObject->setLifeTime(0);
+		mObject->freeze();
 	}
 	return 0;
 }

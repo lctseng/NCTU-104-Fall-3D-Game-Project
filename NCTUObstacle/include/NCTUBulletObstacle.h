@@ -16,6 +16,9 @@ namespace NCTU{
 		virtual inline void cleanUp();
 		virtual inline HpType getBulletType()const {return mBulletType;}
 		virtual void updateLifeTime(const Ogre::FrameEvent& evt);
+		virtual bool canBeShoot() const{ return false;}
+		virtual bool canStandOn() const{ return false;}
+		virtual bool canCauseDead() const{ return false;}
 
 		static void setHandlerBulletHit(BulletHitHandler handler){mBulletHitHandler = handler;};
 	protected:
