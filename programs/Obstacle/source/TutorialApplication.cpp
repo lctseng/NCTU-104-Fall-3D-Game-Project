@@ -266,6 +266,7 @@ void BasicTutorial_00::updateBasic(const FrameEvent &evt){
 void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
 	mCameraCtrl->updatePlayingGame(evt);
 	mObstacleMgr->stepSimulation(evt.timeSinceLastFrame);   // update Physics animation
+	fixOrientation(evt);
 	mObstacleMgr->updateLifeTime(evt);
 	mPlayerObstacle->updatePlayingGame(evt);
 	mObstacleMgr->updateBulletCollision(evt);
@@ -390,6 +391,10 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 			}
 			mCameraCtrl->TurnCamera(turnLeft,mPlayerObstacle->getPosition());
 			mPlayerObstacle->onTurn(turnLeft);
+			mPlayerObstacle->setOrientation(mInitOrientation);
+			mPlayerObstacle->getSceneNode()->yaw(Degree(90));
+			mInitOrientation = mPlayerObstacle->getOrientation();
+			fixOrientation(evt);
 		}
 		if(keyboardhandler->isKeyTriggered(OIS::KC_RIGHT) && mCameraCtrl->isTurnOK() && mPlayerObstacle->isTurnOK(turnRight)){
 			currentDirection += 1;
@@ -398,6 +403,10 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 			}
 			mCameraCtrl->TurnCamera(turnRight,mPlayerObstacle->getPosition());
 			mPlayerObstacle->onTurn(turnRight);
+			mPlayerObstacle->setOrientation(mInitOrientation);
+			mPlayerObstacle->getSceneNode()->yaw(Degree(-90));
+			mInitOrientation = mPlayerObstacle->getOrientation();
+			fixOrientation(evt);
 		}
 	}
 	if(keyboardhandler->isKeyPressing(OIS::KC_Z)){

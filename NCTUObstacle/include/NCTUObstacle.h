@@ -156,6 +156,7 @@ namespace NCTU{
 
 
 		virtual OgreBulletCollisions::CollisionShape* generateFittingShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
+		virtual OgreBulletCollisions::CollisionShape* generateConvexShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
 		
 
 

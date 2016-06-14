@@ -13,6 +13,8 @@ namespace NCTU{
 	public:
 		PlayerObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,const Ogre::String& name, Ogre::Vector3 scale);
 		PlayerObstacle(ObstacleManager* mgmt,Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass,Ogre::SceneNode* node, Ogre::Entity* ent);
+		virtual ~PlayerObstacle();
+		virtual void detachEntity();
 		virtual void setSliding(bool val);
 		
 		virtual void updateCollision(const Ogre::FrameEvent& evt);
@@ -50,10 +52,13 @@ namespace NCTU{
 		Ogre::Real mJumpCoolDown;
 		bool mSlideRequiring;
 		Ogre::Real mParticleTime;
-
 		
-
-
+		Ogre::SceneNode* mBaseNode;
+		Ogre::Entity* mBaseEntity;
+		
+		Ogre::AnimationState* mAnimationState;
+		virtual OgreBulletCollisions::CollisionShape* generatePlayerShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
+		virtual void createBaseEntity();
 
 	};
 };

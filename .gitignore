@@ -37,6 +37,8 @@ OgreBulletDynamicsDemo.lib
 
 demo_hello_manifest.rc
 
+/tmp/*
+
 
 # User-specific files
 *.suo

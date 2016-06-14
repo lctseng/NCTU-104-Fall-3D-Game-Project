@@ -28,6 +28,8 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	mNode->scale(scale);
 	mNode->attachObject( mEntity );
 	mEntity->setMaterialName("Bullet/Ball");
+	// base node and entity
+	createBaseEntity();
 	// for bullet
 	mShape = generateFittingShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
@@ -42,6 +44,18 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 		orientation);// orientation of the box       
 	mBody->getBulletObject()->setUserPointer(this);
 }
+PlayerObstacle::~PlayerObstacle(){
+	if(!mEntityDetached){
+		mBaseNode->detachObject(mBaseEntity);
+	}
+	mManager->getSceneMgr()->destroyEntity(mBaseEntity);
+	mManager->getSceneMgr()->destroySceneNode(mBaseNode);
+}
+
+void PlayerObstacle::detachEntity(){
+	Obstacle::detachEntity();
+}
+
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,SceneNode* node, Entity* ent)
 	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false)
 {
@@ -56,8 +70,10 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	mNode = node;
 	mEntity = ent;
 	mEntity->setCastShadows(true);
+	// base node and entity
+	createBaseEntity();
 	// bullet
-	mShape = generateFittingShape(mNode,mEntity);
+	mShape = generatePlayerShape(mNode,mEntity);
 	mBody = new OgreBulletDynamics::RigidBody(
 		mName,
 		mManager->getWorld(),COL_GROUP_NO_BULLET,COL_MASK_PLAYER);
@@ -72,7 +88,32 @@ PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real fric
 	setPosition(oldPosition);
 	initParticleSystem("Examples/GreenyNimbus",0);
 	initParticleSystem("Examples/GreenyNimbus",1);
+	mAnimationState = mEntity->getAnimationState("Walk");
+	if(mAnimationState){
+		mAnimationState->setLoop(true);
+		mAnimationState->setEnabled(true);
+	}
 }
+OgreBulletCollisions::CollisionShape* PlayerObstacle::generatePlayerShape(SceneNode* node, Entity* ent){
+	/*
+	使用OgreBullet的AnimatedMeshToShapeConverter
+	這個物件的作用是輸入Entity取得Mesh的詳細資料，
+	便於算出ConvexHull或更複雜的GImpactCollision
+	其實用另一個StaticMeshToShapeConverter也行，並不影響結果
+	*/
+	OgreBulletCollisions::StaticMeshToShapeConverter *converter = 
+		new OgreBulletCollisions::StaticMeshToShapeConverter(
+		ent, //很單純就載入Entity，裡面會去取得所需要的Mesh資訊
+		node->_getFullTransform()); /*載入此Entity的Matrix4，
+									也就是取得大小與位置，
+									這邊直接用_getFullTransform()從node取得最方便*/
+
+	//使用createConcave產生我們所要的GImpactConcaveShape
+	converter->addEntity(mBaseEntity,mBaseNode->_getFullTransform());
+	GImpactConcaveShape *shape = converter->createConcave();
+	return shape;
+}
+
 void PlayerObstacle::updateCollision(const FrameEvent& evt){
 	Obstacle::updateCollision(evt);
 	updateFloorCollision(evt);
@@ -122,6 +163,10 @@ void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
 			stopParticleSystem(1);
 		}
 	}
+	if(mAnimationState){
+		mAnimationState->addTime(evt.timeSinceLastFrame * 4.0);
+	}
+	
 	//cout << "Floor:" << isOnFloor() << endl;
 	//cout << "Floor cnt:" << mFloorTouchValue << endl;
 	//cout << "Obs:" << IsOnObstaclePlane()<< endl;
@@ -202,4 +247,13 @@ void PlayerObstacle::onPickupGet(){
 	setOffParticleSystem(1);
 	mParticleTime = 3.0f;
 	Audio::playSE("Pickup.wav");
+}
+void PlayerObstacle::createBaseEntity(){
+	mBaseNode = mNode->createChildSceneNode();
+	mBaseEntity = mManager->getSceneMgr()
+		->createEntity( mName + ".base", "sphere.mesh" ); 
+	mBaseNode->attachObject(mBaseEntity);
+	mBaseEntity->setVisible(false);
+	mBaseNode->scale(0.01,0.01,0.01);
+	
 }
