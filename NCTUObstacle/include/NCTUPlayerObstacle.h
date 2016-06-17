@@ -27,7 +27,7 @@ namespace NCTU{
 		
 		virtual void performJump();
 
-		virtual inline void requireSlide(bool v){mSlideRequiring = v;}
+		virtual inline void requireSlide(bool v);
 		virtual void resetAction();
 		
 		virtual bool isTurnOK(int turn);
@@ -57,6 +57,9 @@ namespace NCTU{
 		Ogre::Entity* mBaseEntity;
 		
 		Ogre::AnimationState* mAnimationState;
+		bool up;
+		bool down;
+
 		virtual OgreBulletCollisions::CollisionShape* generatePlayerShape(Ogre::SceneNode* node, Ogre::Entity* ent); 
 		virtual void createBaseEntity();
 

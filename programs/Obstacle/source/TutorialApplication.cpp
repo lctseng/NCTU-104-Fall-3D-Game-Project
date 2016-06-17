@@ -280,7 +280,12 @@ void BasicTutorial_00::updatePlayingGame(const FrameEvent &evt){
 	}
 	processInputPlayingGame(evt);
 	// Score
-	mTimeScoreTemp += evt.timeSinceLastFrame;
+	if(mPlayerObstacle->isSliding()){
+		mTimeScoreTemp += evt.timeSinceLastFrame * 0.2f;
+	}
+	else{
+		mTimeScoreTemp += evt.timeSinceLastFrame;	
+	}
 	mTimeElapsed += evt.timeSinceLastFrame;
 	if(mTimeScoreTemp > 0.2f){
 		int pts = mTimeScoreTemp / 0.2f;
@@ -413,7 +418,7 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 		mPlayerObstacle->requireSlide(true);
 	}
 	else{
-		mPlayerObstacle->requireSlide(false);
+		//mPlayerObstacle->requireSlide(false);
 	}
 	if(mPlayerObstacle->isJumpEnable() && keyboardhandler->isKeyTriggered(OIS::KC_SPACE)){
 		mPlayerObstacle->performJump();
@@ -421,15 +426,17 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 	}
 
 
-	if(keyboardhandler->isKeyTriggered(OIS::KC_X) ){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_X) && !mPlayerObstacle->isSliding()){
+		Vector3 shoot_v = mPlayerObstacle->getVelocity().normalisedCopy() * 2 ;
+		shoot_v.y = 0.0f;
 		NCTU::BulletObstacle* obstacle = mObstacleMgr->createBullet(
 			0.6f, // restitution
 			1.0f, // friction
 			1.0f, // mass
 			NCTU::typeRed,
-			(mPlayerObstacle->getPosition() - mCamera->getDerivedDirection().normalisedCopy() * 200) // position
+			(mPlayerObstacle->getPosition() - shoot_v * 100) // position
 			);     
-		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
+		//Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
 		shoot_v.y = 0.1f;
 		obstacle->setVelocity(
 			shoot_v * mBulletSpeedFactor); // shooting speed
@@ -437,15 +444,18 @@ void BasicTutorial_00::processInputPlayingGame(const FrameEvent& evt){
 		obstacle->setLifeTime(mBulletLifeTime);
 
 	}
-	if(keyboardhandler->isKeyTriggered(OIS::KC_C) ){
+	if(keyboardhandler->isKeyTriggered(OIS::KC_C) && !mPlayerObstacle->isSliding() ){
+		Vector3 shoot_v = mPlayerObstacle->getVelocity().normalisedCopy() * 2 ;
+		shoot_v.y = 0.0f;
 		NCTU::BulletObstacle* obstacle = mObstacleMgr->createBullet(
 			0.6f, // restitution
 			1.0f, // friction
 			1.0f, // mass
 			NCTU::typeBlue,
-			(mPlayerObstacle->getPosition() - mCamera->getDerivedDirection().normalisedCopy() * 200) // position
+			(mPlayerObstacle->getPosition() - shoot_v * 100) // position
 			);     
-		Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
+		//Vector3 shoot_v = mCamera->getDerivedDirection().normalisedCopy() * 2 ;
+		
 		shoot_v.y = 0.1f;
 		obstacle->setVelocity(
 			shoot_v * mBulletSpeedFactor); // shooting speed
@@ -523,6 +533,9 @@ void BasicTutorial_00::checkCollision(const FrameEvent& evt){
 	if(mPlayerObstacle->IsBumpObstacle() ){
 		if(!mDisableLose){
 			onLoseGame();
+		}
+		else{
+			Audio::playSE("Buzzer.wav");
 		}
 
 	}

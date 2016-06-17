@@ -8,7 +8,7 @@ using namespace OgreBulletCollisions;
 using namespace std;
 
 PlayerObstacle::PlayerObstacle(ObstacleManager* mgmt,Real restitution, Real friction, Real mass,const String& name, Vector3 scale)
-	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false),mSlidingValidTime(0.0f),mJumpCoolDown(0.0f),mParticleTime(0.0f)
+	:Obstacle(mgmt,restitution,friction,mass),mIsSliding(false),mSlidingValidTime(0.0f),mJumpCoolDown(0.0f),mParticleTime(0.0f),up(false),down(false)
 {
 	mName = "obstacle.player";
 	// some default settings
@@ -133,19 +133,28 @@ void PlayerObstacle::updateAllObstacleCollision(const FrameEvent& evt){
 	ObstacleContactResultCallback callback(this);
 	mManager->setPlayerAllObstacleCallback(callback);
 }
+void PlayerObstacle::requireSlide(bool v){
+	if(v && !up  ){
+		mSlidingValidTime = 0.2f;
+	}
+}
 void PlayerObstacle::updateSliding(const FrameEvent& evt){
 	if(mSlidingValidTime > 0.0f){
 		mSlidingValidTime -= evt.timeSinceLastFrame;
 	}
-	if(isOnFloor(FLOOR_TOUCH_STRICT_THRESHOLD) || IsOnObstaclePlane(OBSTACLE_PLANE_TOUCH_STRICT_THRESHOLD)){
-		mSlidingValidTime = 0.2f;
-	}
-	if(mSlideRequiring && isSlideEnable()){
+	//if(isOnFloor(FLOOR_TOUCH_STRICT_THRESHOLD) || IsOnObstaclePlane(OBSTACLE_PLANE_TOUCH_STRICT_THRESHOLD)){
+	//	mSlidingValidTime = 0.2f;
+	//}
+	//if(mSlideRequiring && isSlideEnable()){
+	if(mSlidingValidTime > 0.0f){
 		setSliding(true);
 	}
 	else{
 		setSliding(false);
 	}
+	//if(mSlidingValidTime <= 0.0f){
+	//	mSlideRequiring = false;
+	//}
 }
 void PlayerObstacle::updateJumping(const FrameEvent& evt){
 	if(mJumpCoolDown > 0.0f){
@@ -164,8 +173,20 @@ void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
 		}
 	}
 	if(mAnimationState){
+		if(up && mAnimationState->hasEnded()){
+			up = false;
+			mAnimationState ->setEnabled(false);
+			mAnimationState->setTimePosition(0);
+			mAnimationState = mEntity->getAnimationState("Walk");
+			mAnimationState->setLoop(true);
+			mAnimationState->setEnabled(true);
+		}
 		mAnimationState->addTime(evt.timeSinceLastFrame * 4.0);
 	}
+
+
+
+
 	
 	//cout << "Floor:" << isOnFloor() << endl;
 	//cout << "Floor cnt:" << mFloorTouchValue << endl;
@@ -177,9 +198,26 @@ void PlayerObstacle::updatePlayingGame(const Ogre::FrameEvent& evt){
 void PlayerObstacle::setSliding(bool val){
 	mIsSliding = val;
 	if(mIsSliding){
+		if(!down){
+			down = true;
+			mAnimationState ->setEnabled(false);
+			mAnimationState->setTimePosition(0);
+			mAnimationState = mEntity->getAnimationState("SquatDown");
+			mAnimationState->setLoop(false);
+			mAnimationState->setEnabled(true);
+		}
 		setScale(Vector3(0.5,0.5,0.5));
 	}
 	else{
+		if(down){
+			down = false;
+			up = true;
+			mAnimationState ->setEnabled(false);
+			mAnimationState->setTimePosition(0);
+			mAnimationState = mEntity->getAnimationState("SquatUp");
+			mAnimationState->setLoop(false);
+			mAnimationState->setEnabled(true);
+		}
 		setScale(Vector3(1,1,1));
 	}
 }
@@ -188,7 +226,9 @@ bool PlayerObstacle::isJumpEnable(){
 	return ( isOnFloor() || IsOnObstaclePlane()) && !isSliding() && mJumpCoolDown <= 0.0f ;
 }
 bool PlayerObstacle::isSlideEnable(){
-	return mSlidingValidTime > 0.0f && mJumpCoolDown <= 0.0f;
+	return true;
+	//return mJumpCoolDown <= 0.0f;
+	//return mSlidingValidTime > 0.0f && mJumpCoolDown <= 0.0f;
 	//return mNode->getPosition()[1] <= 55.0f;
 }
 
