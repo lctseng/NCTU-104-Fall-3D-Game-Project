@@ -5,23 +5,57 @@
 #include "NCTUPreRequisite.h"
 
 namespace NCTU{
+	/*! 
+	\brief base class for all GUI window in this project
+	*/
 	class GUIWindow
 	{
 	public:
-		GUIWindow(const CEGUI::String& layout);                   // Constructor
+		/*! 
+		\brief constructor
+		*/
+		GUIWindow(const CEGUI::String& layout);             
+		/*! 
+		\brief destructor
+		*/
 		virtual ~GUIWindow();
+		/*! 
+		\brief setup everything
+		*/
 		virtual void setup();
-		virtual void setVisible(bool visible);         // Hide or show the console
-		virtual bool isVisible();                      // return true if console is visible, false if is hidden
-
+		/*! 
+		\brief Hide or show the window
+		*/
+		virtual void setVisible(bool visible);         
+		/*! 
+		\brief return true if console is visible, false if is hidden
+		*/
+		virtual bool isVisible();                      
+		/*! 
+		\brief set up application pointer
+		*/
 		virtual void setApp(BasicTutorial_00* app){mApp = app;}
-
 	protected:
-		virtual void createCEGUIWindow();                                  // The function which will load in the CEGUI Window and register event handlers
-		virtual void registerHandlers(){}                                   // Register our handler functions
+		/*! The function which will load in the CEGUI Window and register event handlers
+		\brief 
+		*/
+		virtual void createCEGUIWindow();                                  
+		/*! 
+		\brief Register our handler functions
+		*/
+		virtual void registerHandlers(){}                                   
 
-		CEGUI::Window *mWindow;                            // This will be a pointer to the CEGUI window.
+		/*! 
+		\brief This will be a pointer to the CEGUI window.
+		*/
+		CEGUI::Window *mWindow;                           
+		/*! 
+		\brief Store the layout name
+		*/
 		CEGUI::String mLayoutName;
+		/*! 
+		\brief pointer to the application
+		*/
 		BasicTutorial_00* mApp;
 	};
 };

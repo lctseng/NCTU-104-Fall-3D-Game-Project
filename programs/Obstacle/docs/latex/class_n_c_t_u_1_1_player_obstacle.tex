@@ -1,0 +1,141 @@
+\hypertarget{class_n_c_t_u_1_1_player_obstacle}{}\section{N\+C\+TU\+:\+:Player\+Obstacle Class Reference}
+\label{class_n_c_t_u_1_1_player_obstacle}\index{N\+C\+T\+U\+::\+Player\+Obstacle@{N\+C\+T\+U\+::\+Player\+Obstacle}}
+
+
+player obstacle  
+
+
+
+
+{\ttfamily \#include $<$N\+C\+T\+U\+Player\+Obstacle.\+h$>$}
+
+Inheritance diagram for N\+C\+TU\+:\+:Player\+Obstacle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_n_c_t_u_1_1_player_obstacle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_n_c_t_u_1_1_player_obstacle_a983a5de655a8b5aefcae4ae295b68bb5}{Player\+Obstacle} (\hyperlink{class_n_c_t_u_1_1_obstacle_manager}{Obstacle\+Manager} $\ast$mgmt, Ogre\+::\+Real restitution, Ogre\+::\+Real friction, Ogre\+::\+Real mass, const Ogre\+::\+String \&name, Ogre\+::\+Vector3 scale)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a983a5de655a8b5aefcae4ae295b68bb5}{}\label{class_n_c_t_u_1_1_player_obstacle_a983a5de655a8b5aefcae4ae295b68bb5}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{class_n_c_t_u_1_1_player_obstacle_aa5fd634767396aeb5c2a8c26931de7bb}{Player\+Obstacle} (\hyperlink{class_n_c_t_u_1_1_obstacle_manager}{Obstacle\+Manager} $\ast$mgmt, Ogre\+::\+Real restitution, Ogre\+::\+Real friction, Ogre\+::\+Real mass, Ogre\+::\+Scene\+Node $\ast$node, Ogre\+::\+Entity $\ast$ent)\hypertarget{class_n_c_t_u_1_1_player_obstacle_aa5fd634767396aeb5c2a8c26931de7bb}{}\label{class_n_c_t_u_1_1_player_obstacle_aa5fd634767396aeb5c2a8c26931de7bb}
+
+\begin{DoxyCompactList}\small\item\em another constructor, but not create scene node and entity \end{DoxyCompactList}\item 
+virtual \hyperlink{class_n_c_t_u_1_1_player_obstacle_a6e1139ba9e43ed6158103ff215e25cd8}{$\sim$\+Player\+Obstacle} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_a6e1139ba9e43ed6158103ff215e25cd8}{}\label{class_n_c_t_u_1_1_player_obstacle_a6e1139ba9e43ed6158103ff215e25cd8}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a91a946ed66165c94c7cc913b6a9cfe3f}{detach\+Entity} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_a91a946ed66165c94c7cc913b6a9cfe3f}{}\label{class_n_c_t_u_1_1_player_obstacle_a91a946ed66165c94c7cc913b6a9cfe3f}
+
+\begin{DoxyCompactList}\small\item\em detach entity from scene node \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a981883a7b5e6e74b5b95f782710ca46c}{set\+Sliding} (bool val)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a981883a7b5e6e74b5b95f782710ca46c}{}\label{class_n_c_t_u_1_1_player_obstacle_a981883a7b5e6e74b5b95f782710ca46c}
+
+\begin{DoxyCompactList}\small\item\em set sliding state \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a90dacefcf4d1cf920889c90ae8221c87}{update\+Collision} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a90dacefcf4d1cf920889c90ae8221c87}{}\label{class_n_c_t_u_1_1_player_obstacle_a90dacefcf4d1cf920889c90ae8221c87}
+
+\begin{DoxyCompactList}\small\item\em update collision \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a70fcbfee6373a13a64b335f096a9dff3}{update\+Playing\+Game} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a70fcbfee6373a13a64b335f096a9dff3}{}\label{class_n_c_t_u_1_1_player_obstacle_a70fcbfee6373a13a64b335f096a9dff3}
+
+\begin{DoxyCompactList}\small\item\em update routing for playing game \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_a363f8eede24bc091b7bbb645405ab400}{is\+Jump\+Enable} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_a363f8eede24bc091b7bbb645405ab400}{}\label{class_n_c_t_u_1_1_player_obstacle_a363f8eede24bc091b7bbb645405ab400}
+
+\begin{DoxyCompactList}\small\item\em is jump enabled? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_ae0a89357232680fc3d9f673a9a41cc0e}{is\+Slide\+Enable} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_ae0a89357232680fc3d9f673a9a41cc0e}{}\label{class_n_c_t_u_1_1_player_obstacle_ae0a89357232680fc3d9f673a9a41cc0e}
+
+\begin{DoxyCompactList}\small\item\em is slide enabled? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_ab914419b4bf0f8a3086275318a1e783b}{is\+Sliding} () const \hypertarget{class_n_c_t_u_1_1_player_obstacle_ab914419b4bf0f8a3086275318a1e783b}{}\label{class_n_c_t_u_1_1_player_obstacle_ab914419b4bf0f8a3086275318a1e783b}
+
+\begin{DoxyCompactList}\small\item\em is player sliding now? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_ad698eb27993cbf8fc03882d44a94e870}{perform\+Jump} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_ad698eb27993cbf8fc03882d44a94e870}{}\label{class_n_c_t_u_1_1_player_obstacle_ad698eb27993cbf8fc03882d44a94e870}
+
+\begin{DoxyCompactList}\small\item\em perform jump \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a54dee080388a1056f2534247cdb7b880}{require\+Slide} (bool v)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a54dee080388a1056f2534247cdb7b880}{}\label{class_n_c_t_u_1_1_player_obstacle_a54dee080388a1056f2534247cdb7b880}
+
+\begin{DoxyCompactList}\small\item\em require player to slide (called by application \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a355241442f142a9617a970a59bde5e33}{reset\+Action} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_a355241442f142a9617a970a59bde5e33}{}\label{class_n_c_t_u_1_1_player_obstacle_a355241442f142a9617a970a59bde5e33}
+
+\begin{DoxyCompactList}\small\item\em reset player action \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_ad39b6335c4ca6f67abcafc6015f6afe1}{is\+Turn\+OK} (int turn)\hypertarget{class_n_c_t_u_1_1_player_obstacle_ad39b6335c4ca6f67abcafc6015f6afe1}{}\label{class_n_c_t_u_1_1_player_obstacle_ad39b6335c4ca6f67abcafc6015f6afe1}
+
+\begin{DoxyCompactList}\small\item\em is currently turn ok? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a2136fe93623ce046c94649cdfaaf8336}{on\+Turn} (int turn)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a2136fe93623ce046c94649cdfaaf8336}{}\label{class_n_c_t_u_1_1_player_obstacle_a2136fe93623ce046c94649cdfaaf8336}
+
+\begin{DoxyCompactList}\small\item\em process on turn \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_ad98afc8e3da3be4fb629f8a58105ea3e}{can\+Be\+Shoot} () const \hypertarget{class_n_c_t_u_1_1_player_obstacle_ad98afc8e3da3be4fb629f8a58105ea3e}{}\label{class_n_c_t_u_1_1_player_obstacle_ad98afc8e3da3be4fb629f8a58105ea3e}
+
+\begin{DoxyCompactList}\small\item\em is this object can be shoot? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_a2fffaf6dc48dcbd762a4e190522a0887}{can\+Stand\+On} () const \hypertarget{class_n_c_t_u_1_1_player_obstacle_a2fffaf6dc48dcbd762a4e190522a0887}{}\label{class_n_c_t_u_1_1_player_obstacle_a2fffaf6dc48dcbd762a4e190522a0887}
+
+\begin{DoxyCompactList}\small\item\em is this object can be standed on? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_ae4b00d8b41d4405112ee7c6228f676a9}{can\+Cause\+Dead} () const \hypertarget{class_n_c_t_u_1_1_player_obstacle_ae4b00d8b41d4405112ee7c6228f676a9}{}\label{class_n_c_t_u_1_1_player_obstacle_ae4b00d8b41d4405112ee7c6228f676a9}
+
+\begin{DoxyCompactList}\small\item\em is this object cause dead? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_ad073983747e125048fff75c600286734}{on\+Pickup\+Get} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_ad073983747e125048fff75c600286734}{}\label{class_n_c_t_u_1_1_player_obstacle_ad073983747e125048fff75c600286734}
+
+\begin{DoxyCompactList}\small\item\em process when get a pickup object \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_acde5e3264f8293ce3afc4f4c96908a2b}{update\+Floor\+Collision} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_player_obstacle_acde5e3264f8293ce3afc4f4c96908a2b}{}\label{class_n_c_t_u_1_1_player_obstacle_acde5e3264f8293ce3afc4f4c96908a2b}
+
+\begin{DoxyCompactList}\small\item\em update floor collision \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a1d6130f01d590786fb1cf03c1c8cf9e9}{update\+All\+Obstacle\+Collision} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a1d6130f01d590786fb1cf03c1c8cf9e9}{}\label{class_n_c_t_u_1_1_player_obstacle_a1d6130f01d590786fb1cf03c1c8cf9e9}
+
+\begin{DoxyCompactList}\small\item\em update collision for all obstacles \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_a81e6539e32c20bbbe5b16fe50903ff3f}{update\+Sliding} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a81e6539e32c20bbbe5b16fe50903ff3f}{}\label{class_n_c_t_u_1_1_player_obstacle_a81e6539e32c20bbbe5b16fe50903ff3f}
+
+\begin{DoxyCompactList}\small\item\em update sliding \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_af6591f550147e25dee4f3589c8e5b16d}{update\+Jumping} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_player_obstacle_af6591f550147e25dee4f3589c8e5b16d}{}\label{class_n_c_t_u_1_1_player_obstacle_af6591f550147e25dee4f3589c8e5b16d}
+
+\begin{DoxyCompactList}\small\item\em update jumping \end{DoxyCompactList}\item 
+virtual Ogre\+Bullet\+Collisions\+::\+Collision\+Shape $\ast$ \hyperlink{class_n_c_t_u_1_1_player_obstacle_a19c1552e1c01674f499ded35e32a191d}{generate\+Player\+Shape} (Ogre\+::\+Scene\+Node $\ast$node, Ogre\+::\+Entity $\ast$ent)\hypertarget{class_n_c_t_u_1_1_player_obstacle_a19c1552e1c01674f499ded35e32a191d}{}\label{class_n_c_t_u_1_1_player_obstacle_a19c1552e1c01674f499ded35e32a191d}
+
+\begin{DoxyCompactList}\small\item\em generate player\textquotesingle{}s collision shape \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_player_obstacle_ae614fa9be975f30f8413101afb567a1f}{create\+Base\+Entity} ()\hypertarget{class_n_c_t_u_1_1_player_obstacle_ae614fa9be975f30f8413101afb567a1f}{}\label{class_n_c_t_u_1_1_player_obstacle_ae614fa9be975f30f8413101afb567a1f}
+
+\begin{DoxyCompactList}\small\item\em create the base entitiy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_a980d037fd4e5b5c9923a169afae26d5a}{m\+Is\+Sliding}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a980d037fd4e5b5c9923a169afae26d5a}{}\label{class_n_c_t_u_1_1_player_obstacle_a980d037fd4e5b5c9923a169afae26d5a}
+
+\begin{DoxyCompactList}\small\item\em is currently sliding? \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_player_obstacle_a63f6dacb7b3476549884a2c2d5071588}{m\+Sliding\+Valid\+Time}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a63f6dacb7b3476549884a2c2d5071588}{}\label{class_n_c_t_u_1_1_player_obstacle_a63f6dacb7b3476549884a2c2d5071588}
+
+\begin{DoxyCompactList}\small\item\em sliding valid time \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_player_obstacle_afd544b059369c844f62c0bfb45d31bc7}{m\+Jump\+Cool\+Down}\hypertarget{class_n_c_t_u_1_1_player_obstacle_afd544b059369c844f62c0bfb45d31bc7}{}\label{class_n_c_t_u_1_1_player_obstacle_afd544b059369c844f62c0bfb45d31bc7}
+
+\begin{DoxyCompactList}\small\item\em cool down time for jumping \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_a43e238f716c17d6da127e04a766cc646}{m\+Slide\+Requiring}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a43e238f716c17d6da127e04a766cc646}{}\label{class_n_c_t_u_1_1_player_obstacle_a43e238f716c17d6da127e04a766cc646}
+
+\begin{DoxyCompactList}\small\item\em is currently requiring slide? \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_player_obstacle_a7d09812c7b1c1b01a4ed532b486265ce}{m\+Particle\+Time}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a7d09812c7b1c1b01a4ed532b486265ce}{}\label{class_n_c_t_u_1_1_player_obstacle_a7d09812c7b1c1b01a4ed532b486265ce}
+
+\begin{DoxyCompactList}\small\item\em the particle show time \end{DoxyCompactList}\item 
+Ogre\+::\+Scene\+Node $\ast$ \hyperlink{class_n_c_t_u_1_1_player_obstacle_afa1a2b93b85ab93d3c620ed3ac634498}{m\+Base\+Node}\hypertarget{class_n_c_t_u_1_1_player_obstacle_afa1a2b93b85ab93d3c620ed3ac634498}{}\label{class_n_c_t_u_1_1_player_obstacle_afa1a2b93b85ab93d3c620ed3ac634498}
+
+\begin{DoxyCompactList}\small\item\em base Scene\+Node for player \end{DoxyCompactList}\item 
+Ogre\+::\+Entity $\ast$ \hyperlink{class_n_c_t_u_1_1_player_obstacle_a3e87c6b1ebbccbeadcfa9cbcf0859308}{m\+Base\+Entity}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a3e87c6b1ebbccbeadcfa9cbcf0859308}{}\label{class_n_c_t_u_1_1_player_obstacle_a3e87c6b1ebbccbeadcfa9cbcf0859308}
+
+\begin{DoxyCompactList}\small\item\em base Entity for player \end{DoxyCompactList}\item 
+Ogre\+::\+Animation\+State $\ast$ \hyperlink{class_n_c_t_u_1_1_player_obstacle_aa9fad85642b314be7c012f10e8940918}{m\+Animation\+State}\hypertarget{class_n_c_t_u_1_1_player_obstacle_aa9fad85642b314be7c012f10e8940918}{}\label{class_n_c_t_u_1_1_player_obstacle_aa9fad85642b314be7c012f10e8940918}
+
+\begin{DoxyCompactList}\small\item\em animation state for player \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_a296a2c8a7929abf57308f909bf3c5197}{up}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a296a2c8a7929abf57308f909bf3c5197}{}\label{class_n_c_t_u_1_1_player_obstacle_a296a2c8a7929abf57308f909bf3c5197}
+
+\begin{DoxyCompactList}\small\item\em is standing up? \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_player_obstacle_a740d9c8ca1378dbf329d7059ebf91e4f}{down}\hypertarget{class_n_c_t_u_1_1_player_obstacle_a740d9c8ca1378dbf329d7059ebf91e4f}{}\label{class_n_c_t_u_1_1_player_obstacle_a740d9c8ca1378dbf329d7059ebf91e4f}
+
+\begin{DoxyCompactList}\small\item\em is sliding down? \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+player obstacle 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+N\+C\+T\+U\+Obstacle/include/N\+C\+T\+U\+Player\+Obstacle.\+h\item 
+N\+C\+T\+U\+Obstacle/src/N\+C\+T\+U\+Player\+Obstacle.\+cpp\end{DoxyCompactItemize}

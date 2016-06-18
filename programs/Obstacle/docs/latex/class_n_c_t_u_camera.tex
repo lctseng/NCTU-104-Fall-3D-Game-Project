@@ -1,0 +1,88 @@
+\hypertarget{class_n_c_t_u_camera}{}\section{N\+C\+T\+U\+Camera Class Reference}
+\label{class_n_c_t_u_camera}\index{N\+C\+T\+U\+Camera@{N\+C\+T\+U\+Camera}}
+
+
+Camera controller for this project.  
+
+
+
+
+{\ttfamily \#include $<$N\+C\+T\+U\+Camera.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_n_c_t_u_camera_a375160f41c982180edf9a658e316ef58}{Turning\+State} \{ {\bfseries S\+T\+A\+T\+E\+\_\+\+T\+U\+R\+N\+I\+NG}, 
+{\bfseries S\+T\+A\+T\+E\+\_\+\+N\+O\+R\+M\+AL}
+ \}\hypertarget{class_n_c_t_u_camera_a375160f41c982180edf9a658e316ef58}{}\label{class_n_c_t_u_camera_a375160f41c982180edf9a658e316ef58}
+\begin{DoxyCompactList}\small\item\em state declaration of turning / normal \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_n_c_t_u_camera_a38abb4f6c1f26d057b67a5f4dc442f93}{N\+C\+T\+U\+Camera} ()\hypertarget{class_n_c_t_u_camera_a38abb4f6c1f26d057b67a5f4dc442f93}{}\label{class_n_c_t_u_camera_a38abb4f6c1f26d057b67a5f4dc442f93}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{class_n_c_t_u_camera_aa90b12d4bb1f0321b734b1e540876d01}{$\sim$\+N\+C\+T\+U\+Camera} (void)\hypertarget{class_n_c_t_u_camera_aa90b12d4bb1f0321b734b1e540876d01}{}\label{class_n_c_t_u_camera_aa90b12d4bb1f0321b734b1e540876d01}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+void \hyperlink{class_n_c_t_u_camera_a759e64b0b2f3c582733599197d86bcd1}{setup} (Camera $\ast$camera, Scene\+Manager $\ast$Scene\+Mgr, \hyperlink{class_basic_tutorial__00}{Basic\+Tutorial\+\_\+00} $\ast$app)\hypertarget{class_n_c_t_u_camera_a759e64b0b2f3c582733599197d86bcd1}{}\label{class_n_c_t_u_camera_a759e64b0b2f3c582733599197d86bcd1}
+
+\begin{DoxyCompactList}\small\item\em initialize the camera controller with pointers \end{DoxyCompactList}\item 
+void \hyperlink{class_n_c_t_u_camera_a94444f8dcbbf4de692d550bfa6ea4a85}{Turn\+Camera} (bool direction, Vector3 Target)\hypertarget{class_n_c_t_u_camera_a94444f8dcbbf4de692d550bfa6ea4a85}{}\label{class_n_c_t_u_camera_a94444f8dcbbf4de692d550bfa6ea4a85}
+
+\begin{DoxyCompactList}\small\item\em turn the camera \end{DoxyCompactList}\item 
+void \hyperlink{class_n_c_t_u_camera_ada78a54e693ae248bf210ec5412b1a96}{update\+Basic} (const Frame\+Event \&evt)\hypertarget{class_n_c_t_u_camera_ada78a54e693ae248bf210ec5412b1a96}{}\label{class_n_c_t_u_camera_ada78a54e693ae248bf210ec5412b1a96}
+
+\begin{DoxyCompactList}\small\item\em basic update routine \end{DoxyCompactList}\item 
+void \hyperlink{class_n_c_t_u_camera_ae89905594734277ad03ece810a2044f5}{update\+Playing\+Game} (const Frame\+Event \&evt)\hypertarget{class_n_c_t_u_camera_ae89905594734277ad03ece810a2044f5}{}\label{class_n_c_t_u_camera_ae89905594734277ad03ece810a2044f5}
+
+\begin{DoxyCompactList}\small\item\em update routine for playing game \end{DoxyCompactList}\item 
+void \hyperlink{class_n_c_t_u_camera_a418e25bc4e93439e0f12fe1074af3fe7}{setup\+Camera} ()\hypertarget{class_n_c_t_u_camera_a418e25bc4e93439e0f12fe1074af3fe7}{}\label{class_n_c_t_u_camera_a418e25bc4e93439e0f12fe1074af3fe7}
+
+\begin{DoxyCompactList}\small\item\em setup controller \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_camera_a68c20abf9dd120e315edd033175eef50}{is\+Turn\+OK} () const \hypertarget{class_n_c_t_u_camera_a68c20abf9dd120e315edd033175eef50}{}\label{class_n_c_t_u_camera_a68c20abf9dd120e315edd033175eef50}
+
+\begin{DoxyCompactList}\small\item\em is turning ok for now? \end{DoxyCompactList}\item 
+\hyperlink{class_camera_motion}{Camera\+Motion} \& \hyperlink{class_n_c_t_u_camera_a5925e054a060e69c5e252f1bbb63f5e5}{get\+Motion} ()\hypertarget{class_n_c_t_u_camera_a5925e054a060e69c5e252f1bbb63f5e5}{}\label{class_n_c_t_u_camera_a5925e054a060e69c5e252f1bbb63f5e5}
+
+\begin{DoxyCompactList}\small\item\em get the camera motion instance \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector3 \hyperlink{class_n_c_t_u_camera_ae63ea710bee3e1121ccb7db8b5f1c85f}{m\+Camera\+Position\+Offset}\hypertarget{class_n_c_t_u_camera_ae63ea710bee3e1121ccb7db8b5f1c85f}{}\label{class_n_c_t_u_camera_ae63ea710bee3e1121ccb7db8b5f1c85f}
+
+\begin{DoxyCompactList}\small\item\em camera position offset \end{DoxyCompactList}\item 
+Vector3 \hyperlink{class_n_c_t_u_camera_ae1343563fb5952a7bf7394f70858059e}{m\+Camera\+Look\+At\+Offset}\hypertarget{class_n_c_t_u_camera_ae1343563fb5952a7bf7394f70858059e}{}\label{class_n_c_t_u_camera_ae1343563fb5952a7bf7394f70858059e}
+
+\begin{DoxyCompactList}\small\item\em camera look\+At offset \end{DoxyCompactList}\item 
+Vector3 \hyperlink{class_n_c_t_u_camera_a414b533b2b30e3f73f950b93e7fe8f1b}{m\+Camera\+Init\+Look\+At}\hypertarget{class_n_c_t_u_camera_a414b533b2b30e3f73f950b93e7fe8f1b}{}\label{class_n_c_t_u_camera_a414b533b2b30e3f73f950b93e7fe8f1b}
+
+\begin{DoxyCompactList}\small\item\em camera initial look\+At \end{DoxyCompactList}\item 
+Vector3 \hyperlink{class_n_c_t_u_camera_af0f6d56adf8eef2d1b5494e0e59acbf2}{m\+Camera\+Init\+Position}\hypertarget{class_n_c_t_u_camera_af0f6d56adf8eef2d1b5494e0e59acbf2}{}\label{class_n_c_t_u_camera_af0f6d56adf8eef2d1b5494e0e59acbf2}
+
+\begin{DoxyCompactList}\small\item\em camera initial position \end{DoxyCompactList}\item 
+Quaternion \hyperlink{class_n_c_t_u_camera_aba9100e74f7f1349069e091b19b96283}{m\+Init\+Orientation}\hypertarget{class_n_c_t_u_camera_aba9100e74f7f1349069e091b19b96283}{}\label{class_n_c_t_u_camera_aba9100e74f7f1349069e091b19b96283}
+
+\begin{DoxyCompactList}\small\item\em camera initial orientation \end{DoxyCompactList}\item 
+int \hyperlink{class_n_c_t_u_camera_af97c1ee5da887f581940ad33c9d42dc5}{m\+Near\+Clip\+Min}\hypertarget{class_n_c_t_u_camera_af97c1ee5da887f581940ad33c9d42dc5}{}\label{class_n_c_t_u_camera_af97c1ee5da887f581940ad33c9d42dc5}
+
+\begin{DoxyCompactList}\small\item\em minimum near clip distance \end{DoxyCompactList}\item 
+int \hyperlink{class_n_c_t_u_camera_ac2144233de8a94f1aee27567750f0b7a}{m\+Near\+Clip\+Max}\hypertarget{class_n_c_t_u_camera_ac2144233de8a94f1aee27567750f0b7a}{}\label{class_n_c_t_u_camera_ac2144233de8a94f1aee27567750f0b7a}
+
+\begin{DoxyCompactList}\small\item\em maximum near clip distance \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const Real \hyperlink{class_n_c_t_u_camera_a1aba52f772c07e125be557b1e91da5c0}{T\+U\+R\+N\+I\+N\+G\+\_\+\+T\+I\+ME} = 0.\+2/90\hypertarget{class_n_c_t_u_camera_a1aba52f772c07e125be557b1e91da5c0}{}\label{class_n_c_t_u_camera_a1aba52f772c07e125be557b1e91da5c0}
+
+\begin{DoxyCompactList}\small\item\em turning time \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Camera controller for this project. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+programs/\+Obstacle/include/N\+C\+T\+U\+Camera.\+h\item 
+programs/\+Obstacle/source/N\+C\+T\+U\+Camera.\+cpp\end{DoxyCompactItemize}

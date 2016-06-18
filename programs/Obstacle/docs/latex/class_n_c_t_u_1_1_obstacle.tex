@@ -1,0 +1,314 @@
+\hypertarget{class_n_c_t_u_1_1_obstacle}{}\section{N\+C\+TU\+:\+:Obstacle Class Reference}
+\label{class_n_c_t_u_1_1_obstacle}\index{N\+C\+T\+U\+::\+Obstacle@{N\+C\+T\+U\+::\+Obstacle}}
+
+
+base class for all obstacle  
+
+
+
+
+{\ttfamily \#include $<$N\+C\+T\+U\+Obstacle.\+h$>$}
+
+Inheritance diagram for N\+C\+TU\+:\+:Obstacle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.038961cm]{class_n_c_t_u_1_1_obstacle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_n_c_t_u_1_1_obstacle_abc03dea67c7426eea315a1ac4da8c78d}{Obstacle} (\hyperlink{class_n_c_t_u_1_1_obstacle_manager}{Obstacle\+Manager} $\ast$mgmt, Ogre\+::\+Real restitution, Ogre\+::\+Real friction, Ogre\+::\+Real mass)\hypertarget{class_n_c_t_u_1_1_obstacle_abc03dea67c7426eea315a1ac4da8c78d}{}\label{class_n_c_t_u_1_1_obstacle_abc03dea67c7426eea315a1ac4da8c78d}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{class_n_c_t_u_1_1_obstacle_af96593944da2a5873cdacbd8ff54f076}{Obstacle} (const \hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} \&)\hypertarget{class_n_c_t_u_1_1_obstacle_af96593944da2a5873cdacbd8ff54f076}{}\label{class_n_c_t_u_1_1_obstacle_af96593944da2a5873cdacbd8ff54f076}
+
+\begin{DoxyCompactList}\small\item\em copy constructor \end{DoxyCompactList}\item 
+virtual \hyperlink{class_n_c_t_u_1_1_obstacle_af2f9cc9c6cff75dca0974fd5ac4f71a9}{$\sim$\+Obstacle} ()\hypertarget{class_n_c_t_u_1_1_obstacle_af2f9cc9c6cff75dca0974fd5ac4f71a9}{}\label{class_n_c_t_u_1_1_obstacle_af2f9cc9c6cff75dca0974fd5ac4f71a9}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a12e49360d558e8a875651f212698f3bd}{set\+Scale} (const Ogre\+::\+Vector3 \&)\hypertarget{class_n_c_t_u_1_1_obstacle_a12e49360d558e8a875651f212698f3bd}{}\label{class_n_c_t_u_1_1_obstacle_a12e49360d558e8a875651f212698f3bd}
+
+\begin{DoxyCompactList}\small\item\em set object scale \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_ad36f7e057a1067bc71dbaf4cef8c7b31}{update\+Collision} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_obstacle_ad36f7e057a1067bc71dbaf4cef8c7b31}{}\label{class_n_c_t_u_1_1_obstacle_ad36f7e057a1067bc71dbaf4cef8c7b31}
+
+\begin{DoxyCompactList}\small\item\em routine for update collision \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a45e169430ef20b5ee475f48ca3fc502a}{update\+Life\+Time} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_obstacle_a45e169430ef20b5ee475f48ca3fc502a}{}\label{class_n_c_t_u_1_1_obstacle_a45e169430ef20b5ee475f48ca3fc502a}
+
+\begin{DoxyCompactList}\small\item\em routine for update life time \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a232a6f9974ec04ae5ffb1f618f7c6bec}{update\+Playing\+Game} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_obstacle_a232a6f9974ec04ae5ffb1f618f7c6bec}{}\label{class_n_c_t_u_1_1_obstacle_a232a6f9974ec04ae5ffb1f618f7c6bec}
+
+\begin{DoxyCompactList}\small\item\em routine for a playing game \end{DoxyCompactList}\item 
+virtual Ogre\+::\+Scene\+Node $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a79f8cc36edef15a3639a40c70acdb53f}{get\+Scene\+Node} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a79f8cc36edef15a3639a40c70acdb53f}{}\label{class_n_c_t_u_1_1_obstacle_a79f8cc36edef15a3639a40c70acdb53f}
+
+\begin{DoxyCompactList}\small\item\em get the scene node \end{DoxyCompactList}\item 
+virtual Ogre\+::\+Entity $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_ab0b495eb1f91ab76faa751751e3639e7}{get\+Entity} ()\hypertarget{class_n_c_t_u_1_1_obstacle_ab0b495eb1f91ab76faa751751e3639e7}{}\label{class_n_c_t_u_1_1_obstacle_ab0b495eb1f91ab76faa751751e3639e7}
+
+\begin{DoxyCompactList}\small\item\em get the entity \end{DoxyCompactList}\item 
+virtual Ogre\+Bullet\+Dynamics\+::\+Rigid\+Body $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_aab79cadcfa31f7a6633e4a79df6683ee}{get\+Body} ()\hypertarget{class_n_c_t_u_1_1_obstacle_aab79cadcfa31f7a6633e4a79df6683ee}{}\label{class_n_c_t_u_1_1_obstacle_aab79cadcfa31f7a6633e4a79df6683ee}
+
+\begin{DoxyCompactList}\small\item\em get the bullet rigid body \end{DoxyCompactList}\item 
+virtual Ogre\+Bullet\+Collisions\+::\+Collision\+Shape $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_aea41027c61d51df4d1ed72c5ad52ae62}{get\+Shape} ()\hypertarget{class_n_c_t_u_1_1_obstacle_aea41027c61d51df4d1ed72c5ad52ae62}{}\label{class_n_c_t_u_1_1_obstacle_aea41027c61d51df4d1ed72c5ad52ae62}
+
+\begin{DoxyCompactList}\small\item\em git the bullet collision shape \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a80ef7f5311539939b7ab209c3f42357b}{set\+Velocity} (const Ogre\+::\+Vector3 v)\hypertarget{class_n_c_t_u_1_1_obstacle_a80ef7f5311539939b7ab209c3f42357b}{}\label{class_n_c_t_u_1_1_obstacle_a80ef7f5311539939b7ab209c3f42357b}
+
+\begin{DoxyCompactList}\small\item\em set velocity \end{DoxyCompactList}\item 
+virtual Ogre\+::\+Vector3 \hyperlink{class_n_c_t_u_1_1_obstacle_ae3cab20c9bb9dfd905325df76aec46b5}{get\+Velocity} () const \hypertarget{class_n_c_t_u_1_1_obstacle_ae3cab20c9bb9dfd905325df76aec46b5}{}\label{class_n_c_t_u_1_1_obstacle_ae3cab20c9bb9dfd905325df76aec46b5}
+
+\begin{DoxyCompactList}\small\item\em get velocity \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a105d2a834de6357bbb159166ed6779ad}{apply\+Velocity\+Change} (const Ogre\+::\+Vector3 v)\hypertarget{class_n_c_t_u_1_1_obstacle_a105d2a834de6357bbb159166ed6779ad}{}\label{class_n_c_t_u_1_1_obstacle_a105d2a834de6357bbb159166ed6779ad}
+
+\begin{DoxyCompactList}\small\item\em apply velocity change \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a992c5eabbae44f6c3c2b9cf564bde211}{set\+Position} (const Ogre\+::\+Vector3 v)\hypertarget{class_n_c_t_u_1_1_obstacle_a992c5eabbae44f6c3c2b9cf564bde211}{}\label{class_n_c_t_u_1_1_obstacle_a992c5eabbae44f6c3c2b9cf564bde211}
+
+\begin{DoxyCompactList}\small\item\em set position \end{DoxyCompactList}\item 
+virtual Ogre\+::\+Vector3 \hyperlink{class_n_c_t_u_1_1_obstacle_a64c40f6470a9ad47c6441ddef7f8cc62}{get\+Position} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a64c40f6470a9ad47c6441ddef7f8cc62}{}\label{class_n_c_t_u_1_1_obstacle_a64c40f6470a9ad47c6441ddef7f8cc62}
+
+\begin{DoxyCompactList}\small\item\em get position \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_aa68682ec1330c69bf6093699a42610ff}{set\+Orientation} (const Ogre\+::\+Quaternion q)\hypertarget{class_n_c_t_u_1_1_obstacle_aa68682ec1330c69bf6093699a42610ff}{}\label{class_n_c_t_u_1_1_obstacle_aa68682ec1330c69bf6093699a42610ff}
+
+\begin{DoxyCompactList}\small\item\em set orientation \end{DoxyCompactList}\item 
+virtual Ogre\+::\+Quaternion \hyperlink{class_n_c_t_u_1_1_obstacle_aadc30d1638cee2b7eb76fb83cd84cfc2}{get\+Orientation} () const \hypertarget{class_n_c_t_u_1_1_obstacle_aadc30d1638cee2b7eb76fb83cd84cfc2}{}\label{class_n_c_t_u_1_1_obstacle_aadc30d1638cee2b7eb76fb83cd84cfc2}
+
+\begin{DoxyCompactList}\small\item\em get orieatation \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_aa7271e6282b29e9604e1e36c033c5260}{set\+On\+Floor} (bool val)\hypertarget{class_n_c_t_u_1_1_obstacle_aa7271e6282b29e9604e1e36c033c5260}{}\label{class_n_c_t_u_1_1_obstacle_aa7271e6282b29e9604e1e36c033c5260}
+
+\begin{DoxyCompactList}\small\item\em set the on floor state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_ad286ab7a7891af2fdbe68509414a7091}{get\+On\+Floor} (int threshold=F\+L\+O\+O\+R\+\_\+\+T\+O\+U\+C\+H\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD) const \hypertarget{class_n_c_t_u_1_1_obstacle_ad286ab7a7891af2fdbe68509414a7091}{}\label{class_n_c_t_u_1_1_obstacle_ad286ab7a7891af2fdbe68509414a7091}
+
+\begin{DoxyCompactList}\small\item\em get the on floor state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_ae419fab10dbf0d0a12fd2648ac4e2d52}{is\+On\+Floor} (int threshold=F\+L\+O\+O\+R\+\_\+\+T\+O\+U\+C\+H\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD) const \hypertarget{class_n_c_t_u_1_1_obstacle_ae419fab10dbf0d0a12fd2648ac4e2d52}{}\label{class_n_c_t_u_1_1_obstacle_ae419fab10dbf0d0a12fd2648ac4e2d52}
+
+\begin{DoxyCompactList}\small\item\em is on floor? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a72befedacbcc24f006b6e6e06be49cf5}{set\+Is\+Bump\+Obstacle} (bool val)\hypertarget{class_n_c_t_u_1_1_obstacle_a72befedacbcc24f006b6e6e06be49cf5}{}\label{class_n_c_t_u_1_1_obstacle_a72befedacbcc24f006b6e6e06be49cf5}
+
+\begin{DoxyCompactList}\small\item\em set the bump obstacle state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a6a6cd290bd731357b99d9f94925632fb}{get\+Is\+Bump\+Obstacle} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a6a6cd290bd731357b99d9f94925632fb}{}\label{class_n_c_t_u_1_1_obstacle_a6a6cd290bd731357b99d9f94925632fb}
+
+\begin{DoxyCompactList}\small\item\em get the bump obstacle state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a22fcf620d1a4592c3cce9dac4f344555}{Is\+Bump\+Obstacle} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a22fcf620d1a4592c3cce9dac4f344555}{}\label{class_n_c_t_u_1_1_obstacle_a22fcf620d1a4592c3cce9dac4f344555}
+
+\begin{DoxyCompactList}\small\item\em is bump obstacle? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a28463f2b0bd1a97128757b58d848bf1f}{on\+Bullet\+Hit} (\hyperlink{class_n_c_t_u_1_1_bullet_obstacle}{Bullet\+Obstacle} $\ast$, \hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} $\ast$)\hypertarget{class_n_c_t_u_1_1_obstacle_a28463f2b0bd1a97128757b58d848bf1f}{}\label{class_n_c_t_u_1_1_obstacle_a28463f2b0bd1a97128757b58d848bf1f}
+
+\begin{DoxyCompactList}\small\item\em process on bullet hit \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a156ca87f893b7ff453a5180a27564e0b}{set\+Is\+On\+Obstacle\+Plane} (bool val)\hypertarget{class_n_c_t_u_1_1_obstacle_a156ca87f893b7ff453a5180a27564e0b}{}\label{class_n_c_t_u_1_1_obstacle_a156ca87f893b7ff453a5180a27564e0b}
+
+\begin{DoxyCompactList}\small\item\em set on obstacle plane state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a97c1418cc9898305b231c3cc77aae307}{get\+Is\+On\+Obstacle\+Plane} (int threshold=O\+B\+S\+T\+A\+C\+L\+E\+\_\+\+P\+L\+A\+N\+E\+\_\+\+T\+O\+U\+C\+H\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD) const \hypertarget{class_n_c_t_u_1_1_obstacle_a97c1418cc9898305b231c3cc77aae307}{}\label{class_n_c_t_u_1_1_obstacle_a97c1418cc9898305b231c3cc77aae307}
+
+\begin{DoxyCompactList}\small\item\em get on obstacle plane state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a643dc58d043d26db4e1029e5c3c478db}{Is\+On\+Obstacle\+Plane} (int threshold=O\+B\+S\+T\+A\+C\+L\+E\+\_\+\+P\+L\+A\+N\+E\+\_\+\+T\+O\+U\+C\+H\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD) const \hypertarget{class_n_c_t_u_1_1_obstacle_a643dc58d043d26db4e1029e5c3c478db}{}\label{class_n_c_t_u_1_1_obstacle_a643dc58d043d26db4e1029e5c3c478db}
+
+\begin{DoxyCompactList}\small\item\em is on obstacle plane? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_ad081dc72bebac094289d949bf98ee3be}{set\+My\+Iterator} (std\+::list$<$ \hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} $\ast$ $>$\+::iterator it)\hypertarget{class_n_c_t_u_1_1_obstacle_ad081dc72bebac094289d949bf98ee3be}{}\label{class_n_c_t_u_1_1_obstacle_ad081dc72bebac094289d949bf98ee3be}
+
+\begin{DoxyCompactList}\small\item\em set my iterator for manager \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_ac1ec2583dbf455a82c7f4a9566c31f48}{clean\+Up} ()\hypertarget{class_n_c_t_u_1_1_obstacle_ac1ec2583dbf455a82c7f4a9566c31f48}{}\label{class_n_c_t_u_1_1_obstacle_ac1ec2583dbf455a82c7f4a9566c31f48}
+
+\begin{DoxyCompactList}\small\item\em clean up routing \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_afdce3149f34e8dd84dffe2c954d05e99}{on\+Life\+End} ()\hypertarget{class_n_c_t_u_1_1_obstacle_afdce3149f34e8dd84dffe2c954d05e99}{}\label{class_n_c_t_u_1_1_obstacle_afdce3149f34e8dd84dffe2c954d05e99}
+
+\begin{DoxyCompactList}\small\item\em process on life ended \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a06a36fae4b8fcb9ab7939e21e11df1d6}{destroy\+Physics} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a06a36fae4b8fcb9ab7939e21e11df1d6}{}\label{class_n_c_t_u_1_1_obstacle_a06a36fae4b8fcb9ab7939e21e11df1d6}
+
+\begin{DoxyCompactList}\small\item\em destory physics system \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_ad13df4a17603e10661585509138e8037}{detach\+Entity} ()\hypertarget{class_n_c_t_u_1_1_obstacle_ad13df4a17603e10661585509138e8037}{}\label{class_n_c_t_u_1_1_obstacle_ad13df4a17603e10661585509138e8037}
+
+\begin{DoxyCompactList}\small\item\em detach entity \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_af3a33b113a56ba0191b892829d761502}{is\+Alive} () const \hypertarget{class_n_c_t_u_1_1_obstacle_af3a33b113a56ba0191b892829d761502}{}\label{class_n_c_t_u_1_1_obstacle_af3a33b113a56ba0191b892829d761502}
+
+\begin{DoxyCompactList}\small\item\em is alive? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a7b3760f178b3299589706eb720210087}{need\+Deleted} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a7b3760f178b3299589706eb720210087}{}\label{class_n_c_t_u_1_1_obstacle_a7b3760f178b3299589706eb720210087}
+
+\begin{DoxyCompactList}\small\item\em is need to be deleted? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a1e444ec09571654d3a2d18a68d8bb9eb}{set\+Life\+Time} (Ogre\+::\+Real v)\hypertarget{class_n_c_t_u_1_1_obstacle_a1e444ec09571654d3a2d18a68d8bb9eb}{}\label{class_n_c_t_u_1_1_obstacle_a1e444ec09571654d3a2d18a68d8bb9eb}
+
+\begin{DoxyCompactList}\small\item\em set life time \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a4300351847149b550c72826721e3d2aa}{cancel\+Life\+Time} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a4300351847149b550c72826721e3d2aa}{}\label{class_n_c_t_u_1_1_obstacle_a4300351847149b550c72826721e3d2aa}
+
+\begin{DoxyCompactList}\small\item\em cancel life time \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a41c126bdbf76855a5ba645a5d74024cb}{set\+Hit\+Point} (int val, Hp\+Type type)\hypertarget{class_n_c_t_u_1_1_obstacle_a41c126bdbf76855a5ba645a5d74024cb}{}\label{class_n_c_t_u_1_1_obstacle_a41c126bdbf76855a5ba645a5d74024cb}
+
+\begin{DoxyCompactList}\small\item\em set the hit point \end{DoxyCompactList}\item 
+virtual int \hyperlink{class_n_c_t_u_1_1_obstacle_a3e010ae1903baacc5991a6ff677d70f2}{get\+Hit\+Point} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a3e010ae1903baacc5991a6ff677d70f2}{}\label{class_n_c_t_u_1_1_obstacle_a3e010ae1903baacc5991a6ff677d70f2}
+
+\begin{DoxyCompactList}\small\item\em get the hit point \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a65e0fa8a3b943571a7408e7b6242bea1}{is\+Invincible} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a65e0fa8a3b943571a7408e7b6242bea1}{}\label{class_n_c_t_u_1_1_obstacle_a65e0fa8a3b943571a7408e7b6242bea1}
+
+\begin{DoxyCompactList}\small\item\em is invincible? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a4b7ee4353297cd13f73f7a9e2e851264}{init\+Particle\+System} (const Ogre\+::\+String \&particle\+Name, int index=0)\hypertarget{class_n_c_t_u_1_1_obstacle_a4b7ee4353297cd13f73f7a9e2e851264}{}\label{class_n_c_t_u_1_1_obstacle_a4b7ee4353297cd13f73f7a9e2e851264}
+
+\begin{DoxyCompactList}\small\item\em initialize the particle system \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_ab6bf4ec6684528fca9b1e4cf7a273cc3}{set\+Off\+Particle\+System} (int index=0)\hypertarget{class_n_c_t_u_1_1_obstacle_ab6bf4ec6684528fca9b1e4cf7a273cc3}{}\label{class_n_c_t_u_1_1_obstacle_ab6bf4ec6684528fca9b1e4cf7a273cc3}
+
+\begin{DoxyCompactList}\small\item\em set off the particle system \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_aa156cccecda15fcfb0a51bf2fe93be07}{stop\+Particle\+System} (int index=0)\hypertarget{class_n_c_t_u_1_1_obstacle_aa156cccecda15fcfb0a51bf2fe93be07}{}\label{class_n_c_t_u_1_1_obstacle_aa156cccecda15fcfb0a51bf2fe93be07}
+
+\begin{DoxyCompactList}\small\item\em stop the particle system \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a616b49cf5897581a78308498b3fbd15a}{destroy\+Particle\+System} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a616b49cf5897581a78308498b3fbd15a}{}\label{class_n_c_t_u_1_1_obstacle_a616b49cf5897581a78308498b3fbd15a}
+
+\begin{DoxyCompactList}\small\item\em destroy the particle system \end{DoxyCompactList}\item 
+virtual Hp\+Type \hyperlink{class_n_c_t_u_1_1_obstacle_a6314a48b3bf0b389f2718bca6a6ba226}{get\+Hp\+Type} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a6314a48b3bf0b389f2718bca6a6ba226}{}\label{class_n_c_t_u_1_1_obstacle_a6314a48b3bf0b389f2718bca6a6ba226}
+
+\begin{DoxyCompactList}\small\item\em get hp type \end{DoxyCompactList}\item 
+virtual int \hyperlink{class_n_c_t_u_1_1_obstacle_aaec0ed1185982b1d2507a8d24adcfdfc}{decrease\+Hp} (int value=1)\hypertarget{class_n_c_t_u_1_1_obstacle_aaec0ed1185982b1d2507a8d24adcfdfc}{}\label{class_n_c_t_u_1_1_obstacle_aaec0ed1185982b1d2507a8d24adcfdfc}
+
+\begin{DoxyCompactList}\small\item\em decrease hp \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_ad89e5a33bf7f5aa52a46370cd7162a4b}{set\+Bump\+Speed} (Ogre\+::\+Real val)\hypertarget{class_n_c_t_u_1_1_obstacle_ad89e5a33bf7f5aa52a46370cd7162a4b}{}\label{class_n_c_t_u_1_1_obstacle_ad89e5a33bf7f5aa52a46370cd7162a4b}
+
+\begin{DoxyCompactList}\small\item\em set bump-\/jump speed \end{DoxyCompactList}\item 
+virtual Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_a342a664e19976891d45d9309821f1d81}{get\+Bump\+Speed} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a342a664e19976891d45d9309821f1d81}{}\label{class_n_c_t_u_1_1_obstacle_a342a664e19976891d45d9309821f1d81}
+
+\begin{DoxyCompactList}\small\item\em get bump-\/jump speed \end{DoxyCompactList}\item 
+virtual \hyperlink{class_n_c_t_u_1_1_obstacle_manager}{Obstacle\+Manager} $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a2c909e22367353721b9efad22cffd190}{get\+Manager} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a2c909e22367353721b9efad22cffd190}{}\label{class_n_c_t_u_1_1_obstacle_a2c909e22367353721b9efad22cffd190}
+
+\begin{DoxyCompactList}\small\item\em get the obstacle manager \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_aa1aec7492db31b24b428290ad34e5058}{set\+Current\+Obstacle} (\hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} $\ast$obj)\hypertarget{class_n_c_t_u_1_1_obstacle_aa1aec7492db31b24b428290ad34e5058}{}\label{class_n_c_t_u_1_1_obstacle_aa1aec7492db31b24b428290ad34e5058}
+
+\begin{DoxyCompactList}\small\item\em set current obstacle touched \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_aa062441e739d95d31f5f8489229d86ca}{set\+Turn\+Type} (const Ogre\+::\+String \&v)\hypertarget{class_n_c_t_u_1_1_obstacle_aa062441e739d95d31f5f8489229d86ca}{}\label{class_n_c_t_u_1_1_obstacle_aa062441e739d95d31f5f8489229d86ca}
+
+\begin{DoxyCompactList}\small\item\em set turn type \end{DoxyCompactList}\item 
+virtual const Ogre\+::\+String \& \hyperlink{class_n_c_t_u_1_1_obstacle_ad67378fa3bac4797e8028388021859aa}{get\+Turn\+Type} () const \hypertarget{class_n_c_t_u_1_1_obstacle_ad67378fa3bac4797e8028388021859aa}{}\label{class_n_c_t_u_1_1_obstacle_ad67378fa3bac4797e8028388021859aa}
+
+\begin{DoxyCompactList}\small\item\em get turn type \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a5024c55cbbe88f55e811f6d8f79f63c1}{set\+Turn\+Used} (bool v)\hypertarget{class_n_c_t_u_1_1_obstacle_a5024c55cbbe88f55e811f6d8f79f63c1}{}\label{class_n_c_t_u_1_1_obstacle_a5024c55cbbe88f55e811f6d8f79f63c1}
+
+\begin{DoxyCompactList}\small\item\em set turn used state \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_a529732a75d861258223e9389e555d138}{get\+Turn\+Used} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a529732a75d861258223e9389e555d138}{}\label{class_n_c_t_u_1_1_obstacle_a529732a75d861258223e9389e555d138}
+
+\begin{DoxyCompactList}\small\item\em get turn used state \end{DoxyCompactList}\item 
+virtual const Ogre\+::\+String \& \hyperlink{class_n_c_t_u_1_1_obstacle_a08a8a4b08b58a763328511e38a5ee507}{get\+Name} () const \hypertarget{class_n_c_t_u_1_1_obstacle_a08a8a4b08b58a763328511e38a5ee507}{}\label{class_n_c_t_u_1_1_obstacle_a08a8a4b08b58a763328511e38a5ee507}
+
+\begin{DoxyCompactList}\small\item\em get name \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_aaf76ae2db2319c5d23497e5d1b9250d1}{can\+Be\+Shoot} () const \hypertarget{class_n_c_t_u_1_1_obstacle_aaf76ae2db2319c5d23497e5d1b9250d1}{}\label{class_n_c_t_u_1_1_obstacle_aaf76ae2db2319c5d23497e5d1b9250d1}
+
+\begin{DoxyCompactList}\small\item\em is this object can be shoot? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_abacf17c33a0935723a239614a7c6dccb}{can\+Stand\+On} () const \hypertarget{class_n_c_t_u_1_1_obstacle_abacf17c33a0935723a239614a7c6dccb}{}\label{class_n_c_t_u_1_1_obstacle_abacf17c33a0935723a239614a7c6dccb}
+
+\begin{DoxyCompactList}\small\item\em is this object can be standed on? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_obstacle_ae43c3acf29c136a4a8a281c55bad529f}{can\+Cause\+Dead} () const \hypertarget{class_n_c_t_u_1_1_obstacle_ae43c3acf29c136a4a8a281c55bad529f}{}\label{class_n_c_t_u_1_1_obstacle_ae43c3acf29c136a4a8a281c55bad529f}
+
+\begin{DoxyCompactList}\small\item\em is this object can cause dead? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a9fd48eeac098f18cb455aeeeb7b48585}{destroy} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a9fd48eeac098f18cb455aeeeb7b48585}{}\label{class_n_c_t_u_1_1_obstacle_a9fd48eeac098f18cb455aeeeb7b48585}
+
+\begin{DoxyCompactList}\small\item\em destory obstacle \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a8fc1473e1914a79835f3219488fb4262}{freeze} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a8fc1473e1914a79835f3219488fb4262}{}\label{class_n_c_t_u_1_1_obstacle_a8fc1473e1914a79835f3219488fb4262}
+
+\begin{DoxyCompactList}\small\item\em freeze the obstacle \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_obstacle_a597c2eaada64e687454fd6dad0f67c01}{unfreeze} ()\hypertarget{class_n_c_t_u_1_1_obstacle_a597c2eaada64e687454fd6dad0f67c01}{}\label{class_n_c_t_u_1_1_obstacle_a597c2eaada64e687454fd6dad0f67c01}
+
+\begin{DoxyCompactList}\small\item\em unfreeze the obstacle \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::deque$<$ std\+::pair$<$ Ogre\+::\+Vector3, Ogre\+::\+Real $>$ $>$ \hyperlink{class_n_c_t_u_1_1_obstacle_a48ed0cbb52a09d2015a6c30edf4942b5}{m\+Collision\+Condition\+Vectors}\hypertarget{class_n_c_t_u_1_1_obstacle_a48ed0cbb52a09d2015a6c30edf4942b5}{}\label{class_n_c_t_u_1_1_obstacle_a48ed0cbb52a09d2015a6c30edf4942b5}
+
+\begin{DoxyCompactList}\small\item\em array of collision condition vectors \end{DoxyCompactList}\item 
+\hyperlink{classprop_map}{prop\+Map}$<$ int, Ogre\+::\+String $>$ \hyperlink{class_n_c_t_u_1_1_obstacle_a6d2779250da24bd2b988af7d0ff5f774}{m\+Hp\+Change\+Materials}\hypertarget{class_n_c_t_u_1_1_obstacle_a6d2779250da24bd2b988af7d0ff5f774}{}\label{class_n_c_t_u_1_1_obstacle_a6d2779250da24bd2b988af7d0ff5f774}
+
+\begin{DoxyCompactList}\small\item\em material name for hp change \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Ogre\+Bullet\+Collisions\+::\+Collision\+Shape $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a226dbf997ccf224cafdb612c3821e944}{generate\+Fitting\+Shape} (Ogre\+::\+Scene\+Node $\ast$node, Ogre\+::\+Entity $\ast$ent)\hypertarget{class_n_c_t_u_1_1_obstacle_a226dbf997ccf224cafdb612c3821e944}{}\label{class_n_c_t_u_1_1_obstacle_a226dbf997ccf224cafdb612c3821e944}
+
+\begin{DoxyCompactList}\small\item\em generate fitting bullet collision shape \end{DoxyCompactList}\item 
+virtual Ogre\+Bullet\+Collisions\+::\+Collision\+Shape $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a25a4697df6bd0fe7c45542f443d44578}{generate\+Convex\+Shape} (Ogre\+::\+Scene\+Node $\ast$node, Ogre\+::\+Entity $\ast$ent)\hypertarget{class_n_c_t_u_1_1_obstacle_a25a4697df6bd0fe7c45542f443d44578}{}\label{class_n_c_t_u_1_1_obstacle_a25a4697df6bd0fe7c45542f443d44578}
+
+\begin{DoxyCompactList}\small\item\em generate convex bullet collision shape \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_n_c_t_u_1_1_obstacle_a4305d4e1560537dc2d83de619976deb3}{m\+Is\+Bump\+Obstacle}\hypertarget{class_n_c_t_u_1_1_obstacle_a4305d4e1560537dc2d83de619976deb3}{}\label{class_n_c_t_u_1_1_obstacle_a4305d4e1560537dc2d83de619976deb3}
+
+\begin{DoxyCompactList}\small\item\em is bump into obstacle? \end{DoxyCompactList}\item 
+\hyperlink{class_n_c_t_u_1_1_obstacle_manager}{Obstacle\+Manager} $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_ac6f0b6d7230560172417c3bfe1b78582}{m\+Manager}\hypertarget{class_n_c_t_u_1_1_obstacle_ac6f0b6d7230560172417c3bfe1b78582}{}\label{class_n_c_t_u_1_1_obstacle_ac6f0b6d7230560172417c3bfe1b78582}
+
+\begin{DoxyCompactList}\small\item\em pointer to the manager \end{DoxyCompactList}\item 
+Ogre\+Bullet\+Dynamics\+::\+Rigid\+Body $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_afaa1b0da65edd91625b3eef7d374f4b6}{m\+Body}\hypertarget{class_n_c_t_u_1_1_obstacle_afaa1b0da65edd91625b3eef7d374f4b6}{}\label{class_n_c_t_u_1_1_obstacle_afaa1b0da65edd91625b3eef7d374f4b6}
+
+\begin{DoxyCompactList}\small\item\em pointer to the rigid body \end{DoxyCompactList}\item 
+Ogre\+Bullet\+Collisions\+::\+Collision\+Shape $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a4f7c737bb2030cad087cd9c287598d17}{m\+Shape}\hypertarget{class_n_c_t_u_1_1_obstacle_a4f7c737bb2030cad087cd9c287598d17}{}\label{class_n_c_t_u_1_1_obstacle_a4f7c737bb2030cad087cd9c287598d17}
+
+\begin{DoxyCompactList}\small\item\em pointer to the collision shape \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_a41e92d725f5cfe94dcd2d45873368d9a}{m\+Restitution}\hypertarget{class_n_c_t_u_1_1_obstacle_a41e92d725f5cfe94dcd2d45873368d9a}{}\label{class_n_c_t_u_1_1_obstacle_a41e92d725f5cfe94dcd2d45873368d9a}
+
+\begin{DoxyCompactList}\small\item\em physics restitution \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_a003de6ce7863352fe7e091b231e6a16b}{m\+Friction}\hypertarget{class_n_c_t_u_1_1_obstacle_a003de6ce7863352fe7e091b231e6a16b}{}\label{class_n_c_t_u_1_1_obstacle_a003de6ce7863352fe7e091b231e6a16b}
+
+\begin{DoxyCompactList}\small\item\em physics friction \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_a94c0ab710fef9c9c818cb69fbd6d39f6}{m\+Mass}\hypertarget{class_n_c_t_u_1_1_obstacle_a94c0ab710fef9c9c818cb69fbd6d39f6}{}\label{class_n_c_t_u_1_1_obstacle_a94c0ab710fef9c9c818cb69fbd6d39f6}
+
+\begin{DoxyCompactList}\small\item\em physics mass \end{DoxyCompactList}\item 
+Ogre\+::\+Scene\+Node $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a964a09c8f078f9338b54a795a730d240}{m\+Node}\hypertarget{class_n_c_t_u_1_1_obstacle_a964a09c8f078f9338b54a795a730d240}{}\label{class_n_c_t_u_1_1_obstacle_a964a09c8f078f9338b54a795a730d240}
+
+\begin{DoxyCompactList}\small\item\em pointer to scene node \end{DoxyCompactList}\item 
+Ogre\+::\+Entity $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_a44efdd73b8a2b99ad4fd8ed7a097216e}{m\+Entity}\hypertarget{class_n_c_t_u_1_1_obstacle_a44efdd73b8a2b99ad4fd8ed7a097216e}{}\label{class_n_c_t_u_1_1_obstacle_a44efdd73b8a2b99ad4fd8ed7a097216e}
+
+\begin{DoxyCompactList}\small\item\em pointer to entity \end{DoxyCompactList}\item 
+Ogre\+::\+String \hyperlink{class_n_c_t_u_1_1_obstacle_a4d2ff7d20cc39546305abb5e2494ecd8}{m\+Name}\hypertarget{class_n_c_t_u_1_1_obstacle_a4d2ff7d20cc39546305abb5e2494ecd8}{}\label{class_n_c_t_u_1_1_obstacle_a4d2ff7d20cc39546305abb5e2494ecd8}
+
+\begin{DoxyCompactList}\small\item\em obstalce name \end{DoxyCompactList}\item 
+Ogre\+::\+Vector3 \hyperlink{class_n_c_t_u_1_1_obstacle_a10ede4821f9d584365c60989b692bdce}{m\+Scale\+Difference}\hypertarget{class_n_c_t_u_1_1_obstacle_a10ede4821f9d584365c60989b692bdce}{}\label{class_n_c_t_u_1_1_obstacle_a10ede4821f9d584365c60989b692bdce}
+
+\begin{DoxyCompactList}\small\item\em scale difference of object \end{DoxyCompactList}\item 
+int \hyperlink{class_n_c_t_u_1_1_obstacle_ae4321fbbf5bd3b2ece94b588fc043f27}{m\+Floor\+Touch\+Value}\hypertarget{class_n_c_t_u_1_1_obstacle_ae4321fbbf5bd3b2ece94b588fc043f27}{}\label{class_n_c_t_u_1_1_obstacle_ae4321fbbf5bd3b2ece94b588fc043f27}
+
+\begin{DoxyCompactList}\small\item\em floor touch value \end{DoxyCompactList}\item 
+int \hyperlink{class_n_c_t_u_1_1_obstacle_afe9bad1107d74ceeb5d6c83ff6635dd5}{m\+Obstacle\+Plane\+Touch\+Value}\hypertarget{class_n_c_t_u_1_1_obstacle_afe9bad1107d74ceeb5d6c83ff6635dd5}{}\label{class_n_c_t_u_1_1_obstacle_afe9bad1107d74ceeb5d6c83ff6635dd5}
+
+\begin{DoxyCompactList}\small\item\em obstacle touch value \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_a2cb0c579e7e9e40dd267ff58d42d0fcb}{m\+Life\+Time}\hypertarget{class_n_c_t_u_1_1_obstacle_a2cb0c579e7e9e40dd267ff58d42d0fcb}{}\label{class_n_c_t_u_1_1_obstacle_a2cb0c579e7e9e40dd267ff58d42d0fcb}
+
+\begin{DoxyCompactList}\small\item\em life time \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_obstacle_a2bbefafdf48468b1b8254d884945787d}{m\+Life\+Time\+Enable}\hypertarget{class_n_c_t_u_1_1_obstacle_a2bbefafdf48468b1b8254d884945787d}{}\label{class_n_c_t_u_1_1_obstacle_a2bbefafdf48468b1b8254d884945787d}
+
+\begin{DoxyCompactList}\small\item\em is life time enabled? \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_obstacle_aa407bf6d5805696a4a80f228ca414066}{m\+Delete\+Mark}\hypertarget{class_n_c_t_u_1_1_obstacle_aa407bf6d5805696a4a80f228ca414066}{}\label{class_n_c_t_u_1_1_obstacle_aa407bf6d5805696a4a80f228ca414066}
+
+\begin{DoxyCompactList}\small\item\em is need deleted? \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_obstacle_aeda6730f371a397c5d08dbd733a4123c}{m\+Entity\+Detached}\hypertarget{class_n_c_t_u_1_1_obstacle_aeda6730f371a397c5d08dbd733a4123c}{}\label{class_n_c_t_u_1_1_obstacle_aeda6730f371a397c5d08dbd733a4123c}
+
+\begin{DoxyCompactList}\small\item\em is entity detached? \end{DoxyCompactList}\item 
+int \hyperlink{class_n_c_t_u_1_1_obstacle_a8e12006c1230c1147b7a0d49a13db9e1}{m\+Hit\+Point}\hypertarget{class_n_c_t_u_1_1_obstacle_a8e12006c1230c1147b7a0d49a13db9e1}{}\label{class_n_c_t_u_1_1_obstacle_a8e12006c1230c1147b7a0d49a13db9e1}
+
+\begin{DoxyCompactList}\small\item\em hit point \end{DoxyCompactList}\item 
+Hp\+Type \hyperlink{class_n_c_t_u_1_1_obstacle_a597fb63280339f18532f87256bb0a3fc}{m\+Hp\+Type}\hypertarget{class_n_c_t_u_1_1_obstacle_a597fb63280339f18532f87256bb0a3fc}{}\label{class_n_c_t_u_1_1_obstacle_a597fb63280339f18532f87256bb0a3fc}
+
+\begin{DoxyCompactList}\small\item\em hp type \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_abff327c8d53bfa8c90fe3d1c6a3973b2}{m\+Bump\+Speed}\hypertarget{class_n_c_t_u_1_1_obstacle_abff327c8d53bfa8c90fe3d1c6a3973b2}{}\label{class_n_c_t_u_1_1_obstacle_abff327c8d53bfa8c90fe3d1c6a3973b2}
+
+\begin{DoxyCompactList}\small\item\em bump-\/jump speed \end{DoxyCompactList}\item 
+Ogre\+::\+String \hyperlink{class_n_c_t_u_1_1_obstacle_a2bf103c410891ac74c39ef8900f936d6}{m\+Turn\+Type}\hypertarget{class_n_c_t_u_1_1_obstacle_a2bf103c410891ac74c39ef8900f936d6}{}\label{class_n_c_t_u_1_1_obstacle_a2bf103c410891ac74c39ef8900f936d6}
+
+\begin{DoxyCompactList}\small\item\em turn type \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_obstacle_a00ba3567bc37de10576bcb0e4aa0180b}{m\+Turn\+Used}\hypertarget{class_n_c_t_u_1_1_obstacle_a00ba3567bc37de10576bcb0e4aa0180b}{}\label{class_n_c_t_u_1_1_obstacle_a00ba3567bc37de10576bcb0e4aa0180b}
+
+\begin{DoxyCompactList}\small\item\em is turn used? \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_obstacle_a42c01e3c5cf2ac4b96fb78565022e2a9}{m\+Frozen}\hypertarget{class_n_c_t_u_1_1_obstacle_a42c01e3c5cf2ac4b96fb78565022e2a9}{}\label{class_n_c_t_u_1_1_obstacle_a42c01e3c5cf2ac4b96fb78565022e2a9}
+
+\begin{DoxyCompactList}\small\item\em is frozen? \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} $\ast$ $>$\+::iterator \hyperlink{class_n_c_t_u_1_1_obstacle_a66f871667db677d933413d2a986cc0cc}{m\+My\+Iterator}\hypertarget{class_n_c_t_u_1_1_obstacle_a66f871667db677d933413d2a986cc0cc}{}\label{class_n_c_t_u_1_1_obstacle_a66f871667db677d933413d2a986cc0cc}
+
+\begin{DoxyCompactList}\small\item\em iterator for manager \end{DoxyCompactList}\item 
+\hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} $\ast$ \hyperlink{class_n_c_t_u_1_1_obstacle_ab0ef4a664fa4320d99e3256f1f50e434}{m\+Current\+Obstacle}\hypertarget{class_n_c_t_u_1_1_obstacle_ab0ef4a664fa4320d99e3256f1f50e434}{}\label{class_n_c_t_u_1_1_obstacle_ab0ef4a664fa4320d99e3256f1f50e434}
+
+\begin{DoxyCompactList}\small\item\em pointer to the current obstacle \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_obstacle_aab0815b13db0dc1cb589ee143f849303}{m\+Current\+Obstacle\+Valid}\hypertarget{class_n_c_t_u_1_1_obstacle_aab0815b13db0dc1cb589ee143f849303}{}\label{class_n_c_t_u_1_1_obstacle_aab0815b13db0dc1cb589ee143f849303}
+
+\begin{DoxyCompactList}\small\item\em valid time for current obstacle \end{DoxyCompactList}\item 
+std\+::deque$<$ \hyperlink{struct_n_c_t_u_1_1_particle_system_pack}{Particle\+System\+Pack} $>$ \hyperlink{class_n_c_t_u_1_1_obstacle_a30591db733c980f295b78c1f7f687cfb}{m\+Particle\+Systems}\hypertarget{class_n_c_t_u_1_1_obstacle_a30591db733c980f295b78c1f7f687cfb}{}\label{class_n_c_t_u_1_1_obstacle_a30591db733c980f295b78c1f7f687cfb}
+
+\begin{DoxyCompactList}\small\item\em array of particle system \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+base class for all obstacle 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+N\+C\+T\+U\+Obstacle/include/N\+C\+T\+U\+Obstacle.\+h\item 
+N\+C\+T\+U\+Obstacle/src/N\+C\+T\+U\+Obstacle.\+cpp\end{DoxyCompactItemize}

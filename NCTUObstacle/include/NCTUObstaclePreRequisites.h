@@ -49,7 +49,9 @@ namespace NCTU{
 	class PickupObstacle;
 
 	typedef void(*BulletHitHandler)(BulletObstacle*, Obstacle*);
-
+	/*! 
+	\brief hp type
+	*/
 	enum HpType {
 		typeRed, typeBlue, typeBoth
 	};
@@ -62,8 +64,14 @@ namespace NCTU{
 
 
 template<class Key, class Value>
+/*! 
+\brief a extended map to store properties
+*/
 class propMap : public std::map<Key,Value>{
 public:
+	/*! 
+	\brief check if it has a specific key?
+	*/
 	bool hasKey(const Key& key) const{
 		return this->find(key) != this->end();
 	}

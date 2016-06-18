@@ -1,0 +1,76 @@
+\hypertarget{classns__phys_1_1matrix}{}\section{ns\+\_\+phys\+:\+:matrix Class Reference}
+\label{classns__phys_1_1matrix}\index{ns\+\_\+phys\+::matrix@{ns\+\_\+phys\+::matrix}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+{\bfseries TX} =3, 
+{\bfseries TY} =7, 
+{\bfseries TZ} =11, 
+{\bfseries D0} =0, 
+\\*
+{\bfseries D1} =5, 
+{\bfseries D2} =10, 
+{\bfseries D3} =15, 
+{\bfseries SX} =D0, 
+\\*
+{\bfseries SY} =D1, 
+{\bfseries SZ} =D2, 
+{\bfseries W} =D3
+ \}\hypertarget{classns__phys_1_1matrix_a6737e3f786039d494a0f48b48f6cb882}{}\label{classns__phys_1_1matrix_a6737e3f786039d494a0f48b48f6cb882}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+v3\+\_\+float \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int a\+\_\+N)\hypertarget{classns__phys_1_1matrix_aaca39d1ebaa7883da97e525fda2205b5}{}\label{classns__phys_1_1matrix_aaca39d1ebaa7883da97e525fda2205b5}
+
+\item 
+void {\bfseries Identity} ()\hypertarget{classns__phys_1_1matrix_afa2bbbf3e969a31c625adecf5acd3075}{}\label{classns__phys_1_1matrix_afa2bbbf3e969a31c625adecf5acd3075}
+
+\item 
+void {\bfseries Rotate} (\hyperlink{classns__phys_1_1vector3}{vector3} a\+\_\+\+Pos, v3\+\_\+float a\+\_\+\+RX, v3\+\_\+float a\+\_\+\+RY, v3\+\_\+float a\+\_\+\+RZ)\hypertarget{classns__phys_1_1matrix_a4e50de481e22df9829119371549e776c}{}\label{classns__phys_1_1matrix_a4e50de481e22df9829119371549e776c}
+
+\item 
+void {\bfseries RotateX} (v3\+\_\+float a\+\_\+\+RX)\hypertarget{classns__phys_1_1matrix_ad4e41375d9d880adbe6b05f1f8202c70}{}\label{classns__phys_1_1matrix_ad4e41375d9d880adbe6b05f1f8202c70}
+
+\item 
+void {\bfseries RotateY} (v3\+\_\+float a\+\_\+\+RY)\hypertarget{classns__phys_1_1matrix_a01bb8550e1a292996ac4cf6a1cfbd034}{}\label{classns__phys_1_1matrix_a01bb8550e1a292996ac4cf6a1cfbd034}
+
+\item 
+void {\bfseries RotateZ} (v3\+\_\+float a\+\_\+\+RZ)\hypertarget{classns__phys_1_1matrix_a770167fe88dcc9408cda918db61ce5ca}{}\label{classns__phys_1_1matrix_a770167fe88dcc9408cda918db61ce5ca}
+
+\item 
+void {\bfseries Translate} (\hyperlink{classns__phys_1_1vector3}{vector3} a\+\_\+\+Pos)\hypertarget{classns__phys_1_1matrix_a13ef42c6b623bd8c50e2f20a3e9a33ce}{}\label{classns__phys_1_1matrix_a13ef42c6b623bd8c50e2f20a3e9a33ce}
+
+\item 
+void {\bfseries Set\+Translation} (\hyperlink{classns__phys_1_1vector3}{vector3} a\+\_\+\+Pos)\hypertarget{classns__phys_1_1matrix_a39b22741e83243f7f950f726f1c98005}{}\label{classns__phys_1_1matrix_a39b22741e83243f7f950f726f1c98005}
+
+\item 
+void {\bfseries Normalize} ()\hypertarget{classns__phys_1_1matrix_a910ce1bbb2f9b12ef230e0a51b1d2c14}{}\label{classns__phys_1_1matrix_a910ce1bbb2f9b12ef230e0a51b1d2c14}
+
+\item 
+void {\bfseries Concatenate} (\hyperlink{classns__phys_1_1matrix}{matrix} \&m2)\hypertarget{classns__phys_1_1matrix_ae92987c0a83fcbcc1881786d9f4252cd}{}\label{classns__phys_1_1matrix_ae92987c0a83fcbcc1881786d9f4252cd}
+
+\item 
+\hyperlink{classns__phys_1_1vector3}{vector3} {\bfseries Transform} (const \hyperlink{classns__phys_1_1vector3}{vector3} \&v)\hypertarget{classns__phys_1_1matrix_a06684679fca48a4a384ec912beccc694}{}\label{classns__phys_1_1matrix_a06684679fca48a4a384ec912beccc694}
+
+\item 
+\hyperlink{classns__phys_1_1vector3}{vector3} {\bfseries Get\+Translation} ()\hypertarget{classns__phys_1_1matrix_a9395155e2063b98c35e2f5fc5bdee2ea}{}\label{classns__phys_1_1matrix_a9395155e2063b98c35e2f5fc5bdee2ea}
+
+\item 
+void {\bfseries Invert} ()\hypertarget{classns__phys_1_1matrix_acc9f8918ea3650a108d221117a6f46ae}{}\label{classns__phys_1_1matrix_acc9f8918ea3650a108d221117a6f46ae}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+v3\+\_\+float {\bfseries cell} \mbox{[}16\mbox{]}\hypertarget{classns__phys_1_1matrix_ad68556a7eb354da8d1124606ea05f067}{}\label{classns__phys_1_1matrix_ad68556a7eb354da8d1124606ea05f067}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+programs/\+Obstacle/source/maths/vector3.\+h\item 
+programs/\+Obstacle/source/maths/vector3.\+cpp\end{DoxyCompactItemize}

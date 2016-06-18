@@ -1,0 +1,332 @@
+\hypertarget{class_ogre_1_1_dot_scene_loader}{}\section{Ogre\+:\+:Dot\+Scene\+Loader Class Reference}
+\label{class_ogre_1_1_dot_scene_loader}\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+
+
+main class for Dot\+Scene reading  
+
+
+
+
+{\ttfamily \#include $<$Dot\+Scene\+Loader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ogre_1_1_dot_scene_loader_a4d3297139bca45e1130443d79b7b2e70}{Dot\+Scene\+Loader} ()\hypertarget{class_ogre_1_1_dot_scene_loader_a4d3297139bca45e1130443d79b7b2e70}{}\label{class_ogre_1_1_dot_scene_loader_a4d3297139bca45e1130443d79b7b2e70}
+
+\begin{DoxyCompactList}\small\item\em contructor \end{DoxyCompactList}\item 
+virtual \hyperlink{class_ogre_1_1_dot_scene_loader_a6a2e576a1adac9e7dd9c59548c02df47}{$\sim$\+Dot\+Scene\+Loader} ()\hypertarget{class_ogre_1_1_dot_scene_loader_a6a2e576a1adac9e7dd9c59548c02df47}{}\label{class_ogre_1_1_dot_scene_loader_a6a2e576a1adac9e7dd9c59548c02df47}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a980e8d431568586740534e0c2fd596b1}{parse\+Dot\+Scene} (const String \&Scene\+Name, const String \&group\+Name, Scene\+Manager $\ast$your\+Scene\+Mgr, \hyperlink{class_n_c_t_u_1_1_obstacle_manager}{N\+C\+T\+U\+::\+Obstacle\+Manager} $\ast$obstacle\+Mgr, Scene\+Node $\ast$p\+Attach\+Node=N\+U\+LL, const String \&s\+Prepend\+Node=\char`\"{}\char`\"{})\hypertarget{class_ogre_1_1_dot_scene_loader_a980e8d431568586740534e0c2fd596b1}{}\label{class_ogre_1_1_dot_scene_loader_a980e8d431568586740534e0c2fd596b1}
+
+\begin{DoxyCompactList}\small\item\em parse the given Dot\+Scene file \end{DoxyCompactList}\item 
+String \hyperlink{class_ogre_1_1_dot_scene_loader_ac4d94f0ab478ee808f63e5cf43755cf9}{get\+Property} (const String \&nd\+Nm, const String \&prop)\hypertarget{class_ogre_1_1_dot_scene_loader_ac4d94f0ab478ee808f63e5cf43755cf9}{}\label{class_ogre_1_1_dot_scene_loader_ac4d94f0ab478ee808f63e5cf43755cf9}
+
+\begin{DoxyCompactList}\small\item\em get property of a node \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a4e6b3ce29f7cf2a24717290f89c3b834}{destroy\+Dedicated\+Scene\+Nodes} ()\hypertarget{class_ogre_1_1_dot_scene_loader_a4e6b3ce29f7cf2a24717290f89c3b834}{}\label{class_ogre_1_1_dot_scene_loader_a4e6b3ce29f7cf2a24717290f89c3b834}
+
+\begin{DoxyCompactList}\small\item\em destory the scene nodes without physics objects \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a52b96034fb06a7e5a93cd22592c16908}{load\+Dummy\+Scene} ()\hypertarget{class_ogre_1_1_dot_scene_loader_a52b96034fb06a7e5a93cd22592c16908}{}\label{class_ogre_1_1_dot_scene_loader_a52b96034fb06a7e5a93cd22592c16908}
+
+\begin{DoxyCompactList}\small\item\em load a dummy scene with player only \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \hyperlink{class_ogre_1_1node_property}{node\+Property} $>$ \hyperlink{class_ogre_1_1_dot_scene_loader_a8aef910eb41e3aa2685d24b60aad4363}{node\+Properties}\hypertarget{class_ogre_1_1_dot_scene_loader_a8aef910eb41e3aa2685d24b60aad4363}{}\label{class_ogre_1_1_dot_scene_loader_a8aef910eb41e3aa2685d24b60aad4363}
+
+\begin{DoxyCompactList}\small\item\em array of node properties \end{DoxyCompactList}\item 
+std\+::vector$<$ String $>$ \hyperlink{class_ogre_1_1_dot_scene_loader_a23a316c6eea305326b3be89113bde609}{static\+Objects}\hypertarget{class_ogre_1_1_dot_scene_loader_a23a316c6eea305326b3be89113bde609}{}\label{class_ogre_1_1_dot_scene_loader_a23a316c6eea305326b3be89113bde609}
+
+\begin{DoxyCompactList}\small\item\em array of static objects \end{DoxyCompactList}\item 
+std\+::vector$<$ String $>$ \hyperlink{class_ogre_1_1_dot_scene_loader_a95daf060322172a14ee6292e64e2c791}{dynamic\+Objects}\hypertarget{class_ogre_1_1_dot_scene_loader_a95daf060322172a14ee6292e64e2c791}{}\label{class_ogre_1_1_dot_scene_loader_a95daf060322172a14ee6292e64e2c791}
+
+\begin{DoxyCompactList}\small\item\em array of dynamic objects \end{DoxyCompactList}\item 
+\hyperlink{classprop_map}{prop\+Map}$<$ String, \hyperlink{class_ogre_1_1_general_property}{General\+Property} $>$ \hyperlink{class_ogre_1_1_dot_scene_loader_a98b2228adaa994df2d99979afc5e7eb1}{m\+General\+Props}\hypertarget{class_ogre_1_1_dot_scene_loader_a98b2228adaa994df2d99979afc5e7eb1}{}\label{class_ogre_1_1_dot_scene_loader_a98b2228adaa994df2d99979afc5e7eb1}
+
+\begin{DoxyCompactList}\small\item\em general properties \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a05a2ebb03c3be72af3ee072fc7211d06}{process\+Scene} (Ti\+Xml\+Element $\ast$X\+M\+L\+Root)\hypertarget{class_ogre_1_1_dot_scene_loader_a05a2ebb03c3be72af3ee072fc7211d06}{}\label{class_ogre_1_1_dot_scene_loader_a05a2ebb03c3be72af3ee072fc7211d06}
+
+\begin{DoxyCompactList}\small\item\em process a scene section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_acdcc1c065c8733156bb97c17c07f6dec}{process\+Nodes} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_acdcc1c065c8733156bb97c17c07f6dec}{}\label{class_ogre_1_1_dot_scene_loader_acdcc1c065c8733156bb97c17c07f6dec}
+
+\begin{DoxyCompactList}\small\item\em process a nodes section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a1627804a409b0dccd5598323f3d85359}{process\+Externals} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)
+\begin{DoxyCompactList}\small\item\em process a externals section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a6c541dcb42d29071b2556b85f8cd1a62}{process\+Environment} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)
+\begin{DoxyCompactList}\small\item\em process a environment section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_ad2f5858edce531f9a7be2e6ebdcebc5e}{process\+Terrain} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)
+\begin{DoxyCompactList}\small\item\em process a terrian section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a24d6db1a195dea881b934753253e8e68}{process\+User\+Data\+Reference} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent=0)
+\begin{DoxyCompactList}\small\item\em process user data reference \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a4edd2c7fa8f951f7ecba5d6f8f841330}{process\+User\+Data\+Reference} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Entity $\ast$p\+Entity)\hypertarget{class_ogre_1_1_dot_scene_loader_a4edd2c7fa8f951f7ecba5d6f8f841330}{}\label{class_ogre_1_1_dot_scene_loader_a4edd2c7fa8f951f7ecba5d6f8f841330}
+
+\begin{DoxyCompactList}\small\item\em process user data reference \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_ad23d30b2c6ee9d24dabc89b28d9b61ed}{process\+Octree} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)
+\begin{DoxyCompactList}\small\item\em process octree \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a0861154e3d3cdfebdd886116a99d2ea9}{process\+Light} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent=0)\hypertarget{class_ogre_1_1_dot_scene_loader_a0861154e3d3cdfebdd886116a99d2ea9}{}\label{class_ogre_1_1_dot_scene_loader_a0861154e3d3cdfebdd886116a99d2ea9}
+
+\begin{DoxyCompactList}\small\item\em process a light section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a92989e4631cd46d31337c006b46c1aea}{process\+Camera} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent=0)
+\begin{DoxyCompactList}\small\item\em process a camera section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_ae84828e86b8e34f1b43ff8e5fc006587}{process\+Node} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent=0)\hypertarget{class_ogre_1_1_dot_scene_loader_ae84828e86b8e34f1b43ff8e5fc006587}{}\label{class_ogre_1_1_dot_scene_loader_ae84828e86b8e34f1b43ff8e5fc006587}
+
+\begin{DoxyCompactList}\small\item\em process a node section \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a3f8227871f6a283222b1d0a88076d6d8}{process\+Look\+Target} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)
+\begin{DoxyCompactList}\small\item\em process look target \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a8b9d37f443c59ea8409a7b2c954bc326}{process\+Track\+Target} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)\hypertarget{class_ogre_1_1_dot_scene_loader_a8b9d37f443c59ea8409a7b2c954bc326}{}\label{class_ogre_1_1_dot_scene_loader_a8b9d37f443c59ea8409a7b2c954bc326}
+
+\begin{DoxyCompactList}\small\item\em process track target \end{DoxyCompactList}\item 
+Entity $\ast$ \hyperlink{class_ogre_1_1_dot_scene_loader_a5bda9ab5afc1f5e8ada8696739d7cf26}{process\+Entity} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent, const String \&name\+Prefix=\char`\"{}\char`\"{})\hypertarget{class_ogre_1_1_dot_scene_loader_a5bda9ab5afc1f5e8ada8696739d7cf26}{}\label{class_ogre_1_1_dot_scene_loader_a5bda9ab5afc1f5e8ada8696739d7cf26}
+
+\begin{DoxyCompactList}\small\item\em process entity \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a4aac1d9bbefcd0026a2f21005d587fe0}{process\+Particle\+System} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)\hypertarget{class_ogre_1_1_dot_scene_loader_a4aac1d9bbefcd0026a2f21005d587fe0}{}\label{class_ogre_1_1_dot_scene_loader_a4aac1d9bbefcd0026a2f21005d587fe0}
+
+\begin{DoxyCompactList}\small\item\em process particle system \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a9b7c7ccd8f2724eb44dc9428ba6cb0d7}{process\+Billboard\+Set} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)
+\begin{DoxyCompactList}\small\item\em process billboard set \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a8131406550814512ea64907b598b3f1c}{process\+Plane} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)
+\begin{DoxyCompactList}\small\item\em process plane \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_ac6f536ff0e073cf1d684027577561fb7}{process\+Fog} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_ac6f536ff0e073cf1d684027577561fb7}{}\label{class_ogre_1_1_dot_scene_loader_ac6f536ff0e073cf1d684027577561fb7}
+
+\begin{DoxyCompactList}\small\item\em process fog \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_ab862c3347cbb0dfe2063afb2a382399f}{process\+Sky\+Box} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_ab862c3347cbb0dfe2063afb2a382399f}{}\label{class_ogre_1_1_dot_scene_loader_ab862c3347cbb0dfe2063afb2a382399f}
+
+\begin{DoxyCompactList}\small\item\em process skybox \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_aa22fc5272abcfc46641659f0f830d150}{process\+Sky\+Dome} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_aa22fc5272abcfc46641659f0f830d150}{}\label{class_ogre_1_1_dot_scene_loader_aa22fc5272abcfc46641659f0f830d150}
+
+\begin{DoxyCompactList}\small\item\em process sky dome \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a3021c43d60580055e58cf14ded3bee23}{process\+Sky\+Plane} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_a3021c43d60580055e58cf14ded3bee23}{}\label{class_ogre_1_1_dot_scene_loader_a3021c43d60580055e58cf14ded3bee23}
+
+\begin{DoxyCompactList}\small\item\em process sky plane \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a0d8466f519cf49e4177369b542da50be}{process\+Clipping} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)
+\begin{DoxyCompactList}\small\item\em process clipping \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_a5f7e231f59db99465f289f7f31f6cb83}{process\+Light\+Range} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Light $\ast$p\+Light)\hypertarget{class_ogre_1_1_dot_scene_loader_a5f7e231f59db99465f289f7f31f6cb83}{}\label{class_ogre_1_1_dot_scene_loader_a5f7e231f59db99465f289f7f31f6cb83}
+
+\begin{DoxyCompactList}\small\item\em process light range \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_af02d2e6e141232809a7c0d11461a6f88}{process\+Light\+Attenuation} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, Light $\ast$p\+Light)\hypertarget{class_ogre_1_1_dot_scene_loader_af02d2e6e141232809a7c0d11461a6f88}{}\label{class_ogre_1_1_dot_scene_loader_af02d2e6e141232809a7c0d11461a6f88}
+
+\begin{DoxyCompactList}\small\item\em process light attenuation \end{DoxyCompactList}\item 
+bool \hyperlink{class_ogre_1_1_dot_scene_loader_a31771f6a68683919b853c29a2acb8689}{process\+Obstacle\+Property} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, const String \&name, Scene\+Node $\ast$node, Entity $\ast$ent)\hypertarget{class_ogre_1_1_dot_scene_loader_a31771f6a68683919b853c29a2acb8689}{}\label{class_ogre_1_1_dot_scene_loader_a31771f6a68683919b853c29a2acb8689}
+
+\begin{DoxyCompactList}\small\item\em process obstacle property \end{DoxyCompactList}\item 
+void \hyperlink{class_ogre_1_1_dot_scene_loader_aa8c6a5f51bebc6b703cfbdfaaa6277c7}{process\+Obstacle\+Extra\+Field} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, \hyperlink{class_ogre_1_1_obstacle_property}{Obstacle\+Property} \&prop, bool save\+As\+General=false)\hypertarget{class_ogre_1_1_dot_scene_loader_aa8c6a5f51bebc6b703cfbdfaaa6277c7}{}\label{class_ogre_1_1_dot_scene_loader_aa8c6a5f51bebc6b703cfbdfaaa6277c7}
+
+\begin{DoxyCompactList}\small\item\em process process extra field for obstacle \end{DoxyCompactList}\item 
+String \hyperlink{class_ogre_1_1_dot_scene_loader_a41335e4e39ec4a62ebd3f58a525337bf}{get\+Attrib} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, const String \&parameter, const String \&default\+Value=\char`\"{}\char`\"{})\hypertarget{class_ogre_1_1_dot_scene_loader_a41335e4e39ec4a62ebd3f58a525337bf}{}\label{class_ogre_1_1_dot_scene_loader_a41335e4e39ec4a62ebd3f58a525337bf}
+
+\begin{DoxyCompactList}\small\item\em get string attribute \end{DoxyCompactList}\item 
+Real \hyperlink{class_ogre_1_1_dot_scene_loader_ad5c825b778226c0b28576aae196fea5f}{get\+Attrib\+Real} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, const String \&parameter, Real default\+Value=0)\hypertarget{class_ogre_1_1_dot_scene_loader_ad5c825b778226c0b28576aae196fea5f}{}\label{class_ogre_1_1_dot_scene_loader_ad5c825b778226c0b28576aae196fea5f}
+
+\begin{DoxyCompactList}\small\item\em get floating point number attribute \end{DoxyCompactList}\item 
+bool \hyperlink{class_ogre_1_1_dot_scene_loader_af5b882f77a1abebf7e1d59959de7c252}{get\+Attrib\+Bool} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node, const String \&parameter, bool default\+Value=false)\hypertarget{class_ogre_1_1_dot_scene_loader_af5b882f77a1abebf7e1d59959de7c252}{}\label{class_ogre_1_1_dot_scene_loader_af5b882f77a1abebf7e1d59959de7c252}
+
+\begin{DoxyCompactList}\small\item\em get boolean attribute \end{DoxyCompactList}\item 
+Vector3 \hyperlink{class_ogre_1_1_dot_scene_loader_ad764d5660b72a936940d5d6cecadfe11}{parse\+Vector3} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_ad764d5660b72a936940d5d6cecadfe11}{}\label{class_ogre_1_1_dot_scene_loader_ad764d5660b72a936940d5d6cecadfe11}
+
+\begin{DoxyCompactList}\small\item\em parse vector3 \end{DoxyCompactList}\item 
+Quaternion \hyperlink{class_ogre_1_1_dot_scene_loader_aefaa396728cce85e9bd16cbeda458b52}{parse\+Quaternion} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)
+\begin{DoxyCompactList}\small\item\em parse quaternion \end{DoxyCompactList}\item 
+Colour\+Value \hyperlink{class_ogre_1_1_dot_scene_loader_a103d61d156e8271bc567b54a6d9415c9}{parse\+Colour} (Ti\+Xml\+Element $\ast$X\+M\+L\+Node)\hypertarget{class_ogre_1_1_dot_scene_loader_a103d61d156e8271bc567b54a6d9415c9}{}\label{class_ogre_1_1_dot_scene_loader_a103d61d156e8271bc567b54a6d9415c9}
+
+\begin{DoxyCompactList}\small\item\em parse color \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::deque$<$ Scene\+Node $\ast$ $>$ \hyperlink{class_ogre_1_1_dot_scene_loader_a39d558e05f28c56f01023f493d5582e3}{m\+Dedicated\+Scene\+Nodes}\hypertarget{class_ogre_1_1_dot_scene_loader_a39d558e05f28c56f01023f493d5582e3}{}\label{class_ogre_1_1_dot_scene_loader_a39d558e05f28c56f01023f493d5582e3}
+
+\begin{DoxyCompactList}\small\item\em store list of dedicated scene nodes \end{DoxyCompactList}\item 
+Scene\+Manager $\ast$ \hyperlink{class_ogre_1_1_dot_scene_loader_a0e9bb576dd713972cbffa556a9db46ba}{m\+Scene\+Mgr}\hypertarget{class_ogre_1_1_dot_scene_loader_a0e9bb576dd713972cbffa556a9db46ba}{}\label{class_ogre_1_1_dot_scene_loader_a0e9bb576dd713972cbffa556a9db46ba}
+
+\begin{DoxyCompactList}\small\item\em pointer of scene manager \end{DoxyCompactList}\item 
+Scene\+Node $\ast$ \hyperlink{class_ogre_1_1_dot_scene_loader_a125a76b2ab6e09f52666bad72ff0de8b}{m\+Attach\+Node}\hypertarget{class_ogre_1_1_dot_scene_loader_a125a76b2ab6e09f52666bad72ff0de8b}{}\label{class_ogre_1_1_dot_scene_loader_a125a76b2ab6e09f52666bad72ff0de8b}
+
+\begin{DoxyCompactList}\small\item\em pointer of attach node \end{DoxyCompactList}\item 
+String \hyperlink{class_ogre_1_1_dot_scene_loader_a5145c90376120779948da8ac34de3444}{m\+\_\+s\+Group\+Name}\hypertarget{class_ogre_1_1_dot_scene_loader_a5145c90376120779948da8ac34de3444}{}\label{class_ogre_1_1_dot_scene_loader_a5145c90376120779948da8ac34de3444}
+
+\begin{DoxyCompactList}\small\item\em group name \end{DoxyCompactList}\item 
+String \hyperlink{class_ogre_1_1_dot_scene_loader_a24a2165fe05ca325d04cb2ec2928558e}{m\+\_\+s\+Prepend\+Node}\hypertarget{class_ogre_1_1_dot_scene_loader_a24a2165fe05ca325d04cb2ec2928558e}{}\label{class_ogre_1_1_dot_scene_loader_a24a2165fe05ca325d04cb2ec2928558e}
+
+\begin{DoxyCompactList}\small\item\em prepend node \end{DoxyCompactList}\item 
+\hyperlink{class_n_c_t_u_1_1_obstacle_manager}{N\+C\+T\+U\+::\+Obstacle\+Manager} $\ast$ \hyperlink{class_ogre_1_1_dot_scene_loader_a912d662e92bb373c7206b37defaeab29}{m\+Obstacle\+Mgr}\hypertarget{class_ogre_1_1_dot_scene_loader_a912d662e92bb373c7206b37defaeab29}{}\label{class_ogre_1_1_dot_scene_loader_a912d662e92bb373c7206b37defaeab29}
+
+\begin{DoxyCompactList}\small\item\em pointer of our obstacle manager \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+main class for Dot\+Scene reading 
+
+\subsection{Member Function Documentation}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!parse\+Quaternion@{parse\+Quaternion}}
+\index{parse\+Quaternion@{parse\+Quaternion}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{parse\+Quaternion(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node)}{parseQuaternion(TiXmlElement *XMLNode)}}]{\setlength{\rightskip}{0pt plus 5cm}Quaternion Dot\+Scene\+Loader\+::parse\+Quaternion (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_aefaa396728cce85e9bd16cbeda458b52}{}\label{class_ogre_1_1_dot_scene_loader_aefaa396728cce85e9bd16cbeda458b52}
+
+
+parse quaternion 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000015}{Todo}]Fix this crap! \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Billboard\+Set@{process\+Billboard\+Set}}
+\index{process\+Billboard\+Set@{process\+Billboard\+Set}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Billboard\+Set(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)}{processBillboardSet(TiXmlElement *XMLNode, SceneNode *pParent)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Billboard\+Set (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node, }
+\item[{Scene\+Node $\ast$}]{p\+Parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a9b7c7ccd8f2724eb44dc9428ba6cb0d7}{}\label{class_ogre_1_1_dot_scene_loader_a9b7c7ccd8f2724eb44dc9428ba6cb0d7}
+
+
+process billboard set 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000012}{Todo}]Implement this \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Camera@{process\+Camera}}
+\index{process\+Camera@{process\+Camera}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Camera(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent=0)}{processCamera(TiXmlElement *XMLNode, SceneNode *pParent=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Camera (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node, }
+\item[{Scene\+Node $\ast$}]{p\+Parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a92989e4631cd46d31337c006b46c1aea}{}\label{class_ogre_1_1_dot_scene_loader_a92989e4631cd46d31337c006b46c1aea}
+
+
+process a camera section 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000006}{Todo}]Is this always in degrees? \end{DoxyRefDesc}
+
+
+$<$\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000007}{Todo}]What to do with this element? \end{DoxyRefDesc}
+
+
+$<$\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000008}{Todo}]Implement the camera look target \end{DoxyRefDesc}
+
+
+$<$\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000009}{Todo}]Implement the camera track target \end{DoxyRefDesc}
+
+
+$<$\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000010}{Todo}]Implement the camera user data reference \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Clipping@{process\+Clipping}}
+\index{process\+Clipping@{process\+Clipping}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Clipping(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node)}{processClipping(TiXmlElement *XMLNode)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Clipping (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a0d8466f519cf49e4177369b542da50be}{}\label{class_ogre_1_1_dot_scene_loader_a0d8466f519cf49e4177369b542da50be}
+
+
+process clipping 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000014}{Todo}]Implement this \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Environment@{process\+Environment}}
+\index{process\+Environment@{process\+Environment}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Environment(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node)}{processEnvironment(TiXmlElement *XMLNode)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Environment (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a6c541dcb42d29071b2556b85f8cd1a62}{}\label{class_ogre_1_1_dot_scene_loader_a6c541dcb42d29071b2556b85f8cd1a62}
+
+
+process a environment section 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]Set the background colour of all viewports (Render\+Window has to be provided then) \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Externals@{process\+Externals}}
+\index{process\+Externals@{process\+Externals}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Externals(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node)}{processExternals(TiXmlElement *XMLNode)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Externals (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a1627804a409b0dccd5598323f3d85359}{}\label{class_ogre_1_1_dot_scene_loader_a1627804a409b0dccd5598323f3d85359}
+
+
+process a externals section 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Implement this \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Look\+Target@{process\+Look\+Target}}
+\index{process\+Look\+Target@{process\+Look\+Target}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Look\+Target(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)}{processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Look\+Target (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node, }
+\item[{Scene\+Node $\ast$}]{p\+Parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a3f8227871f6a283222b1d0a88076d6d8}{}\label{class_ogre_1_1_dot_scene_loader_a3f8227871f6a283222b1d0a88076d6d8}
+
+
+process look target 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000011}{Todo}]Is this correct? Cause I don\textquotesingle{}t have a clue actually \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Octree@{process\+Octree}}
+\index{process\+Octree@{process\+Octree}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Octree(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node)}{processOctree(TiXmlElement *XMLNode)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Octree (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_ad23d30b2c6ee9d24dabc89b28d9b61ed}{}\label{class_ogre_1_1_dot_scene_loader_ad23d30b2c6ee9d24dabc89b28d9b61ed}
+
+
+process octree 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000005}{Todo}]Implement this \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Plane@{process\+Plane}}
+\index{process\+Plane@{process\+Plane}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Plane(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent)}{processPlane(TiXmlElement *XMLNode, SceneNode *pParent)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Plane (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node, }
+\item[{Scene\+Node $\ast$}]{p\+Parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a8131406550814512ea64907b598b3f1c}{}\label{class_ogre_1_1_dot_scene_loader_a8131406550814512ea64907b598b3f1c}
+
+
+process plane 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000013}{Todo}]Implement this \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+Terrain@{process\+Terrain}}
+\index{process\+Terrain@{process\+Terrain}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+Terrain(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node)}{processTerrain(TiXmlElement *XMLNode)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+Terrain (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_ad2f5858edce531f9a7be2e6ebdcebc5e}{}\label{class_ogre_1_1_dot_scene_loader_ad2f5858edce531f9a7be2e6ebdcebc5e}
+
+
+process a terrian section 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]Implement this \end{DoxyRefDesc}
+\index{Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}!process\+User\+Data\+Reference@{process\+User\+Data\+Reference}}
+\index{process\+User\+Data\+Reference@{process\+User\+Data\+Reference}!Ogre\+::\+Dot\+Scene\+Loader@{Ogre\+::\+Dot\+Scene\+Loader}}
+\subsubsection[{\texorpdfstring{process\+User\+Data\+Reference(\+Ti\+Xml\+Element $\ast$\+X\+M\+L\+Node, Scene\+Node $\ast$p\+Parent=0)}{processUserDataReference(TiXmlElement *XMLNode, SceneNode *pParent=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dot\+Scene\+Loader\+::process\+User\+Data\+Reference (
+\begin{DoxyParamCaption}
+\item[{Ti\+Xml\+Element $\ast$}]{X\+M\+L\+Node, }
+\item[{Scene\+Node $\ast$}]{p\+Parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_ogre_1_1_dot_scene_loader_a24d6db1a195dea881b934753253e8e68}{}\label{class_ogre_1_1_dot_scene_loader_a24d6db1a195dea881b934753253e8e68}
+
+
+process user data reference 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000004}{Todo}]Implement this \end{DoxyRefDesc}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+programs/\+Obstacle/include/Dot\+Scene\+Loader.\+h\item 
+programs/\+Obstacle/source/Dot\+Scene\+Loader.\+cpp\end{DoxyCompactItemize}

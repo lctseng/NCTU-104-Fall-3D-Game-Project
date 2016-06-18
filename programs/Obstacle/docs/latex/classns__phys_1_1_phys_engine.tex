@@ -1,0 +1,65 @@
+\hypertarget{classns__phys_1_1_phys_engine}{}\section{ns\+\_\+phys\+:\+:Phys\+Engine Class Reference}
+\label{classns__phys_1_1_phys_engine}\index{ns\+\_\+phys\+::\+Phys\+Engine@{ns\+\_\+phys\+::\+Phys\+Engine}}
+Inheritance diagram for ns\+\_\+phys\+:\+:Phys\+Engine\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classns__phys_1_1_phys_engine}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries forward} ()\hypertarget{classns__phys_1_1_phys_engine_a9fc2b79b0307434f1920ed7f9fac1a29}{}\label{classns__phys_1_1_phys_engine_a9fc2b79b0307434f1920ed7f9fac1a29}
+
+\item 
+void {\bfseries backward} ()\hypertarget{classns__phys_1_1_phys_engine_a8b5439170138f002f50b0ccf55237fd9}{}\label{classns__phys_1_1_phys_engine_a8b5439170138f002f50b0ccf55237fd9}
+
+\item 
+void {\bfseries forward\+With\+Steps} (int n\+Step)\hypertarget{classns__phys_1_1_phys_engine_a29005de7b0db9124790195c3f8b15540}{}\label{classns__phys_1_1_phys_engine_a29005de7b0db9124790195c3f8b15540}
+
+\item 
+void {\bfseries backward\+With\+Steps} (int n\+Step)\hypertarget{classns__phys_1_1_phys_engine_a5a5ddf8cb0c792ad9d6ed845d5ee71fa}{}\label{classns__phys_1_1_phys_engine_a5a5ddf8cb0c792ad9d6ed845d5ee71fa}
+
+\item 
+void {\bfseries forward\+To\+Step} (int step)\hypertarget{classns__phys_1_1_phys_engine_a0f99f2b558449a18fd465ac2a71278e6}{}\label{classns__phys_1_1_phys_engine_a0f99f2b558449a18fd465ac2a71278e6}
+
+\item 
+void {\bfseries backward\+To\+Step} (int step)\hypertarget{classns__phys_1_1_phys_engine_a69eb3807dc2e4522411c2c58a12043bf}{}\label{classns__phys_1_1_phys_engine_a69eb3807dc2e4522411c2c58a12043bf}
+
+\item 
+int {\bfseries add\+Obj} (float x, float y, float z)\hypertarget{classns__phys_1_1_phys_engine_ad4584c92c9eb3ad38bcf19cca21e5286}{}\label{classns__phys_1_1_phys_engine_ad4584c92c9eb3ad38bcf19cca21e5286}
+
+\item 
+int {\bfseries add\+Obj} (float x, float y, float z, float vx, float vy, float vz)\hypertarget{classns__phys_1_1_phys_engine_a1aaadc57ba8e6cd7bb66dc1facc41ea9}{}\label{classns__phys_1_1_phys_engine_a1aaadc57ba8e6cd7bb66dc1facc41ea9}
+
+\item 
+int {\bfseries add\+Obj} (float x, float y, float z, float vx, float vy, float vz, float radius)\hypertarget{classns__phys_1_1_phys_engine_ac81fb341960e89021b5525ca4356a971}{}\label{classns__phys_1_1_phys_engine_ac81fb341960e89021b5525ca4356a971}
+
+\item 
+int {\bfseries get\+Num\+Of\+Objs} () const \hypertarget{classns__phys_1_1_phys_engine_a3e00b905705484efeca95c5d7d866484}{}\label{classns__phys_1_1_phys_engine_a3e00b905705484efeca95c5d7d866484}
+
+\item 
+\hyperlink{classns__phys_1_1_game_object}{Game\+Object} $\ast$ {\bfseries get\+Obj} (int a\+\_\+\+ID) const \hypertarget{classns__phys_1_1_phys_engine_a1bed61dc28373090427514b1e9e43dca}{}\label{classns__phys_1_1_phys_engine_a1bed61dc28373090427514b1e9e43dca}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries adjust\+Velocity\+Due\+To\+Collision} (float a\+\_\+\+Time\+Step, \hyperlink{classns__phys_1_1_game_object}{Game\+Object} $\ast$g0, \hyperlink{classns__phys_1_1_game_object}{Game\+Object} $\ast$g1)\hypertarget{classns__phys_1_1_phys_engine_a16152ec477d63f292b7015f291b652ea}{}\label{classns__phys_1_1_phys_engine_a16152ec477d63f292b7015f291b652ea}
+
+\item 
+void {\bfseries adjust\+Velocity\+Due\+To\+Collision} (float a\+\_\+\+Time\+Step)\hypertarget{classns__phys_1_1_phys_engine_aeeec03c16168db6ec3ce7e55675f0154}{}\label{classns__phys_1_1_phys_engine_aeeec03c16168db6ec3ce7e55675f0154}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries m\+Time\+Step}\hypertarget{classns__phys_1_1_phys_engine_abaef8cc48384793a00200c4f11adbddd}{}\label{classns__phys_1_1_phys_engine_abaef8cc48384793a00200c4f11adbddd}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+programs/\+Obstacle/source/demo-\/template/Phys\+Engine.\+h\item 
+programs/\+Obstacle/source/demo-\/template/Phys\+Engine.\+cpp\end{DoxyCompactItemize}

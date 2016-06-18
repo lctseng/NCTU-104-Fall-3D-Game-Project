@@ -7,8 +7,14 @@
 
 namespace NCTU{
 	// -------------------------------------------------------------
+	/*! 
+	\brief general obstacle
+	*/
 	class GeneralObstacle : public Obstacle{
 	public:
+		/*! 
+		\brief constructor
+		*/
 		GeneralObstacle(
 			ObstacleManager* mgmt,
 			Ogre::Real restitution, 
@@ -18,6 +24,9 @@ namespace NCTU{
 			Ogre::SceneNode* node, 
 			Ogre::Entity* ent);
 	protected:
+		/*! 
+		\brief object index
+		*/
 		INDEX_TYPE mIndex;
 	};
 };

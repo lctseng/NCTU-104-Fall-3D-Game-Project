@@ -1,0 +1,123 @@
+\hypertarget{class_n_c_t_u_1_1_bullet_obstacle}{}\section{N\+C\+TU\+:\+:Bullet\+Obstacle Class Reference}
+\label{class_n_c_t_u_1_1_bullet_obstacle}\index{N\+C\+T\+U\+::\+Bullet\+Obstacle@{N\+C\+T\+U\+::\+Bullet\+Obstacle}}
+
+
+bullet obstacle  
+
+
+
+
+{\ttfamily \#include $<$N\+C\+T\+U\+Bullet\+Obstacle.\+h$>$}
+
+Inheritance diagram for N\+C\+TU\+:\+:Bullet\+Obstacle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_n_c_t_u_1_1_bullet_obstacle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a8ceaf3442116803582d703e6326b610a}{Bullet\+Obstacle} (\hyperlink{class_n_c_t_u_1_1_obstacle_manager}{Obstacle\+Manager} $\ast$mgmt, Ogre\+::\+Real restitution, Ogre\+::\+Real friction, Ogre\+::\+Real mass, I\+N\+D\+E\+X\+\_\+\+T\+Y\+PE index, Hp\+Type bullet\+Type, const Ogre\+::\+Vector3 \&position, Ogre\+::\+Real radius, const Ogre\+::\+Quaternion \&orientation)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a0e7b291970133412b00a30e8c5f65a19}{set\+Scale} (const Ogre\+::\+Vector3 \&)\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a0e7b291970133412b00a30e8c5f65a19}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a0e7b291970133412b00a30e8c5f65a19}
+
+\begin{DoxyCompactList}\small\item\em set obstacle scale \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a51c61e74c5e7b6918ea98343109cee50}{set\+Bullet\+Iterator} (std\+::list$<$ \hyperlink{class_n_c_t_u_1_1_bullet_obstacle}{Bullet\+Obstacle} $\ast$ $>$\+::iterator it)\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a51c61e74c5e7b6918ea98343109cee50}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a51c61e74c5e7b6918ea98343109cee50}
+
+\begin{DoxyCompactList}\small\item\em set bullet interator for manager \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_afb9241ee7ed793b39cb8f60b5f1132ac}{on\+Bullet\+Hit} (\hyperlink{class_n_c_t_u_1_1_bullet_obstacle}{Bullet\+Obstacle} $\ast$, \hyperlink{class_n_c_t_u_1_1_obstacle}{Obstacle} $\ast$)\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_afb9241ee7ed793b39cb8f60b5f1132ac}{}\label{class_n_c_t_u_1_1_bullet_obstacle_afb9241ee7ed793b39cb8f60b5f1132ac}
+
+\begin{DoxyCompactList}\small\item\em process when bullet hit \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a40e7d8af32475bc9520ead568771f64c}{is\+Alive} () const \hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a40e7d8af32475bc9520ead568771f64c}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a40e7d8af32475bc9520ead568771f64c}
+
+\begin{DoxyCompactList}\small\item\em is bullet alive? \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a149609db8052addfcfebe2e24858fe20}{clean\+Up} ()\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a149609db8052addfcfebe2e24858fe20}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a149609db8052addfcfebe2e24858fe20}
+
+\begin{DoxyCompactList}\small\item\em clean up routine \end{DoxyCompactList}\item 
+virtual Hp\+Type \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_ad39ecce6671c5d1ea03ff5d017a7f475}{get\+Bullet\+Type} () const \hypertarget{class_n_c_t_u_1_1_bullet_obstacle_ad39ecce6671c5d1ea03ff5d017a7f475}{}\label{class_n_c_t_u_1_1_bullet_obstacle_ad39ecce6671c5d1ea03ff5d017a7f475}
+
+\begin{DoxyCompactList}\small\item\em get the bullet hp type \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a749649fe487147408344fb4dfe3021cf}{update\+Life\+Time} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a749649fe487147408344fb4dfe3021cf}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a749649fe487147408344fb4dfe3021cf}
+
+\begin{DoxyCompactList}\small\item\em update life time \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_abf28165332c4599dad8a3b92cfb8fac8}{can\+Be\+Shoot} () const \hypertarget{class_n_c_t_u_1_1_bullet_obstacle_abf28165332c4599dad8a3b92cfb8fac8}{}\label{class_n_c_t_u_1_1_bullet_obstacle_abf28165332c4599dad8a3b92cfb8fac8}
+
+\begin{DoxyCompactList}\small\item\em is this object can be shoot? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_ac6d90f267ebd087d5322977344e69e59}{can\+Stand\+On} () const \hypertarget{class_n_c_t_u_1_1_bullet_obstacle_ac6d90f267ebd087d5322977344e69e59}{}\label{class_n_c_t_u_1_1_bullet_obstacle_ac6d90f267ebd087d5322977344e69e59}
+
+\begin{DoxyCompactList}\small\item\em is this object can be standed on? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_ae9fbd7f7ad7d5e58df1c5b28eaaf4bd5}{can\+Cause\+Dead} () const \hypertarget{class_n_c_t_u_1_1_bullet_obstacle_ae9fbd7f7ad7d5e58df1c5b28eaaf4bd5}{}\label{class_n_c_t_u_1_1_bullet_obstacle_ae9fbd7f7ad7d5e58df1c5b28eaaf4bd5}
+
+\begin{DoxyCompactList}\small\item\em is this object can cause dead? \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a1b60b1c4c71033108c7f63e7722243bb}{set\+Handler\+Bullet\+Hit} (Bullet\+Hit\+Handler handler)\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a1b60b1c4c71033108c7f63e7722243bb}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a1b60b1c4c71033108c7f63e7722243bb}
+
+\begin{DoxyCompactList}\small\item\em set handler when bullet hit \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a5b600a79973854cdc0dad76cbe8d77a6}{on\+Life\+End} ()\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a5b600a79973854cdc0dad76cbe8d77a6}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a5b600a79973854cdc0dad76cbe8d77a6}
+
+\begin{DoxyCompactList}\small\item\em process when life ended \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a25cd3e3ee7a77a4bd51b652201d92dd5}{m\+Index}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a25cd3e3ee7a77a4bd51b652201d92dd5}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a25cd3e3ee7a77a4bd51b652201d92dd5}
+
+\begin{DoxyCompactList}\small\item\em object index \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a2ec54f863d2d04d11c4f1bf0771d36f7}{m\+Radius}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a2ec54f863d2d04d11c4f1bf0771d36f7}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a2ec54f863d2d04d11c4f1bf0771d36f7}
+
+\begin{DoxyCompactList}\small\item\em bullet radius \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{class_n_c_t_u_1_1_bullet_obstacle}{Bullet\+Obstacle} $\ast$ $>$\+::iterator \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_ac56f8d89eea0be19564990b1a5459916}{m\+Bullet\+Iterator}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_ac56f8d89eea0be19564990b1a5459916}{}\label{class_n_c_t_u_1_1_bullet_obstacle_ac56f8d89eea0be19564990b1a5459916}
+
+\begin{DoxyCompactList}\small\item\em iterator for manager \end{DoxyCompactList}\item 
+bool \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_aba277c2a430e552a2bbcd4ac0d800d0c}{m\+Hit}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_aba277c2a430e552a2bbcd4ac0d800d0c}{}\label{class_n_c_t_u_1_1_bullet_obstacle_aba277c2a430e552a2bbcd4ac0d800d0c}
+
+\begin{DoxyCompactList}\small\item\em is bullet hit something? \end{DoxyCompactList}\item 
+Hp\+Type \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a8b634c38b5e2172f220709afd534f2c6}{m\+Bullet\+Type}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a8b634c38b5e2172f220709afd534f2c6}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a8b634c38b5e2172f220709afd534f2c6}
+
+\begin{DoxyCompactList}\small\item\em the hp type for bullet \end{DoxyCompactList}\item 
+Ogre\+::\+Real \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a95dac20c5d14bb5db86aa18835d78004}{m\+Particle\+Life\+Time}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a95dac20c5d14bb5db86aa18835d78004}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a95dac20c5d14bb5db86aa18835d78004}
+
+\begin{DoxyCompactList}\small\item\em life time for particle system \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Bullet\+Hit\+Handler \hyperlink{class_n_c_t_u_1_1_bullet_obstacle_a1756674a45f79c57e9815756fecc55f4}{m\+Bullet\+Hit\+Handler} = nullptr\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a1756674a45f79c57e9815756fecc55f4}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a1756674a45f79c57e9815756fecc55f4}
+
+\begin{DoxyCompactList}\small\item\em the bullet-\/hit handler \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+bullet obstacle 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{N\+C\+T\+U\+::\+Bullet\+Obstacle@{N\+C\+T\+U\+::\+Bullet\+Obstacle}!Bullet\+Obstacle@{Bullet\+Obstacle}}
+\index{Bullet\+Obstacle@{Bullet\+Obstacle}!N\+C\+T\+U\+::\+Bullet\+Obstacle@{N\+C\+T\+U\+::\+Bullet\+Obstacle}}
+\subsubsection[{\texorpdfstring{Bullet\+Obstacle(\+Obstacle\+Manager $\ast$mgmt, Ogre\+::\+Real restitution, Ogre\+::\+Real friction, Ogre\+::\+Real mass, I\+N\+D\+E\+X\+\_\+\+T\+Y\+P\+E index, Hp\+Type bullet\+Type, const Ogre\+::\+Vector3 \&position, Ogre\+::\+Real radius, const Ogre\+::\+Quaternion \&orientation)}{BulletObstacle(ObstacleManager *mgmt, Ogre::Real restitution, Ogre::Real friction, Ogre::Real mass, INDEX_TYPE index, HpType bulletType, const Ogre::Vector3 &position, Ogre::Real radius, const Ogre::Quaternion &orientation)}}]{\setlength{\rightskip}{0pt plus 5cm}Bullet\+Obstacle\+::\+Bullet\+Obstacle (
+\begin{DoxyParamCaption}
+\item[{{\bf Obstacle\+Manager} $\ast$}]{mgmt, }
+\item[{Ogre\+::\+Real}]{restitution, }
+\item[{Ogre\+::\+Real}]{friction, }
+\item[{Ogre\+::\+Real}]{mass, }
+\item[{I\+N\+D\+E\+X\+\_\+\+T\+Y\+PE}]{index, }
+\item[{Hp\+Type}]{bullet\+Type, }
+\item[{const Ogre\+::\+Vector3 \&}]{position, }
+\item[{Ogre\+::\+Real}]{radius, }
+\item[{const Ogre\+::\+Quaternion \&}]{orientation}
+\end{DoxyParamCaption}
+)}\hypertarget{class_n_c_t_u_1_1_bullet_obstacle_a8ceaf3442116803582d703e6326b610a}{}\label{class_n_c_t_u_1_1_bullet_obstacle_a8ceaf3442116803582d703e6326b610a}
+
+
+constructor 
+
+Create a bullet obstacle (full) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+N\+C\+T\+U\+Obstacle/include/N\+C\+T\+U\+Bullet\+Obstacle.\+h\item 
+N\+C\+T\+U\+Obstacle/src/N\+C\+T\+U\+Bullet\+Obstacle.\+cpp\end{DoxyCompactItemize}

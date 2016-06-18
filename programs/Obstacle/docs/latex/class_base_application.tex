@@ -1,0 +1,137 @@
+\hypertarget{class_base_application}{}\section{Base\+Application Class Reference}
+\label{class_base_application}\index{Base\+Application@{Base\+Application}}
+
+
+base class for application  
+
+
+
+
+{\ttfamily \#include $<$Base\+Application.\+h$>$}
+
+Inheritance diagram for Base\+Application\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.382979cm]{class_base_application}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries go} (void)\hypertarget{class_base_application_a8a14a65a29118dd75173aa68678a05e1}{}\label{class_base_application_a8a14a65a29118dd75173aa68678a05e1}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool {\bfseries setup} ()\hypertarget{class_base_application_a5853d0e148cb85b0297a6885e1d33a89}{}\label{class_base_application_a5853d0e148cb85b0297a6885e1d33a89}
+
+\item 
+virtual bool {\bfseries configure} (void)\hypertarget{class_base_application_a62ed46f90e9f82cc810997647a2c587e}{}\label{class_base_application_a62ed46f90e9f82cc810997647a2c587e}
+
+\item 
+virtual void {\bfseries choose\+Scene\+Manager} (void)\hypertarget{class_base_application_ad5bc9655041e1849a4c13f444a3712bd}{}\label{class_base_application_ad5bc9655041e1849a4c13f444a3712bd}
+
+\item 
+virtual void {\bfseries create\+Camera} (void)\hypertarget{class_base_application_afa9d51527763cf9aee9cd4e1b1039d55}{}\label{class_base_application_afa9d51527763cf9aee9cd4e1b1039d55}
+
+\item 
+virtual void {\bfseries create\+Frame\+Listener} (void)\hypertarget{class_base_application_aff6fd9ff1ff0978cc68f19dd65be4778}{}\label{class_base_application_aff6fd9ff1ff0978cc68f19dd65be4778}
+
+\item 
+virtual void {\bfseries create\+Scene} (void)=0\hypertarget{class_base_application_aa97beeb4059b17d0ec22eae33286ec2d}{}\label{class_base_application_aa97beeb4059b17d0ec22eae33286ec2d}
+
+\item 
+virtual void {\bfseries destroy\+Scene} (void)\hypertarget{class_base_application_a365146059b25391fe400f5fdb94f011e}{}\label{class_base_application_a365146059b25391fe400f5fdb94f011e}
+
+\item 
+virtual void {\bfseries create\+Viewports} (void)\hypertarget{class_base_application_a1f8f6730cae6ec769d8730b1af48486e}{}\label{class_base_application_a1f8f6730cae6ec769d8730b1af48486e}
+
+\item 
+virtual void {\bfseries setup\+Resources} (void)\hypertarget{class_base_application_ae27301702f1e5de64619a39b1929f1f9}{}\label{class_base_application_ae27301702f1e5de64619a39b1929f1f9}
+
+\item 
+virtual void {\bfseries create\+Resource\+Listener} (void)\hypertarget{class_base_application_a9b77972f0f747a61e1f8ceba2ad47641}{}\label{class_base_application_a9b77972f0f747a61e1f8ceba2ad47641}
+
+\item 
+virtual void {\bfseries load\+Resources} (void)\hypertarget{class_base_application_aaeb764e637dd87601a81a80156659d88}{}\label{class_base_application_aaeb764e637dd87601a81a80156659d88}
+
+\item 
+virtual bool {\bfseries frame\+Rendering\+Queued} (const Ogre\+::\+Frame\+Event \&evt)\hypertarget{class_base_application_a03912a0f38b38fede7f08a2571e8fc56}{}\label{class_base_application_a03912a0f38b38fede7f08a2571e8fc56}
+
+\item 
+virtual bool {\bfseries key\+Pressed} (const O\+I\+S\+::\+Key\+Event \&arg)\hypertarget{class_base_application_acfa977f04e435f18018ece805c1277ec}{}\label{class_base_application_acfa977f04e435f18018ece805c1277ec}
+
+\item 
+virtual bool {\bfseries key\+Released} (const O\+I\+S\+::\+Key\+Event \&arg)\hypertarget{class_base_application_aba5c7c9dea7a0efc58b89310bae547e5}{}\label{class_base_application_aba5c7c9dea7a0efc58b89310bae547e5}
+
+\item 
+virtual bool {\bfseries mouse\+Moved} (const O\+I\+S\+::\+Mouse\+Event \&arg)\hypertarget{class_base_application_a126e59cb246b061e51eb6ce06a2ee8f4}{}\label{class_base_application_a126e59cb246b061e51eb6ce06a2ee8f4}
+
+\item 
+virtual bool {\bfseries mouse\+Pressed} (const O\+I\+S\+::\+Mouse\+Event \&arg, O\+I\+S\+::\+Mouse\+Button\+ID id)\hypertarget{class_base_application_a9255dfc1eabefd11c474ec45a6622504}{}\label{class_base_application_a9255dfc1eabefd11c474ec45a6622504}
+
+\item 
+virtual bool {\bfseries mouse\+Released} (const O\+I\+S\+::\+Mouse\+Event \&arg, O\+I\+S\+::\+Mouse\+Button\+ID id)\hypertarget{class_base_application_aa102c5859c14c0690c749994a446b53d}{}\label{class_base_application_aa102c5859c14c0690c749994a446b53d}
+
+\item 
+virtual void {\bfseries window\+Resized} (Ogre\+::\+Render\+Window $\ast$rw)\hypertarget{class_base_application_afacf8a797588592ef0abbad593f10cfa}{}\label{class_base_application_afacf8a797588592ef0abbad593f10cfa}
+
+\item 
+virtual void {\bfseries window\+Closed} (Ogre\+::\+Render\+Window $\ast$rw)\hypertarget{class_base_application_ae0e37ac54a31ff6e51d58c7654ad1b90}{}\label{class_base_application_ae0e37ac54a31ff6e51d58c7654ad1b90}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Root $\ast$ {\bfseries m\+Root}\hypertarget{class_base_application_add84ba707dc6c57e6283f214b1274110}{}\label{class_base_application_add84ba707dc6c57e6283f214b1274110}
+
+\item 
+Ogre\+::\+Camera $\ast$ {\bfseries m\+Camera}\hypertarget{class_base_application_a3829c6b12afe911e97e6b4524b33a38b}{}\label{class_base_application_a3829c6b12afe911e97e6b4524b33a38b}
+
+\item 
+Ogre\+::\+Scene\+Manager $\ast$ {\bfseries m\+Scene\+Mgr}\hypertarget{class_base_application_a8a7684f4f9a57ed3089048ad1a913b2d}{}\label{class_base_application_a8a7684f4f9a57ed3089048ad1a913b2d}
+
+\item 
+Ogre\+::\+Render\+Window $\ast$ {\bfseries m\+Window}\hypertarget{class_base_application_ac5d8e9c81e036897bc82f81eff8c570f}{}\label{class_base_application_ac5d8e9c81e036897bc82f81eff8c570f}
+
+\item 
+Ogre\+::\+String {\bfseries m\+Resources\+Cfg}\hypertarget{class_base_application_a765e0df01c141a16df3178ab4f17afe6}{}\label{class_base_application_a765e0df01c141a16df3178ab4f17afe6}
+
+\item 
+Ogre\+::\+String {\bfseries m\+Plugins\+Cfg}\hypertarget{class_base_application_a04f2fe47fa164fd78d986dc0df70b7fb}{}\label{class_base_application_a04f2fe47fa164fd78d986dc0df70b7fb}
+
+\item 
+Ogre\+Bites\+::\+Sdk\+Tray\+Manager $\ast$ {\bfseries m\+Tray\+Mgr}\hypertarget{class_base_application_a7faa397f4f4861ee8c361a01e90b4416}{}\label{class_base_application_a7faa397f4f4861ee8c361a01e90b4416}
+
+\item 
+Ogre\+Bites\+::\+Sdk\+Camera\+Man $\ast$ {\bfseries m\+Camera\+Man}\hypertarget{class_base_application_a9ae38dea6316058549151fff66a91fcd}{}\label{class_base_application_a9ae38dea6316058549151fff66a91fcd}
+
+\item 
+Ogre\+Bites\+::\+Params\+Panel $\ast$ {\bfseries m\+Details\+Panel}\hypertarget{class_base_application_a6a11054ca61efdf558e0ff1b2de43a12}{}\label{class_base_application_a6a11054ca61efdf558e0ff1b2de43a12}
+
+\item 
+bool {\bfseries m\+Cursor\+Was\+Visible}\hypertarget{class_base_application_ac7e861799862cb645f1d78b170aef80d}{}\label{class_base_application_ac7e861799862cb645f1d78b170aef80d}
+
+\item 
+bool {\bfseries m\+Shut\+Down}\hypertarget{class_base_application_a755f26d3a9915aaf830750d877e39d86}{}\label{class_base_application_a755f26d3a9915aaf830750d877e39d86}
+
+\item 
+O\+I\+S\+::\+Input\+Manager $\ast$ {\bfseries m\+Input\+Manager}\hypertarget{class_base_application_abc9503c8462e225b5d0d55c952d9e4a9}{}\label{class_base_application_abc9503c8462e225b5d0d55c952d9e4a9}
+
+\item 
+O\+I\+S\+::\+Mouse $\ast$ {\bfseries m\+Mouse}\hypertarget{class_base_application_add9b97fbe64da2814d3af113bac58c43}{}\label{class_base_application_add9b97fbe64da2814d3af113bac58c43}
+
+\item 
+O\+I\+S\+::\+Keyboard $\ast$ {\bfseries m\+Keyboard}\hypertarget{class_base_application_a9d6e19cf50c47379fbaae55bff28079c}{}\label{class_base_application_a9d6e19cf50c47379fbaae55bff28079c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+base class for application 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+programs/\+Obstacle/include/Base\+Application.\+h\item 
+programs/\+Obstacle/source/Base\+Application.\+cpp\end{DoxyCompactItemize}
